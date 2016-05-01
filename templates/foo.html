@@ -1,4 +1,60 @@
+{% load staticfiles %}
 
-<title> Teste: template sem view.</title>
+<html>
+	<head>
+		<!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="{% static 'materialize/bin/materialize.css' %}"  media="screen,projection"/>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	</head>
+	<body class="grey lighten-5">
 
-<p> Esse é um teste de renderização de template sem view.</p>
+		<!-- Dropdown Structure -->
+		<ul id="dropdown1" class="dropdown-content">
+			<li>
+				<a href="#!">one</a>
+			</li>
+			<li>
+				<a href="#!">two</a>
+			</li>
+			<li class="divider"></li>
+			<li>
+				<a href="#!">three</a>
+			</li>
+		</ul>
+		<nav>
+			<div class="nav-wrapper teal darken-2">
+				<a href="#!" class="brand-logo">Logo</a>
+				<ul class="right hide-on-med-and-down">
+					<li>
+						<a href="sass.html">Sass</a>
+					</li>
+					<li>
+						<a href="badges.html">Components</a>
+					</li>
+					<!-- Dropdown Trigger -->
+					<li>
+						<a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		{% block footer %}
+		<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+		<script type="text/javascript" src="{% static 'materialize/bin/materialize.js' %}"></script>
+		{% endblock %}
+
+	</body>
+
+	<script>
+		$('.dropdown-button').dropdown({
+			inDuration : 300,
+			outDuration : 225,
+			constrain_width : true, // Does not change width of dropdown to that of the activator
+			hover : true, // Activate on hover
+			gutter : 0, // Spacing from edge
+			belowOrigin : false, // Displays dropdown below the button
+			alignment : 'left' // Displays dropdown with edge aligned to the left of button
+		});
+	</script>
+</html>

@@ -32,7 +32,6 @@ class MockUp(TemplateView):
         self.template_name = self.kwargs["template_name"]
         return super(MockUp,self).get_context_data(**kwargs)
 
-
     """
     Para que as urls de templates sejam mapeados como view e com os argumentos 
     passados para a função get_context_data.
@@ -40,4 +39,5 @@ class MockUp(TemplateView):
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^(?P<template_name>.*)$', MockUp.as_view()),
+    
 ]

@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}"/>
 
   <title>Title of the document</title>
- 
+
   <!--Import materialize.css-->
 
   <link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,8 +21,13 @@
   <link type="text/css" rel="stylesheet" src="{% static 'css/styles.css' %}" media="screen,projection"/>
 
   <style type="text/css">
-        i.material-icons , i.material-icons + span {
+
+    i.material-icons , i.material-icons + span {
       vertical-align: middle;
+    }
+
+    i.material-icons{
+      color: #212121;
     }
 
     header, main, footer {
@@ -44,9 +49,6 @@
       height: 64px;
     }
 
-
-
-
   </style>
 
 
@@ -54,16 +56,15 @@
 </head>
 <body>
 
-
-
   <header>
-    <nav class="nav-wrapper indigo accent-1">
+    <nav class="nav-wrapper hide-on-large-only white">
 
-      <a href="#" class="brand-logo">CtrlVet</a>
-      
       <div class="container">
+
         <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+
       </div>
+
     </nav>
 
     <ul id="nav-mobile" class="side-nav fixed">
@@ -114,7 +115,6 @@
 
 
     <!--Import jQuery before materialize.js-->
-
 
     <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.min.js' %}"></script>

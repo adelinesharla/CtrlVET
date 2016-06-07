@@ -1,115 +1,132 @@
 {% load staticfiles %}
 
-<html>
+<!DOCTYPE html>
+<html lang="pt" xml:lang="pt">
 <head>
+  <meta charset="utf-8">
 
-	<link rel="shortcut icon" type="image/png" href="{% static '/media/favicon/favicon.ico' %}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}"/>
+
+  <title>Title of the document</title>
+ 
+  <!--Import materialize.css-->
+
+  <link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.min.css' %}"  media="screen,projection"/>
+  
+  <link type="text/css" rel="stylesheet" src="{% static 'css/styles.css' %}" media="screen,projection"/>
+
+  <style type="text/css">
+        i.material-icons , i.material-icons + span {
+      vertical-align: middle;
+    }
+
+    header, main, footer {
+      padding-left: 130px;
+      padding-right: 10px;
+    }
+
+    header, footer {
+      padding-right: 0px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;
+      }
+    }
+
+    .navbar-material .nav-wrapper .brand-logo img {
+      height: 64px;
+    }
 
 
-	<!--Import materialize.css-->
-	
 
-	<link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.css' %}"  media="screen,projection"/>
 
-	
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </style>
+
+
 
 </head>
-
-<body class="grey lighten-5">
-
-	<nav>
-		<div class="nav-wrapper teal darken-2">
-			<a href="/main.html" class="brand-logo center"><div class = "container">CtrlVet</div></a>
-		</div>
-		<ul class="left hide-on-med-and-down"></ul>
-	</nav>
+<body>
 
 
-	<div class="row">
-		<div class="col m3 l3">
 
-			<!-- menu -->
+  <header>
+    <nav class="nav-wrapper indigo accent-1">
 
-			<ul class="collapsible" data-collapsible="accordion">
-				<li>
-					<div class="collapsible-header">
-						<a href="/cliente.html" class="collection-item">Cliente</a>
-						<i class="material-icons">face</i>
-					</div>
+      <a href="#" class="brand-logo">CtrlVet</a>
+      
+      <div class="container">
+        <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
 
-					<div class="collapsible-header">
-						<a href="/paciente.html" class="collection-item">Paciente</a>
-						<i class="material-icons">pets</i>
-					</div>
+    <ul id="nav-mobile" class="side-nav fixed">
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
 
-					<div class="collapsible-header">
-						<a href="/exames.html" class="collection-item">Exames</a>
-						<i class="material-icons">local_pharmacy</i>
-					</div>
+          <li class="logo"><a a class="collapsible-header" href="main.html"><div class="container">
+            <img class="responsive-img" src="{% static 'logo.png' %}"></div></a></li>
 
-					<div class="collapsible-header">
-						<a href="/consultas.html" class="collection-item">Consultas</a>						
-						<i class="material-icons">healing</i>
-					</div>
+            <li class="bold"><a href="cliente.html" class="collapsible-header"><i class="material-icons">face</i>Cliente</a></li>
+            <li class="bold"><a href="paciente.html" class="collapsible-header"><i class="material-icons">pets</i>Paciente</a></li>
+            <li class="bold"><a href="exames.html" class="collapsible-header"><i class="material-icons">local_pharmacy</i>Exames</a></li>
+            <li class="bold"><a href="consultas.html" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
+            <li class="bold"><a href="estoque.html" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>
+            <li class="bold"><a href="pagamentos.html" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>
+          </ul>
+        </li>     
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 
-					<div class="collapsible-header">
-						<a href="/estoque.html" class="collection-item">Estoque</a>						
-						<i class="material-icons">archive</i>
-					</div>
+    </header>
+    
+    <main>
 
-					<div class="collapsible-header">
-						<a href="/pagamentos.html" class="collection-item">Pagamentos</a>						
-						<i class="material-icons">attach_money</i>
-					</div>
-					
-				</li>
-			</ul>
+      <div class="col s12 m12 l12">
+        <main>
 
-		</div>
+          <div class="card">
+            <div class="card-content">
+              {% block content %}
 
-		<div class="col s9 m9 l9">
-			<main>
+              {% endblock %}
 
-				<div class="card">
-					<div class="card-content">
-						{% block content %}
+            </div>
+          </div>
 
-						{% endblock %}
+        </div>
 
-					</div>
-				</div>
 
-			</div>
-		</div>
-	</main>
+      </main>
 
-	{% block footer %}
-	
-	<script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.min.js' %}"></script>
+      <footer>
 
-	{% endblock %}
+      </footer>
 
-</body>
+    </body>
 
-<script>
-	$(document).ready(function() {
-		$('.collapsible').collapsible({
-				accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-			});
-	});
 
-	$('.dropdown-button').dropdown({
-		inDuration : 300,
-		outDuration : 225,
-			constrain_width : true, // Does not change width of dropdown to that of the activator
-			hover : true, // Activate on hover
-			gutter : 0, // Spacing from edge
-			belowOrigin : false, // Displays dropdown below the button
-			alignment : 'left' // Displays dropdown with edge aligned to the left of button
-		});
 
-	</script>
+    <!--Import jQuery before materialize.js-->
 
-	</html>
+
+    <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.min.js' %}"></script>
+
+    <script>
+      $(document).ready(function(){
+        $(".button-collapse").sideNav();
+        $('.collapsible').collapsible({
+          accordion : true
+        });
+      });
+    </script>
+
+  </body>
+  </html>

@@ -1,0 +1,115 @@
+{% load staticfiles %}
+
+<html>
+<head>
+
+	<link rel="shortcut icon" type="image/png" href="{% static '/media/favicon/favicon.ico' %}"/>
+
+
+	<!--Import materialize.css-->
+	
+
+	<link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.css' %}"  media="screen,projection"/>
+
+	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body class="grey lighten-5">
+
+	<nav>
+		<div class="nav-wrapper teal darken-2">
+			<a href="/main.html" class="brand-logo center"><div class = "container">CtrlVet</div></a>
+		</div>
+		<ul class="left hide-on-med-and-down"></ul>
+	</nav>
+
+
+	<div class="row">
+		<div class="col m3 l3">
+
+			<!-- menu -->
+
+			<ul class="collapsible" data-collapsible="accordion">
+				<li>
+					<div class="collapsible-header">
+						<a href="/cliente.html" class="collection-item">Cliente</a>
+						<i class="material-icons">face</i>
+					</div>
+
+					<div class="collapsible-header">
+						<a href="/paciente.html" class="collection-item">Paciente</a>
+						<i class="material-icons">pets</i>
+					</div>
+
+					<div class="collapsible-header">
+						<a href="/exames.html" class="collection-item">Exames</a>
+						<i class="material-icons">local_pharmacy</i>
+					</div>
+
+					<div class="collapsible-header">
+						<a href="/consultas.html" class="collection-item">Consultas</a>						
+						<i class="material-icons">healing</i>
+					</div>
+
+					<div class="collapsible-header">
+						<a href="/estoque.html" class="collection-item">Estoque</a>						
+						<i class="material-icons">archive</i>
+					</div>
+
+					<div class="collapsible-header">
+						<a href="/pagamentos.html" class="collection-item">Pagamentos</a>						
+						<i class="material-icons">attach_money</i>
+					</div>
+					
+				</li>
+			</ul>
+
+		</div>
+
+		<div class="col s9 m9 l9">
+			<main>
+
+				<div class="card">
+					<div class="card-content">
+						{% block content %}
+
+						{% endblock %}
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</main>
+
+	{% block footer %}
+	
+	<script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.min.js' %}"></script>
+
+	{% endblock %}
+
+</body>
+
+<script>
+	$(document).ready(function() {
+		$('.collapsible').collapsible({
+				accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+			});
+	});
+
+	$('.dropdown-button').dropdown({
+		inDuration : 300,
+		outDuration : 225,
+			constrain_width : true, // Does not change width of dropdown to that of the activator
+			hover : true, // Activate on hover
+			gutter : 0, // Spacing from edge
+			belowOrigin : false, // Displays dropdown below the button
+			alignment : 'left' // Displays dropdown with edge aligned to the left of button
+		});
+
+	</script>
+
+	</html>

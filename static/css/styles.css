@@ -1,0 +1,22 @@
+    i.material-icons , i.material-icons + span {
+      vertical-align: middle;
+    }
+
+    header, main, footer {
+      padding-left: 130px;
+      padding-right: 10px;
+    }
+
+    header, footer {
+      padding-right: 0px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;
+      }
+    }
+
+    .navbar-material .nav-wrapper .brand-logo img {
+      height: 64px;
+    }

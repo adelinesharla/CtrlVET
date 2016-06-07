@@ -1,120 +1,108 @@
 {% load staticfiles %}
 
 <html>
-	<head>
+<head>
 
-		<!--Import materialize.css-->
-		<link type="text/css" rel="stylesheet" href="{% static 'materialize/bin/materialize.css' %}"  media="screen,projection"/>
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="{% static '/media/favicon/favicon.ico' %}"/>
 
-	</head>
 
-	<body>
+	<!--Import materialize.css-->
+	
 
-		<nav>
-			<div class="nav-wrapper teal darken-2">
-				<a href="#!" class="right brand-logo">CtrlVet</a>
-				<ul class="left hide-on-med-and-down"></ul>
-			</div>
-		</nav>
+	<link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.css' %}"  media="screen,projection"/>
 
-	<body class="grey lighten-5">
+	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-		<div class="row">
+</head>
 
-			<div class="col s3 m3 l3">
+<body class="grey lighten-5">
 
-				<ul class="collapsible" data-collapsible="accordion">
-					<li>
-						<div class="collapsible-header">
-							<i class="material-icons">face</i>Cliente
-						</div>
-						<div class="collapsible-body">
-							<div class="collection">
-								<a href="#!" class="collection-item">Cadastro</a>
-								<a href="#!" class="collection-item">Consulta</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="collapsible-header">
-							<i class="material-icons">pets</i>Paciente
-						</div>
-						<div class="collapsible-body">
-							<div class="collection">
-								<a href="#!" class="collection-item">Cadastro</a>
-								<a href="#!" class="collection-item">Consulta</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="collapsible-header">
-							<i class="material-icons">schedule</i>Agenda de Consultas
-						</div>
-						<div class="collapsible-body">
-							<div class="collection">
-								<a href="#!" class="collection-item">Cadastro</a>
-								<a href="#!" class="collection-item">Consulta</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="collapsible-header">
-							<i class="material-icons">schedule</i>Agenda de Exames
-						</div>
-						<div class="collapsible-body">
-							<div class="collection">
-								<a href="#!" class="collection-item">Cadastro</a>
-								<a href="#!" class="collection-item">Consulta</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="collapsible-header"></div>
-						<div class="collapsible-body">
-							<div class="collection">
-								<a href="#!" class="collection-item">Cadastro</a>
-								<a href="#!" class="collection-item">Consulta</a>
-							</div>
-						</div>
-					</li>
-				</ul>
+	<nav>
+		<div class="nav-wrapper teal darken-2">
+			<a href="/main.html" class="brand-logo center"><div class = "container">CtrlVet</div></a>
+		</div>
+		<ul class="left hide-on-med-and-down"></ul>
+	</nav>
 
-			</div>
 
-			<div class="col s9 m9 l9">
-				<main>
+	<div class="row">
+		<div class="col m3 l3">
+
+			<!-- menu -->
+
+			<ul class="collapsible" data-collapsible="accordion">
+				<li>
+					<div class="collapsible-header">
+						<a href="/cliente.html" class="collection-item">Cliente</a>
+						<i class="material-icons">face</i>
+					</div>
+
+					<div class="collapsible-header">
+						<a href="/paciente.html" class="collection-item">Paciente</a>
+						<i class="material-icons">pets</i>
+					</div>
+
+					<div class="collapsible-header">
+						<a href="/exames.html" class="collection-item">Exames</a>
+						<i class="material-icons">local_pharmacy</i>
+					</div>
+
+					<div class="collapsible-header">
+						<a href="/consultas.html" class="collection-item">Consultas</a>						
+						<i class="material-icons">healing</i>
+					</div>
+
+					<div class="collapsible-header">
+						<a href="/estoque.html" class="collection-item">Estoque</a>						
+						<i class="material-icons">archive</i>
+					</div>
+
+					<div class="collapsible-header">
+						<a href="/pagamentos.html" class="collection-item">Pagamentos</a>						
+						<i class="material-icons">attach_money</i>
+					</div>
 					
-						<div class="card">
-							<div class="card-content">
-								{% block content %}
+				</li>
+			</ul>
 
-								{% endblock %}
+		</div>
 
-							</div>
-						</div>
-					
+		<div class="col s9 m9 l9">
+			<main>
+
+				<div class="card">
+					<div class="card-content">
+						{% block content %}
+
+						{% endblock %}
+
+					</div>
+				</div>
+
 			</div>
 		</div>
-		</main>
+	</main>
 
-		{% block footer %}
-		<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-		<script type="text/javascript" src="{% static 'materialize/bin/materialize.js' %}"></script>
-		{% endblock %}
+	{% block footer %}
+	
+	<script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.min.js' %}"></script>
 
-	</body>
+	{% endblock %}
 
-	<script>
-		$(document).ready(function() {
-			$('.collapsible').collapsible({
+</body>
+
+<script>
+	$(document).ready(function() {
+		$('.collapsible').collapsible({
 				accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
 			});
-		});
+	});
 
-		$('.dropdown-button').dropdown({
-			inDuration : 300,
-			outDuration : 225,
+	$('.dropdown-button').dropdown({
+		inDuration : 300,
+		outDuration : 225,
 			constrain_width : true, // Does not change width of dropdown to that of the activator
 			hover : true, // Activate on hover
 			gutter : 0, // Spacing from edge
@@ -122,10 +110,6 @@
 			alignment : 'left' // Displays dropdown with edge aligned to the left of button
 		});
 
-		$(document).ready(function() {
-			$('input#input_text, textarea#textarea1').characterCounter();
-		});
-
 	</script>
 
-</html>
+	</html>

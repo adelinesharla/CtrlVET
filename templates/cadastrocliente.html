@@ -2,90 +2,86 @@
 
 {% block content %}
 
+<div class="row">
+	<form class="col s12">
+		<div class="row">
+			<div class="input-field col s9">
+				<input id="first_name" type="text" class="validate">
+				<label for="first_name">Nome</label>
+			</div>
+			<div class="input-field col s3">
+				<input id="last_name" type="text" class="validate">
+				<label for="last_name">CPF</label>
+			</div>
+		</div>
+
 		<div class="row">
 			<form class="col s12">
 				<div class="row">
 					<div class="input-field col s6">
-						<input placeholder="Nome" id="first_name" type="text" class="validate">
-						<label for="first_name">Nome</label>
-					</div>
-					<div class="input-field col s6">
-						<input id="last_name" type="text" class="validate">
-						<label for="last_name">Sobrenome</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="input-field col s12">
-						<label></label>
-						<select class="browser-default">
-							<option value="" disabled selected>Choose your option</option>
-							<option value="1">Option 1</option>
-							<option value="2">Option 2</option>
-							<option value="3">Option 3</option>
-						</select>
-					</div>
-
-				</div>
-				<div class="row">
-					<div class="input-field col s12">
 						<input id="email" type="email" class="validate">
 						<label for="email">Email</label>
 					</div>
-				</div>
-
-				<div class="row">
 					<div class="input-field col s3">
-						<input disabled value="Área não editável" id="disabled" type="text" class="validate">
-						<label for="disabled"></label>
+						<input id="telefone" type="tel" class="validate">
+						<label for="telefone">Telefone</label>
 					</div>
-					<div class="input-field col s9">
-						<input type="date" class="datepicker">
+					<div class="input-field col s3">
+						<input id="celular" type="tel" class="validate">
+						<label for="celular">Celular</label>
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="input-field col s12">
-						<input id="password" type="password" class="validate">
-						<label for="password">Password</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s12">
-
-					</div>
-				</div>
 				<div class="row">
 					<form class="col s12">
 						<div class="row">
-							<div class="input-field col s12">
-								<textarea id="textarea1" class="materialize-textarea" length="300"></textarea>
-								<label for="textarea1">Área de Texto</label>
+							<div class="input-field col s6">
+								<input id="endereco" type="text" class="validate">
+								<label for="endereco">Endereço</label>
+							</div>
+							<div class="input-field col s2">
+								<input id="cep" type="text" class="validate">
+								<label for="cep">CEP</label>
+							</div>
+							<div class="input-field col s1">
+								<input id="estado" type="text" class="validate">
+								<label for="estado">UF</label>
+							</div>
+							<div class="input-field col s3">
+								<input id="cidade" type="text" class="validate">
+								<label for="cidade">Cidade</label>
 							</div>
 						</div>
 					</form>
 				</div>
-
+				<div class="row">
+					<form class="col s12">
+						<div class="row">
+							<button class="btn waves-effect waves-light" type="submit" name="action">
+								Enviar<i class="material-icons right">send</i>
+							</button>
+						</div>
+					</form>
+				</div>
 			</form>
 
+			<script>
+				$('input:not([placeholder])').attr('placeholder', '');
+			</script>
+			<script>
+				$(document).ready(function() {
+					$('input#input_text, textarea#textarea1').characterCounter();
+					$('select').material_select();
+				});
+			</script>
+			<script>
+				$('.datepicker').pickadate({
+					selectMonths : true, // Creates a dropdown to control month
+					selectYears : 15, // Creates a dropdown of 15 years to control year
+					format : 'dd-mm-yyyy',
 
-	<script>
-		$('input:not([placeholder])').attr('placeholder', '');
-	</script>
-	<script>
-		$(document).ready(function() {
-			$('input#input_text, textarea#textarea1').characterCounter();
-			$('select').material_select();
-		});
-	</script>
-	<script>
-		$('.datepicker').pickadate({
-			selectMonths : true, // Creates a dropdown to control month
-			selectYears : 15, // Creates a dropdown of 15 years to control year
-			format : 'dd-mm-yyyy',
+				});
+			</script>
 
-		});
-	</script>
-
-	{% endblock %}
+			{% endblock %}
 

@@ -1,0 +1,163 @@
+	{% extends "main.html" %} 
+
+	{% block content %}
+	
+
+	<style type="text/css">
+
+		.breadcrumb {
+			color: #00796b;
+		}
+
+		.breadcrumb i,
+		.breadcrumb [class^="mdi-"], .breadcrumb [class*="mdi-"],
+		.breadcrumb i.material-icons {
+			display: inline-block;
+			float: left;
+			font-size: 24px;
+		}
+
+		.breadcrumb:before {
+
+			color: #00796b;
+
+		}
+
+		.breadcrumb:first-child:before {
+			display: none;
+		}
+
+		.breadcrumb:last-child {
+			color: #00796b;
+		}
+
+	</style>
+
+
+	<!-- breadcomb -->
+	
+	
+	<nav>
+		<div class="nav-wrapper grey lighten-5 black-text ">
+			<div class="col s12">
+
+				<a href="main.html" class="breadcrumb">Principal</a>
+				<a href="paciente.html" class="breadcrumb">Paciente</a>
+
+			</div>
+		</div>
+	</nav>
+
+	<!-- informativos -->
+
+	
+	<div class="container row col s6 m6 l6">
+		<div class="row">
+			<div class="col s12 m12 l12">
+				<div class="card-panel grey lighten-5">
+					<span class="black-text">I am a very simple card. I am good at containing small bits of information.
+						I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container row col s6 m6 l6">
+		<div class="row">
+			<div class="col s12 m12 l12">
+				<div class="card-panel grey lighten-5">
+					<span class="black-text">I am a very simple card. I am good at containing small bits of information.
+						I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col s12 m12 l12">
+			<div class="row">
+
+				<div class="input-field col s3 m3 l3">
+
+					<a href="cadastropaciente.html" class="waves-effect waves-light btn"><i class="material-icons left">pets</i>Adicionar</a>
+				</div>
+
+				<div class="nav-wrapper">
+					<form>
+						<div class="input-field col s9 m9 l9"">
+							<input id="search" type="search" required>
+							<label for="search"><i class="material-icons">search</i></label>
+							<i class="material-icons">close</i>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col s12 m12 l12">
+			<div class="row">
+				<div class="col s12">
+					<table class="striped">
+						<thead>
+							<tr>
+								<th data-field="">Cliente</th>
+								<th data-field="">Nome</th>
+								<th data-field="">Tipo</th>
+								<th data-field="">Excluir</th>
+								<th data-field="">Alterar</th>
+
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td><a href="">Alan</a></td>
+								<td>Peteca</td>
+								<td>Gato</td>
+								<td><a><i class="material-icons">delete</i></a></td>
+								<td><a><i class="material-icons">mode_edit</i></a></td>
+							</tr>
+							<tr>
+								<td><a href="">Jonathan</a></td>
+								<td>Geléia</td>
+								<td>Cachorro</td>
+								<td><a><i class="material-icons">delete</i></a></td>
+								<td><a><i class="material-icons">mode_edit</i></a></td>
+							</tr>
+							<tr>
+								<td><a href="">Jonathan</a></td>
+								<td>Pirulito</td>
+								<td>Tartaruga</td>
+								<td><a><i class="material-icons">delete</i></a></td>
+								<td><a><i class="material-icons">mode_edit</i></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col s12 m12 l12 center">
+			<div class="row">
+				<ul class="pagination">
+					<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+					<li class="waves-effect"><a href="#!">1</a></li>
+					<li class="waves-effect"><a href="#!">2</a></li>
+					<li class="waves-effect"><a href="#!">3</a></li>
+					<li class="waves-effect"><a href="#!">4</a></li>
+					<li class="waves-effect"><a href="#!">5</a></li>
+					<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+				</div>
+				<div class="row">
+				</div>
+			</div>
+		</div>
+
+
+		{% endblock %}

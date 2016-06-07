@@ -1,0 +1,159 @@
+{% load staticfiles %}
+
+<html>
+<head>
+
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="{% static 'materialize/bin/materialize.css' %}"  media="screen,projection"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<nav>
+		<div class="nav-wrapper teal darken-2">
+
+			<a href="/main.html" class="brand-logo center"><div class="container">CtrlVet</div></a>
+			
+			<img class="responsive-img" href="{% static 'media/avatar.png' %}">
+
+			<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+
+
+			<ul id="slide-out" class="side-nav hide-on-large-only">
+				<li><a href="#!">Cliente</a></li>
+				<li><a href="#!">Paciente</a></li>
+				<li><a href="#!">Exames</a></li>
+				<li><a href="#!">Consultas</a></li>
+				<li><a href="#!">Estoque</a></li>
+				<li><a href="#!">Pagamentos</a></li>
+			</ul>
+			
+		</div>
+	</nav>
+
+
+
+	<body class="grey lighten-5">
+
+		<div class="row">
+			<div class="col s0 m3 l3">
+
+				<!-- menu -->
+
+				<ul class="collapsible hide-on-med-and-down" data-collapsible="accordion">
+					<li>
+						<div class="collapsible-header">
+							<a href="/cliente.html" class="collection-item">Cliente</a>
+							<i class="material-icons">face</i>
+						</div>
+
+						<div class="collapsible-header">
+							<a href="/paciente.html" class="collection-item">Paciente</a>
+							<i class="material-icons">pets</i>
+						</div>
+
+						<div class="collapsible-header">
+							<a href="/paciente.html" class="collection-item">Exames</a>
+							<i class="material-icons">local_pharmacy</i>
+						</div>
+
+						<div class="collapsible-header">
+							<a href="/paciente.html" class="collection-item">Consultas</a>						
+							<i class="material-icons">healing</i>
+						</div>
+
+						<div class="collapsible-header">
+							<a href="/paciente.html" class="collection-item">Estoque</a>						
+							<i class="material-icons">archive</i>
+						</div>
+
+						<div class="collapsible-header">
+							<a href="/paciente.html" class="collection-item">Pagamentos</a>						
+							<i class="material-icons">attach_money</i>
+						</div>
+						
+					</li>
+				</ul>
+
+			</div>
+
+
+
+
+
+
+
+			<div class="col s12 m12 l9">
+				<main>
+
+					<div class="card">
+						<div class="card-content">
+
+							<img class="responsive-img" href="{% static 'media/avatar.png' %}">
+							
+							<div class="col s12 m8 offset-m2 l6 offset-l3">
+								<div class="card-panel grey lighten-5 z-depth-1">
+									<div class="row valign-wrapper">
+										<div class="col s2">
+											<img src="images/yuna.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+											<img class="circle responsive-img" src="{% static 'avatar.png' %}">
+										</div>
+										<div class="col s10">
+											<span class="black-text">
+												This is a square image. Add the "circle" class to it to make it appear circular.
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% block content %}
+
+							{% endblock %}
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</main>
+
+		{% block footer %}
+		<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+		<script type="text/javascript" src="{% static 'materialize/bin/materialize.js' %}"></script>
+		{% endblock %}
+
+	</body>
+	<script>
+		$( document ).ready(function() {
+			$('.button-collapse').sideNav({
+     		 menuWidth: 300, // Default is 240
+     		 
+      		closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+      	});
+		});
+
+	</script>
+
+
+	<script>
+		$(document).ready(function() {
+			$('.collapsible').collapsible({
+				accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+			});
+		});
+
+		$('.dropdown-button').dropdown({
+			inDuration : 300,
+			outDuration : 225,
+			constrain_width : true, // Does not change width of dropdown to that of the activator
+			hover : true, // Activate on hover
+			gutter : 0, // Spacing from edge
+			belowOrigin : false, // Displays dropdown below the button
+			alignment : 'left' // Displays dropdown with edge aligned to the left of button
+		});
+
+	</script>
+
+	</html>

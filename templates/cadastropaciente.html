@@ -5,69 +5,77 @@
 
 <style type="text/css">
 
-		.breadcrumb {
-			color: #00796b;
-		}
+	.breadcrumb {
+		color: #00796b;
+	}
 
-		.breadcrumb i,
-		.breadcrumb [class^="mdi-"], .breadcrumb [class*="mdi-"],
-		.breadcrumb i.material-icons {
-			display: inline-block;
-			float: left;
-			font-size: 24px;
-		}
+	.breadcrumb i,
+	.breadcrumb [class^="mdi-"], .breadcrumb [class*="mdi-"],
+	.breadcrumb i.material-icons {
+		display: inline-block;
+		float: left;
+		font-size: 24px;
+	}
 
-		.breadcrumb:before {
+	.breadcrumb {
+		color: rgb(140, 158, 255);
+	}
 
-			color: #00796b;
+	.breadcrumb:before {
+		color: rgb(140, 158, 255);
 
-		}
+	}
 
-		.breadcrumb:first-child:before {
-			display: none;
-		}
-
-		.breadcrumb:last-child {
-			color: #00796b;
-		}
-
-	</style>
+	.breadcrumb:last-child {
+		color: rgb(140, 158, 255);
+	}
+</style>
 
 
-	<!-- breadcomb -->
-	
-	
-	
-	<div class="nav-wrapper white black-text ">
-		<div class="col s12">
+<!-- breadcomb -->
 
-			<a href="main.html" class="breadcrumb">Principal</a>
-			<a href="paciente.html" class="breadcrumb">Paciente</a>
-			<a href="paciente.html" class="breadcrumb">Cadastro</a>
 
-		</div>
+
+<div class="nav-wrapper white black-text ">
+	<div class="col s12">
+
+		<a href="main.html" class="breadcrumb">Principal</a>
+		<a href="paciente.html" class="breadcrumb">Paciente</a>
+		<a href="paciente.html" class="breadcrumb">Cadastro</a>
+
 	</div>
+</div>
 
 
 <div class="row">
 	<form class="col s12">
 		<div class="row">
-			<div class="input-field col s9">
-				<input id="first_name" type="text" class="validate">
-				<label for="first_name">Nome</label>
+			<div class="input-field col s12 m4 l4">
+				<input id="nome" type="text" class="validate">
+				<label for="nome">Nome</label>
 			</div>
-			<div class="input-field col s3">
-				<input id="idade" type="number" class="validate">
-				<label for="idade">Idade</label>
+			<div class="input-field col s12 m4 l4">
+				<input id="sobrenome" type="text" class="validate">
+				<label for="sobrenome">Nome</label>
+			</div>
+			<div class="input-field col s12 m4 l4">
+				<input type="date" class="datepicker">
+				<label for="date">Data de nascimento</label>
 			</div>
 		</div>
 
 		<div class="row">
+			
+
+		</div>
+
+
+		<div class="row">
 			<form class="col s12">
-				<div class="input-field col s6">
-					<input id="last_name" type="text" class="validate">
-					<label for="last_name">Raça</label>
+				<div class="input-field col s12">
+
 				</div>
+
 				<div class="input-field col s3">
 					<input id="tipo" type="text" class="validate">
 					<label for="tipo">Tipo</label>
@@ -109,47 +117,27 @@
 
 			</form>
 
-			<script>
-				$('input:not([placeholder])').attr('placeholder', '');
-			</script>
-			<script>
-				$(document).ready(function() {
-					$('input#input_text, textarea#textarea1').characterCounter();
-					$('select').material_select();
-				});
-			</script>
-			<script>
-				$('.datepicker').pickadate({
-					selectMonths : true, // Creates a dropdown to control month
-					selectYears : 15, // Creates a dropdown of 15 years to control yearformat : 'dd-mm-yyyy',
-
-				});
-			</script>
-
-			<script>
-				$('input:not([placeholder])').attr('placeholder', '');
-			</script>
-			<script>
-				$(document).ready(function() {
-					$('input#input_text, textarea#textarea1').characterCounter();
-					$('select').material_select();
-				});
-			</script>
-			<script>
-				$('.datepicker').pickadate({
-					selectMonths : true, // Creates a dropdown to control month
-					selectYears : 15, // Creates a dropdown of 15 years to control year
-					format : 'dd-mm-yyyy',
-
-				});
-			</script>
+			<script type="text/javascript">
 			
-			<script>
-				$('#trigger').click(function(e) {
-					$('#modal1').openModal();
+				$( document ).ready(function() {
+					$('select').material_select();
+					$('.datepicker').pickadate({
+						format: 'mm/dd/yyyy',
+          				selectMonths: true, 
+          				selectYears: 15,
+          				format : 'dd-mm-yyyy'
+          			 });
+					
+					$('input:not([placeholder])').attr('placeholder', '');
+
 				});
 
+				
+
+
 			</script>
+
+
 
 			{% endblock %}
 

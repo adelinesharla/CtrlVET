@@ -17,22 +17,19 @@
 			font-size: 24px;
 		}
 
-		.breadcrumb:before {
-
-			color: #00796b;
-
+		.breadcrumb {
+			color: rgb(140, 158, 255);
 		}
 
-		.breadcrumb:first-child:before {
-			display: none;
+		.breadcrumb:before {
+			color: rgb(140, 158, 255);
+
 		}
 
 		.breadcrumb:last-child {
-			color: #00796b;
+			color: rgb(140, 158, 255);
 		}
-
 	</style>
-
 
 	<!-- breadcomb -->
 	
@@ -50,93 +47,310 @@
 	<!-- informativos -->
 
 	<div class="row">
-		
+
 		<div class="col s6 m6 l6">
 			<div class="card ">
 				<div class="card-content">
-					<span class="card-title">Exames Clínicos</span>
-					<p>Últimos Exames...</p>
-					</div>
-					<div class="card-action">
-						<a href="#"><i class="material-icons">add</i></a>
-					</div>
+					<span class="card-title">Realizados</span>
+					<table>
+						<thead>
+							<tr>
+								<th data-field="id">idExame</th>
+								<th data-field="name">Amostra</th>
+								<th data-field="name">Data Entrada</th>
+								<th data-field="name">Status</th>
+								<th data-field="date">Paciente</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>123</td>
+								<td>462452</td>
+								<td>23-05-2016</td>
+								<td>completo</td>
+								<td>Peteca</td>
+							</tr>
+							<tr>
+								<td>423</td>
+								<td>2233</td>
+								<td>23-05-2016</td>
+								<td>completo</td>
+								<td>Peteca</td>
+
+							</tr>
+							<tr>
+								<td>45352</td>
+								<td>4645</td>
+								<td>23-05-2016</td>
+								<td>completo</td>
+								<td>Peteca</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="card-action" align="right">
+					<a href="#"><i class="material-icons">add</i></a>
 				</div>
 			</div>
+		</div>
 
-			<div class="col s6 m6 l6">
-				<div class="card ">
-					<div class="card-content">
-						<span class="card-title">Hemocentro</span>
-						<p>Últimos Exames...</p>
-						</div>
-						<div class="card-action">
-							<a href="#"><i class="material-icons">add</i></a>
-						</div>
-					</div>
+		<div class="col s6 m6 l6">
+			<div class="card ">
+				<div class="card-content">
+					<span class="card-title">Pendentes</span>
+					<table>
+						<thead>
+							<tr>
+								<th data-field="id">idExame</th>
+								<th data-field="name">Amostra</th>
+								<th data-field="name">Data Entrada</th>
+								<th data-field="name">Status</th>
+								<th data-field="date">Paciente</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>123</td>
+								<td>422313</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+							</tr>
+							<tr>
+								<td>423</td>
+								<td>42513</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+
+							</tr>
+							<tr>
+								<td>4535</td>
+								<td>42233</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="card-action" align="right">
+					<a href="#"><i class="material-icons">add</i></a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	
+	<!-- Laboratórios -->
+
+	<div class="row">
+
+		<div class="col s6 m6 l6">
+			<div class="card ">
+				<div class="card-content">
+					<span class="card-title">Laboratório Patológico</span>
+					<table>
+						<thead>
+							<tr>
+								<th data-field="id">idExame</th>
+								<th data-field="name">Amostra</th>
+								<th data-field="name">Data Entrada</th>
+								<th data-field="name">Status</th>
+								<th data-field="date">Paciente</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>123</td>
+								<td>422313</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+							</tr>
+							<tr>
+								<td>423</td>
+								<td>42513</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+
+							</tr>
+							<tr>
+								<td>4535</td>
+								<td>42233</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="card-action" align="right">
+					<a href="#"><i class="material-icons">add</i></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s6 m6 l6">
+			<div class="card ">
+				<div class="card-content">
+					<span class="card-title">Laboratório hematológico?</span>
+
+					<table>
+						<thead>
+							<tr>
+								<th data-field="id">idExame</th>
+								<th data-field="name">Amostra</th>
+								<th data-field="name">Data Entrada</th>
+								<th data-field="name">Status</th>
+								<th data-field="date">Paciente</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>123</td>
+								<td>422313</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+							</tr>
+							<tr>
+								<td>423</td>
+								<td>42513</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+
+							</tr>
+							<tr>
+								<td>4535</td>
+								<td>42233</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+				<div class="card-action" align="right">
+					<a href="#"><i class="material-icons">add</i></a>
 				</div>
 
 			</div>
+		</div>
 
-			
+	</div>
 
-			<div class="row">
+	<div class="row">
 
-				<div class="col s6 m6 l6">
-					<div class="card ">
-						<div class="card-content">
-							<span class="card-title">Radiografias</span>
-							<p>Últimos Exames...</p>
-							</div>
-							<div class="card-action">
-								<a href="#"><i class="material-icons">add</i></a>
-							</div>
-						</div>
-					</div>
+		<div class="col s6 m6 l6">
+			<div class="card ">
+				<div class="card-content">
+					<span class="card-title">Laboratório 4</span>
+					<table>
+						<thead>
+							<tr>
+								<th data-field="id">idExame</th>
+								<th data-field="name">Amostra</th>
+								<th data-field="name">Data Entrada</th>
+								<th data-field="name">Status</th>
+								<th data-field="date">Paciente</th>
+							</tr>
+						</thead>
 
-					<div class="col s6 m6 l6">
-						<div class="card ">
-							<div class="card-content">
-								<span class="card-title">Outros Laboratórios</span>
-								<p>Últimos Exames...</p>
-								</div>
-								<div class="card-action">
-									<a href="#"><i class="material-icons">add</i></a>
-								</div>
-							</div>
-						</div>
+						<tbody>
+							<tr>
+								<td>123</td>
+								<td>422313</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+							</tr>
+							<tr>
+								<td>423</td>
+								<td>42513</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
 
-					</div>
+							</tr>
+							<tr>
+								<td>4535</td>
+								<td>42233</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="card-action" align="right">
+					<a href="#"><i class="material-icons">add</i></a>
+				</div>
+			</div>
+		</div>
 
-					<div class="row">
+		<div class="col s6 m6 l6">
+			<div class="card ">
+				<div class="card-content">
+					<span class="card-title">Laboratório 5</span>
 
-						<div class="col s6 m6 l6">
-							<div class="card ">
-								<div class="card-content">
-									<span class="card-title">Outros Laboratórios</span>
-									<p>Últimos Exames...</p>
-									</div>
-									<div class="card-action">
-										<a href="#"><i class="material-icons">add</i></a>
-									</div>
-								</div>
-							</div>
+					<table>
+						<thead>
+							<tr>
+								<th data-field="id">idExame</th>
+								<th data-field="name">Amostra</th>
+								<th data-field="name">Data Entrada</th>
+								<th data-field="name">Status</th>
+								<th data-field="date">Paciente</th>
+							</tr>
+						</thead>
 
-							<div class="col s6 m6 l6">
-								<div class="card ">
-									<div class="card-content">
-										<span class="card-title">Outros Laboratórios</span>
-										<p>Últimos Exames...</p>
-										</div>
-										<div class="card-action">
-											<a href="#"><i class="material-icons">add</i></a>
-										</div>
-									</div>
-								</div>
+						<tbody>
+							<tr>
+								<td>123</td>
+								<td>422313</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+							</tr>
+							<tr>
+								<td>423</td>
+								<td>42513</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
 
-							</div>
+							</tr>
+							<tr>
+								<td>4535</td>
+								<td>42233</td>
+								<td>23-05-2016</td>
+								<td>pendente</td>
+								<td>Peteca</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+				<div class="card-action" align="right">
+					<a href="#"><i class="material-icons">add</i></a>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
 
 
 
 
 
-							{% endblock %}
+	{% endblock %}

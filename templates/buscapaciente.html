@@ -1,72 +1,117 @@
-{% extends "main.html" %}
+{% extends "main.html" %} 
 
 {% block content %}
 
 
-<div class="row section">
-	<div class="col">
-		<!-- Modal Trigger -->
-		<a class="waves-effect waves-light btn modal-trigger" href="modal1">Modal</a>
-		<p>
-			You have to include jQuery and Materialize JS + CSS for the modal to work. You can include it from <a href="http://materializecss.com/getting-started.html">CDN (getting started)</a>.
+<style type="text/css">
+
+	.breadcrumb {
+		color: #00796b;
+	}
+
+	.breadcrumb {
+		color: rgb(140, 158, 255);
+	}
+
+	.breadcrumb:before {
+		color: rgb(140, 158, 255);
+
+	}
+
+	.breadcrumb:last-child {
+		color: rgb(140, 158, 255);
+	}
+
+</style>
+
+
+<!-- breadcrumb -->
+
+<div class="nav-wrapper white black-text ">
+	<div class="col s12">
+		<a href="main.html" class="breadcrumb">Principal</a>
+		<a href="cliente.html" class="breadcrumb">Cliente</a>
+		<a href="cliente.html" class="breadcrumb">Busca</a>
 	</div>
 </div>
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-	<div class="modal-content">
-		<h4>Modal Header</h4>
-		<p>
-			A bunch of text
-		</p>
-	</div>
-	<div class="modal-footer">
-		<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+
+<div class="row">
+	<div class="nav-wrapper">
+		<form>
+			<div class="input-field col s12 m12 l6">
+				<input id="search" type="search" required>
+				<label for="search"><i class="material-icons">search</i></label>
+				<i class="material-icons">close</i>
+			</div>
+
+			<div class="input-field col s12 m12 l3 right-align">
+				<a href="resultadobuscacliente.html" class="waves-effect waves-light indigo accent-1 btn"><i class="material-icons left">search</i>Buscar</a>
+			</div>
+
+			<div class="input-field col s12 m12 l3 right-align">
+				<a href="cadastrocliente.html" class="waves-effect waves-light indigo accent-1 btn"><i class="material-icons left">add</i>Adicionar</a>
+			</div>
+		</form>
 	</div>
 </div>
 
-<script>$('input:not([placeholder])').attr('placeholder', '');</script>
-<script>
-	$(document).ready(function() {
-		$('input#input_text, textarea#textarea1').characterCounter();
-		$('select').material_select();
-	}); 
-</script>
-<script>
-	$('.datepicker').pickadate({
-		selectMonths : true, // Creates a dropdown to control month
-		selectYears : 15, // Creates a dropdown of 15 years to control year
-		format : 'dd-mm-yyyy',
 
-	}); 
-</script>
+<table class="striped">
+	<thead>
+		<tr>
+			<th data-field="">Cliente</th>
+			<th data-field="">Nome</th>
+			<th data-field="">Espécie</th>
+			<th data-field="">Excluir</th>
+			<th data-field="">Alterar</th>
 
-<script>
-	$(document).ready(function() {
-		// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-		$('.modal-trigger').leanModal();
-	});
+		</tr>
+	</thead>
 
-</script>
+	<tbody>
+		<tr>
+			<td><a href="">Alan</a></td>
+			<td>Peteca</td>
+			<td>Gato</td>
+			<td><a><i class="material-icons">delete</i></a></td>
+			<td><a><i class="material-icons">mode_edit</i></a></td>
+		</tr>
+		<tr>
+			<td><a href="">Jonathan</a></td>
+			<td>Geléia</td>
+			<td>Cachorro</td>
+			<td><a><i class="material-icons">delete</i></a></td>
+			<td><a><i class="material-icons">mode_edit</i></a></td>
+		</tr>
+		<tr>
+			<td><a href="">Jonathan</a></td>
+			<td>Pirulito</td>
+			<td>Tartaruga</td>
+			<td><a><i class="material-icons">delete</i></a></td>
+			<td><a><i class="material-icons">mode_edit</i></a></td>
+		</tr>
+	</tbody>
+</table>
 
-<script>
-	$('.modal-trigger').leanModal({
-		dismissible : true, // Modal can be dismissed by clicking outside of the modal
-		opacity : .5, // Opacity of modal background
-		in_duration : 300, // Transition in duration
-		out_duration : 200, // Transition out duration
-		ready : function() {
-			alert('Ready');
-		}, // Callback for Modal open
-		complete : function() {
-			alert('Closed');
-		} // Callback for Modal close
-	}); 
-</script>
-<script>
-	$('#trigger').click(function(e) {
-		$('modal1').openModal();
-	});
+<!-- Paginação -->
 
-</script>
+<div class="row">
+	<div class="col s12 m12 l12 center">
+		<div class="row">
+			<ul class="pagination">
+				<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="#!">1</a></li>
+				<li class="waves-effect"><a href="#!">2</a></li>
+				<li class="waves-effect"><a href="#!">3</a></li>
+				<li class="waves-effect"><a href="#!">4</a></li>
+				<li class="waves-effect"><a href="#!">5</a></li>
+				<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+			</div>
+			<div class="row">
+			</div>
+		</div>
+	</div>
 
-{% endblock %}
+
+
+		{% endblock %}

@@ -3,7 +3,7 @@
 	{% block content %}
 	
 
-	<style type="text/css">
+<style type="text/css">
 
 		.breadcrumb {
 			color: #00796b;
@@ -17,21 +17,21 @@
 			font-size: 24px;
 		}
 
-		.breadcrumb:before {
-
-			color: #00796b;
-
+		.breadcrumb {
+			color: rgb(140, 158, 255);
 		}
 
-		.breadcrumb:first-child:before {
-			display: none;
+		.breadcrumb:before {
+			color: rgb(140, 158, 255);
+
 		}
 
 		.breadcrumb:last-child {
-			color: #00796b;
+			color: rgb(140, 158, 255);
 		}
 
 	</style>
+
 
 
 	<!-- breadcomb -->
@@ -80,29 +80,27 @@
 
 			</div>
 
+			<!-- Busca-->
 
-
-			<div class="row">
-				<div class="col s12 m12 l12">
-					<div class="row">
-
-						<div class="nav-wrapper">
-							<form>
-								<div class="input-field col s12 m12 l9">
-									<input id="search" type="search" required>
-									<label for="search"><i class="material-icons">search</i></label>
-									<i class="material-icons">close</i>
-								</div>
-
-								<div class="input-field col s12 m12 l3 right-align">
-									<a href="cadastropaciente.html" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Adicionar</a>
-								</div>
-							</form>
-						</div>			
-
+		<div class="row">
+			<div class="nav-wrapper">
+				<form>
+					<div class="input-field col s12 m12 l6">
+						<input id="search" type="search" required>
+						<label for="search"><i class="material-icons">search</i></label>
+						<i class="material-icons">close</i>
 					</div>
-				</div>
+
+					<div class="input-field col s12 m12 l3 right-align">
+						<a href="buscapaciente.html" class="waves-effect waves-light indigo accent-1 btn"><i class="material-icons left">search</i>Buscar</a>
+					</div>
+
+					<div class="input-field col s12 m12 l3 right-align">
+						<a href="cadastropaciente.html" class="waves-effect waves-light indigo accent-1 btn"><i class="material-icons left">add</i>Adicionar</a>
+					</div>
+				</form>
 			</div>
+		</div>
 
 			<div class="row">
 				<div class="col s12 m12 l12">
@@ -113,7 +111,7 @@
 									<tr>
 										<th data-field="">Cliente</th>
 										<th data-field="">Nome</th>
-										<th data-field="">Tipo</th>
+										<th data-field="">Espécie</th>
 										<th data-field="">Excluir</th>
 										<th data-field="">Alterar</th>
 
@@ -149,6 +147,8 @@
 				</div>
 			</div>
 
+			<!-- Paginação -->
+			
 			<div class="row">
 				<div class="col s12 m12 l12 center">
 					<div class="row">

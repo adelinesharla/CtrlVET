@@ -19,14 +19,37 @@
   <link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.css' %}"  media="screen,projection"/>
 
 
+
+
+  <!--fullcalendar-->
+
+  <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.css' %}"  media="screen,projection"
+  />
+
+  <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.min.css' %}"  media="screen,projection"/>
+
+  <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.print.css' %}"  media="screen,projection"/>
+
+
+  <!--Import jQuery before materialize.js-->
+  
+
+  <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+
+  <script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.js' %}"></script>
+
+  <!--momento-->
+
+  <script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
+
+  <!--fullcalendar-->
+
+  <script type="text/javascript" src="{% static 'fullcalendar/dist/fullcalendar.min.js' %}"></script>
+
   <style type="text/css">
 
     i.material-icons , i.material-icons + span {
       vertical-align: middle;
-    }
-
-    i.material-icons{
-      color: #212121;
     }
 
     header, main, footer {
@@ -44,11 +67,51 @@
       }
     }
 
+    a {
+      color: #1a237e;
+    }
+
+    .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+      color: #1a237e;
+    }
+
     .navbar-material .nav-wrapper .brand-logo img {
       height: 64px;
     }
 
-  </style>
+    .breadcrumb {
+      font-size: 12px;
+      color: #212121;
+    }
+
+    .breadcrumb:before {
+      color: #212121;
+      font-size: 20px;
+    }
+
+    .breadcrumb:last-child {
+      color: #1a237e;
+    }
+
+
+    /* opção 1*/
+    .side-nav .collapsible-header:hover,
+    .side-nav.fixed .collapsible-header:hover {
+      background-color: rgba(26, 35, 126, 1);
+      border-bottom:4px solid #1a237e;
+    }
+
+
+    /* opção 2*/
+
+    .side-nav .collapsible-header:hover,
+    .side-nav.fixed .collapsible-header:hover.i:hover .a:hover {
+     background-color: rgba(26, 35, 126, 1);
+     color:white;
+   } 
+
+
+ </style>
 
 
 
@@ -56,7 +119,8 @@
 <body>
 
   <header>
-    <nav class="nav-wrapper indigo accent-1">
+
+    <nav class="nav-wrapper indigo darken-4">
 
       <div class="container">
 
@@ -65,75 +129,74 @@
       </div>
 
       <ul class="right hide-on-med-and-down">
-      <li><a href="main.html"><i class="material-icons right">account_circle</i>Login</a></li>
-     </ul>
+        <li><a href="main.html"><i class="material-icons right">account_circle</i>Login</a></li>
+      </ul>
 
-   </nav>
+    </nav>
 
-   <ul id="nav-mobile" class="side-nav fixed">
-    <li class="no-padding">
-      <ul class="collapsible collapsible-accordion">
+    <ul id="nav-mobile" class="side-nav fixed">
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
 
-        <li class="logo"><a a class="collapsible-header" href="main.html"><div class="container">
-          <img class="responsive-img" src="{% static 'logo.png' %}"></div></a></li>
+          <li class="logo"><a a class="collapsible-header" href="main.html"><div class="container">
+            <img class="responsive-img" src="{% static 'logo.png' %}"></div></a></li>
 
-          <li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
-          
-          <li class="bold"><a href="cliente.html" class="collapsible-header"><i class="material-icons">face</i>Cliente</a></li>
-          <li class="bold"><a href="paciente.html" class="collapsible-header"><i class="material-icons">pets</i>Paciente</a></li>
-          <li class="bold"><a href="exames.html" class="collapsible-header"><i class="material-icons">local_pharmacy</i>Exames</a></li>
-          <li class="bold"><a href="consultas.html" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
-          <li class="bold"><a href="estoque.html" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>
-          <li class="bold"><a href="pagamentos.html" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>
-        </ul>
-      </li>     
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            <li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
 
-  </header>
+            <li class="bold"><a href="cliente.html" class="collapsible-header"><i class="material-icons">face</i>Cliente</a></li>
+            <li class="bold"><a href="paciente.html" class="collapsible-header"><i class="material-icons">pets</i>Paciente</a></li>
+            <li class="bold"><a href="exames.html" class="collapsible-header"><i class="material-icons">local_pharmacy</i>Exames</a></li>
+            <li class="bold"><a href="consultas.html" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
+            <li class="bold"><a href="estoque.html" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>
+            <li class="bold"><a href="pagamentos.html" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>
+          </ul>
+        </li>     
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 
-  <main>
+    </header>
 
-    <div class="col s12 m12 l12">
-      <main>
+    <main>
 
-        <div class="card">
-          <div class="card-content">
+      <div class="col s12 m12 l12">
+        <main>
+
+          <div>
+
             {% block content %}
+
+
 
             {% endblock %}
 
           </div>
+
         </div>
 
-      </div>
+
+      </main>
+
+      <footer>
+
+      </footer>
+
+    </body>
 
 
-    </main>
 
-    <footer>
 
-    </footer>
+
+
+
+
+    <script>
+      $(document).ready(function(){
+        $(".button-collapse").sideNav();
+        $('.collapsible').collapsible({
+          accordion : true
+        });
+      });
+    </script>
 
   </body>
-
-
-
-  <!--Import jQuery before materialize.js-->
-
-  <script type="text/javascript" src="{% static 'jquery/dist/jquery.js' %}"></script>
-
-  <script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.js' %}"></script>
-
-
-  <script>
-    $(document).ready(function(){
-      $(".button-collapse").sideNav();
-      $('.collapsible').collapsible({
-        accordion : true
-      });
-    });
-  </script>
-
-</body>
-</html>
+  </html>

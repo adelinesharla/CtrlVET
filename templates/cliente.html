@@ -3,31 +3,10 @@
 {% block content %}
 
 
-<style type="text/css">
-
-	.breadcrumb {
-		color: #00796b;
-	}
-
-	.breadcrumb {
-		color: rgb(140, 158, 255);
-	}
-
-	.breadcrumb:before {
-		color: rgb(140, 158, 255);
-
-	}
-
-	.breadcrumb:last-child {
-		color: rgb(140, 158, 255);
-	}
-
-</style>
-
-
 <!-- breadcrumb -->
 
-<div class="nav-wrapper white black-text ">
+
+<div class="nav-wrapper">
 	<div class="col s12">
 		<a href="main.html" class="breadcrumb">Principal</a>
 		<a href="cliente.html" class="breadcrumb">Cliente</a>
@@ -35,41 +14,77 @@
 </div>
 
 
+
 <!-- informativos -->
+
+<div class="card center">
+	<div class="row">
+
+		<div class="col s12 m4 l4">
+			
+			<div>
+				<h5><a href=""><i class="material-icons">trending_up</i> 300</h5>
+				<i>clientes cadastrados</i></a>
+			</div>
+			
+		</div>
+
+		<div class="col s12 m4 l4">
+			
+			<div>
+				<h5><a href=""><i class="material-icons">trending_up</i> 300</h5>
+				<i>clientes cadastrados</i></a>
+			</div>
+			
+		</div>
+
+		<div class="col s12 m4 l4">
+			
+			<div>
+				<h5><a href=""><i class="material-icons">trending_up</i> 300</h5>
+				<i>clientes cadastrados</i></a>
+			</div>
+			
+		</div>
+
+		
+	</div>
+</div>
 
 
 <div class="row">
 
-	<div class="col s6 m6 l6">
-		<div class="card ">
-			<div class="card-content">
-				<span class="card-title">Card Title</span>
-				<p>I am a very simple card. I am good at containing small bits of information.
-					I am convenient because I require little markup to use effectively.</p>
-				</div>
-				<div class="card-action">
-					<a href="#"><i class="material-icons">add</i></a>
-				</div>
-			</div>
+	<div class="col s12 m4 l4">
+		<div class='card-panel'>
+			<a href=""><i class="material-icons">trending_up</i> Clientes cadastrados: 234</a>
+			<a href=""><i class="material-icons right">more_vert</i></a>
 		</div>
+	</div>
 
-		<div class="col s6 m6 l6">
-			<div class="card ">
-				<div class="card-content">
-					<span class="card-title">Card Title</span>
-					<p>I am a very simple card. I am good at containing small bits of information.
-						I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div class="card-action">
-						<a href="#"><i class="material-icons">add</i></a>
-					</div>
-				</div>
-			</div>
-
+	<div class="col s12 m4 l4">
+		<div class='card-panel'>
+			<a href=""><i class="material-icons">trending_up</i> Cadastros incompletos: 12</a>
+			<a href=""><i class="material-icons right">more_vert</i></a>
 		</div>
+	</div>
 
-		<!-- Busca-->
+	<div class="col s12 m4 l4">
+		<div class='card-panel'>
+			<a href=""><i class="material-icons">trending_up</i> Crescimento mensal: 12%</a>
+			<a href=""><i class="material-icons right">more_vert</i></a>
+		</div>
+	</div>
 
+</div>
+
+
+
+</div>
+
+<!-- Busca-->
+
+<div class="card">
+	<div class="card-content">
 		<div class="row">
 			<div class="nav-wrapper">
 				<form>
@@ -80,11 +95,11 @@
 					</div>
 
 					<div class="input-field col s12 m12 l3 right-align">
-						<a href="buscacliente.html" class="waves-effect waves-light indigo accent-1 btn"><i class="material-icons left">search</i>Buscar</a>
+						<a href="buscacliente.html"><i class="material-icons">search</i>Buscar</a>
 					</div>
 
 					<div class="input-field col s12 m12 l3 right-align">
-						<a href="cadastrocliente.html" class="waves-effect waves-light indigo accent-1 btn"><i class="material-icons left">add</i>Adicionar</a>
+						<a href="cadastrocliente.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
 					</div>
 				</form>
 			</div>
@@ -94,7 +109,7 @@
 			<div class="col s12 m12 l12">
 				<div class="row">
 					<div class="col s12">
-						<table class="striped">
+						<table class="striped responsive-table">
 							<thead>
 								<tr>
 									<th data-field="">Nome</th>
@@ -135,6 +150,8 @@
 			</div>
 		</div>
 
+		<!-- Paginação -->
+
 		<div class="row">
 			<div class="col s12 m12 l12 center">
 				<div class="row">
@@ -146,11 +163,13 @@
 						<li class="waves-effect"><a href="#!">4</a></li>
 						<li class="waves-effect"><a href="#!">5</a></li>
 						<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-					</div>
-					<div class="row">
-					</div>
+					</ul>
+				</div>
+				<div class="row">
 				</div>
 			</div>
+		</div>
+	</div>
+</div>
 
-
-			{% endblock %}
+{% endblock %}

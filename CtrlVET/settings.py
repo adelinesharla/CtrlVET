@@ -59,7 +59,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
                     os.path.join(BASE_DIR, 'templates'),
-                    os.path.join(BASE_DIR, 'components')
+                    os.path.join(BASE_DIR, 'components'),
                     ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -135,7 +135,6 @@ STATICFILES_FINDERS = (
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "media"),
-    os.path.join(BASE_DIR, "static/jquery/dist"),
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -145,8 +144,10 @@ MEDIA_URL = '/media/'
 BOWER_COMPONENTS_ROOT = 'components'
 
 BOWER_INSTALLED_APPS = (
-    'jquery#2.2.4',
+    'jquery',
     'underscore',
     'materialize',
+    'moment',
+    'fullcalendar',
 )
 

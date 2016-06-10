@@ -3,95 +3,81 @@
 {% block content %}
 
 
-<style type="text/css">
-
-	.breadcrumb {
-		color: #00796b;
-	}
-
-	.breadcrumb {
-		color: rgb(140, 158, 255);
-	}
-
-	.breadcrumb:before {
-		color: rgb(140, 158, 255);
-
-	}
-
-	.breadcrumb:last-child {
-		color: rgb(140, 158, 255);
-	}
-
-</style>
+<!-- Busca-->
 
 
-<!-- breadcrumb -->
+<div class="card">
+	<div class="card-content">
+		
+		<div class="row">
+			<div class="nav-wrapper">
+				<form>
+					<div class="input-field col s12 m12 l9">
+						<input id="search" type="search" required>
+						<label for="search"><i class="material-icons">search</i></label>
+						<i class="material-icons">close</i>
+					</div>
 
-<div class="nav-wrapper white black-text ">
-	<div class="col s12">
-		<a href="main.html" class="breadcrumb">Principal</a>
-		<a href="cliente.html" class="breadcrumb">Cliente</a>
-		<a href="cliente.html" class="breadcrumb">Busca</a>
-	</div>
-</div>
+					<div class="input-field col s16 m16 l3 right-align">
+						<a href="buscapaciente.html"><i class="material-icons">search</i>Buscar</a>
+					</div>
 
-<div class="row">
-	<div class="nav-wrapper">
-		<form>
-			<div class="input-field col s12 m12 l6">
-				<input id="search" type="search" required>
-				<label for="search"><i class="material-icons">search</i></label>
-				<i class="material-icons">close</i>
+				</form>
 			</div>
+		</div>
 
-			<div class="input-field col s12 m12 l3 right-align">
-				<a href="resultadobuscacliente.html" class="waves-effect waves-light indigo accent-1 btn"><i class="material-icons left">search</i>Buscar</a>
+
+		<!-- lista-->
+
+		<div class="row">
+			<div class="col s12 m12 l12">
+				<span class="card-title">Pacientes Encontrados</span>
+				<div class="divider"></div>
+				<div class="row">
+					<div class="col s12">
+						<table class="striped responsive-table">
+							<thead>
+								<tr>
+									<th data-field="">Paciente</th>	
+									<th data-field="">Espécie</th>
+									<th data-field="">Responsável</th>
+									<th data-field="">Ult. Atendimeto</th>
+									<th data-field="">Excluir</th>
+									<th data-field="">Alterar</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td><a href=""><b>Peteca</td></b></a></td>
+									<td>Gato</td>
+									<td><a href="">Alan</a></td>
+									<td><a href="">20/03/2016</a></td>
+									<td><a><i class="material-icons">delete</i></a></td>
+									<td><a><i class="material-icons">mode_edit</i></a></td>
+								</tr>
+								<tr>
+									<td><a href=""><b>Nala</td></b></a></td>
+									<td>Cachorro</td>
+									<td><a href="">Simone</a></td>
+									<td><a href="">20/03/2016</a></td>
+									<td><a><i class="material-icons">delete</i></a></td>
+									<td><a><i class="material-icons">mode_edit</i></a></td>
+								</tr>
+								<tr>
+									<td><a href=""><b>Florence</td></b></a></td>
+									<td>Tartaruga</td>
+									<td><a href="">Simone</a></td>
+									<td><a href="">20/03/2016</a></td>
+									<td><a><i class="material-icons">delete</i></a></td>
+									<td><a><i class="material-icons">mode_edit</i></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
-
-			<div class="input-field col s12 m12 l3 right-align">
-				<a href="cadastrocliente.html" class="waves-effect waves-light indigo accent-1 btn"><i class="material-icons left">add</i>Adicionar</a>
-			</div>
-		</form>
-	</div>
-</div>
-
-
-<table class="striped">
-	<thead>
-		<tr>
-			<th data-field="">Cliente</th>
-			<th data-field="">Nome</th>
-			<th data-field="">Espécie</th>
-			<th data-field="">Excluir</th>
-			<th data-field="">Alterar</th>
-
-		</tr>
-	</thead>
-
-	<tbody>
-		<tr>
-			<td><a href="">Alan</a></td>
-			<td>Peteca</td>
-			<td>Gato</td>
-			<td><a><i class="material-icons">delete</i></a></td>
-			<td><a><i class="material-icons">mode_edit</i></a></td>
-		</tr>
-		<tr>
-			<td><a href="">Jonathan</a></td>
-			<td>Geléia</td>
-			<td>Cachorro</td>
-			<td><a><i class="material-icons">delete</i></a></td>
-			<td><a><i class="material-icons">mode_edit</i></a></td>
-		</tr>
-		<tr>
-			<td><a href="">Jonathan</a></td>
-			<td>Pirulito</td>
-			<td>Tartaruga</td>
-			<td><a><i class="material-icons">delete</i></a></td>
-			<td><a><i class="material-icons">mode_edit</i></a></td>
-		</tr>
-	</tbody>
-</table>
+		</div>
 
 <!-- Paginação -->
 

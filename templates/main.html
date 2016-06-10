@@ -67,6 +67,8 @@
       }
     }
 
+
+
     a {
       color: #1a237e;
     }
@@ -85,20 +87,44 @@
     }
 
     .breadcrumb:before {
-      color: #212121;
+      color: #1a237e;
       font-size: 20px;
     }
 
     .breadcrumb:last-child {
       color: #1a237e;
+      font-weight: bold;
     }
 
 
     /* opção 1*/
     .side-nav .collapsible-header:hover,
     .side-nav.fixed .collapsible-header:hover {
+      border-right:5px solid #1a237e;
+    }
+
+
+    #caminho {
+      height: 30px;
+      line-height: 30px;
+      background-color: #eeeeee;
+      color: white;
+      padding-left: 130px;
+    }
+
+    .row{
+      margin-top:10px;
+      margin-bottom: 0px;
+    }
+
+  </style>
+
+<!--
+    /* opção 1*/
+    .side-nav .collapsible-header:hover,
+    .side-nav.fixed .collapsible-header:hover {
       background-color: rgba(26, 35, 126, 1);
-      border-bottom:4px solid #1a237e;
+      border-right:4px solid #1a237e;
     }
 
 
@@ -109,10 +135,7 @@
      background-color: rgba(26, 35, 126, 1);
      color:white;
    } 
-
-
- </style>
-
+ -->
 
 
 </head>
@@ -131,14 +154,12 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="main.html"><i class="material-icons right">account_circle</i>Login</a></li>
       </ul>
-
     </nav>
-
     <ul id="nav-mobile" class="side-nav fixed">
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
 
-          <li class="logo"><a a class="collapsible-header" href="main.html"><div class="container">
+          <li class="logo"><div class="container">
             <img class="responsive-img" src="{% static 'logo.png' %}"></div></a></li>
 
             <li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
@@ -154,9 +175,22 @@
       </ul>
       <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 
+
+
+      <nav id="caminho">
+
+        <div class="col s12">
+          <a href="main.html" class="breadcrumb">Principal</a>
+          <a href="cliente.html" class="breadcrumb">Cliente</a>
+        </div>
+
+      </nav>
+
+
     </header>
 
     <main>
+
 
       <div class="col s12 m12 l12">
         <main>

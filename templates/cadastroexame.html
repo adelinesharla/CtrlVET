@@ -3,45 +3,36 @@
 {% block content %}
 
 
-<!--
-
-<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
-
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.3/fullcalendar.min.js"></script>
-
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.3/fullcalendar.min.css"></script>
-
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.3/fullcalendar.min.js"></script>
-
--->
-
 <!-- breadcrumb -->
 
-<div class="nav-wrapper">
-	<div class="col s12">
-		<a href="main.html" class="breadcrumb">Principal</a>
-		<a href="exames.html" class="breadcrumb">Exame</a>
-		<a href="cadastroexames.html" class="breadcrumb">Cadastro</a>
+<div class="card">
+	<div class="card-content">
+		<div id='calendar'>
+
+		</div>
 	</div>
-</div>
-
-<div id='calendar'>
-	
-
 </div>
 
 
 <script type="text/javascript">
 	
 	$(document).ready(function() {
+		
+		$('#calendar').fullCalendar({
+			theme: true,
+			editable: false,
+			handleWindowResize: true,
+			weekends: false, 
+			defaultView: 'agendaWeek',
+			lang: 'pt-br',
+			timeFormat: 'H(:mm)',
+			minTime: '07:00:00', 
+			maxTime: '22:00:00',
+			header: false,
+		})
 
-    // page is now ready, initialize the calendar...
+	});
 
-    $('#calendar').fullCalendar({
-        // put your options and callbacks here
-    })
-
-});
 
 </script>
 

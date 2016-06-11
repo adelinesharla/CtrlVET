@@ -1,0 +1,437 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"backgrou",
+				"background-color"
+			],
+			[
+				"pd",
+				"padding-top"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"font",
+				"font-style"
+			],
+			[
+				"backgr",
+				"background-color"
+			],
+			[
+				"border",
+				"border-bottom"
+			],
+			[
+				"back",
+				"background-position"
+			],
+			[
+				"alig",
+				"align-items"
+			],
+			[
+				"sty",
+				"stylesheet"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 96.0,
+		"last_filter": "Package Control: Instal",
+		"selected_items":
+		[
+			[
+				"Package Control: Instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control:",
+				"Package Control: Add Channel"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Discover Packages"
+			],
+			[
+				"Packageadvance",
+				"Package Control: Advanced Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 492.0,
+		"history":
+		[
+			"package control;",
+			"package control:",
+			"package control",
+			"Package Control: Install Package",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"Package Control: Install Package",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/joyce/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/joyce/.config/sublime-text-3/Packages/User/Package Control.sublime-settings",
+		"/home/joyce/Área de Trabalho/CtrlVET/templates/buscacliente.html",
+		"/home/joyce/Área de Trabalho/CtrlVET/templates/buscapaciente.html",
+		"/home/joyce/Documentos/CtrlVET/templates/main.html",
+		"/home/joyce/Área de Trabalho/CtrlVET/templates/cliente.html",
+		"/home/joyce/Área de Trabalho/CtrlVET/static/Materialize/dist/css/materialize.css",
+		"/home/joyce/Área de Trabalho/CtrlVET/templates/cadastrocliente.html",
+		"/home/joyce/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/joyce/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/joyce/Área de Trabalho/CtrlVET/templates/paciente.html",
+		"/home/joyce/Documentos/CtrlVET/templates/cadastroexame.html",
+		"/home/joyce/.config/sublime-text-3/Packages/Colorsublime-Themes/Flatland_Monokai.tmTheme",
+		"/home/joyce/Downloads/Juicy.tmTheme",
+		"/home/joyce/Documentos/CtrlVET/templates/exames.html",
+		"/home/joyce/Documentos/CtrlVET/CtrlVET/settings.py",
+		"/home/joyce/Documentos/CtrlVET/dependencias",
+		"/home/joyce/Documentos/CtrlVET/templates/cliente.html",
+		"/home/joyce/Documentos/CtrlVET/static/Materialize/dist/css/materialize.css",
+		"/home/joyce/Documentos/CtrlVET/static/css/estilo.css",
+		"/home/joyce/Área de Trabalho/CtrlVET/templates/cadastroexame.html",
+		"/home/joyce/Documentos/CtrlVET/templates/consultas.html",
+		"/home/joyce/Documentos/CtrlVET/templates/cadastrocliente.html",
+		"/home/joyce/Documentos/CtrlVET/templates/cadastropaciente.html",
+		"/home/joyce/Documentos/CtrlVET/templates/buscaexame.html",
+		"/home/joyce/Documentos/CtrlVET/templates/estoque.html",
+		"/home/joyce/Documentos/CtrlVET/templates/agenda.html",
+		"/home/joyce/Documentos/CtrlVET/templates/paciente.html",
+		"/home/joyce/Documentos/CtrlVET/templates/buscapaciente.html",
+		"/home/joyce/Documentos/CtrlVET/templates/buscacliente.html",
+		"/home/joyce/Documentos/CtrlVET/CtrlVET/urls.py",
+		"/home/joyce/Documentos/CtrlVET/templates/backupmain.html",
+		"/home/joyce/Documentos/CtrlVET/templates/resultadobuscacliente.html",
+		"/home/joyce/Documentos/CtrlVET/static/Materialize/dist/css/materialize.min.css",
+		"/home/joyce/Documentos/rascunho.html",
+		"/home/joyce/Downloads/md/materialize-css-templates-master/dashboard/index.html",
+		"/home/joyce/Documentos/CtrlVET/static/css/styles.css",
+		"/home/joyce/Downloads/md/materialize-css-templates-master/dashboard/styles.css",
+		"/home/joyce/Documentos/CtrlVET/templates/foo.html",
+		"/home/joyce/Documentos/CtrlVET/static/css/style.css",
+		"/home/joyce/Downloads/materialize-css-templates-master/dashboard/index.html",
+		"/home/joyce/Documentos/CtrlVET/templates/template.html",
+		"/home/joyce/Documentos/CtrlVET/templates/baseprot.html",
+		"/home/joyce/Documentos/CtrlVET/templates/base.html",
+		"/home/joyce/Documentos/CtrlVET/templates/mainbak.html",
+		"/home/joyce/Documentos/CtrlVET/templates/pagamentos.html",
+		"/home/joyce/Documentos/CtrlVET/components/bower_components/Materialize/dist/css/materialize.css",
+		"/home/joyce/Documentos/projetoteste/projetoteste/settings.py",
+		"/home/joyce/Documentos/projetoteste/templates/cliente.html",
+		"/home/joyce/Documentos/projetoteste/projetoteste/urls.py",
+		"/home/joyce/Documentos/projetoteste/templates/main.html",
+		"/home/joyce/Documentos/projetoteste/templates/resultadobuscacliente.html",
+		"/home/joyce/Documentos/projetoteste/templates/baseprot.html",
+		"/home/joyce/Documentos/ControleVet/ControleVet/settings.py",
+		"/home/joyce/Documentos/ControleVet/templates/main.html",
+		"/home/joyce/Documentos/ControleVet/ControleVet/urls.py",
+		"/home/joyce/Documentos/CtrlVET/CtrlVET/urls.pyc",
+		"/home/joyce/Documentos/CtrolVET Testes/CtrlVET/settings.py",
+		"/home/joyce/Documentos/bubbleSort.c",
+		"/home/joyce/Documentos/CtrlVET/templates/resultadobuscapaciente.html",
+		"/home/joyce/Documentos/Scripts/freshinstall.sh",
+		"/home/joyce/Dropbox/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/MiniBlog/urls.py",
+		"/home/joyce/Dropbox/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/models.py",
+		"/home/joyce/Dropbox/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/views.py",
+		"/home/joyce/Dropbox/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/templates/ver_blog.html",
+		"/home/joyce/Dropbox/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/templates/listar_blogs.html",
+		"/home/joyce/Dropbox/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/templates/base.html",
+		"/home/joyce/Dropbox/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/templates/index_template.html",
+		"/home/joyce/Dropbox/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/admin.py",
+		"/home/joyce/Downloads/index.html",
+		"/home/joyce/.cache/.fr-SMXiwy/MiniBlog/blog/templates/index_template.html",
+		"/home/joyce/Dropbox/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/tests.py",
+		"/home/joyce/Dropbox/Projeto-HOVET/CtrlVET/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/templates/ver_blog.html",
+		"/home/joyce/Dropbox/Projeto-HOVET/CtrlVET/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/templates/index_template.html",
+		"/home/joyce/.config/sublime-text-3/Packages/User/Distraction Free.sublime-settings",
+		"/home/joyce/Dropbox/Projeto-HOVET/CtrlVET/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/templates/ver_blog (cópia).html",
+		"/home/joyce/Dropbox/Projeto-HOVET/CtrlVET/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/templates/index_template (cópia).html",
+		"/home/joyce/Dropbox/Projeto-HOVET/CtrlVET/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/MiniBlog/settings.py",
+		"/home/joyce/Dropbox/Projeto-HOVET/CtrlVET/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/admin.py",
+		"/home/joyce/Dropbox/Projeto-HOVET/CtrlVET/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/MiniBlog/urls.py",
+		"/home/joyce/Dropbox/Projeto-HOVET/CtrlVET/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/templates/base.html",
+		"/home/joyce/Dropbox/Projeto-HOVET/CtrlVET/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/templates/index.html",
+		"/home/joyce/Documentos/MiniBlog (2)/blog/models.py",
+		"/home/joyce/Dropbox/Projeto-HOVET/CtrlVET/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/__init__.py",
+		"/home/joyce/Dropbox/Projeto-HOVET/CtrlVET/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/blog/apps.py",
+		"/home/joyce/Dropbox/Projeto-HOVET/CtrlVET/CtrlVET - Arquivos/Material Estudo/exemplos/MiniBlog/manage.py"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"alias",
+			"ignored",
+			"center",
+			"striped responsive-table",
+			"table",
+			"\n					",
+			"></",
+			"card",
+			"row",
+			"nav",
+			"logo",
+			"jquery",
+			"style",
+			"main",
+			"\">\n",
+			"breadcrumb",
+			"recomen",
+			"not rec",
+			"not reco",
+			"material-icons",
+			"material icons",
+			"material",
+			"ico",
+			"i.",
+			".side-nav",
+			"material-icons",
+			"material-icon",
+			"hover",
+			"nav i",
+			"nav",
+			"crumb",
+			"brea",
+			"crumb",
+			"cr",
+			"crumb",
+			"\n  ",
+			"icons",
+			"breadcrumb",
+			"vertical",
+			"horizontal",
+			"true",
+			"debug",
+			"					\n",
+			"a:",
+			"links",
+			"icons",
+			"cliente",
+			"busca",
+			"b",
+			"busca",
+			"style",
+			"pick",
+			"jquery",
+			"min",
+			"raça",
+			"materialize Select",
+			"dono",
+			"{\n						format: 'mm/dd/yyyy',\n          				selectMonths: true, \n          				selectYears: 15,\n          				format : 'dd-mm-yyyy'\n          			 });",
+			"datepicker",
+			"modal",
+			"holder",
+			"datep",
+			"date",
+			"cyan",
+			"nav-wrapper",
+			"title",
+			"nav-wrapper",
+			"transparent",
+			"\\E5CC",
+			"breadcrumb",
+			"link",
+			"links",
+			"link",
+			"color",
+			"text",
+			"color",
+			"link",
+			"#212121",
+			"link",
+			"a ",
+			"color",
+			"collapsible-heade",
+			"collapsible",
+			"#fff",
+			"header",
+			"head",
+			"html",
+			"import",
+			"style",
+			"@media only",
+			"mobile",
+			"image",
+			"logo",
+			"container",
+			"logo",
+			"nav",
+			"13.",
+			"Navigation Bar",
+			"navigation bar",
+			"nav",
+			"-container",
+			"logo-container",
+			"-container",
+			" $(\".button-collapse\").sideNav();",
+			"$(\".button-collapse\").sideNav();",
+			"navbar-fixed",
+			"fixed",
+			"collection",
+			"link",
+			"collapsible",
+			"teal",
+			"icon",
+			"loaders",
+			"base_dir",
+			"BOWER",
+			"static",
+			"filesystemfinder",
+			"finders",
+			"static",
+			"project_root",
+			"root",
+			"django.template.loaders.filesystem.Loader",
+			"classes",
+			"loaders",
+			"finders",
+			"bower",
+			"FileSystemFinder",
+			"finders"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "wsgi.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 137.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

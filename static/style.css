@@ -1,0 +1,66 @@
+i.material-icons , i.material-icons + span {
+      vertical-align: middle;!important;
+    }
+
+    header, main, footer {
+      padding-left: 130px;!important;
+      padding-right: 10px;!important;
+    }
+
+    header, footer {
+      padding-right: 0px;!important;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;!important;
+      }
+    }
+
+    a {
+      color: #1a237e;!important;
+    }
+
+    .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+      color: #1a237e;!important;
+    }
+
+    .navbar-material .nav-wrapper .brand-logo img {
+      height: 64px;!important;
+    }
+
+    .breadcrumb {
+      font-size: 12px;!important;
+      color: #212121;!important;
+    }
+
+    .breadcrumb:before {
+      color: #1a237e;!important;
+      font-size: 20px;!important;
+    }
+
+    .breadcrumb:last-child {
+      color: #1a237e;!important;
+      font-weight: bold;!important;
+    }
+
+
+    /* opção 1*/
+    .side-nav .collapsible-header:hover,
+    .side-nav.fixed .collapsible-header:hover {
+      border-right:5px solid #1a237e;!important;
+    }
+
+
+    #caminho {
+      height: 30px;!important;
+      line-height: 30px;!important;
+      background-color: #eeeeee;!important;
+      color: white;!important;
+      padding-left: 130px;!important;
+    }
+
+    .row{
+      margin-top:10px;!important;
+      margin-bottom: 0px;!important;
+    }

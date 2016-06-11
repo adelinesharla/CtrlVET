@@ -10,133 +10,30 @@
   
   <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}"/>
 
-  <title>Title of the document</title>
+  <title>Ctrl VET</title>
 
-  <!--Import materialize.css-->
-
-  <link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.css' %}"  media="screen,projection"/>
-
-
-
-
-  <!--fullcalendar-->
-
-  <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.css' %}"  media="screen,projection"
-  />
-
-  <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.min.css' %}"  media="screen,projection"/>
-
-  <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.print.css' %}"  media="screen,projection"/>
-
-
-  <!--Import jQuery before materialize.js-->
+  <!--Import material-icons-->
   
+  <link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   
+   <!--Import CSS--> 
+
+  <link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.min.css' %}"/>
+  <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar.css' %}"  media="screen,projection"/>
+
+  <!-- javascript -->
 
   <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-
-  <script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.js' %}"></script>
-
-  <!--momento-->
-
+  <script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
-
-  <!--fullcalendar-->
-
   <script type="text/javascript" src="{% static 'fullcalendar/dist/fullcalendar.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'fullcalendar/dist/lang-all.js' %}"></script>
+ 
+ <!-- custom css -->
 
-  <style type="text/css">
-
-    i.material-icons , i.material-icons + span {
-      vertical-align: middle;
-    }
-
-    header, main, footer {
-      padding-left: 130px;
-      padding-right: 10px;
-    }
-
-    header, footer {
-      padding-right: 0px;
-    }
-
-    @media only screen and (max-width : 992px) {
-      header, main, footer {
-        padding-left: 0;
-      }
-    }
-
-
-
-    a {
-      color: #1a237e;
-    }
-
-    .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
-      color: #1a237e;
-    }
-
-    .navbar-material .nav-wrapper .brand-logo img {
-      height: 64px;
-    }
-
-    .breadcrumb {
-      font-size: 12px;
-      color: #212121;
-    }
-
-    .breadcrumb:before {
-      color: #1a237e;
-      font-size: 20px;
-    }
-
-    .breadcrumb:last-child {
-      color: #1a237e;
-      font-weight: bold;
-    }
-
-
-    /* opção 1*/
-    .side-nav .collapsible-header:hover,
-    .side-nav.fixed .collapsible-header:hover {
-      border-right:5px solid #1a237e;
-    }
-
-
-    #caminho {
-      height: 30px;
-      line-height: 30px;
-      background-color: #eeeeee;
-      color: white;
-      padding-left: 130px;
-    }
-
-    .row{
-      margin-top:10px;
-      margin-bottom: 0px;
-    }
+ <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}"  media="screen,projection"/>
 
   </style>
-
-<!--
-    /* opção 1*/
-    .side-nav .collapsible-header:hover,
-    .side-nav.fixed .collapsible-header:hover {
-      background-color: rgba(26, 35, 126, 1);
-      border-right:4px solid #1a237e;
-    }
-
-
-    /* opção 2*/
-
-    .side-nav .collapsible-header:hover,
-    .side-nav.fixed .collapsible-header:hover.i:hover .a:hover {
-     background-color: rgba(26, 35, 126, 1);
-     color:white;
-   } 
- -->
-
 
 </head>
 <body>
@@ -160,7 +57,7 @@
         <ul class="collapsible collapsible-accordion">
 
           <li class="logo"><div class="container">
-            <img class="responsive-img" src="{% static 'logo.png' %}"></div></a></li>
+            <img class="responsive-img" src="{% static 'logo/logo.png' %}"></div></a></li>
 
             <li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
 
@@ -215,13 +112,6 @@
       </footer>
 
     </body>
-
-
-
-
-
-
-
 
     <script>
       $(document).ready(function(){

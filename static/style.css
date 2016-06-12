@@ -1,66 +1,84 @@
-i.material-icons , i.material-icons + span {
-      vertical-align: middle;!important;
-    }
+ i.material-icons , i.material-icons + span {
+  vertical-align: middle;
+}
 
-    header, main, footer {
-      padding-left: 130px;!important;
-      padding-right: 10px;!important;
-    }
+header, footer{
+  padding-left: 240px;
+  padding-right: 10px;
+}
 
-    header, footer {
-      padding-right: 0px;!important;
-    }
+main{
+  padding-left: 250px;
+  padding-right: 10px;
+}
 
-    @media only screen and (max-width : 992px) {
-      header, main, footer {
-        padding-left: 0;!important;
-      }
-    }
+header, footer {
+  padding-right: 0px;
+}
 
-    a {
-      color: #1a237e;!important;
-    }
+@media only screen and (max-width : 992px) {
+  header, footer {
+    padding-left: 0px;
+  }
+}
 
-    .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
-      color: #1a237e;!important;
-    }
+@media only screen and (max-width : 992px) {
+  main{
+    padding-left: 10px;
+  }
+}
 
-    .navbar-material .nav-wrapper .brand-logo img {
-      height: 64px;!important;
-    }
+a {
+  color: #1a237e;
+}
 
-    .breadcrumb {
-      font-size: 12px;!important;
-      color: #212121;!important;
-    }
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+  color: #1a237e;
+}
 
-    .breadcrumb:before {
-      color: #1a237e;!important;
-      font-size: 20px;!important;
-    }
+.navbar-material .nav-wrapper .brand-logo img {
+  height: 64px;
+}
 
-    .breadcrumb:last-child {
-      color: #1a237e;!important;
-      font-weight: bold;!important;
-    }
+.breadcrumb {
+  font-size: 12px;
+  color: #212121;
+}
+
+.breadcrumb:before {
+  color: #1a237e;
+  font-size: 20px;
+}
+
+.breadcrumb:last-child {
+  color: #1a237e;
+  font-weight: bold;
+}
 
 
-    /* opção 1*/
-    .side-nav .collapsible-header:hover,
-    .side-nav.fixed .collapsible-header:hover {
-      border-right:5px solid #1a237e;!important;
-    }
+/* opção 1*/
+.side-nav .collapsible-header:hover,
+.side-nav.fixed .collapsible-header:hover {
+  border-right:5px solid #1a237e;
+}
 
 
-    #caminho {
-      height: 30px;!important;
-      line-height: 30px;!important;
-      background-color: #eeeeee;!important;
-      color: white;!important;
-      padding-left: 130px;!important;
-    }
+#caminho {
+  height: 30px;
+  line-height: 30px;
+  background-color: #eeeeee;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
-    .row{
-      margin-top:10px;!important;
-      margin-bottom: 0px;!important;
-    }
+@media only screen and (max-width : 992px) {
+  #caminho {
+    padding-left: 10px;
+  }
+}
+
+.row{
+  margin-top:10px;
+  margin-bottom: 0px;
+}

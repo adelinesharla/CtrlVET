@@ -1,169 +1,105 @@
 {% extends "main.html" %}
 
 {% block content %}
+<div class="card">
+	<div class="card-content">
+		<div class="row">
+			<span class="card-title">Informações do Animal</span>
+			<div class="divider"></div>
+			<form action="#" class="col s12 m12 l12">
+				<div class="row">
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input type="text" id="nome">
+							<label for="nome">Nome</label>
+						</div>				
+					</div>
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input type="date" id="datanascimento" class="datepicker">
+							<label for="datanascimento">Data de Nascimento</label>
+						</div>
+					</div>
+					<div class="col s12 m4 l4">
+						<select class="browser-default">
+							<option value="" disabled selected>Sexo</option>
+							<option value="1">Feminino</option>
+							<option value="2">Masculino</option>
+						</select>
+					</div>
 
-<style type="text/css">
+				</div>
 
-	.breadcrumb {
-		color: #00796b;
-	}
 
-	.breadcrumb i,
-	.breadcrumb [class^="mdi-"], .breadcrumb [class*="mdi-"],
-	.breadcrumb i.material-icons {
-		display: inline-block;
-		float: left;
-		font-size: 24px;
-	}
+				<div class="row">
+					<div class="col s12 m4 l4">
+						<select class="browser-default">
+							<option value="" disabled selected>Espécie</option>
+							<option value="1">Option 1</option>
+							<option value="2">Option 2</option>
+							<option value="3">Option 3</option>
+						</select>
 
-	.breadcrumb {
-		color: rgb(140, 158, 255);
-	}
+					</div>
+					<div class="col s12 m4 l4">
+						<select class="browser-default">
+							<option value="" disabled selected>Raça</option>
+							<option value="1">Option 1</option>
+							<option value="2">Option 2</option>
+							<option value="3">Option 3</option>
+						</select>
+					</div>
+					<div class="col s12 m4 l4">
+						<select class="browser-default">
+							<option value="" disabled selected>Cor</option>
+							<option value="1">Option 1</option>
+							<option value="2">Option 2</option>
+							<option value="3">Option 3</option>
+						</select>
+					</div>
+				</div>
 
-	.breadcrumb:before {
-		color: rgb(140, 158, 255);
+				<div class="row">
+					<div class="col s12 m4 l4">
+					</div>
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input type="text" id="pai">
+							<label for="pai">Pai</label>
+						</div>
+					</div>
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input type="text" id="mae">
+							<label for="mae">Mãe</label>
+						</div>
+					</div>
+				</div>
 
-	}
+				<div class="row">
+					<div class="col s12 m4 l4">
+						<label>Dono/Responsável</label>
+						<select class="browser-default">
+							<option value="" disabled selected>Selecione</option>
+							<option value="1">Cliente 1</option>
+							<option value="2">Cliente 2</option>
+							<option value="2">Cliente 3</option>
+						</select>
+					</div>
+				</div>
 
-	.breadcrumb:last-child {
-		color: rgb(140, 158, 255);
-	}
-</style>
+			</div>
 
-<!-- breadcrumb -->
-
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-
-<div class="nav-wrapper white black-text ">
-	<div class="col s12">
-
-		<a href="main.html" class="breadcrumb">Principal</a>
-		<a href="paciente.html" class="breadcrumb">Paciente</a>
-		<a href="cadastropaciente.html" class="breadcrumb">Cadastro</a>
-
+			<div class="row">
+				<div class="input-field col s12 m12 l12 right-align">
+					<div class="row">
+						<button class="waves-effect waves-light indigo darken-4 btn" type="submit" name="action">Enviar<i class="material-icons right">send</i></button>
+					</div>
+				</div>
+			</div>	
+		</form>
 	</div>
 </div>
-
-
-<div class="row">
-	<form action="#" class="col s12 m12 l12">
-		<div class="row">
-			<div class="col s12 m4 l4">
-				<div class="input-field">
-					<input type="text" id="nome">
-					<label for="nome">Nome</label>
-				</div>				
-			</div>
-			<div class="col s12 m4 l4">
-				<div class="input-field">
-					<input type="date" id="datanascimento" class="datepicker">
-					<label for="datanascimento">Data de Nascimento</label>
-				</div>
-			</div>
-			<div class="col s12 m4 l4">
-				<select class="browser-default">
-					<option value="" disabled selected>Sexo</option>
-					<option value="1">Feminino</option>
-					<option value="2">Masculino</option>
-				</select>
-			</div>
-			
-		</div>
-
-
-		<div class="row">
-			<div class="col s12 m4 l4">
-				<select class="browser-default">
-					<option value="" disabled selected>Espécie</option>
-					<option value="1">Option 1</option>
-					<option value="2">Option 2</option>
-					<option value="3">Option 3</option>
-				</select>
-
-			</div>
-			<div class="col s12 m4 l4">
-				<select class="browser-default">
-					<option value="" disabled selected>Raça</option>
-					<option value="1">Option 1</option>
-					<option value="2">Option 2</option>
-					<option value="3">Option 3</option>
-				</select>
-			</div>
-			<div class="col s12 m4 l4">
-				<select class="browser-default">
-					<option value="" disabled selected>Cor</option>
-					<option value="1">Option 1</option>
-					<option value="2">Option 2</option>
-					<option value="3">Option 3</option>
-				</select>
-			</div>
-		</div>
-
-
-
-		<div class="row">
-			<div class="col s12 m4 l4">
-
-
-			</div>
-			<div class="col s12 m4 l4">
-				<div class="input-field">
-					<input type="text" id="pai">
-					<label for="pai">Pai</label>
-				</div>
-			</div>
-			<div class="col s12 m4 l4">
-				<div class="input-field">
-					<input type="text" id="mae">
-					<label for="mae">Mãe</label>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="row">
-			<div class="col s12 m4 l4">
-				<label>Dono/Responsável</label>
-				<select class="browser-default">
-					<option value="" disabled selected>Selecione</option>
-					<option value="1">Cliente 1</option>
-					<option value="2">Cliente 2</option>
-					<option value="2">Cliente 3</option>
-				</select>
-			</div>
-		</div>
-
-	</div>
-
-	<div class="row">
-		<div class="input-field col s12 m12 l12 right-align">
-			<div class="row">
-				<button class="waves-effect waves-light indigo accent-1 btn" type="submit" name="action">
-					Enviar<i class="material-icons right">send</i>
-				</button>
-			</div>
-		</div>
-	</div>	
-</form>
-
-<script type="text/javascript">
-
-	$( document ).ready(function() {
-		$('select').material_select();
-		$('.datepicker').pickadate({
-			format: 'mm/dd/yyyy',
-			selectMonths: true, 
-			selectYears: 15,
-			format : 'dd-mm-yyyy'
-		});
-
-		$('input:not([placeholder])').attr('placeholder', '');
-
-	});
-
-</script>
-
-
 
 {% endblock %}
 

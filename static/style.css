@@ -82,3 +82,21 @@ a {
   margin-top:10px;
   margin-bottom: 0px;
 }
+
+/* DatePicker */
+
+.picker__day--selected,
+.picker__day--selected:hover,
+.picker--focused .picker__day--selected {
+  border-radius: 50%;
+  -webkit-transform: scale(0.75);
+  transform: scale(0.75);
+  background: #1a237e;
+  color: #ffffff;
+}
+
+
+.picker__date-display, .picker__weekday-display{
+  background-color: #1a237e;
+}
+

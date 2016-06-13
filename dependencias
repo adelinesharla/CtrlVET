@@ -2,8 +2,12 @@ $ npm install -g bower
 
 $ pip install django-bower
 
-$ pip install django-materializecss-form
+$ pip install django-materializecss-form --save
 
-$ bower install fullcalendar
+$ bower install fullcalendar --save
 
 $ bower install moment --save
+
+$ bower install materialize --save
+
+$ bower install jquery --save

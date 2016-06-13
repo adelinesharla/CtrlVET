@@ -7,21 +7,19 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+  
   <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}"/>
 
   <title>Ctrl VET</title>
 
-  <!-- Mess with my code, I double dare you  ಠ_ಠ -->
-
   <!--Import material-icons-->
-
+  
   <link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!--Import CSS--> 
 
-  <link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.min.css' %}"/>
-  <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar.css' %}"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.min.css' %}" media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.css' %}"  media="screen,projection"/>
 
   <!-- javascript -->
 
@@ -35,104 +33,113 @@
 
   <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}"  media="screen,projection"/>
 
-</head>
+</style>
 
+</head>
 <body>
 
   <header>
 
-    <!-- Navbar fixa -->
-
     <nav class="nav-wrapper indigo darken-4">
-      <div class="container">
-        <a href="main.html" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
-      </div>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="main.html"><i class="material-icons right">account_circle</i>Login</a></li>
-      </ul>
-    </nav>
+        <div class="container">
+            <a href="main.html" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+        </div>
 
-    <!-- Menu navbar fixa -->
+        <ul class="right hide-on-med-and-down">
+            <li><a href="main.html"><i class="material-icons right">account_circle</i>Login</a></li>
+        </ul>
+    </nav>
 
     <ul id="nav-mobile" class="side-nav fixed">
       <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
+          <ul class="collapsible collapsible-accordion">
 
-          <li class="logo">
-            <div class="container">
-              <img class="responsive-img" src="{% static 'logo/logo.png' %}">
-            </div>
-          </li>
+              <li class="logo"><div class="container"><img class="responsive-img" src="{% static 'logo/logo.png' %}"></div></li>
 
-          <li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
-          <li class="bold"><a href="cliente.html" class="collapsible-header"><i class="material-icons">face</i>Cliente</a></li>
-          <li class="bold"><a href="paciente.html" class="collapsible-header"><i class="material-icons">pets</i>Paciente</a></li>
-          <li class="bold"><a href="exames.html" class="collapsible-header"><i class="material-icons">local_pharmacy</i>Exames</a></li>
-          <li class="bold"><a href="consultas.html" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
-          <li class="bold"><a href="estoque.html" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>
-          <li class="bold"><a href="pagamentos.html" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>
-        </ul>
+              <li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
+
+              <li class="bold"><a href="cliente.html" class="collapsible-header"><i class="material-icons">face</i>Cliente</a></li>
+              <li class="bold"><a href="paciente.html" class="collapsible-header"><i class="material-icons">pets</i>Paciente</a></li>
+              <li class="bold"><a href="exames.html" class="collapsible-header"><i class="material-icons">local_pharmacy</i>Exames</a></li>
+              <li class="bold"><a href="consultas.html" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
+              <li class="bold"><a href="estoque.html" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>
+              <li class="bold"><a href="pagamentos.html" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>
+          </ul>
       </li>     
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 
-    <!-- breadcrumb -->
-
-    <nav id="caminho">
+  <nav id="caminho">
       <div class="col s12">
-        <a href="main.html" class="breadcrumb">Principal</a>
-        <a href="cliente.html" class="breadcrumb">Cliente</a>
+          <a href="main.html" class="breadcrumb">Principal</a>
+          <a href="cliente.html" class="breadcrumb">Pagina atual</a>
       </div>
-    </nav>
+  </nav>
 
+</header>
 
-  </header>
-
-  <main>
-
+<main>
     <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
 
-      {% block content %}
+<!-- Footer -->
 
-      {% endblock %}
-
-    </div>    
-    
-  </main>
-
-  <footer>
-
-  </footer>
+<footer class="page-footer indigo darken-4">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Ctrl VET</h5>
+        <p class="grey-text text-lighten-4">Sistema de gestão do Hospital Veterinário HOVET</p>
+    </div>
+    <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Contato</a></li>
+        </ul>
+    </div>
+</div>
+</div>
+</footer>
 
 </body>
 
 <script type="text/javascript">
 
-  $( document ).ready(function() {
-    $('select').material_select();
+    $( document ).ready(function() {
+        $(".button-collapse").sideNav();
+        $('.collapsible').collapsible({
+            accordion : true
+        });
 
-    $('.datepicker').pickadate({
-      format: 'mm/dd/yyyy',
-      selectMonths: true, 
-      selectYears: 15,
-      firstDay: 0,
+        Materialize.updateTextFields();
 
-      monthsFull: [ 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro' ],
-      monthsShort: [ 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez' ],
-      weekdaysFull: [ 'domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado' ],
-      weekdaysShort: [ 'dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab' ],
-      weekdaysMin: ['d', 's', 't', 'q', 'q', 's', 's'],
-      today: 'hoje',
-      clear: 'limpar',
-      close: 'fechar',
-      format: 'mm/dd/yyyy',
-      formatSubmit: 'yyyy/mm/dd'
+        $('select').material_select();
 
+
+        $('.datepicker').pickadate({
+            format: 'mm/dd/yyyy',
+            selectMonths: true, 
+            selectYears: 15,
+            firstDay: 0,
+
+            monthsFull: [ 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro' ],
+            monthsShort: [ 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez' ],
+            weekdaysFull: [ 'domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado' ],
+            weekdaysShort: [ 'dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab' ],
+            weekdaysMin: ['d', 's', 't', 'q', 'q', 's', 's'],
+            today: 'hoje',
+            clear: 'limpar',
+            close: 'fechar',
+            format: 'mm/dd/yyyy',
+            formatSubmit: 'yyyy/mm/dd'
+
+        });
+
+        $('input:not([placeholder])').attr('placeholder', '');
     });
-
-    $('input:not([placeholder])').attr('placeholder', '');
-  });
-
 
 </script>
 

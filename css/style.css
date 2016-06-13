@@ -32,6 +32,7 @@ a {
   color: #1a237e;
 }
 
+
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
   color: #1a237e;
 }
@@ -39,6 +40,8 @@ a {
 .navbar-material .nav-wrapper .brand-logo img {
   height: 64px;
 }
+
+/* Breadcrumbs */
 
 .breadcrumb {
   font-size: 12px;
@@ -54,14 +57,6 @@ a {
   color: #1a237e;
   font-weight: bold;
 }
-
-
-/* opção 1*/
-.side-nav .collapsible-header:hover,
-.side-nav.fixed .collapsible-header:hover {
-  border-right:5px solid #1a237e;
-}
-
 
 #caminho {
   height: 30px;
@@ -83,6 +78,12 @@ a {
   margin-bottom: 0px;
 }
 
+/* Navbar fixed detalhes */
+.side-nav .collapsible-header:hover,
+.side-nav.fixed .collapsible-header:hover {
+  border-right:5px solid #1a237e;
+}
+
 /* DatePicker */
 
 .picker__day--selected,
@@ -100,3 +101,42 @@ a {
   background-color: #1a237e;
 }
 
+.picker__close, .picker__today {
+  color: #1a237e;
+}
+
+/* Tabelas */
+
+table.highlight > tbody > tr:hover {
+  border-left:5px solid #1a237e;
+}
+
+/* Data field */
+
+/* label color */
+.input-field label {
+ color: #000;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+ color: #000;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
+}
+/* valid color */
+.input-field input[type=text].valid {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+ color: #000;
+}

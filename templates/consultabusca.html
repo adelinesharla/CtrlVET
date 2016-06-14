@@ -1,0 +1,77 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<div class="card">
+	<div class="card-content">
+
+		<div class="row">
+			<div class="nav-wrapper">
+				<form>
+					<div class="input-field col s12 m12 l9">
+						<input id="search" type="search" required>
+						<label for="search"><i class="material-icons">search</i></label>
+						<i class="material-icons">close</i>
+					</div>
+
+					<div class="input-field col s16 m16 l3 right-align">
+						<a href="consultabusca.html"><i class="material-icons">search</i>Buscar</a>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="card-content">
+				<span class="card-title">Resultado da pesquisas</span>
+				<table class="striped">
+					<thead>
+						<tr>
+							<th data-field="name">Veterinário</th>
+							<th data-field="name">Paciente</th>
+							<th data-field="date">Data</th>
+							<th data-field="time">Horário</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						<tr>
+							<td><a href="clientedetalhe.html">Simone</a></td>
+							<td><a href="pacientedetalhe.html">Florence</a></td>
+							<td>25-03-2016</td>
+							<td>14:00</td>
+						</tr>
+						<tr>
+							<td><a href="clientedetalhe.html">João</a></td>
+							<td><a href="pacientedetalhe.html">Peteca</a></td>
+							<td>25-03-2016</td>
+							<td>14:00</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Paginação -->
+
+<div class="row">
+	<div class="col s12 m12 l12 center">
+		<div class="row">
+			<ul class="pagination">
+				<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="#!">1</a></li>
+				<li class="waves-effect"><a href="#!">2</a></li>
+				<li class="waves-effect"><a href="#!">3</a></li>
+				<li class="waves-effect"><a href="#!">4</a></li>
+				<li class="waves-effect"><a href="#!">5</a></li>
+				<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

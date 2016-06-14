@@ -1,142 +1,157 @@
 {% load staticfiles %}
 
 <!DOCTYPE html>
+<html lang="pt" xml:lang="pt">
+<head>
+  <meta charset="utf-8">
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}"/>
 
-		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
-		Remove this if you use the .htaccess -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Ctrl VET</title>
 
-		<title>base</title>
+  <!--Import material-icons-->
+  
+  <link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-		<link rel="shortcut icon" href="/favicon.ico">
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <!--Import CSS--> 
 
-		<!--Import materialize.css-->
-		<link type="text/css" rel="stylesheet" href="{% static 'materialize/bin/materialize.css' %}"  media="screen,projection"/>
-		<link type="text/css" rel="stylesheet" href="css/estilo.css"/>
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.min.css' %}" media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.css' %}"  media="screen,projection"/>
 
-	</head>
+  <!-- javascript -->
 
-	<body>
-		<nav>
-			<div>
-				<a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
-			</div>
-			<ul id="nav-mobile" class="side-nav fixed">
-				<li class="no-padding">
-					<ul class="collapsible collapsible-accordion">
-						<li>
-							<a class="collapsible-header">Cliente</i></a>
-							<div class="collapsible-body">
-								<ul>
-									<li>
-										<a href="#!">Cadastro</a>
-									</li>
-									<li>
-										<a href="#!">Consulta</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+  <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'fullcalendar/dist/fullcalendar.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'fullcalendar/dist/lang-all.js' %}"></script>
 
-						<li>
-							<a class="collapsible-header">Paciente</i></a>
-							<div class="collapsible-body">
-								<ul>
-									<li>
-										<a href="#!">Cadastro</a>
-									</li>
-									<li>
-										<a href="#!">Consulta</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+  <!-- custom css -->
 
-						<li>
-							<a class="collapsible-header">Agenda de Exames</i></a>
-							<div class="collapsible-body">
-								<ul>
-									<li>
-										<a href="#!">Cadastro</a>
-									</li>
-									<li>
-										<a href="#!">Consulta</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+  <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}"  media="screen,projection"/>
 
-						<li>
-							<a class="collapsible-header">Agenda de Atendimentos</i></a>
-							<div class="collapsible-body">
-								<ul>
-									<li>
-										<a href="#!">Cadastro</a>
-									</li>
-									<li>
-										<a href="#!">Consulta</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+</style>
 
-						<li>
-							<a class="collapsible-header">Estoque</i></a>
-							<div class="collapsible-body">
-								<ul>
-									<li>
-										<a href="#!">Cadastro</a>
-									</li>
-									<li>
-										<a href="#!">Consulta</a>
-									</li>
-								</ul>
-							</div>
-						</li>
+</head>
+<body>
 
-						<li>
-							<a href="#!">Area de Usuario</a>
-						</li>
-					</ul>
-				</li>
+  <header>
 
-			</ul>
+    <nav class="nav-wrapper indigo darken-4">
+      <div class="container">
+        <a href="main.html" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+      </div>
 
-		</nav>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="main.html"><i class="material-icons right">account_circle</i>Login</a></li>
+      </ul>
+    </nav>
 
-		<header>
+    <ul id="nav-mobile" class="side-nav fixed">
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
 
-		</header>
-		<main>
-			<div class="container">
-				{% block content %}
-				{% endblock %}
-			</div>
+          <li class="logo"><div class="container"><img class="responsive-img" src="{% static 'logo/logo.png' %}"></div></li>
 
-			{% block footer %}
-			<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-			<script type="text/javascript" src="{% static 'materialize/bin/materialize.js' %}"></script>
-			{% endblock %}
-		</main>
-		<footer>
+          <li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
 
-			<script>
-				$('.button-collapse').sideNav({
-					menuWidth : 300, // Default is 240
-					closeOnClick : true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-				});
-				$('.collapsible').collapsible();
+          <li class="bold"><a href="clienteresumo.html" class="collapsible-header"><i class="material-icons">face</i>Cliente</a></li>
+          <li class="bold"><a href="pacienteresumo.html" class="collapsible-header"><i class="material-icons">pets</i>Paciente</a></li>
+          <li class="bold"><a href="exameresumo.html" class="collapsible-header"><i class="material-icons">local_pharmacy</i>Exames</a></li>
+          <li class="bold"><a href="consultaresumo.html" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
+          <li class="bold"><a href="estoqueresumo.html" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>
+          <li class="bold"><a href="pagamentosresumo.html" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>
+        </ul>
+      </li>     
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 
-			</script>
+    <nav id="caminho">
+      <div class="col s12">
+        <a href="main.html" class="breadcrumb">Principal</a>
+        <a href="clienteresumo.html" class="breadcrumb">Pagina atual</a>
+      </div>
+    </nav>
 
-		</footer>
-		</div>
-	</body>
+  </header>
+
+  <main>
+    <div>
+      {% block content %}
+      {% endblock %}
+    </div>
+  </main>
+
+  <!-- Footer -->
+
+  <footer class="page-footer indigo darken-4">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Ctrl VET</h5>
+          <p class="grey-text text-lighten-4">Sistema de gestão do Hospital Veterinário HOVET</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Contato</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+<script type="text/javascript">
+
+  $( document ).ready(function() {
+    $(".button-collapse").sideNav();
+    $('.collapsible').collapsible({
+      accordion : true
+    });
+
+    Materialize.updateTextFields();
+
+    $('select').material_select();
+
+
+    $('.datepicker').pickadate({
+      format: 'mm/dd/yyyy',
+      selectMonths: true, 
+      selectYears: 15,
+      firstDay: 0,
+
+      monthsFull: [ 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro' ],
+      monthsShort: [ 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez' ],
+      weekdaysFull: [ 'domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado' ],
+      weekdaysShort: [ 'dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab' ],
+      weekdaysMin: ['d', 's', 't', 'q', 'q', 's', 's'],
+      today: 'hoje',
+      clear: 'limpar',
+      close: 'fechar',
+      format: 'mm/dd/yyyy',
+      formatSubmit: 'yyyy/mm/dd'
+
+    });
+
+    $('input:not([placeholder])').attr('placeholder', '');
+
+    $('.modal-trigger').leanModal({
+      dismissible: true, 
+      opacity: .5, 
+      in_duration: 300,
+      out_duration: 200, 
+      ready: function() { alert('Ready'); }, 
+      complete: function() { alert('Closed'); } 
+    }
+    );
+  });
+
+</script>
+
+</body>
 </html>

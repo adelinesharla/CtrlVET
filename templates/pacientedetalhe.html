@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+	<div class="card-content">
+		<div class="row">
+			<span class="card-title">Informações do Animal</span>
+			<div class="divider"></div>
+			<form action="#" class="col s12 m12 l12">
+				<div class="row">
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input type="text" id="nome">
+							<label for="nome">Nome</label>
+						</div>				
+					</div>
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input type="date" id="datanascimento" class="datepicker">
+							<label for="datanascimento">Data de Nascimento</label>
+						</div>
+					</div>
+					<div class="col s12 m4 l4">
+						<select class="browser-default">
+							<option value="" disabled selected>Sexo</option>
+							<option value="1">Feminino</option>
+							<option value="2">Masculino</option>
+						</select>
+					</div>
+
+				</div>
+
+
+				<div class="row">
+					<div class="col s12 m4 l4">
+						<select class="browser-default">
+							<option value="" disabled selected>Espécie</option>
+							<option value="1">Option 1</option>
+							<option value="2">Option 2</option>
+							<option value="3">Option 3</option>
+						</select>
+
+					</div>
+					<div class="col s12 m4 l4">
+						<select class="browser-default">
+							<option value="" disabled selected>Raça</option>
+							<option value="1">Option 1</option>
+							<option value="2">Option 2</option>
+							<option value="3">Option 3</option>
+						</select>
+					</div>
+					<div class="col s12 m4 l4">
+						<select class="browser-default">
+							<option value="" disabled selected>Cor</option>
+							<option value="1">Option 1</option>
+							<option value="2">Option 2</option>
+							<option value="3">Option 3</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12 m4 l4">
+					</div>
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input type="text" id="pai">
+							<label for="pai">Pai</label>
+						</div>
+					</div>
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input type="text" id="mae">
+							<label for="mae">Mãe</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12 m4 l4">
+						<label>Dono/Responsável</label>
+						<select class="browser-default">
+							<option value="" disabled selected>Selecione</option>
+							<option value="1">Cliente 1</option>
+							<option value="2">Cliente 2</option>
+							<option value="2">Cliente 3</option>
+						</select>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="input-field col s12 m12 l12 right-align">
+
+					<div class="row">
+						<div class="col s4 m4 l4">
+
+							<a class="waves-effect waves-light indigo darken-4 btn modal-trigger" href="#modal1">Excluir<i class="material-icons right">delete</i></a>							
+
+						</div>
+						<div class="col s4 m4 l4">	
+							<button class="waves-effect waves-light indigo darken-4 btn" type="submit" name="action">Editar<i class="material-icons right">mode_edit</i></button>
+						</div>
+						<div class="col s4 m4 l4">	
+							<button class="waves-effect waves-light indigo darken-4 btn" type="submit" name="action">Enviar<i class="material-icons right">send</i></button>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</form>
+	</div>
+</div>
+</div>
+
+<!-- Modal Trigger -->
+
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+	<div class="modal-content">
+		<h4>Exclusão de Cliente</h4>
+		<p>Deseja excluir o cliente? Essa operação não poderá ser desfeita.</p>
+	</div>
+	<div class="modal-footer">
+		<button class="waves-effect waves-light indigo darken-4 btn" type="submit" name="action">Enviar<i class="material-icons right">send</i></button>
+	</div>
+</div>
+
+
+
+
+{% endblock %}

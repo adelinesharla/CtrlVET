@@ -1,0 +1,61 @@
+{% extends "main.html" %} 
+
+{% block content %}
+
+
+<!-- breadcrumb -->
+
+<div class="card">
+	<div class="card-content">
+		<form action="#"">
+
+			<span class="card-title">Consulta</span>
+			<div class="divider "></div>
+			
+			<div class="row col s12 m12 l12">
+				<div class="input-field col s12 m6 l6">
+					<select>
+						<option value="" disabled selected>Selecione o cliente</option>
+						<option value="1">Option 1</option>
+						<option value="2">Option 2</option>
+						<option value="3">Option 3</option>
+					</select>
+					<label>Cliente</label>
+				</div>
+				<div class="input-field col s12 m6 l6">
+					<select>
+						<option value="" disabled selected>Selecione o animal</option>
+						<option value="1">Peteca</option>
+						<option value="2">Florence</option>
+						<option value="3">Nala</option>
+					</select>
+					<label>Animal</label>
+				</div>
+			</div>
+
+			<div class="divider "></div>
+			
+			<div class="row">
+				<div class="input-field col s12 m4 l4">
+					<input type="date" class="datepicker">
+					<label>Data</label>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="input-field col s12 m12 l12 right-align">
+					<div class="row">
+						<button class="waves-effect waves-light indigo darken-4 btn" type="submit" name="action">Enviar<i class="material-icons right">send</i></button>
+					</div>
+				</div>
+			</div>	
+		</form>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+</script>
+
+{% endblock %}

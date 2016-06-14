@@ -1,0 +1,15 @@
+base
+
+main
+
+cliente
+	clienteresumo
+	clientecadastro
+	clientebusca
+	clientedetalhe
+
+paciente
+	pacienteresumo
+	pacientecadastro
+	pacientebusca
+	pacientedetalhe

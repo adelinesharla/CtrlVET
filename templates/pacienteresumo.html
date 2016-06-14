@@ -1,4 +1,4 @@
-{% extends "main.html" %} 
+{% extends "base.html" %} 
 
 {% block content %}
 
@@ -23,14 +23,14 @@
 
 	<div class="col s12 m12 l4">
 		<div class='card-panel'>
-			<a href=""><i class="material-icons">check</i><b> 18 </b>clientes atendidos </a>
+			<a href=""><i class="material-icons">check</i><b> 18 </b>pacientes atendidos </a>
 			<a href=""><i class="material-icons right">more_vert</i></a>
 		</div>
 	</div>
 
 	<div class="col s12 m12 l4">
 		<div class='card-panel'>
-			<a href=""><i class="material-icons">trending_up</i><b> 12 </b>clientes novos </a>
+			<a href=""><i class="material-icons">trending_up</i><b> 12 </b>pacientes novos </a>
 			<a href=""><i class="material-icons right">more_vert</i></a>
 		</div>
 	</div>
@@ -38,18 +38,18 @@
 
 	<div class="col s12 m12 l4">
 		<div class='card-panel'>
-			<a href=""><i class="material-icons">arrow_downward</i><b> 234 </b>clientes cadastrados</a>
+			<a href=""><i class="material-icons">arrow_downward</i><b> 234 </b>pacientes cadastrados</a>
 			<a href=""><i class="material-icons right">more_vert</i></a>
 		</div>
 	</div>
 </div>
 
-</div>
-
-<!-- Busca-->
 
 <div class="card">
 	<div class="card-content">
+
+		<!-- Busca-->
+		
 		<div class="row">
 			<div class="nav-wrapper">
 				<form>
@@ -60,11 +60,11 @@
 					</div>
 
 					<div class="input-field col s16 m16 l3 right-align">
-						<a href="buscacliente.html"><i class="material-icons">search</i>Buscar</a>
+						<a href="pacientebusca.html"><i class="material-icons">search</i>Buscar</a>
 					</div>
 
 					<div class="input-field col s16 m16 l3 right-align">
-						<a href="cadastrocliente.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
+						<a href="pacientecadastro.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
 					</div>
 				</form>
 			</div>
@@ -74,41 +74,44 @@
 
 		<div class="row">
 			<div class="col s12 m12 l12">
-				<span class="card-title">Clientes Cadastrados</span>
+				<span class="card-title">Pacientes Cadastrados</span>
 				<div class="divider"></div>
 				<div class="row">
-					<div class="col s12 m12">
+					<div class="col s12">
 						<table class="reponsive-table centered highlight striped">
 							<thead>
 								<tr>
-									<th data-field="">Nome</th>
-									<th data-field="">CPF</th>
-									<th data-field="">Telefone</th>
+									<th data-field="">Paciente</th>	
+									<th data-field="">Espécie</th>
+									<th data-field="">Responsável</th>
+									<th data-field="">Ult. Atendimeto</th>
 									<th data-field="">Excluir</th>
 									<th data-field="">Alterar</th>
-
 								</tr>
 							</thead>
 
 							<tbody>
 								<tr>
-									<td><b><a href="">Simone</a></b></td>
-									<td>000.000.000-00</td>
-									<td>(28)9999-9999</td>
+									<td><a href="pacientedetalhe.html"><b>Peteca</td></b></a></td>
+									<td>Gato</td>
+									<td><a href="clientedetalhe.html">Alan</a></td>
+									<td><a href="clientedetalhe.html">20/03/2016</a></td>
 									<td><a><i class="material-icons">delete</i></a></td>
 									<td><a><i class="material-icons">mode_edit</i></a></td>
 								</tr>
 								<tr>
-									<td><b><a href="">Jacson</a></b></td>
-									<td>000.000.000-00</td>
-									<td>(28)9999-9999</td>
+									<td><a href="pacientedetalhe.html"><b>Nala</td></b></a></td>
+									<td>Cachorro</td>
+									<td><a href="clientedetalhe.html">Simone</a></td>
+									<td><a href="">20/03/2016</a></td>
 									<td><a><i class="material-icons">delete</i></a></td>
 									<td><a><i class="material-icons">mode_edit</i></a></td>
 								</tr>
 								<tr>
-									<td><b><a href="">Clayton</a></b></td>
-									<td>000.000.000-00</td>
-									<td>(28)9999-9999</td>
+									<td><a href="pacientedetalhe.html"><b>Florence</td></b></a></td>
+									<td>Tartaruga</td>
+									<td><a href="clientedetalhe.html">Simone</a></td>
+									<td><a href="">20/03/2016</a></td>
 									<td><a><i class="material-icons">delete</i></a></td>
 									<td><a><i class="material-icons">mode_edit</i></a></td>
 								</tr>
@@ -132,11 +135,11 @@
 						<li class="waves-effect"><a href="#!">4</a></li>
 						<li class="waves-effect"><a href="#!">5</a></li>
 						<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-					</ul>
+					</div>
+					<div class="row">
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</div>
 
-{% endblock %}
+
+			{% endblock %}

@@ -1,4 +1,4 @@
-{% extends "main.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 
@@ -13,21 +13,21 @@
 				<div class="row">
 					<div class="col s12 m4 l4">
 						<div class="input-field">
-							<input placeholder="Insira o nome" id="nome" type="text" class="validate">
+							<input disabled placeholder="Insira o nome" id="nome" type="text" class="active" value="Simone">
 							<label for="nome">Nome</label>
 						</div>				
 					</div>
 
 					<div class="col s12 m4 l4">
 						<div class="input-field">
-							<input placeholder="Insira o sobrenome" id="first_name" type="text" class="validate">
+							<input disabled placeholder="Insira o sobrenome" id="first_name" type="text" class="validate active" value="Dornelas">
 							<label for="sobrenome">Sobrenome</label>
 						</div>				
 					</div>
 
 					<div class="col s12 m4 l4">
 						<div class="input-field">
-							<input type="date" id="datanascimento" class="datepicker">
+							<input disabled type="date" id="datanascimento" class="datepicker" value="01/01/1988">
 							<label for="datanascimento">Data de Nascimento</label>
 						</div>
 					</div>
@@ -38,7 +38,7 @@
 				<div class="row">
 					<div class="col s12 m4 l4">
 						<div class="input-field">
-							<input type="text" id="cpf">
+							<input disabled type="text" id="cpf" value="999.999.999-00">
 							<label for="cpf">CPF</label>
 						</div>				
 					</div>
@@ -47,13 +47,13 @@
 
 					<div class="col s12 m4 l4">
 						<div class="input-field">
-							<input type="text" id="identidade">
+							<input disabled type="text" id="identidade" value="99.999.999">
 							<label for="identidade">Identidade</label>
 						</div>				
 					</div>
 
 					<div class="col s12 m4 l4">
-						<select class="browser-default">
+						<select disabled value="feminino">
 							<option value="" disabled selected>Sexo</option>
 							<option value="1">Option 1</option>
 							<option value="2">Option 2</option>
@@ -67,21 +67,21 @@
 				<div class="row">
 					<div class="col s12 m4 l4">
 						<div class="input-field">
-							<input type="text" id="rua">
+							<input disabled  type="text" id="rua" value="Rua Principal">
 							<label for="rua">Rua</label>
 						</div>				
 					</div>
 
 					<div class="col s12 m4 l4">
 						<div class="input-field">
-							<input type="text" id="numcasa">
+							<input disabled type="text" id="numcasa" value="99">
 							<label for="numcasa">Numero</label>
 						</div>				
 					</div>
 
 					<div class="col s12 m3 l3">
 						<div class="input-field">
-							<input type="text" id="bairro">
+							<input disabled type="text" id="bairro" value="centro">
 							<label for="bairro">Bairro</label>
 						</div>				
 					</div>
@@ -90,8 +90,8 @@
 
 				<div class="row">
 					<div class="col s6 m3 l3">
-						<select class="browser-default">
-							<option value="" disabled selected>Cidade</option>
+						<select disabled>
+							<option value="Alegre" disabled selected>Cidade</option>
 							<option value="1">Option 1</option>
 							<option value="2">Option 2</option>
 							<option value="3">Option 3</option>
@@ -99,8 +99,8 @@
 					</div>
 
 					<div class="col s6 m2 l2">
-						<select class="browser-default">
-							<option value="" disabled selected>UF</option>
+						<select disabled>
+							<option value="ES" disabled selected>UF</option>
 							<option value="1">Option 1</option>
 							<option value="2">Option 2</option>
 							<option value="3">Option 3</option>
@@ -109,14 +109,14 @@
 
 					<div class="col s12 m3 l3">
 						<div class="input-field">
-							<input type="text" id="cep">
+							<input disabled type="text" id="cep" value="29500-000">
 							<label for="cep">CEP</label>
 						</div>				
 					</div>
 
 					<div class="col s12 m3 l3">
 						<div class="input-field">
-							<input type="text" id="preferencia">
+							<input disabled type="text" id="preferencia">
 							<label for="preferencia">Ponto de Referencia</label>
 						</div>				
 					</div>
@@ -127,14 +127,14 @@
 				<div class="row">
 					<div class="col s12 m3 l3">
 						<div class="input-field">
-							<input type="text" id="telefone">
+							<input disabled type="text" id="telefone">
 							<label for="telefone">Telefone</label>
 						</div>				
 					</div>
 
 					<div class="col s12 m3 l3">
 						<div class="input-field">
-							<input type="text" id="telefone">
+							<input disabled type="text" id="telefone" value="(28)9999-9999">
 							<label for="telefone">Telefone</label>
 						</div>				
 					</div>
@@ -147,10 +147,22 @@
 					</div>
 
 				</div>
+				
 				<div class="row">
 					<div class="input-field col s12 m12 l12 right-align">
+
 						<div class="row">
-							<button class="waves-effect waves-light indigo darken-4 btn" type="submit" name="action">Enviar<i class="material-icons right">send</i></button>
+							<div class="col s4 m4 l4">
+
+								<a class="waves-effect waves-light indigo darken-4 btn modal-trigger" href="#modal1">Excluir<i class="material-icons right">delete</i></a>							
+
+							</div>
+							<div class="col s4 m4 l4">	
+								<button class="waves-effect waves-light indigo darken-4 btn" type="submit" name="action">Editar<i class="material-icons right">mode_edit</i></button>
+							</div>
+							<div class="col s4 m4 l4">	
+								<button class="waves-effect waves-light indigo darken-4 btn" type="submit" name="action">Enviar<i class="material-icons right">send</i></button>
+							</div>
 						</div>
 					</div>
 				</div>	
@@ -158,6 +170,21 @@
 		</div>
 	</div>
 </div>
+
+<!-- Modal Trigger -->
+
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+	<div class="modal-content">
+		<h4>Exclusão de Cliente</h4>
+		<p>Deseja excluir o cliente? Essa operação não poderá ser desfeita.</p>
+	</div>
+	<div class="modal-footer">
+		<button class="waves-effect waves-light indigo darken-4 btn" type="submit" name="action">Enviar<i class="material-icons right">send</i></button>
+	</div>
+</div>
+
 
 
 

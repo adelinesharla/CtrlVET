@@ -4,10 +4,10 @@ $ pip install django-bower
 
 $ pip install django-materializecss-form --save
 
-$ bower install fullcalendar --save
+$ bower install fullcalendar
 
-$ bower install moment --save
+$ bower install moment
 
-$ bower install materialize --save
+$ bower install materialize
 
-$ bower install jquery --save
+$ bower install jquerys

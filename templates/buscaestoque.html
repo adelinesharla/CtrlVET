@@ -1,71 +1,67 @@
-{% extends "main.html" %} 
+{% extends "base.html" %} 
 
-	{% block content %}
-	
-	</style>
+{% block content %}
 
+</style>
 
-	<!-- breadcomb -->
+<!-- busca -->
+<div class="card">
+	<div class="card-content">
+		<div class="row">
+			<div class="nav-wrapper">
+				<form>
+					<div class="input-field col s12 m12 l6">
+						<input id="search" type="search" required>
+						<label for="search"><i class="material-icons">search</i></label>
+						<i class="material-icons">close</i>
+					</div>
 
-	<div class="nav-wrapper white black-text ">
-		<div class="col s12">
-			<a href="main.html" class="breadcrumb">Principal</a>
-			<a href="estoque.html" class="breadcrumb">Estoque</a>
-			<a href="buscaestoque.html" class="breadcrumb">Busca Estoque</a>
+					<div class="input-field col s16 m16 l3 right-align">
+						<a href="pacientebusca.html"><i class="material-icons">search</i>Buscar</a>
+					</div>
 
+					<div class="input-field col s16 m16 l3 right-align">
+						<a href="pacientecadastro.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
+					</div>
+				</form>
+			</div>
 		</div>
-	</div>
-	
-	<!-- informativos -->
-	<div class="col s12 m12 l12">
-	<div class="row">
-	<div class="nav-wrapper">
-	<form>
-	<div class="input-field col s12 m12 l9 left-align" >
-		<input id="search" type="search" required>
-		<label for="search"><i class="material-icons">search</i></label>
-		<i class="material-icons">close</i>
-	</div>
-	<div class="input-field col s12 m12 l9 left-align">
-		<a href="cadastroestoque.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
-	</div>
-	</form>
-	</div>
-	</div>
-	</div>
-	<a href="buscaestoque.html" class="waves-effect waves-light indigo accent-1 btn"><i class="material-icons left">search</i>Buscar</a>
-	<div class="card ">
+
+
 		<div class="card-content">
-		<span class="card-title">Resultado da pesquisas</span>
-				<table class="striped">
-					<thead>
-						<tr>
-							<th data-field="id">id</th>
-							<th data-field="name">Item</th>
-							<th data-field="name">Qtd</th>
-							<th data-field="name">Unid</th>
-							<th data-field="date">Validade</th>
-						</tr>
-					</thead>
-					<tbody>
-							<tr>
-								<td>123</td>
-								<td><a href="">Paracetamol</a></td>
-								<td>20</td>
-								<td>unid</td>
-								<td>23-05-2016</td>
+			<span class="card-title">Resultado da pesquisas</span>
+			<table class="striped">
+				<thead>
+					<tr>
+						<th data-field="id">id</th>
+						<th data-field="name">Item</th>
+						<th data-field="name">Qtd</th>
+						<th data-field="name">Unid</th>
+						<th data-field="date">Validade</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>123</td>
+						<td><a href="">Paracetamol</a></td>
+						<td>20</td>
+						<td>unid</td>
+						<td>23-05-2016</td>
 
 
-							</tr>
-							<tr>
-								<td>124</td>
-								<td><a href="">Dipirona</a></td>
-								<td>20</td>
-								<td>unid</td>
-								<td>23-05-2016</td>
+					</tr>
+					<tr>
+						<td>124</td>
+						<td><a href="">Dipirona</a></td>
+						<td>20</td>
+						<td>unid</td>
+						<td>23-05-2016</td>
 
-							</tr>
-						</tbody>
-				</table>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-	{% endblock %}
+
+	</div>
+</div>
+{% endblock %}

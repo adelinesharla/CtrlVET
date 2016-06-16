@@ -1,0 +1,67 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+</style>
+
+<!-- busca -->
+<div class="card">
+	<div class="card-content">
+		<div class="row">
+			<div class="nav-wrapper">
+				<form>
+					<div class="input-field col s12 m12 l6">
+						<input id="search" type="search" required>
+						<label for="search"><i class="material-icons">search</i></label>
+						<i class="material-icons">close</i>
+					</div>
+
+					<div class="input-field col s16 m16 l3 right-align">
+						<a href="pacientebusca.html"><i class="material-icons">search</i>Buscar</a>
+					</div>
+
+					<div class="input-field col s16 m16 l3 right-align">
+						<a href="pacientecadastro.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+		<div class="card-content">
+			<span class="card-title">Resultado da pesquisas</span>
+			<table class="striped">
+				<thead>
+					<tr>
+						<th data-field="id">id</th>
+						<th data-field="name">Item</th>
+						<th data-field="name">Qtd</th>
+						<th data-field="name">Unid</th>
+						<th data-field="date">Validade</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>123</td>
+						<td><a href="">Paracetamol</a></td>
+						<td>20</td>
+						<td>unid</td>
+						<td>23-05-2016</td>
+
+
+					</tr>
+					<tr>
+						<td>124</td>
+						<td><a href="">Dipirona</a></td>
+						<td>20</td>
+						<td>unid</td>
+						<td>23-05-2016</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+{% endblock %}

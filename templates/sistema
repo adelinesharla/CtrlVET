@@ -13,3 +13,24 @@ paciente
 	pacientecadastro
 	pacientebusca
 	pacientedetalhe
+
+consulta
+	consultaresumo
+	consultacadastro
+	consultabusca
+	consultadetalhe
+	calendario
+	
+exame
+	exameresumo
+	examecadastro
+	examebusca
+	examedetalhe
+	calendario
+
+estoque
+	estoqueresumo
+	estoquecadastro
+	estoquebusca
+	estoquedetalhe
+

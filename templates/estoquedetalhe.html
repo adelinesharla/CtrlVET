@@ -1,67 +1,85 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block content %}
 
+<style type="text/css">
+
+	.breadcrumb {
+		color: #00796b;
+	}
+
+	.breadcrumb i,
+	.breadcrumb [class^="mdi-"], .breadcrumb [class*="mdi-"],
+	.breadcrumb i.material-icons {
+		display: inline-block;
+		float: left;
+		font-size: 24px;
+	}
+
+	.breadcrumb:before {
+
+		color: #00796b;
+
+	}
+
+	.breadcrumb:first-child:before {
+		display: none;
+	}
+
+	.breadcrumb:last-child {
+		color: #00796b;
+	}
+
 </style>
 
-<!-- busca -->
-<div class="card">
-	<div class="card-content">
+<div class="row">
+	<form class="col s12">
 		<div class="row">
-			<div class="nav-wrapper">
-				<form>
-					<div class="input-field col s12 m12 l6">
-						<input id="search" type="search" required>
-						<label for="search"><i class="material-icons">search</i></label>
-						<i class="material-icons">close</i>
-					</div>
-
-					<div class="input-field col s16 m16 l3 right-align">
-						<a href="pacientebusca.html"><i class="material-icons">search</i>Buscar</a>
-					</div>
-
-					<div class="input-field col s16 m16 l3 right-align">
-						<a href="pacientecadastro.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
-					</div>
-				</form>
+			<div class="input-field col s9">
+				<input id="first_name" type="text" class="validate">
+				<label for="first_name">Nome</label>
+			</div>
+			<div class="input-field col s3">
+				<input id="last_name" type="text" class="validate">
+				<label for="last_name">Quantidade</label>
 			</div>
 		</div>
 
+		<div class="row">
+			<form class="col s12">
+				<div class="row">
+					<div class="input-field col s6">
+						<input id="email" type="email" class="validate">
+						<label for="email">Tipo</label>
+					</div>
+					<div class="input-field col s3">
+					<div class="row">
+					<form class="col s12">
+						<div class="row">
+							<button class="waves-effect waves-light indigo darken-4 btn" type="submit" name="action">
+								Enviar<i class="material-icons right">send</i>
+							</button>
+						</div>
+					</form>
+				</div>
+			</form>
 
-		<div class="card-content">
-			<span class="card-title">Resultado da pesquisas</span>
-			<table class="striped">
-				<thead>
-					<tr>
-						<th data-field="id">id</th>
-						<th data-field="name">Item</th>
-						<th data-field="name">Qtd</th>
-						<th data-field="name">Unid</th>
-						<th data-field="date">Validade</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>123</td>
-						<td><a href="">Paracetamol</a></td>
-						<td>20</td>
-						<td>unid</td>
-						<td>23-05-2016</td>
+			<script>
+				$('input:not([placeholder])').attr('placeholder', '');
+			</script>
+			<script>
+				$(document).ready(function() {
+					$('input#input_text, textarea#textarea1').characterCounter();
+					$('select').material_select();
+				});
+			</script>
+			<script>
+				$('.datepicker').pickadate({
+					selectMonths : true, // Creates a dropdown to control month
+					selectYears : 15, // Creates a dropdown of 15 years to control year
+					format : 'dd-mm-yyyy',
 
+				});
+			</script>
 
-					</tr>
-					<tr>
-						<td>124</td>
-						<td><a href="">Dipirona</a></td>
-						<td>20</td>
-						<td>unid</td>
-						<td>23-05-2016</td>
-
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-	</div>
-</div>
-{% endblock %}
+			{% endblock %}

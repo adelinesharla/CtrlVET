@@ -7,72 +7,28 @@
 
 <div class="row">
 
-	<div class="col s6 m6 l6">
-		<div class="card ">
-			<div class="card-content">
-
-				<span class="card-title">Produtos cadastrados</span>
-				<table class="reponsive-table centered highlight striped">
-					<thead>
-						<tr>
-							<th data-field="id">id</th>
-							<th data-field="name">Item</th>
-							<th data-field="name">Qtd</th>
-							<th data-field="name">Unid</th>
-							<th data-field="date">Validade</th>
-						</tr>
-					</thead>
-				</table>
-			</div>
-			<div class="card-action">
-				<a href="#"><i class="material-icons">add</i></a>
-			</div>
-
-			<span class="card-title">Entradas recentes</span>
-			<p>Últimos Exames...</p>
+	<div class="col s12 m12 l4">
+		<div class='card-panel'>
+			<a href=""><i class="material-icons">check</i><b> 18 </b>produtos cadastrados </a>
+			<a href=""><i class="material-icons right">more_vert</i></a>
 		</div>
-		<div class="card-action" align="right">
-			<a href="#"><i class="material-icons">add</i></a>
+	</div>
 
+	<div class="col s12 m12 l4">
+		<div class='card-panel'>
+			<a href=""><i class="material-icons">trending_up</i><b> 12 </b>produtos usados </a>
+			<a href=""><i class="material-icons right">more_vert</i></a>
+		</div>
+	</div>
+
+
+	<div class="col s12 m12 l4">
+		<div class='card-panel'>
+			<a href=""><i class="material-icons">arrow_downward</i><b> 4 </b>produtos novos</a>
+			<a href=""><i class="material-icons right">more_vert</i></a>
 		</div>
 	</div>
 </div>
-
-<div class="col s6 m6 l6">
-	<div class="card ">
-		<div class="card-content">
-			<span class="card-title">Produtos utilizados em exames e consultas</span>
-			<table class="striped">
-				<thead>
-					<tr>
-						<th data-field="id">id</th>
-						<th data-field="name">Item</th>
-						<th data-field="name">Qtd</th>
-						<th data-field="name">Unid</th>
-						<th data-field="date">Validade</th>
-					</tr>
-				</thead>
-			</table>
-			<div class="card-action">
-				<a href="#"><i class="material-icons">add</i></a>
-			</div>
-		</div>
-
-		<div class="col s6 m6 l6">
-			<div class="card ">
-				<div class="card-content">
-					<span class="card-title">Saídas Recentes</span>
-					<p>Últimos Exames...</p>
-				</div>
-				<div class="card-action" align="right">
-					<a href="#"><i class="material-icons">add</i></a>
-
-				</div>
-			</div>
-		</div>
-
-	</div>
-
 	<!-- Busca-->
 
 	<div class="row">
@@ -91,7 +47,7 @@
 							<a href="buscaestoque.html" class="waves-effect waves-light indigo accent-1 btn"><i class="material-icons left">search</i>Buscar</a>
 						</div>
 						<div class="input-field col s12 m12 l3 right-align">
-							<a href="cadastroestoque.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
+							<a href="estoquecadastro.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
 						</div>
 					</form>
 				</div>			
@@ -109,7 +65,7 @@
 			<div class="card ">
 				<div class="card-content">
 					<span class="card-title">Pequenos animais</span>
-					<table>
+					<table class="reponsive-table centered highlight striped">
 						<thead>
 							<tr>
 								<th data-field="id">id</th>
@@ -123,7 +79,7 @@
 						<tbody>
 							<tr>
 								<td>123</td>
-								<td>Paracetamol</td>
+								<td><a href="estoquedetalhe.html">Paracetamol</a></td>
 								<td>20</td>
 								<td>unid</td>
 								<td>23-05-2016</td>
@@ -132,7 +88,7 @@
 							</tr>
 							<tr>
 								<td>124</td>
-								<td>Dipirona</td>
+								<td><a href="estoquedetalhe.html">Dipirona</a></td>
 								<td>20</td>
 								<td>unid</td>
 								<td>23-05-2016</td>
@@ -140,7 +96,7 @@
 							</tr>
 							<tr>
 								<td>124</td>
-								<td>Iodo</td>
+								<td><a href="estoquedetalhe.html">Iodo</a></td>
 								<td>20</td>
 								<td>litro</td>
 								<td>23-05-2016</td>
@@ -158,8 +114,7 @@
 			<div class="card ">
 				<div class="card-content">
 					<span class="card-title">Grandes animais</span>
-
-					<table>
+					<table class="reponsive-table centered highlight striped">
 						<thead>
 							<tr>
 								<th data-field="id">id</th>
@@ -173,7 +128,7 @@
 						<tbody>
 							<tr>
 								<td>123</td>
-								<td>Paroxetina</td>
+								<td><a href="estoquedetalhe.html">Paroxetina</a></td>
 								<td>2</td>
 								<td>unid</td>
 								<td>23-05-2016</td>
@@ -181,7 +136,7 @@
 							</tr>
 							<tr>
 								<td>124</td>
-								<td>Rivotril</td>
+								<td><a href="estoquedetalhe.html">Rivotril</a></td>
 								<td>50</td>
 								<td>unid</td>
 								<td>23-05-2016</td>
@@ -189,7 +144,7 @@
 							</tr>
 							<tr>
 								<td>124</td>
-								<td>Mertiolate</td>
+								<td><a href="estoquedetalhe.html">Mertiolate</a></td>
 								<td>100</td>
 								<td>litro</td>
 								<td>23-05-2016</td>
@@ -213,7 +168,7 @@
 			<div class="card ">
 				<div class="card-content">
 					<span class="card-title">Consultório 1</span>
-					<table>
+					<table class="reponsive-table centered highlight striped">
 						<thead>
 							<tr>
 								<th data-field="id">id</th>
@@ -227,7 +182,7 @@
 						<tbody>
 							<tr>
 								<td>123</td>
-								<td>luva</td>
+								<td><a href="estoquedetalhe.html">luva</a></td>
 								<td>200</td>
 								<td>unid</td>
 								<td>23-05-2016</td>
@@ -235,7 +190,7 @@
 							</tr>
 							<tr>
 								<td>124</td>
-								<td>Rivotril</td>
+								<td><a href="estoquedetalhe.html">Rivotril</a></td>
 								<td>50</td>
 								<td>unid</td>
 								<td>23-05-2016</td>
@@ -243,7 +198,7 @@
 							</tr>
 							<tr>
 								<td>124</td>
-								<td>Mertiolate</td>
+								<td><a href="estoquedetalhe.html">Mertiolate</a></td>
 								<td>100</td>
 								<td>litro</td>
 								<td>23-05-2016</td>
@@ -261,7 +216,7 @@
 			<div class="card ">
 				<div class="card-content">
 					<span class="card-title">Consultório 2</span>
-					<table>
+					<table class="reponsive-table centered highlight striped">
 						<thead>
 							<tr>
 								<th data-field="id">id</th>
@@ -275,7 +230,7 @@
 						<tbody>
 							<tr>
 								<td>123</td>
-								<td>Paroxetina</td>
+								<td><a href="estoquedetalhe.html">Paroxetina</a></td>
 								<td>2</td>
 								<td>unid</td>
 								<td>23-05-2016</td>
@@ -283,7 +238,7 @@
 							</tr>
 							<tr>
 								<td>124</td>
-								<td>Rivotril</td>
+								<td><a href="estoquedetalhe.html">Rivotril</a></td>
 								<td>50</td>
 								<td>unid</td>
 								<td>23-05-2016</td>
@@ -291,7 +246,7 @@
 							</tr>
 							<tr>
 								<td>124</td>
-								<td>Mertiolate</td>
+								<td><a href="estoquedetalhe.html">Mertiolate</a></td>
 								<td>100</td>
 								<td>litro</td>
 								<td>23-05-2016</td>
@@ -304,11 +259,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
-
-
-
-
 
 	{% endblock %}

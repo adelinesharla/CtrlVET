@@ -41,7 +41,7 @@
 		<div class="row">
 			<div class="nav-wrapper">
 				<form>
-					<div class="input-field col s12 m12 l6">
+					<div class="input-field col s12 m9 l9">
 						<input id="search" type="search" required>
 						<label for="search"><i class="material-icons">search</i></label>
 						<i class="material-icons">close</i>
@@ -67,11 +67,10 @@
 		<!-- Conteúdo -->
 
 		<div class="row">
-			<div class="col s12 m12 l12">
-				<span class="card-title">Pagamentos pendentes</span>
-				<div class="divider"></div>
-				<div class="row">
-					<div class="col s12 m12 l12">
+			<div class="col s12 m12 l6">
+				<div class="card ">
+					<div class="card-content">
+						<span class="card-title">A receber</span>
 						<table class="reponsive-table centered highlight striped">
 							<thead>
 								<tr>
@@ -102,11 +101,15 @@
 						</table>
 					</div>
 				</div>
+			</div>
 
-				<span class="card-title">Pagamentos realizados</span>
-				<div class="divider"></div>
-				<div class="row">
-					<div class="col s12 m12 l12">
+
+
+		
+			<div class="col s12 m12 l6">
+				<div class="card ">
+					<div class="card-content">
+						<span class="card-title">Recebidos</span>
 						<table class="reponsive-table centered highlight striped">
 							<thead>
 								<tr>
@@ -137,27 +140,29 @@
 						</table>
 					</div>
 				</div>
-				
+			</div>
+		</div>
+	</div>
+</div>
 
 
 
-
-				<div class="row">
-					<div class="col s12 m12 l12 center">
-						<div class="row">
-							<ul class="pagination">
-								<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-								<li class="waves-effect"><a href="#!">1</a></li>
-								<li class="waves-effect"><a href="#!">2</a></li>
-								<li class="waves-effect"><a href="#!">3</a></li>
-								<li class="waves-effect"><a href="#!">4</a></li>
-								<li class="waves-effect"><a href="#!">5</a></li>
-								<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-							</div>
-						</div>
-					</div>
-
+<div class="row">
+	<div class="col s12 m12 l12 center">
+		<div class="row">
+			<ul class="pagination">
+				<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="#!">1</a></li>
+				<li class="waves-effect"><a href="#!">2</a></li>
+				<li class="waves-effect"><a href="#!">3</a></li>
+				<li class="waves-effect"><a href="#!">4</a></li>
+				<li class="waves-effect"><a href="#!">5</a></li>
+				<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+			</div>
+		</div>
+	</div>
 
 
-					{% endblock %}
+
+	{% endblock %}
 

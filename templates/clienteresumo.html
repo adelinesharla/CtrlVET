@@ -59,9 +59,15 @@
 						<i class="material-icons">close</i>
 					</div>
 
-					<div class="input-field col s16 m16 l3 right-align">
-						<a href="clientebusca.html"><i class="material-icons">search</i>Buscar</a>
-					</div>
+					<script>
+
+						document.addEventListener("DOMContentLoaded", function() {
+						}, false);
+
+						document.getElementById("search").addEventListener("keyup", function() {
+							window.location="clientebusca.html";
+						}, false);
+					</script>
 
 					<div class="input-field col s16 m16 l3 right-align">
 						<a href="clientecadastro.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
@@ -80,59 +86,60 @@
 					<div class="col s12 m12">
 						<table class="reponsive-table centered highlight striped">
 							<thead>
-								<tr>
-									<th data-field="">Nome</th>
-									<th data-field="">CPF</th>
-									<th data-field="">Telefone</th>
+								
+
+								<th data-field="">Nome</th>
+								<th data-field="">CPF</th>
+								<th data-field="">Telefone</th>
 								<!--	<th data-field="">Detalhes</th> -->
 
-								</tr>
-							</thead>
+							</tr>
+						</thead>
 
-							<tbody>
-								<tr>
-									<td><b><a href="clientedetalhe.html">Simone</a></b></td>
-									<td>000.000.000-00</td>
-									<td>(28)9999-9999</td>
+						<tbody>
+							<tr>
+								<td><b><a href="clientedetalhe.html">Simone</a></b></td>
+								<td>000.000.000-00</td>
+								<td>(28)9999-9999</td>
 								<!--	<td><a href="clientedetalhe.html"><i class="material-icons">more_horiz</i></a></td> -->
-								</tr>
-								<tr>
-									<td><b><a href="clientedetalhe.html">Jacson</a></b></td>
-									<td>000.000.000-00</td>
-									<td>(28)9999-9999</td>
+							</tr>
+							<tr>
+								<td><b><a href="clientedetalhe.html">Jacson</a></b></td>
+								<td>000.000.000-00</td>
+								<td>(28)9999-9999</td>
 								<!--	<td><a href="clientedetalhe.html"><i class="material-icons">more_horiz</i></a></td> -->
-								</tr>
-								<tr>
-									<td><b><a href="clientedetalhe.html">Clayton</a></b></td>
-									<td>000.000.000-00</td>
-									<td>(28)9999-9999</td>
+							</tr>
+							<tr>
+								<td><b><a href="clientedetalhe.html">Clayton</a></b></td>
+								<td>000.000.000-00</td>
+								<td>(28)9999-9999</td>
 								<!--	<td><a href="clientedetalhe.html"><i class="material-icons">more_horiz</i></a></td> -->
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Paginação -->
-
-		<div class="row">
-			<div class="col s12 m12 l12 center">
-				<div class="row">
-					<ul class="pagination">
-						<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-						<li class="waves-effect"><a href="#!">1</a></li>
-						<li class="waves-effect"><a href="#!">2</a></li>
-						<li class="waves-effect"><a href="#!">3</a></li>
-						<li class="waves-effect"><a href="#!">4</a></li>
-						<li class="waves-effect"><a href="#!">5</a></li>
-						<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-					</ul>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!-- Paginação -->
+
+	<div class="row">
+		<div class="col s12 m12 l12 center">
+			<div class="row">
+				<ul class="pagination">
+					<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+					<li class="waves-effect"><a href="#!">1</a></li>
+					<li class="waves-effect"><a href="#!">2</a></li>
+					<li class="waves-effect"><a href="#!">3</a></li>
+					<li class="waves-effect"><a href="#!">4</a></li>
+					<li class="waves-effect"><a href="#!">5</a></li>
+					<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 </div>
 
 {% endblock %}

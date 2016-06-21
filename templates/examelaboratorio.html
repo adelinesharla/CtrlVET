@@ -1,0 +1,136 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+
+
+<div class="card">
+	<div class="card-content">
+
+		<!-- Busca--> 
+
+		<div class="row">
+			<div class="nav-wrapper">
+				<form>
+					<div class="input-field col s12 m12 l6">
+						<input id="search" type="search" required>
+						<label for="search"><i class="material-icons">search</i></label>
+						<i class="material-icons">close</i>
+					</div>
+
+					<div class="input-field col s16 m16 l3 right-align">
+						<a href="examebusca.html"><i class="material-icons">search</i>Buscar</a>
+					</div>
+
+					<div class="input-field col s16 m16 l3 right-align">
+						<a href="examecadastro.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="card-content">
+			<span class="card-title">Exames Pendentes</span>
+			<table class="reponsive-table centered highlight striped">
+				<thead>
+					<tr>
+						<th data-field="id">idExame</th>
+						<th data-field="name">Amostra</th>
+						<th data-field="name">Data Entrada</th>
+						<th data-field="name">Status</th>
+						<th data-field="date">Paciente</th>
+						<th data-field="date">Isenção</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>123</td>
+						<td>422313</td>
+						<td>23-05-2016</td>
+						<td>pendente</td>
+						<td>Peteca</td>
+						<td>Isento</td>
+
+					</tr>
+					<tr>
+						<td>423</td>
+						<td>42513</td>
+						<td>23-05-2016</td>
+						<td>pendente</td>
+						<td>Peteca</td>
+						<td>Não Isento</td>
+
+					</tr>
+					<tr>
+						<td>4535</td>
+						<td>42233</td>
+						<td>23-05-2016</td>
+						<td>pendente</td>
+						<td>Peteca</td>
+						<td>Não Isento</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="card-action" align="right">
+			<a href="examebusca.html"><i class="material-icons">more_horiz</i></a>
+		</div>
+		
+
+
+		<div class="card-content">
+			<span class="card-title">Exames Concluídos</span>
+			<table class="reponsive-table centered highlight striped">
+				<thead>
+					<tr>
+						<th data-field="id">idExame</th>
+						<th data-field="name">Amostra</th>
+						<th data-field="name">Data Entrada</th>
+						<th data-field="name">Status</th>
+						<th data-field="date">Paciente</th>
+						<th data-field="date">Isenção</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>123</td>
+						<td>422313</td>
+						<td>23-05-2016</td>
+						<td>pendente</td>
+						<td>Peteca</td>
+						<td>Não Isento</td>
+
+					</tr>
+					<tr>
+						<td>423</td>
+						<td>42513</td>
+						<td>23-05-2016</td>
+						<td>pendente</td>
+						<td>Peteca</td>
+						<td>Não Isento</td>
+
+					</tr>
+					<tr>
+						<td>4535</td>
+						<td>42233</td>
+						<td>23-05-2016</td>
+						<td>pendente</td>
+						<td>Peteca</td>
+						<td>Não Isento</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="card-action" align="right">
+			<a href="examebusca.html"><i class="material-icons">more_horiz</i></a>
+		</div>
+
+	</div>>
+</div>
+
+
+{% endblock %}

@@ -44,12 +44,18 @@
 						<i class="material-icons">close</i>
 					</div>
 
-					<div class="input-field col s16 m16 l3 right-align">
-						<a href="examebusca.html"><i class="material-icons">search</i>Buscar</a>
-					</div>
+					<script>
+
+         			 document.addEventListener("DOMContentLoaded", function() {
+					}, false);
+
+					document.getElementById("search").addEventListener("keyup", function() {
+					window.location="examebusca.html";
+					}, false);
+          			</script>
 
 					<div class="input-field col s16 m16 l3 right-align">
-						<a href="examecadastro.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
+						<a href="examecadastrolaboratorio.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
 					</div>
 				</form>
 			</div>
@@ -61,7 +67,7 @@
 			<div class="col s12 m12 l6">
 				<div class="card">
 					<div class="card-content">
-						<span class="card-title">Laboratório 1</span>
+						<span class="card-title"><a href="examelaboratorio.html">Laboratório 1</a></span>
 						<table class="reponsive-table centered highlight striped">
 							<thead>
 								<tr>

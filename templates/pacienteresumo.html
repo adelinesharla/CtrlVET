@@ -48,7 +48,7 @@
 <div class="card">
 	<div class="card-content">
 
-		<!-- Busca-->
+		<!-- Busca -->
 		
 		<div class="row">
 			<div class="nav-wrapper">
@@ -59,9 +59,16 @@
 						<i class="material-icons">close</i>
 					</div>
 
-					<div class="input-field col s16 m16 l3 right-align">
-						<a href="pacientebusca.html"><i class="material-icons">search</i>Buscar</a>
-					</div>
+					<script>
+
+         			 document.addEventListener("DOMContentLoaded", function() {
+					}, false);
+
+					document.getElementById("search").addEventListener("keyup", function() {
+					window.location="pacientebusca.html";
+					}, false);
+          			</script>
+
 
 					<div class="input-field col s16 m16 l3 right-align">
 						<a href="pacientecadastro.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
@@ -70,7 +77,7 @@
 			</div>
 		</div>
 
-		<!-- lista-->
+		<!-- lista -->
 
 		<div class="row">
 			<div class="col s12 m12 l12">

@@ -1,0 +1,37 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<div class="card">
+	<div class="card-content">
+		<div class="row">
+			<span class="card-title"><a href="examelaboratorio.html">Cadastro de laboratório</a></span>
+			<form>
+				<div class="col s12 m6 l6">
+					<div class="input-field">
+						<input placeholder="Insira o nome" id="nome" type="text" class="validate">
+						<label for="nome">Nome do Laboratório</label>
+					</div>				
+				</div>
+
+				<div class="col s12 m6 l6">
+					<div class="input-field">
+						<input placeholder="Insira o nome" id="localizacao" type="text" class="validate">
+						<label for="localizacao">Localização</label>
+					</div>				
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12 m12 l12 right-align">
+						<div class="row">
+							<button class="waves-effect waves-light indigo darken-4 btn" type="submit" name="action">Enviar<i class="material-icons right">send</i></button>
+						</div>
+					</div>
+				</div>	
+
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

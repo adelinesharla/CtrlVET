@@ -18,6 +18,7 @@ from django.conf.urls import url
 #Importação da classe TemplateView 
 from django.views.generic import TemplateView 
 from django.contrib import admin
+from templates import *
 
 """
 Classe generic view que renderiza templates para a prototipagem de interface.
@@ -39,5 +40,5 @@ class MockUp(TemplateView):
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^(?P<template_name>.*)$', MockUp.as_view()),
-    
+    url(r'^agenda', agenda.html),
 ]

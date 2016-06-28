@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+	<div class="card-content">
+		<div class="row">
+			<form action="#" class="col s12 m12 l12">
+				
+				<span class="card-title">Informações pessoais</span>
+				<div class="divider"></div>
+				
+				<div class="row">
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input disabled placeholder="Insira o nome" id="nome" type="text" class="active" value="Simone">
+							<label for="nome">Nome</label>
+						</div>				
+					</div>
+
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input disabled placeholder="Insira o sobrenome" id="first_name" type="text" class="validate active" value="Dornelas">
+							<label for="sobrenome">Sobrenome</label>
+						</div>				
+					</div>
+
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input disabled type="date" id="datanascimento" class="datepicker" value="01/01/1988">
+							<label for="datanascimento">Data de Nascimento</label>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="row">
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input disabled type="text" id="cpf" value="999.999.999-00">
+							<label for="cpf">CPF</label>
+						</div>				
+					</div>
+
+
+
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input disabled type="text" id="identidade" value="99.999.999">
+							<label for="identidade">Identidade</label>
+						</div>				
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="card">
+	<div class="card-content">
+		<div class="row">
+			<span class="card-title">Informações do Animal</span>
+			<div class="divider"></div>
+			<form action="#" class="col s12 m12 l12">
+				<div class="row">
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input type="text" id="nome">
+							<label for="nome">Nome</label>
+						</div>				
+					</div>
+					<div class="col s12 m4 l4">
+						<div class="input-field">
+							<input type="date" id="datanascimento" class="datepicker">
+							<label for="datanascimento">Data de Nascimento</label>
+						</div>
+					</div>
+
+					<div class="row">
+					<div class="col s12 m4 l4">
+						<select class="browser-default">
+							<option value="" disabled selected>Espécie</option>
+							<option value="1">Option 1</option>
+							<option value="2">Option 2</option>
+							<option value="3">Option 3</option>
+						</select>
+
+					</div>
+
+					<div class="col s12 m4 l4">
+						<select class="browser-default">
+							<option value="" disabled selected>Raça</option>
+							<option value="1">Option 1</option>
+							<option value="2">Option 2</option>
+							<option value="3">Option 3</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="card">
+	<div class="card-content">
+		<div class="row">
+			<form action="#" class="col s12 m12 l12">
+				
+				<span class="card-title">Detalhe Pagamento</span>
+				<div class="divider"></div>
+				
+				<div class="row">
+				<div class="col s12 m12">
+						<table class="reponsive-table centered highlight striped">
+							<thead>
+								
+
+								<th data-field="">Item</th>
+								<th data-field="">Descrição</th>
+								<th data-field="">Quantidade</th>
+								<th data-field="">Valor Unitario</th>
+								<th>Valor Total</th>
+										
+							</thead>
+
+							<tbody>
+							<tr>
+								<td>1</td>
+								<td>Consulta</td>
+								<td>1</td>
+								<td>40,00</td>
+								<td>40,00</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Luva</td>
+								<td>2</td>
+								<td>10,00</td>
+								<td>20,00</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Exame Odontologico</td>
+								<td>1</td>
+								<td>60,00</td>
+								<td>60,00</td>
+							</tr>
+
+							<tr>
+								<td></td>
+								<td>TOTAL</td>
+								<td></td>
+								<td></td>
+								<td>120,00</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div>
+					<select class="browser-default">
+							<option value="" disabled selected>Modo de Pagamento</option>
+							<option value="1">Dinheiro</option>
+							<option value="2">Cheque</option>
+					</select>
+				</div>
+				<div class="col s4 m4 l4">	
+							<button class="waves-effect waves-light indigo darken-4 btn" type="submit" name="action">Concluir Pagamento<i class="material-icons right">send</i></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>																
+
+{% endblock %}

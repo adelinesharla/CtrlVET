@@ -33,7 +33,7 @@ class Telefone(models.Model):
 		('Fixo', 'Fixo'),
 		('Celular', 'Celular'),
     )
-	telefone =  models.CharField(verbose_name='Telefone', max_length=15)
+	telefone =  models.PositiveSmallIntegerField(verbose_name='Telefone', max_length=15)
 	tipo = models.CharField(max_length=15, choices=TIPO_CHOICES)
 
 	
@@ -42,7 +42,6 @@ class Telefone(models.Model):
 
 	class Meta:
 		verbose_name_plural = "Telefones"
-
 
 class Tutor(models.Model):
 	nome = models.CharField(verbose_name='Nome', max_length=50)
@@ -56,3 +55,24 @@ class Tutor(models.Model):
 
 	class Meta:
 		verbose_name_plural = "Tutores"
+
+class Animal(models.Model):
+	GENERO_CHOICES = (
+		('FE', 'Feminino'),
+		('MA', 'Masculino'),
+    )
+	nome = models.CharField(verbose_name='Nome', max_length=50)
+	rg = models.PositiveSmallIntegerField(verbose_name='RG', unique=True)
+	especie = models.CharField(verbose_name='Espécie', max_length=50)
+	raca = models.CharField(verbose_name='Raça', max_length=50)
+	sexo = models.CharField(verbose_name='Sexo', max_length=15, choices=GENERO_CHOICES)
+	nascimento = models.DateField(verbose_name='Data de Nascimento')
+	idade = models.PositiveSmallIntegerField(verbose_name='Idade', max_length=3)
+	tutor = models.ForeignKey(Tutor, on_delete = models.CASCADE)
+	
+	def __unicode__(self):
+		return u'%s %s' % (self.nome, self.rg)
+
+	class Meta:
+		verbose_name_plural = "Animais"
+

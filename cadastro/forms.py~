@@ -23,7 +23,3 @@ class TelefoneModelForm(forms.ModelForm):
 		model = Telefone
 		fields = {'telefone', 'tipo'}
 		
-class AnimalModelForm(forms.ModelForm):
-	class Meta:
-		model = Animal
-		fields = {'nome', 'rg', 'especie', 'raca', 'sexo', 'nascimento', 'idade'}

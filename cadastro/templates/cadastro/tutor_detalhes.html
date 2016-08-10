@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+	<div class="card-content">
+		<div class="row">
+			<div class="col s2 m2 l2">
+				<p><b>Nome</b></p>
+			</div> 
+			<div class="col s4 m4 l4">
+				<p>{{ tutor.nome }}</p>
+			</div> 
+			<div class="col s2 m2 l2">
+				<p><b>CPF</b></p>
+			</div>
+			<div class="col s4 m4 l4">
+				<p>{{ tutor.cpf }}</p>
+			</div> 
+		</div>
+		
+		<div class="row">
+			<div class="col s2 m2 l2">
+				<p><b>Email</b></p>
+			</div> 
+			<div class="col s4 m4 l4">
+				<p>{{ tutor.email }}</p>
+			</div> 
+		</div>
+
+		{% for tel in telefones %}
+		<div class="divider"></div>
+		<div class="row">
+			<div class="col s2 m2 l2">
+				<p><b>Telefone</b></p>
+			</div> 
+			<div class="col s4 m4 l4">
+				<p>{{ tel.telefone }}</p>
+			</div> 
+			<div class="col s2 m2 l2">
+				<p><b>Tipo</b></p>
+			</div>
+			<div class="col s4 m4 l4">
+				<p>{{ tel.tipo }}</p>
+			</div> 
+		</div>
+		{% endfor %}
+
+		{% for end in enderecos %}
+
+		<div class="divider"></div>
+		<div class="row">
+			<div class="col s2 m2 l2">
+				<p><b>Logradouro</b></p>
+			</div> 
+			<div class="col s4 m4 l4">
+				<p>{{ end.logradouro }}</p>
+			</div> 
+			<div class="col s2 m2 l2">
+				<p><b>Numero</b></p>
+			</div>
+			<div class="col s4 m4 l4">
+				<p>{{ end.numero }}</p>
+			</div> 
+		</div>
+		<div class="row">
+			<div class="col s2 m2 l2">
+				<p><b>Bairro</b></p>
+			</div> 
+			<div class="col s4 m4 l4">
+				<p>{{ end.bairro }}</p>
+			</div> 
+			<div class="col s2 m2 l2">
+				<p><b>Cidade</b></p>
+			</div>
+			<div class="col s4 m4 l4">
+				<p>{{ end.cidade }}</p>
+			</div> 
+		</div>
+
+		<div class="row">
+			<div class="col s2 m2 l2">
+				<p><b>CEP</b></p>
+			</div> 
+			<div class="col s4 m4 l4">
+				<p>{{ end.cep }}</p>
+			</div> 
+			<div class="col s2 m2 l2">
+				<p><b>UF</b></p>
+			</div>
+			<div class="col s4 m4 l4">
+				<p>{{ end.uf }}</p>
+			</div> 
+		</div>
+
+		{% endfor %}
+		
+		<a href="{% url 'tutor_editar' tutor.pk %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">edit</i>Editar</a>
+
+	</div>
+</div>
+
+
+
+<!-- Modal Trigger -->
+
+
+<!-- Modal Structure -->
+<div id="exclusao" class="modal">
+	<div class="modal-content">
+		<h4>Exclusão de Cliente</h4>
+		<p>Deseja excluir o cliente? Essa operação não poderá ser desfeita.</p>
+	</div>
+	<div class="modal-footer">
+		<a href="confirmacaodeexclusao.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">send</i>Confirmar</a>
+	</div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+

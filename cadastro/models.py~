@@ -2,6 +2,16 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+
+import datetime
+from django.utils import timezone
+
+'Tradução e estados para PT-BR'
+from django.utils.translation import ugettext_lazy as _
+from localflavor.br.forms import STATE_CHOICES
+
+#from django.core.exceptions import ValidationError
+
 'Esta classe implementa os campos de Tutor do Subsistema Secretaria e sua respectivas regras de negócio.'
 
 class Tutor(models.Model):
@@ -9,4 +19,42 @@ class Tutor(models.Model):
 	telefone = models.PositiveSmallIntergerField(max_length=11)
 	email = models.EmailField()
 	cpf = models.PositiveSmallIntegerField(max_length=11)
+	endereco = models.ForeignKey(Endereco, on_delete = models.CASCADE)
+	telefone = models.ForeignKey(Telefone, on_delete = models.CASCADE)
+
+	def __unicode__(self):
+		return u'%s %s' % (self.nome, self.cpf)
+
+	class Meta:
+		verbose_name_plural = "Tutores"
+
+class Endereco(models.Model):
+	logradouro = models.CharField(verbose_name='Logradouro', max_length=200)
+	numero = models.PositiveIntegerField(verbose_name='Número')
+	bairro = models.CharField(verbose_name='Bairro', max_length=20)
+	cidade = models.CharField(verbose_name='Cidade', max_length=200)
+	cep = models.CharField(verbose_name = 'CEP', max_length=15)
+	uf = models.CharField(verbose_name = 'UF', max_length=10, choices=STATE_CHOICES)
+
+	def __unicode__(self):
+		return u'%s %s' % (self.logradouro, self.numero)
+
+	class Meta:
+		verbose_name_plural = "Endereços"
+
+	
+class Telefone(models.Model):
+	TIPO_CHOICES = (
+		('Fixo', 'Fixo'),
+		('Celular', 'Celular'),
+    )
+	telefone =  models.CharField(verbose_name='Telefone', max_length=15)
+	tipo = models.CharField(max_length=15, choices=TIPO_CHOICES)
+
+	
+	def __unicode__(self):
+		return u'%s' % (self.telefone)
+
+	class Meta:
+		verbose_name_plural = "Telefones"
 

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'djangobower',
     'materializecssform',
+    'cadastro'
 ]
 
 MIDDLEWARE_CLASSES = [

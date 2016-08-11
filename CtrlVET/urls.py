@@ -14,7 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url,include
 #Importação da classe TemplateView 
 from django.views.generic import TemplateView 
 from django.contrib import admin
@@ -40,5 +40,6 @@ class MockUp(TemplateView):
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^(?P<template_name>.*)$', MockUp.as_view()),
+    url(r'/', include('cadastro.urls'))
     #url(r'^agenda', agenda.html),
 ]

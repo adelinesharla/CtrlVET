@@ -30,7 +30,7 @@ class AnimalFormView(View):
   template_formulario = 'cadastro/form.html'
   
   def get(self, request):
-    form = self.form_class_animal()
+    form = self.form_class()
     return render(request, self.template_formulario, {'form':form})
   
   def post(self, request):

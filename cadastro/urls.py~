@@ -16,6 +16,6 @@ Including another URLconf
 from django.conf.urls import url
 from cadastro.views import TutorFormView, AnimalFormView 
 urlpatterns = [
-    url(r'^tutor/cadastro$', TutorFormView.as_view()),
-    url(r'^animal/cadastro$', AnimalFormView.as_view()),
+    url(r'^reg_tutor/$', TutorFormView.as_view()),
+    url(r'^reg_animal/$', AnimalFormView.as_view()),
 ]

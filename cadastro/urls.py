@@ -1,5 +1,5 @@
 # _*_ coding: utf-8 _*_
-"""CtrlVET URL Configuration
+"""cadastro URL Configuration
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
 Examples:
@@ -14,8 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-#from templates import *
-
-
+from cadastro.views import TutorFormView, AnimalFormView 
 urlpatterns = [
+    url(r'^reg_tutor/$', TutorFormView.as_view()),
+    url(r'^reg_animal/$', AnimalFormView.as_view()),
 ]

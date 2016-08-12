@@ -76,7 +76,9 @@ class Endereco(AcoesEndereco):
 	bairro = property(_get_bairro,_set_bairro)
 	cidade = property(_get_cidade,_set_cidade)
 	cep = property(_get_cep,_set_cep)		
-	uf = property(_get_uf,_set_uf)		
+	uf = property(_get_uf,_set_uf)	
+	class Meta:
+		abstract = True	
 			
 class TelefoneAbs(models.Model):
 	TIPO_CHOICES = (
@@ -104,14 +106,17 @@ class Telefone(AcoesTelefone):
 	def _set_telefone(self,telefone):
 		self._telefone = telefone
 					
-	telefone = property(_get_telefone,_set_telefone)	
+	telefone = property(_get_telefone,_set_telefone)
+
+	class Meta:
+		abstract = True	
 	
 class TutorAbs(models.Model):
 	_nome = models.CharField(verbose_name='Nome', max_length=50)
 	_email = models.EmailField(verbose_name='E-Mail')
-	_cpf = models.PositiveSmallIntegerField(verbose_name='CPF', max_length=11)
-	endereco = models.ForeignKey(Endereco, on_delete = models.CASCADE)
-	telefone = models.ForeignKey(Telefone, on_delete = models.CASCADE)
+	_cpf = models.CharField(verbose_name='CPF', max_length=11)
+	#endereco = models.ForeignKey(Endereco, on_delete = models.CASCADE)
+	#telefone = models.ForeignKey(Telefone, on_delete = models.CASCADE)
 	
 	class Meta:
 		abstract = True
@@ -172,8 +177,13 @@ class Tutor(AcoesTutor):
 	
 	nome = property(_get_nome,_set_nome)
 	email = property(_get_email,_set_email)	
-	cpf = property(_get_cpf,_set_cpf)		
-		
+	cpf = property(_get_cpf,_set_cpf)
+	class Meta:
+		abstract = True		
+
+class TutorEndTel(Tutor, Endereco, Telefone):
+	pass
+
 class AnimalAbs(models.Model):
 	GENERO_CHOICES = (
 		('FE', 'Feminino'),
@@ -186,7 +196,7 @@ class AnimalAbs(models.Model):
 	sexo = models.CharField(verbose_name='Sexo', max_length=15, choices=GENERO_CHOICES)
 	_nascimento = models.DateField(verbose_name='Data de Nascimento')
 	_idade = models.PositiveSmallIntegerField(verbose_name='Idade', max_length=3)
-	tutor = models.ForeignKey(Tutor, on_delete = models.CASCADE)
+	tutor = models.ForeignKey(TutorEndTel, on_delete = models.CASCADE)
 
 	class Meta:
 		verbose_name_plural = "Animais"
@@ -242,4 +252,3 @@ class Animal(AcoesAnimal):
 	raca = property(_get_raca,_set_raca)
 	nascimento = property(_get_nascimento,_set_nascimento)
 	idade = property(_get_idade,_set_idade)
-

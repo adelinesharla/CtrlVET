@@ -34,7 +34,7 @@ class TutorFormView(View):
 
 """Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""
 class TutorDetalhesView(DetailView):
-	model = Tutor
+	model = TutorEndTel
 
 	def get_context_data(self):
 		context = super (TutorDetalhesView, self).get_context_data()
@@ -42,7 +42,7 @@ class TutorDetalhesView(DetailView):
 
 """Classe para editar Tutor"""
 class TutorEditar(UpdateView):
-	model = Tutor
+	model = TutorEndTel
 	template_name_suffix = '_update_form'
 
 'ANIMAL FORM VIEW, PARA FORMULARIO DE CADASTRO DO ANIMAL'    

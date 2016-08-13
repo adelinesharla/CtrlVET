@@ -125,7 +125,7 @@ class AcoesTutor(TutorAbs):
 	def __unicode__(self):
 		return u'%s %s' % (self.nome, self.cpf)
 				
-	classmethod
+	@classmethod
 	def retornarID(tutor_id):
 		lista = (Tutor.objects.get(self.id_ == tutor_id)) 
 		return lista
@@ -135,8 +135,6 @@ class AcoesTutor(TutorAbs):
 		lista_tutor = Tutor.objects.get(nome__icontains = item) 
 		lista_tutor += Tutor.objects.filter(email__icontains = item) 	
 		lista_tutor += Tutor.objects.filter(cpf__icontains = item) 		
-		lista_tutor += Tutor.objects.filter(endereco__icontains = item) 		
-		lista_tutor += Tutor.objects.filter(telefone__icontains = item) 
 		lista_retornavel = list(set(lista_tutor))		
 		return lista_retornavel
 		
@@ -149,8 +147,8 @@ class AcoesTutor(TutorAbs):
 		return lista_retornavel
 			
 	@classmethod		
-	def listarAnimais():
-		return animais.objects.filter(tutor = pk) 			
+	def listarAnimais(animal_id):
+		return animais.objects.filter(self.id_ == animal_id) 			
 			
 	class Meta:
 		verbose_name_plural = "Tutores"
@@ -205,6 +203,20 @@ class AnimalAbs(models.Model):
 class AcoesAnimal(AnimalAbs):
 	def __unicode__(self):
 		return u'%s %s' % (self.nome, self.rg)
+		
+	@classmethod		
+	def verificarID(animal_id):
+		return animais.objects.filter(self.id_ == animal_id)
+		
+	
+	@classmethod	
+	def verificarAtributos(item):
+		lista_animal = Animal.objects.get(nome__icontains = item) 
+		lista_animal += Animal.objects.filter(rg__icontains = item) 	
+		lista_animal += Animal.objects.filter(especie__icontains = item)
+		lista_animal += Animal.objects.filter(raca__icontains = item) 		
+		lista_retornavel = list(set(lista_animal))		
+		return lista_retornavel			
 		
 	class Meta:
 		abstract = True

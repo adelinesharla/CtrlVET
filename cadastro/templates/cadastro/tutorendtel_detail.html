@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
+{% block breadcrumbs %}
+    {{ block.super }}
+    <a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">Tutor</a>
+    <a href="{% url 'tutor_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
+    <a href="{{ request.get_absolute_url }}" class="breadcrumb">{{ object.nome }}</a>
+{% endblock %}
+
 {% block content %}
 
 <div class="card">
@@ -28,39 +35,37 @@
 			</div> 
 		</div>
 
-		{% for tel in telefones %}
-		<div class="divider"></div>
-		<div class="row">
-			<div class="col s2 m2 l2">
-				<p><b>Telefone</b></p>
-			</div> 
-			<div class="col s4 m4 l4">
-				<p>{{ tel.telefone }}</p>
-			</div> 
-			<div class="col s2 m2 l2">
-				<p><b>Tipo</b></p>
+
+
+		<div class="conta">
+			<div class="row">
+				<div class="col s2 m2 l2">
+					<p><b>Telefone</b></p>
+				</div> 
+				<div class="col s4 m4 l4">
+					<p>{{ object.telefone }}</p>
+				</div> 
+				<div class="col s2 m2 l2">
+					<p><b>Tipo</b></p>
+				</div>
+				<div class="col s4 m4 l4">
+					<p>{{ object.tipo }}</p>
+				</div> 
 			</div>
-			<div class="col s4 m4 l4">
-				<p>{{ tel.tipo }}</p>
-			</div> 
 		</div>
-		{% endfor %}
 
-		{% for end in enderecos %}
-
-		<div class="divider"></div>
 		<div class="row">
 			<div class="col s2 m2 l2">
 				<p><b>Logradouro</b></p>
 			</div> 
 			<div class="col s4 m4 l4">
-				<p>{{ end.logradouro }}</p>
+				<p>{{ object.logradouro }}</p>
 			</div> 
 			<div class="col s2 m2 l2">
 				<p><b>Numero</b></p>
 			</div>
 			<div class="col s4 m4 l4">
-				<p>{{ end.numero }}</p>
+				<p>{{ object.numero }}</p>
 			</div> 
 		</div>
 		<div class="row">
@@ -68,13 +73,13 @@
 				<p><b>Bairro</b></p>
 			</div> 
 			<div class="col s4 m4 l4">
-				<p>{{ end.bairro }}</p>
+				<p>{{ object.bairro }}</p>
 			</div> 
 			<div class="col s2 m2 l2">
 				<p><b>Cidade</b></p>
 			</div>
 			<div class="col s4 m4 l4">
-				<p>{{ end.cidade }}</p>
+				<p>{{ object.cidade }}</p>
 			</div> 
 		</div>
 
@@ -83,36 +88,17 @@
 				<p><b>CEP</b></p>
 			</div> 
 			<div class="col s4 m4 l4">
-				<p>{{ end.cep }}</p>
+				<p>{{ object.cep }}</p>
 			</div> 
 			<div class="col s2 m2 l2">
 				<p><b>UF</b></p>
 			</div>
 			<div class="col s4 m4 l4">
-				<p>{{ end.uf }}</p>
+				<p>{{ object.uf }}</p>
 			</div> 
 		</div>
 
-		{% endfor %}
 		
-		<a href="{% url 'object_editar' object.pk %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">edit</i>Editar</a>
-
-	</div>
-</div>
-
-
-
-<!-- Modal Trigger -->
-
-
-<!-- Modal Structure -->
-<div id="exclusao" class="modal">
-	<div class="modal-content">
-		<h4>Exclusão de Cliente</h4>
-		<p>Deseja excluir o cliente? Essa operação não poderá ser desfeita.</p>
-	</div>
-	<div class="modal-footer">
-		<a href="confirmacaodeexclusao.html" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">send</i>Confirmar</a>
 	</div>
 </div>
 

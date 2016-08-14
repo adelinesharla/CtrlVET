@@ -13,9 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from cadastro.views import TutorFormView, AnimalFormView 
+from django.conf.urls import url, include
+from cadastro.views import *
+from . import views
+
+
 urlpatterns = [
-    url(r'^tutor/cadastro$', TutorFormView.as_view()),
-    url(r'^animal/cadastro$', AnimalFormView.as_view()),
+    url(r'^main/$', main, name='main'),
+    url(r'^animal/detalhes/(?P<animal_id>\d+)/$', AnimalDetalhesView.as_view(), name = 'animal_detalhes'),
+    url(r'^tutor/detalhes/(?P<tutor_id>\d+)/$', TutorDetalhesView.as_view(), name = 'tutor_detalhes'),
+    url(r'(?P<pk>\d+)/$',TutorEditar.as_view(),  name = 'tutor_editar'),
+    url(r'^tutor/cadastro$', TutorFormView.as_view(), name = 'tutor_cadastro'),
+    url(r'^animal/cadastro$', AnimalFormView.as_view(), name = 'animal_cadastro'),
 ]

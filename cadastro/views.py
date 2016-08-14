@@ -7,10 +7,15 @@ from django.http import HttpResponseRedirect
 'Imortando Formularios necessários para views de tutor e animal'
 from .forms import TutorModelForm, AnimalModelForm
 from .models import *
+from django.forms.models import model_to_dict #iterar em object no template
 
 #Não somos selvagens. O uso de 2 espaços como forma de identação é degradante.
 #Tabs são apropriados e garantem uma maior readability ao código
 # :)
+
+"""Main temporária"""
+def main(request):
+	return render( request,'cadastro/main.html', {} ) 
 
 """Classe de renderização da main (sem contexto)"""
 class MainView(TemplateView):
@@ -34,16 +39,20 @@ class TutorFormView(View):
 
 """Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""
 class TutorDetalhesView(DetailView):
+	pk_url_kwarg = "tutor_id"
 	model = TutorEndTel
 
-	def get_context_data(self):
-		context = super (TutorDetalhesView, self).get_context_data()
+	def get_context_data(self, **kwargs):
+		context = super (TutorDetalhesView, self).get_context_data(**kwargs)
 		return context
+
 
 """Classe para editar Tutor"""
 class TutorEditar(UpdateView):
 	model = TutorEndTel
-	template_name_suffix = '_update_form'
+	template_name_suffix = 'form_update'
+
+
 
 'ANIMAL FORM VIEW, PARA FORMULARIO DE CADASTRO DO ANIMAL'    
 class AnimalFormView(View):
@@ -63,14 +72,14 @@ class AnimalFormView(View):
 
 """Classe para retornar detalhes de Animal (alimenta o template animal_detalhes)"""
 class AnimalDetalhesView(DetailView):
-
+	pk_url_kwarg = "animal_id"
 	model = Animal
 	
-	def get_context_data(self):
-		context = super (AnimalDetalhesView, self).get_context_data()
+	def get_context_data(self, **kwargs):
+		context = super (AnimalDetalhesView, self).get_context_data(**kwargs)
 		return context
 
 """Classe para editar Animal"""
 class TutorEditar(UpdateView):
 	model = Animal
-	template_name_suffix = '_update_form'
+	template_name_suffix = 'form_update'

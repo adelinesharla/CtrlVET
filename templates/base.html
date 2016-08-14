@@ -1,39 +1,39 @@
   {% load staticfiles %}
 
-<!DOCTYPE html>
-<html lang="pt" xml:lang="pt">
-<head>
-  <meta charset="utf-8">
+  <!DOCTYPE html>
+  <html lang="pt" xml:lang="pt">
+  <head>
+    <meta charset="utf-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Ctrl VET</title>
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}"/>
 
-  <!--Import material-icons-->
-  
-  <link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Ctrl VET</title>
 
-  <!--Import CSS--> 
+    <!--Import material-icons-->
 
-  <link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.min.css' %}" media="screen,projection"/>
-  <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.css' %}"  media="screen,projection"/>
+    <link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- javascript -->
+    <!--Import CSS--> 
 
-  <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'fullcalendar/dist/fullcalendar.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'fullcalendar/dist/lang-all.js' %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.min.css' %}" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.css' %}"  media="screen,projection"/>
 
-  <!-- custom css -->
+    <!-- javascript -->
 
-  <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}"  media="screen,projection"/>
+    <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fullcalendar/dist/fullcalendar.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fullcalendar/dist/lang-all.js' %}"></script>
 
-</style>
+    <!-- custom css -->
+
+    <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}"  media="screen,projection"/>
+
+  </style>
 
 </head>
 <body>
@@ -54,16 +54,17 @@
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
 
-          <li class="logo"><div class="container"><img class="responsive-img" src="{% static 'logo/logo.png' %}"></div></li>
+          <li class="logo center"><div class="container"><img class="responsive-img" width="50%" height="50%" src="{% static 'logo/logo.png' %}"></div></li>
 
           <li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
 
-          <li class="bold"><a href="clienteresumo.html" class="collapsible-header"><i class="material-icons">face</i>Cliente</a></li>
-          <li class="bold"><a href="pacienteresumo.html" class="collapsible-header"><i class="material-icons">pets</i>Paciente</a></li>
-          <li class="bold"><a href="exameresumo.html" class="collapsible-header"><i class="material-icons">local_pharmacy</i>Exames</a></li>
-          <li class="bold"><a href="consultaresumo.html" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
-          <li class="bold"><a href="estoqueresumo.html" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>
-          <li class="bold"><a href="pagamentosresumo.html" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>
+          <li class="bold"><a href="" class="collapsible-header"><i class="material-icons">face</i>Cliente</a></li>
+          <li class="bold"><a href="" class="collapsible-header"><i class="material-icons">pets</i>Paciente</a></li>
+          <li class="bold"><a href="" class="collapsible-header"><i class="material-icons">local_pharmacy</i>Exames</a></li>
+          <li class="bold"><a href="" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
+          <li class="bold"><a href="" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>
+          <li class="bold"><a href="" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>
+
         </ul>
       </li>     
     </ul>
@@ -71,8 +72,10 @@
 
     <nav id="caminho">
       <div class="col s12">
-        <a href="main.html" class="breadcrumb">Principal</a>
-        <a href="" class="breadcrumb">Atual</a>
+
+        {% block breadcrumbs %}
+        <a href="{% url 'main' %}" class="breadcrumb">Main</a>
+        {% endblock %}
       </div>
     </nav>
 
@@ -93,13 +96,13 @@
         <div class="col s12 m12 l12 ">
           <p class="black-text text-lighten-4">Sistema de gestão do Hospital Veterinário HOVET
           </p>
-           <p class="black-text text-lighten-4">
-         BR 482, km 63 - Tel. (27) 8803-4503 - Área experimental do CCA-UFES, Alegre - ES - Brasil
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
+          <p class="black-text text-lighten-4">
+           BR 482, km 63 - Tel. (27) 8803-4503 - Área experimental do CCA-UFES, Alegre - ES - Brasil
+         </p>
+       </div>
+     </div>
+   </div>
+ </footer>
 
 </body>
 

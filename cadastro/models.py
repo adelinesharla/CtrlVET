@@ -26,6 +26,7 @@ class EnderecoAbs(models.Model):
 	class Meta:
 		abstract = True	
 
+
 class AcoesEndereco(EnderecoAbs):
 	def __unicode__(self):
 		return u'%s %s' % (self.logradouro, self.numero)
@@ -33,6 +34,7 @@ class AcoesEndereco(EnderecoAbs):
 	class Meta:
 		verbose_name_plural = "Endereços"
 		abstract = True			
+
 
 class Endereco(AcoesEndereco):
 	def _get_logradouro(self):
@@ -80,6 +82,7 @@ class Endereco(AcoesEndereco):
 	class Meta:
 		abstract = True	
 			
+
 class TelefoneAbs(models.Model):
 	TIPO_CHOICES = (
 		('Fixo', 'Fixo'),
@@ -91,6 +94,7 @@ class TelefoneAbs(models.Model):
 	class Meta:
 		abstract = True	
 		
+
 class AcoesTelefone(TelefoneAbs):
 	def __unicode__(self):
 		return u'%s' % (self.telefone)
@@ -98,6 +102,7 @@ class AcoesTelefone(TelefoneAbs):
 	class Meta:
 		verbose_name_plural = "Telefones"
 		abstract = True
+
 
 class Telefone(AcoesTelefone):
 	def _get_telefone(self):
@@ -111,6 +116,7 @@ class Telefone(AcoesTelefone):
 	class Meta:
 		abstract = True	
 	
+
 class TutorAbs(models.Model):
 	_nome = models.CharField(verbose_name='Nome', max_length=50)
 	_email = models.EmailField(verbose_name='E-Mail')
@@ -121,6 +127,7 @@ class TutorAbs(models.Model):
 	class Meta:
 		abstract = True
 		
+
 class AcoesTutor(TutorAbs):
 	def __unicode__(self):
 		return u'%s %s' % (self.nome, self.cpf)
@@ -154,6 +161,7 @@ class AcoesTutor(TutorAbs):
 		verbose_name_plural = "Tutores"
 		abstract = True	
 		
+
 class Tutor(AcoesTutor):
 	def _get_nome(self):
 		return self._nome		
@@ -179,8 +187,12 @@ class Tutor(AcoesTutor):
 	class Meta:
 		abstract = True		
 
+
+#mudar o nome para tutor_detalhe ou tutordetalhe ou tutordetalhes
 class TutorEndTel(Tutor, Endereco, Telefone):
-	pass
+	def get_absolute_url(self):
+		return reverse('tutor-detail', kwargs={'pk': self.pk})
+
 
 class AnimalAbs(models.Model):
 	GENERO_CHOICES = (
@@ -199,6 +211,7 @@ class AnimalAbs(models.Model):
 	class Meta:
 		verbose_name_plural = "Animais"
 		abstract = True
+
 
 class AcoesAnimal(AnimalAbs):
 	def __unicode__(self):
@@ -221,6 +234,7 @@ class AcoesAnimal(AnimalAbs):
 	class Meta:
 		abstract = True
 		
+
 class Animal(AcoesAnimal):
 	def _get_nome(self):
 		return self._nome

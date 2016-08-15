@@ -13,13 +13,13 @@ from django.forms.models import model_to_dict #iterar em object no template
 #Tabs são apropriados e garantem uma maior readability ao código
 # :)
 
-"""Main temporária"""
-def main(request):
-	return render( request,'cadastro/main.html', {} ) 
-
 """Classe de renderização da main (sem contexto)"""
 class MainView(TemplateView):
 	template_name='cadastro/main.html'
+
+"""Classe de renderização do painel de tutor (sem contexto)"""
+class TutorResumo(TemplateView):
+	template_name='cadastro/tutor_resumo.html'
 
 'TUTOR FORM VIEW , PARA FORMULARIO DE CADASTRO DO TUTOR'
 class TutorFormView(View):

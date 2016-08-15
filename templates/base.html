@@ -29,7 +29,7 @@
 	<script type="text/javascript" src="{% static 'fullcalendar/dist/fullcalendar.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'fullcalendar/dist/lang-all.js' %}"></script>
 
-	<!-- custom css -->
+	<!-- custom css e js-->
 
 	<link type="text/css" rel="stylesheet" href="{% static 'ctrlvet.css' %}"  media="screen,projection"/>
 	<script type="text/javascript" src="{% static 'ctrlvet.js' %}"></script>
@@ -47,7 +47,7 @@
 			</div>
 
 
-			<!-- More -->
+			<!-- Dropdown de more -->
 			<ul id="dropdown1" class="dropdown-content">
 				<li><a href="#!">Login</a></li>
 				<li><a href="#!">Sing up</a></li>
@@ -70,8 +70,8 @@
 
 					<li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
 
-					<li class="bold"><a href="" class="collapsible-header"><i class="material-icons">face</i>Cliente</a></li>
-					<li class="bold"><a href="" class="collapsible-header"><i class="material-icons">pets</i>Paciente</a></li>
+					<li class="bold"><a href="{% url 'tutor_resumo' %}" class="collapsible-header"><i class="material-icons">face</i>Tutores</a></li>
+					<li class="bold"><a href="" class="collapsible-header"><i class="material-icons">pets</i>Animais</a></li>
 					<li class="bold"><a href="" class="collapsible-header"><i class="material-icons">local_pharmacy</i>Exames</a></li>
 					<li class="bold"><a href="" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
 					<li class="bold"><a href="" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>
@@ -88,6 +88,7 @@
 				{% block breadcrumbs %}
 				<a href="{% url 'main' %}" class="breadcrumb">Main</a>
 				{% endblock %}
+
 			</div>
 		</nav>
 

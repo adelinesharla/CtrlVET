@@ -141,7 +141,8 @@ STATICFILES_FINDERS = (
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "media"),
-    os.path.join(BASE_DIR, "css"),
+    os.path.join(STATIC_ROOT, "css"),
+    os.path.join(STATIC_ROOT, "js"),
 ]
 
 BOWER_COMPONENTS_ROOT = 'components'

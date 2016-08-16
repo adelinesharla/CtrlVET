@@ -853,6 +853,8 @@ input[type=number].valid,
 input[type=number]:focus.valid,
 input[type=search].valid,
 input[type=search]:focus.valid,
+input[type=search].valid,
+input[type=search]:focus.valid,
 textarea.materialize-textarea.valid,
 textarea.materialize-textarea:focus.valid {
 	border-bottom: 1px solid #283593;
@@ -1064,17 +1066,8 @@ textarea.materialize-textarea {
 }
 
 
-/* Ajustes select */
-
-.select-wrapper input.select-dropdown {
-	border-bottom: 1px solid #9e9e9e;
-	height: 1.5rem;
-	line-height: 2rem;
-	font-size: 1rem;
-	margin: 0 0 10px 0;
+.help-block {
+	content: attr(data-error);
+	color: #ff9800 !important;
+	opacity: 1;
 }
-
-.select-wrapper span.caret {
-	top: 0px;
-}
-

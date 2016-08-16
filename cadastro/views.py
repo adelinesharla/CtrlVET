@@ -29,10 +29,12 @@ class TutorFormView(View):
 	def get(self, request):
 		form = self.form_class_tutor()
 		return render(request, self.template_formulario, {'form':form})
-
+	'Precisei modificar a variável form_class para form_class_tutor e adicionar o form.save() pra fazer o formulario funcionar'
+	'Se estiver errado por favor corrijam'
 	def post(self, request):
-		form = self.form_class(request.POST)
+		form = self.form_class_tutor(request.POST)
 		if form.is_valid():
+			form.save()
 			return HttpResponseRedirect('/success/')
 		return render(request, self.template_formulario, {'form':form})
 

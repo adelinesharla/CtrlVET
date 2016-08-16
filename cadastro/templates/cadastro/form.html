@@ -4,7 +4,7 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{{ request.get_absolute_url }}" class="breadcrumb">Tutor</a>
+<a href="{% url 'tutor_resumo' %}" class="breadcrumb">Tutor</a>
 <a href="{{ request.get_absolute_url }}" class="breadcrumb">Cadastro</a>
 {% endblock %}
 
@@ -16,7 +16,7 @@
 		<span class="card-title">{{ title }}</span>
 		<div class="divider"></div>
 		
-		<form action="{{ action }}" method="POST"> 
+		<form action="cadastro" method="POST"> 
 			<div class="row">
 				<div class="col s12 m12 l12">
 					{% csrf_token %}
@@ -26,7 +26,7 @@
 			<div class="row">
 				<div class="col s12 m12 l12 right-align">
 					<div class="form-actions">
-						<button class="btn waves-effect waves-light indigo darken-4" type="submit" value="Update">Enviar<i class="material-icons right">send</i>
+						<button class="btn waves-effect waves-light indigo " type="submit" value="Update">Enviar<i class="material-icons right">send</i>
 						</button>
 					</div>
 				</div>

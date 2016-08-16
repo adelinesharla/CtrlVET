@@ -4,7 +4,7 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'tutor_resumo' %}" class="breadcrumb">Tutor</a>
+<a href="{% url 'animal_resumo' %}" class="breadcrumb">Animal</a>
 <a href="{{ request.get_absolute_url }}" class="breadcrumb">Cadastro</a>
 {% endblock %}
 
@@ -13,7 +13,7 @@
 
 <div class="card">
 	<div class="card-content">
-		<span class="card-title">{{ title }}</span>
+		<span class="card-title">Cadastro de Animal</span>
 		<div class="divider"></div>
 		
 		<form action="cadastro" method="POST"> 

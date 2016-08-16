@@ -19,17 +19,21 @@ class MainView(TemplateView):
 
 """Classe de renderização do painel de tutor (sem contexto)"""
 class TutorResumo(TemplateView):
+	template_name='cadastro/animal_resumo.html'
+
+"""Classe de renderização do painel de tutor (sem contexto)"""
+class AnimalResumo(TemplateView):
 	template_name='cadastro/tutor_resumo.html'
 
 'TUTOR FORM VIEW , PARA FORMULARIO DE CADASTRO DO TUTOR'
 class TutorFormView(View):
 	form_class_tutor = TutorModelForm
-	template_formulario = 'cadastro/form.html'
+	template_formulario = 'cadastro/tutor_form.html'
 
 	def get(self, request):
 		form = self.form_class_tutor()
 		return render(request, self.template_formulario, {'form':form})
-	'Precisei modificar a variável form_class para form_class_tutor e adicionar o form.save() pra fazer o formulario funcionar'
+	'Precisei modificar a variável form_class para form_class_tutor e adicionar o form.sve() pra fazer o formulario funcionar'
 	'Se estiver errado por favor corrijam'
 	def post(self, request):
 		form = self.form_class_tutor(request.POST)
@@ -59,14 +63,14 @@ class TutorEditar(UpdateView):
 'ANIMAL FORM VIEW, PARA FORMULARIO DE CADASTRO DO ANIMAL'    
 class AnimalFormView(View):
 	form_class_animal = AnimalModelForm
-	template_formulario = 'cadastro/form.html'
+	template_formulario = 'cadastro/animal_form.html'
 
 	def get(self, request):
 		form = self.form_class_animal()
 		return render(request, self.template_formulario, {'form':form})
 
 	def post(self, request):
-		form = self.form_class(request.POST)
+		form = self.form_class_animal(request.POST)
 		if form.is_valid():
 			return HttpResponseRedirect('/success/')
 	

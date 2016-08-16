@@ -20,6 +20,7 @@ from cadastro.views import *
 urlpatterns = [
     url(r'^main/$',  MainView.as_view(), name='main'),
     url(r'^tutor/resumo$',  TutorResumo.as_view(), name='tutor_resumo'),
+    url(r'^animal/resumo$',  AnimalResumo.as_view(), name='animal_resumo'),
     url(r'^animal/detalhes/(?P<animal_id>\d+)/$', AnimalDetalhesView.as_view(), name = 'animal_detalhes'),
     url(r'^tutor/detalhes/(?P<tutor_id>\d+)/$', TutorDetalhesView.as_view(), name = 'tutor_detalhes'),
     url(r'(?P<pk>\d+)/$',TutorEditar.as_view(),  name = 'tutor_editar'),

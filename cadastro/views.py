@@ -42,6 +42,10 @@ class TutorFormView(View):
 			return HttpResponseRedirect('/success/')
 		return render(request, self.template_formulario, {'form':form})
 
+"""Classe para deletar Tutor"""
+class TutorDeletar(DeleteView):
+	model = TutorEndTel
+	success_url = reverse_lazy('tutor_resumo')
 
 """Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""
 class TutorDetalhesView(DetailView):
@@ -89,3 +93,8 @@ class AnimalDetalhesView(DetailView):
 class TutorEditar(UpdateView):
 	model = Animal
 	template_name_suffix = 'form_update'
+
+"""Classe para deletar Animal"""
+class TutorDeletar(DeleteView):
+	model = Animal
+	success_url = reverse_lazy('animal_resumo') 

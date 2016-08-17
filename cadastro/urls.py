@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'(?P<pk>\d+)/$',TutorEditar.as_view(),  name = 'tutor_editar'),
     url(r'^tutor/cadastro$', TutorFormView.as_view(), name = 'tutor_cadastro'),
     url(r'^animal/cadastro$', AnimalFormView.as_view(), name = 'animal_cadastro'),
-
+    url(r'^tutor/busca$', TutorBuscaListView.as_view(), name = 'tutor_busca_list_view')
     #url(r'^consulta/detalhes/(?P<consulta_id>\d+)/$', ConsultarDetalhesView.as_view(), name = 'consulta_detalhes'),
     #url(r'(?P<pk>\d+)/$',ConsultaEditar.as_view(),  name = 'consulta_editar'),
     #url(r'^exame/detalhes/(?P<exame_id>\d+)/$', ExaminarDetalhesView.as_view(), name = 'exame_detalhes'),

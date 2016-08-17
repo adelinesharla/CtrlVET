@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.shortcuts import render
 from django.conf.urls import url
-from django.views.generic import View, TemplateView, DetailView, UpdateView, DeleteView
+from django.views.generic import View, TemplateView, DetailView, UpdateView, DeleteView,ListView
 'HttpResponse para uma pagina template indicando que a operação foi realizada (verificar se tal página existe)'
 from django.http import HttpResponseRedirect
 'Imortando Formularios necessários para views de tutor e animal'
@@ -16,13 +16,44 @@ from django.forms.models import model_to_dict #iterar em object no template
 """Classe de renderização da main (sem contexto)"""
 class MainView(TemplateView):
 	template_name='cadastro/main.html'
+	
+"""Classe para listar os tutores"""
+class ListTutor(ListView):
+	model = TutorEndTel
+	#tutor_list = Tutor.objects.all()
+	#paginator = Paginator(tutor_list, 10)
+	paginate_by = 10 
+	#page = request.GET.get('page')
+	#try:
+		#tutores = paginator.page(page)
+	#except PageNotAnInteger:
+	#	tutores = paginator.page(1)
+	#except EmptyPage:
+	#	tutores = paginator.page(paginator.num_pages)
+	#return render(request, 'tutor_resumo.html', {'tutores': tutores})
+    
+"""Classe para listar os animais"""    
+class ListAnimal(ListView):
+	model = Animal    	
+	#animal_list = Animal.objects.all()
+	#paginator = Paginator(animal_list, 10) 
+	paginate_by = 10 
+	#page = request.GET.get('page')
+	#try:
+		#animais = paginator.page(page)
+	#except PageNotAnInteger:
+		#animais = paginator.page(1)
+	#except EmptyPage:
+	#	animais = paginator.page(paginator.num_pages)
+	#return render(request, 'animal_resumo.html', {'animais': animais})		
+			
 
 """Classe de renderização do painel de tutor (sem contexto)"""
-class TutorResumo(TemplateView):
-	template_name='cadastro/animal_resumo.html'
+class TutorResumo(ListTutor,TemplateView):
+	template_name='cadastro/tutor_resumo.html'
 
 """Classe de renderização do painel de tutor (sem contexto)"""
-class AnimalResumo(TemplateView):
+class AnimalResumo(ListAnimal,TemplateView):
 	template_name='cadastro/tutor_resumo.html'
 
 'TUTOR FORM VIEW , PARA FORMULARIO DE CADASTRO DO TUTOR'
@@ -45,7 +76,7 @@ class TutorFormView(View):
 """Classe para deletar Tutor"""
 class TutorDeletar(DeleteView):
 	model = TutorEndTel
-	success_url = reverse_lazy('tutor_resumo')
+	#success_url = reverse_lazy('tutor_resumo')
 
 """Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""
 class TutorDetalhesView(DetailView):
@@ -62,7 +93,24 @@ class TutorEditar(UpdateView):
 	model = TutorEndTel
 	template_name_suffix = 'form_update'
 
+"""Classes experimentais para busca"""
+class TutorBuscaListView(ListTutor):
+    def get_queryset(self):
+        result = super(TutorBuscaListView, self).get_queryset()
 
+        query = self.request.GET.get('q')
+        if query:
+            query_list = query.split()
+            result = result.filter(
+                reduce(operator.and_,
+                       (Q(_nome__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                       (Q(_email__icontains=q) for q in query_list)) |
+		reduce(operator.and_,
+                       (Q(_cpf__icontains=q) for q in query_list))
+            )
+
+        return result
 
 'ANIMAL FORM VIEW, PARA FORMULARIO DE CADASTRO DO ANIMAL'    
 class AnimalFormView(View):
@@ -97,4 +145,6 @@ class TutorEditar(UpdateView):
 """Classe para deletar Animal"""
 class TutorDeletar(DeleteView):
 	model = Animal
-	success_url = reverse_lazy('animal_resumo') 
+	#success_url = reverse_lazy('animal_resumo') 
+	
+

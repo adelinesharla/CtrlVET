@@ -50,11 +50,11 @@ class ListAnimal(ListView):
 
 """Classe de renderização do painel de tutor (sem contexto)"""
 class TutorResumo(ListTutor,TemplateView):
-	template_name='cadastro/animal_resumo.html'
+	template_name='cadastro/tutor_resumo.html'
 
 """Classe de renderização do painel de tutor (sem contexto)"""
 class AnimalResumo(ListAnimal,TemplateView):
-	template_name='cadastro/tutor_resumo.html'
+	template_name='cadastro/animal_resumo.html'
 
 'TUTOR FORM VIEW , PARA FORMULARIO DE CADASTRO DO TUTOR'
 class TutorFormView(View):
@@ -93,7 +93,24 @@ class TutorEditar(UpdateView):
 	model = TutorEndTel
 	template_name_suffix = 'form_update'
 
+"""Classes experimentais para busca"""
+class TutorBuscaListView(ListTutor):
+    def get_queryset(self):
+        result = super(TutorBuscaListView, self).get_queryset()
 
+        query = self.request.GET.get('q')
+        if query:
+            query_list = query.split()
+            result = result.filter(
+                reduce(operator.and_,
+                       (Q(_nome__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                       (Q(_email__icontains=q) for q in query_list)) |
+		reduce(operator.and_,
+                       (Q(_cpf__icontains=q) for q in query_list))
+            )
+
+        return result
 
 'ANIMAL FORM VIEW, PARA FORMULARIO DE CADASTRO DO ANIMAL'    
 class AnimalFormView(View):

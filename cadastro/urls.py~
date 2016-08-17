@@ -35,5 +35,4 @@ urlpatterns = [
     #url(r'^animal/$',ListAnimal.as_view(), name='animal'),
     #url(r'^consulta/$',ListConsulta.as_view(), name='consulta'),
     #url(r'^exame/$',ListExame.as_view(), name='exame'),
-
 ]

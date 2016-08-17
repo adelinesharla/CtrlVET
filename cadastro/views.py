@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.shortcuts import render
 from django.conf.urls import url
-from django.views.generic import View, TemplateView, DetailView, UpdateView
+from django.views.generic import View, TemplateView, DetailView, UpdateView, DeleteView
 'HttpResponse para uma pagina template indicando que a operação foi realizada (verificar se tal página existe)'
 from django.http import HttpResponseRedirect
 'Imortando Formularios necessários para views de tutor e animal'
@@ -45,7 +45,7 @@ class TutorFormView(View):
 """Classe para deletar Tutor"""
 class TutorDeletar(DeleteView):
 	model = TutorEndTel
-	success_url = reverse_lazy('tutor_resumo')
+	#success_url = reverse_lazy('tutor_resumo')
 
 """Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""
 class TutorDetalhesView(DetailView):
@@ -97,4 +97,4 @@ class TutorEditar(UpdateView):
 """Classe para deletar Animal"""
 class TutorDeletar(DeleteView):
 	model = Animal
-	success_url = reverse_lazy('animal_resumo') 
+	#success_url = reverse_lazy('animal_resumo') 

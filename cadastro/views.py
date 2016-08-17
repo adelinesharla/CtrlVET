@@ -16,13 +16,44 @@ from django.forms.models import model_to_dict #iterar em object no template
 """Classe de renderização da main (sem contexto)"""
 class MainView(TemplateView):
 	template_name='cadastro/main.html'
+	
+"""Classe para listar os tutores"""
+class ListTutor(ListView):
+	model = TutorEndTel
+	#tutor_list = Tutor.objects.all()
+	#paginator = Paginator(tutor_list, 10)
+	paginate_by = 10 
+	#page = request.GET.get('page')
+	#try:
+		#tutores = paginator.page(page)
+	#except PageNotAnInteger:
+	#	tutores = paginator.page(1)
+	#except EmptyPage:
+	#	tutores = paginator.page(paginator.num_pages)
+	#return render(request, 'tutor_resumo.html', {'tutores': tutores})
+    
+"""Classe para listar os animais"""    
+class ListAnimal(ListView):
+	model = Animal    	
+	#animal_list = Animal.objects.all()
+	#paginator = Paginator(animal_list, 10) 
+	paginate_by = 10 
+	#page = request.GET.get('page')
+	#try:
+		#animais = paginator.page(page)
+	#except PageNotAnInteger:
+		#animais = paginator.page(1)
+	#except EmptyPage:
+	#	animais = paginator.page(paginator.num_pages)
+	#return render(request, 'animal_resumo.html', {'animais': animais})		
+			
 
 """Classe de renderização do painel de tutor (sem contexto)"""
-class TutorResumo(TemplateView):
+class TutorResumo(ListTutor,TemplateView):
 	template_name='cadastro/animal_resumo.html'
 
 """Classe de renderização do painel de tutor (sem contexto)"""
-class AnimalResumo(TemplateView):
+class AnimalResumo(ListAnimal,TemplateView):
 	template_name='cadastro/tutor_resumo.html'
 
 'TUTOR FORM VIEW , PARA FORMULARIO DE CADASTRO DO TUTOR'
@@ -99,38 +130,4 @@ class TutorDeletar(DeleteView):
 	model = Animal
 	#success_url = reverse_lazy('animal_resumo') 
 	
-"""Classe para listar os tutores"""
-class ListTutor(ListView):
-	model = Tutor
-	
-  def listar(request):
-    tutor_list = Contacts.objects.all()
-    paginator = Paginator(tutor_list, 10) 
-    page = request.GET.get('page')
-    try:
-        tutores = paginator.page(page)
-    except PageNotAnInteger:
-        tutores = paginator.page(1)
-    except EmptyPage:
-        tutores = paginator.page(paginator.num_pages)
 
-    return render(request, 'tutor_resumo.html', {'tutores': tutores})
-    
-"""Classe para listar os animais"""    
-class ListAnimal(ListView):
-	model = Animal    	
-      
-	def listar(request):
-		animal_list = Animal.objects.all()
-		paginator = Paginator(animal_list, 10) 
-
-		page = request.GET.get('page')
-		try:
-			animais = paginator.page(page)
-		except PageNotAnInteger:
-			animais = paginator.page(1)
-		except EmptyPage:
-			animais = paginator.page(paginator.num_pages)
-
-		return render(request, 'animal_resumo.html', {'animais': animais})		
-		

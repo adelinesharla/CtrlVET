@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.shortcuts import render
 from django.conf.urls import url
-from django.views.generic import View, TemplateView, DetailView, UpdateView, DeleteView
+from django.views.generic import View, TemplateView, DetailView, UpdateView, DeleteView,ListView
 'HttpResponse para uma pagina template indicando que a operação foi realizada (verificar se tal página existe)'
 from django.http import HttpResponseRedirect
 'Imortando Formularios necessários para views de tutor e animal'
@@ -98,3 +98,39 @@ class TutorEditar(UpdateView):
 class TutorDeletar(DeleteView):
 	model = Animal
 	#success_url = reverse_lazy('animal_resumo') 
+	
+"""Classe para listar os tutores"""
+class ListTutor(ListView):
+	model = Tutor
+	
+  def listar(request):
+    tutor_list = Contacts.objects.all()
+    paginator = Paginator(tutor_list, 10) 
+    page = request.GET.get('page')
+    try:
+        tutores = paginator.page(page)
+    except PageNotAnInteger:
+        tutores = paginator.page(1)
+    except EmptyPage:
+        tutores = paginator.page(paginator.num_pages)
+
+    return render(request, 'tutor_resumo.html', {'tutores': tutores})
+    
+"""Classe para listar os animais"""    
+class ListAnimal(ListView):
+	model = Animal    	
+      
+	def listar(request):
+		animal_list = Animal.objects.all()
+		paginator = Paginator(animal_list, 10) 
+
+		page = request.GET.get('page')
+		try:
+			animais = paginator.page(page)
+		except PageNotAnInteger:
+			animais = paginator.page(1)
+		except EmptyPage:
+			animais = paginator.page(paginator.num_pages)
+
+		return render(request, 'animal_resumo.html', {'animais': animais})		
+		

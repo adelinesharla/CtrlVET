@@ -205,7 +205,7 @@ class AnimalAbs(models.Model):
 	_raca = models.CharField(verbose_name='Raça', max_length=50)
 	sexo = models.CharField(verbose_name='Sexo', max_length=15, choices=GENERO_CHOICES)
 	_nascimento = models.DateField(verbose_name='Data de Nascimento')
-	_idade = models.PositiveSmallIntegerField(verbose_name='Idade', max_length=3)
+	_idade = models.PositiveSmallIntegerField(verbose_name='Idade')
 	tutor = models.ForeignKey(TutorEndTel, on_delete = models.CASCADE)
 
 	class Meta:
@@ -278,3 +278,31 @@ class Animal(AcoesAnimal):
 	raca = property(_get_raca,_set_raca)
 	nascimento = property(_get_nascimento,_set_nascimento)
 	idade = property(_get_idade,_set_idade)
+
+class Servico(models.Model):
+	#campos
+	#métodos
+	class Meta:
+		abstract = True
+
+class ConsultaAbs (Servico):
+	#campos
+	#métodos
+	class Meta:
+		abstract = True
+
+class Consulta (ConsultaAbs):
+	#campos
+	#métodos
+	pass
+
+class ExameAbs (Servico):
+	#campos
+	#métodos
+	class Meta:
+		abstract = True
+
+class Exame (ExameAbs):
+	#campos
+	#métodos
+	pass

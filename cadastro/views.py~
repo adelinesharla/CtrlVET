@@ -1,13 +1,23 @@
 # -*- encoding: utf-8 -*-
 from django.shortcuts import render
 from django.conf.urls import url
-from django.views.generic import View, TemplateView, DetailView, UpdateView, DeleteView,ListView
+
+"""Classes de views genericas utilizadas"""
+from django.views.generic import View, TemplateView, DetailView, UpdateView, DeleteView,ListView, FormView
+
 'HttpResponse para uma pagina template indicando que a operação foi realizada (verificar se tal página existe)'
 from django.http import HttpResponseRedirect
-'Imortando Formularios necessários para views de tutor e animal'
-from .forms import TutorModelForm, AnimalModelForm
+
+'Importando Formularios necessários para views de tutor e animal'
+from .forms import *
+'Importando Models necessárias para views de tutor e animal'
 from .models import *
+
 from django.forms.models import model_to_dict #iterar em object no template
+
+'Importando atributos da model a serem utilizados nas buscas'
+import operator
+from django.db.models import Q
 
 #Não somos selvagens. O uso de 2 espaços como forma de identação é degradante.
 #Tabs são apropriados e garantem uma maior readability ao código
@@ -16,45 +26,17 @@ from django.forms.models import model_to_dict #iterar em object no template
 """Classe de renderização da main (sem contexto)"""
 class MainView(TemplateView):
 	template_name='cadastro/main.html'
-	
+
+#Views relacionadas à classe Tutor:
+
 """Classe para listar os tutores"""
 class ListTutor(ListView):
 	model = TutorEndTel
-	#tutor_list = Tutor.objects.all()
-	#paginator = Paginator(tutor_list, 10)
-	paginate_by = 10 
-	#page = request.GET.get('page')
-	#try:
-		#tutores = paginator.page(page)
-	#except PageNotAnInteger:
-	#	tutores = paginator.page(1)
-	#except EmptyPage:
-	#	tutores = paginator.page(paginator.num_pages)
-	#return render(request, 'tutor_resumo.html', {'tutores': tutores})
-    
-"""Classe para listar os animais"""    
-class ListAnimal(ListView):
-	model = Animal    	
-	#animal_list = Animal.objects.all()
-	#paginator = Paginator(animal_list, 10) 
-	paginate_by = 10 
-	#page = request.GET.get('page')
-	#try:
-		#animais = paginator.page(page)
-	#except PageNotAnInteger:
-		#animais = paginator.page(1)
-	#except EmptyPage:
-	#	animais = paginator.page(paginator.num_pages)
-	#return render(request, 'animal_resumo.html', {'animais': animais})		
-			
+	paginate_by = 10 			
 
 """Classe de renderização do painel de tutor (sem contexto)"""
 class TutorResumo(ListTutor):
 	template_name='cadastro/tutor_resumo.html'
-
-"""Classe de renderização do painel de tutor (sem contexto)"""
-class AnimalResumo(ListAnimal):
-	template_name='cadastro/animal_resumo.html'
 
 'TUTOR FORM VIEW , PARA FORMULARIO DE CADASTRO DO TUTOR'
 class TutorFormView(View):
@@ -112,6 +94,17 @@ class TutorBuscaListView(ListTutor):
 
         return result
 
+#Views relacionadas à classe Animal:
+
+"""Classe para listar os animais"""    
+class ListAnimal(ListView):
+	model = Animal    	
+	paginate_by = 10 
+
+"""Classe de renderização do painel de animal (sem contexto)"""
+class AnimalResumo(ListAnimal):
+	template_name='cadastro/animal_resumo.html'
+
 'ANIMAL FORM VIEW, PARA FORMULARIO DE CADASTRO DO ANIMAL'    
 class AnimalFormView(View):
 	form_class_animal = AnimalModelForm
@@ -167,3 +160,100 @@ class AnimalBuscaListView(ListAnimal):
             )
 
         return result
+
+#Views relacionadas à classe Consulta:
+
+class ConsultaFormView(FormView):
+	template_name = ''
+	form_class = ConsultaForm
+	success_url = ''
+	
+	def form_valid(self, form):
+		return super(ConsultaFormView,self).form_valid(form)
+
+class ConsultaDeleteView(DeleteView):
+	model = Consulta
+	#success_url = reverse_lazy('consulta_resumo')
+
+class ConsultaDetailView(DetailView):
+	pk_url_kwarg = "consulta_id"
+	model = Consulta
+
+	def get_context_data(self, **kwargs):
+		context = super (ConsultaDetailView, self).get_context_data(**kwargs)
+		return context
+
+class ConsultaUpdateView(UpdateView):
+	model = Consulta
+	template_name_suffix = 'form_update'
+
+class ConsultaListView(ListView):
+	model = Consulta    	
+	paginate_by = 10 
+
+class ConsultaResumo(ConsultaListView):
+	template_name=''
+
+class ConsultaBuscaListView(ConsultaListView):
+	def get_queryset(self):
+        	result = super(ConsultaBuscaListView, self).get_queryset()
+
+	        query = self.request.GET.get('q')
+	        if query:
+	            query_list = query.split()
+	            result = result.filter(
+	                #reduce(operator.and_,
+	                       #(Q(campo1__icontains=q) for q in query_list)) |
+			#reduce(operator.and_,
+	                       #(Q(campo2__icontains=q) for q in query_list))
+	            )
+	
+	        return result
+
+#Views relacionadas à classe Exame:
+
+class ExameFormView(FormView):
+	template_name = ''
+	form_class = ExameForm
+	success_url = ''
+	
+	def form_valid(self, form):
+		return super(ExameFormView,self).form_valid(form)
+
+class ExameDeleteView(DeleteView):
+	model = Exame
+	#success_url = reverse_lazy('consulta_resumo')
+
+class ExameDetailView(DetailView):
+	pk_url_kwarg = "exame_id"
+	model = Exame
+
+	def get_context_data(self, **kwargs):
+		context = super (ExameDetailView, self).get_context_data(**kwargs)
+		return context
+
+class ExameUpdateView(UpdateView):
+	model = Exame
+	template_name_suffix = 'form_update'
+
+class ExameListView(ListView):
+	model = Exame    	
+	paginate_by = 10 
+
+class ExameResumo(ExameListView):
+	template_name=''
+
+class ExameBuscaListView(ExameListView):
+	def get_queryset(self):
+	       	result = super(ExameBuscaListView, self).get_queryset()
+	        query = self.request.GET.get('q')
+	        if query:
+	            query_list = query.split()
+	            result = result.filter(
+	                #reduce(operator.and_,
+	                       #(Q(campo1__icontains=q) for q in query_list)) |
+			#reduce(operator.and_,
+	                       #(Q(campo2__icontains=q) for q in query_list))
+	            )
+	
+	        return result

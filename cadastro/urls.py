@@ -19,15 +19,25 @@ from cadastro.views import *
 
 urlpatterns = [
     url(r'^main/$|^$',  MainView.as_view(), name='main'),
+
+    #Urls relacionadas às views de Tutor
     url(r'^tutor/resumo$',  TutorResumo.as_view(), name='tutor_resumo'),
-    url(r'^animal/resumo$',  AnimalResumo.as_view(), name='animal_resumo'),
-    url(r'^animal/detalhes/(?P<animal_id>\d+)/$', AnimalDetalhesView.as_view(), name = 'animal_detalhes'),
     url(r'^tutor/detalhes/(?P<tutor_id>\d+)/$', TutorDetalhesView.as_view(), name = 'tutor_detalhes'),
     url(r'(?P<pk>\d+)/$',TutorEditar.as_view(),  name = 'tutor_editar'),
     url(r'^tutor/cadastro$', TutorFormView.as_view(), name = 'tutor_cadastro'),
-    url(r'^animal/cadastro$', AnimalFormView.as_view(), name = 'animal_cadastro'),
     url(r'^tutor/busca$', TutorBuscaListView.as_view(), name = 'tutor_busca_list_view'),
+
+
+    #Urls relacionadas às views de Animal
+    url(r'^animal/resumo$',  AnimalResumo.as_view(), name='animal_resumo'),
+    url(r'^animal/detalhes/(?P<animal_id>\d+)/$', AnimalDetalhesView.as_view(), name = 'animal_detalhes'),
+    url(r'^animal/cadastro$', AnimalFormView.as_view(), name = 'animal_cadastro'),
     url(r'^animal/busca$', AnimalBuscaListView.as_view(), name = 'animal_busca_list_view'),
+
+    #Urls relacionadas às views de Consulta
+
+    #Urls relacionadas às views de Exame
+
     #url(r'^consulta/detalhes/(?P<consulta_id>\d+)/$', ConsultarDetalhesView.as_view(), name = 'consulta_detalhes'),
     #url(r'(?P<pk>\d+)/$',ConsultaEditar.as_view(),  name = 'consulta_editar'),
     #url(r'^exame/detalhes/(?P<exame_id>\d+)/$', ExaminarDetalhesView.as_view(), name = 'exame_detalhes'),

@@ -26,6 +26,7 @@ class EnderecoAbs(models.Model):
 	class Meta:
 		abstract = True	
 
+
 class AcoesEndereco(EnderecoAbs):
 	def __unicode__(self):
 		return u'%s %s' % (self.logradouro, self.numero)
@@ -33,6 +34,7 @@ class AcoesEndereco(EnderecoAbs):
 	class Meta:
 		verbose_name_plural = "Endereços"
 		abstract = True			
+
 
 class Endereco(AcoesEndereco):
 	def _get_logradouro(self):
@@ -80,6 +82,7 @@ class Endereco(AcoesEndereco):
 	class Meta:
 		abstract = True	
 			
+
 class TelefoneAbs(models.Model):
 	TIPO_CHOICES = (
 		('Fixo', 'Fixo'),
@@ -91,6 +94,7 @@ class TelefoneAbs(models.Model):
 	class Meta:
 		abstract = True	
 		
+
 class AcoesTelefone(TelefoneAbs):
 	def __unicode__(self):
 		return u'%s' % (self.telefone)
@@ -98,6 +102,7 @@ class AcoesTelefone(TelefoneAbs):
 	class Meta:
 		verbose_name_plural = "Telefones"
 		abstract = True
+
 
 class Telefone(AcoesTelefone):
 	def _get_telefone(self):
@@ -111,21 +116,23 @@ class Telefone(AcoesTelefone):
 	class Meta:
 		abstract = True	
 	
+
 class TutorAbs(models.Model):
 	_nome = models.CharField(verbose_name='Nome', max_length=50)
 	_email = models.EmailField(verbose_name='E-Mail')
-	_cpf = models.PositiveSmallIntegerField(verbose_name='CPF', max_length=11)
+	_cpf = models.CharField(verbose_name='CPF', max_length=11)
 	#endereco = models.ForeignKey(Endereco, on_delete = models.CASCADE)
 	#telefone = models.ForeignKey(Telefone, on_delete = models.CASCADE)
 	
 	class Meta:
 		abstract = True
 		
+
 class AcoesTutor(TutorAbs):
 	def __unicode__(self):
 		return u'%s %s' % (self.nome, self.cpf)
 				
-	classmethod
+	@classmethod
 	def retornarID(tutor_id):
 		lista = (Tutor.objects.get(self.id_ == tutor_id)) 
 		return lista
@@ -135,8 +142,6 @@ class AcoesTutor(TutorAbs):
 		lista_tutor = Tutor.objects.get(nome__icontains = item) 
 		lista_tutor += Tutor.objects.filter(email__icontains = item) 	
 		lista_tutor += Tutor.objects.filter(cpf__icontains = item) 		
-		lista_tutor += Tutor.objects.filter(endereco__icontains = item) 		
-		lista_tutor += Tutor.objects.filter(telefone__icontains = item) 
 		lista_retornavel = list(set(lista_tutor))		
 		return lista_retornavel
 		
@@ -149,13 +154,14 @@ class AcoesTutor(TutorAbs):
 		return lista_retornavel
 			
 	@classmethod		
-	def listarAnimais():
-		return animais.objects.filter(tutor = pk) 			
+	def listarAnimais(animal_id):
+		return animais.objects.filter(self.id_ == animal_id) 			
 			
 	class Meta:
 		verbose_name_plural = "Tutores"
 		abstract = True	
 		
+
 class Tutor(AcoesTutor):
 	def _get_nome(self):
 		return self._nome		
@@ -181,8 +187,12 @@ class Tutor(AcoesTutor):
 	class Meta:
 		abstract = True		
 
+
+#mudar o nome para tutor_detalhe ou tutordetalhe ou tutordetalhes
 class TutorEndTel(Tutor, Endereco, Telefone):
-	pass
+	def get_absolute_url(self):
+		return reverse('tutor-detail', kwargs={'pk': self.pk})
+
 
 class AnimalAbs(models.Model):
 	GENERO_CHOICES = (
@@ -195,20 +205,36 @@ class AnimalAbs(models.Model):
 	_raca = models.CharField(verbose_name='Raça', max_length=50)
 	sexo = models.CharField(verbose_name='Sexo', max_length=15, choices=GENERO_CHOICES)
 	_nascimento = models.DateField(verbose_name='Data de Nascimento')
-	_idade = models.PositiveSmallIntegerField(verbose_name='Idade', max_length=3)
+	_idade = models.PositiveSmallIntegerField(verbose_name='Idade')
 	tutor = models.ForeignKey(TutorEndTel, on_delete = models.CASCADE)
 
 	class Meta:
 		verbose_name_plural = "Animais"
 		abstract = True
 
+
 class AcoesAnimal(AnimalAbs):
 	def __unicode__(self):
 		return u'%s %s' % (self.nome, self.rg)
 		
+	@classmethod		
+	def verificarID(animal_id):
+		return animais.objects.filter(self.id_ == animal_id)
+		
+	
+	@classmethod	
+	def verificarAtributos(item):
+		lista_animal = Animal.objects.get(nome__icontains = item) 
+		lista_animal += Animal.objects.filter(rg__icontains = item) 	
+		lista_animal += Animal.objects.filter(especie__icontains = item)
+		lista_animal += Animal.objects.filter(raca__icontains = item) 		
+		lista_retornavel = list(set(lista_animal))		
+		return lista_retornavel			
+		
 	class Meta:
 		abstract = True
 		
+
 class Animal(AcoesAnimal):
 	def _get_nome(self):
 		return self._nome

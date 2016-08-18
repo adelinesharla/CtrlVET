@@ -6,7 +6,7 @@ from django import forms
 'importação necessária para criar formulários com mais de uma model'
 #from django.forms.models import inlineformset_factory
 
-from .models import Animal, TutorEndTel
+from .models import *
 
 class TutorModelForm(forms.ModelForm):
 	class Meta:
@@ -29,3 +29,13 @@ class AnimalModelForm(forms.ModelForm):
 	class Meta:
 		model = Animal
 		fields = {'_nome', '_rg', '_especie', '_raca', 'sexo', '_nascimento', '_idade'}
+
+class ConsultaModelForm(forms.ModelForm):
+	class Meta:
+		model = Consulta
+		fields = {}
+
+class ExameModelForm(forms.ModelForm):
+	class Meta:
+		model = Exame
+		fields = {}

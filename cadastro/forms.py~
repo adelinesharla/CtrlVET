@@ -10,7 +10,7 @@ from .models import Animal, TutorEndTel
 
 class TutorModelForm(forms.ModelForm):
 	class Meta:
-		model = Tutor
+		model = TutorEndTel
 		fields = ('_nome', '_email', '_cpf', '_logradouro', '_numero', '_bairro', '_cidade', '_cep', '_uf','_telefone', 'tipo')
 
 """
@@ -29,3 +29,13 @@ class AnimalModelForm(forms.ModelForm):
 	class Meta:
 		model = Animal
 		fields = {'_nome', '_rg', '_especie', '_raca', 'sexo', '_nascimento', '_idade'}
+
+class ConsultaModelForm(forms.ModelForm):
+	class Meta:
+		model = Consulta
+		fields = {}
+
+class ExameModelForm(forms.ModelForm):
+	class Meta:
+		model = Exame
+		fields = {}

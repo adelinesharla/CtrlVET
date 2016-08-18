@@ -278,3 +278,49 @@ class Animal(AcoesAnimal):
 	raca = property(_get_raca,_set_raca)
 	nascimento = property(_get_nascimento,_set_nascimento)
 	idade = property(_get_idade,_set_idade)
+
+class Veterinario(models.Model):
+	pass
+
+class Tecnico(models.Model):
+	pass
+
+class Servico(models.Model):
+	#campos
+	data = models.DateField(verbose_name='Data de Realização')
+	diagnostico = models.TextField(verbose_name='Diagnóstico', max_length=200)
+
+	#métodos
+
+	class Meta:
+		abstract = True
+
+class ConsultaAbs (Servico):
+	#campos
+	retorno = models.BooleanField(default = 'False')
+	animal = models.OneToOneField(Animal, on_delete=models.CASCADE, related_name='a_ser_consultado')
+	veterinario = models.OneToOneField(Veterinario, on_delete=models.CASCADE, related_name='realiza_consulta')
+	#métodos
+
+	class Meta:
+		abstract = True
+		verbose_name_plural = "Consultas"
+
+class Consulta (ConsultaAbs):
+	#campos
+	#métodos
+	pass
+
+class ExameAbs (Servico):
+	#campos
+	tecnico = models.OneToOneField(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame')
+	resultado = models.TextField(verbose_name='Diagnóstico', max_length=200)
+	#métodos
+	class Meta:
+		abstract = True
+		verbose_name_plural = "Exames"
+
+class Exame (ExameAbs):
+	#campos
+	#métodos
+	pass

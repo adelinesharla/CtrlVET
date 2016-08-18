@@ -2,13 +2,10 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'tutor_resumo' %}" class="breadcrumb">Tutor</a>
+<a href="{% url 'tutor_resumo' %}" class="breadcrumb">Animal</a>
 {% endblock %}
 
 {% block content %}
-
-
-
 
 <div class="row">
 	<div class="card">
@@ -19,17 +16,17 @@
 			<div class="row">
 				<div class="nav-wrapper">
 					<!-- A tag action leva a url do search. pode ser colocada uma tag pra view passar o action, tornando o form reusável-->
-					<form id="searchform" action="{% url 'tutor_busca_list_view' %}" method="GET" accept-charset="utf-8"> 
+					<form id="searchform" action="{% url 'animal_busca_list_view' %}" method="GET" accept-charset="utf-8"> 
 
 						<div class="input-field col s12 m9 l9">
-							<input type="search" name="q" required>
+							<input type="search" required>
 							<label for="search"><i class="material-icons">search</i></label>
 							<i class="material-icons">close</i>
 						</div>
 					</form>
 
 					<div class="input-field col s12 m3 l3 right-align">
-						<a href="{% url 'tutor_cadastro' %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
+						<a href="{% url 'animal_cadastro' %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
 					</div>
 
 				</div>
@@ -40,40 +37,40 @@
 
 			<div class="row">
 				<div class="col s12 m12 l12">
-					<span class="card-title">Clientes Cadastrados</span>
+					<span class="card-title">Animais Cadastrados</span>
 					<div class="divider"></div>
 					<div class="row">
 						<div class="col s12 m12">
 							<table class="reponsive-table centered highlight striped">
 								<thead>
-									<th data-field="">Nome</th>
-									<th data-field="">CPF</th>
-									<th data-field="">Email</th>
+									<th data-field="">Nome</meth>
+										<th data-field="">RG</th>
+										<th data-field="">Tutor</th>
 
-									<!--	<th data-field="">Detalhes</th> -->
-								</tr>
-							</thead>
+										<!--	<th data-field="">Detalhes</th> -->
+									</tr>
+								</thead>
 
-							<tbody>
+								<tbody>
 
-								{% for object in object_list %}
-								<tr>
-									<td><b>{{ object.nome }}</b></td>
-									<td>{{ object.cpf }}</td>
-									<td>{{ object.email }}</td>
-								</tr>
+									{% for object in objects %}
+									<tr>
+										<td><b>{{ object.nome }}</b></td>
+										<td>{{ object.rg }}</td>
+										<td>{{ object.tutor.nome }}</td>
+									</tr>
 
-								{% endfor %}
+									{% endfor %}
 
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
-
 	</div>
-</div>
 
 
-{% endblock %}
+	{% endblock %}

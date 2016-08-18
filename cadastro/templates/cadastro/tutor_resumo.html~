@@ -56,7 +56,7 @@
 
 							<tbody>
 
-								{% for object in object_list %}
+								{% for object in objects %}
 								<tr>
 									<td><b>{{ object.nome }}</b></td>
 									<td>{{ object.cpf }}</td>

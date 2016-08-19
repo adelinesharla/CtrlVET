@@ -117,18 +117,43 @@ class Telefone(AcoesTelefone):
 		abstract = True	
 	
 
-class TutorAbs(models.Model):
+class PessoaAbs(models.Model):
 	_nome = models.CharField(verbose_name='Nome', max_length=50)
 	_email = models.EmailField(verbose_name='E-Mail')
 	_cpf = models.CharField(verbose_name='CPF', max_length=11)
 	#endereco = models.ForeignKey(Endereco, on_delete = models.CASCADE)
 	#telefone = models.ForeignKey(Telefone, on_delete = models.CASCADE)
 	
+	def _get_nome(self):
+		return self._nome		
+		
+	def _get_email(self):
+		return self._email
+	
+	def _get_cpf(self):
+		self._cpf
+		
+	def _set_nome(self,nome):
+		self._nome = nome
+	
+	def _set_email(self,email):
+		self._email = email	
+
+	def _set_cpf(self,cpf):
+		self._cpf = cpf	
+	
+	nome = property(_get_nome,_set_nome)
+	email = property(_get_email,_set_email)	
+	cpf = property(_get_cpf,_set_cpf)
+	
+	class Meta:
+		abstract = True		
+	
 	class Meta:
 		abstract = True
 		
 
-class AcoesTutor(TutorAbs):
+class AcoesTutor(PessoaAbs):
 	def __unicode__(self):
 		return u'%s %s' % (self.nome, self.cpf)
 				
@@ -163,27 +188,6 @@ class AcoesTutor(TutorAbs):
 		
 
 class Tutor(AcoesTutor):
-	def _get_nome(self):
-		return self._nome		
-		
-	def _get_email(self):
-		return self._email
-	
-	def _get_cpf(self):
-		self._cpf
-		
-	def _set_nome(self,nome):
-		self._nome = nome
-	
-	def _set_email(self,email):
-		self._email = email	
-
-	def _set_cpf(self,cpf):
-		self._cpf = cpf	
-	
-	nome = property(_get_nome,_set_nome)
-	email = property(_get_email,_set_email)	
-	cpf = property(_get_cpf,_set_cpf)
 	class Meta:
 		abstract = True		
 
@@ -279,50 +283,117 @@ class Animal(AcoesAnimal):
 	nascimento = property(_get_nascimento,_set_nascimento)
 	idade = property(_get_idade,_set_idade)
 
-class Veterinario(models.Model):
+# referente a veterinario
+class AcoesVeterinario(PessoaAbs):			
+	@classmethod
+	def retornarID(veterinario_id):
+		lista = (Veterinario.objects.get(self.id_ == veterinario_id)) 
+		return lista
+		
+	@classmethod	
+	def buscarVeterinario(atributo_de_busca):	
+		lista_veterinario = AcoesVeterinario.retornarID(atributo_de_busca)
+		if lista_retornavel != None: 
+			return lista_retornavel
+		lista_retornavel = AcoesVeterinario.verificarAtributos(atributo_de_busca) 	
+		return lista_retornavel
+			
+	class Meta:
+		verbose_name_plural = "Veterinarios"
+		abstract = True	
+				
+
+class Veterinario(AcoesVeterinario):
 	pass
+	
+# referente a tecnico	
+class AcoesTecnico(PessoaAbs):
+	@classmethod
+	def retornarID(tecnico_id):
+		lista = (Tecnico.objects.get(self.id_ == tecnico_id)) 
+		return lista
+		
+	@classmethod	
+	def buscarTecnico(atributo_de_busca):	
+		lista_tecnico = AcoesTecnico.retornarID(atributo_de_busca)
+		if lista_retornavel != None: 
+			return lista_retornavel
+		lista_retornavel = AcoesTecnico.verificarAtributos(atributo_de_busca) 	
+		return lista_retornavel
+			
+	class Meta:
+		verbose_name_plural = "Tecnicos"
+		abstract = True	
 
-class Tecnico(models.Model):
+class Tecnico(AcoesTecnico):
 	pass
+	
+# classes para servico,consulta e exame	
+class ServicoAbs(models.Model):
+	_data = models.DateField(verbose_name='Data de Realização')
+	_diagnostico = models.TextField(verbose_name='Diagnóstico', max_length=200)
 
-class Servico(models.Model):
-	#campos
-	data = models.DateField(verbose_name='Data de Realização')
-	diagnostico = models.TextField(verbose_name='Diagnóstico', max_length=200)
-
-	#métodos
-
+	def _get_data(self):
+		return self._data
+	
+	def _get_diagnostico(self):
+		return self._diagnostico	
+																																
+	def _set_diagnostico(self,diagnostico):
+		self._diagnostico = diagnostico
+	
+	def _set_data(self,data):
+		self._data = data
+		
+	diagnostico = property(_get_diagnostico,_set_diagnostico)		
+	data = property(_get_data,_set_data)	
+		
 	class Meta:
 		abstract = True
 
-class ConsultaAbs (Servico):
-	#campos
-	retorno = models.BooleanField(default = 'False')
+class ConsultaAbs (ServicoAbs):
+	_retorno = models.BooleanField(default = 'False')
 	animal = models.OneToOneField(Animal, on_delete=models.CASCADE, related_name='a_ser_consultado')
-	veterinario = models.OneToOneField(Veterinario, on_delete=models.CASCADE, related_name='realiza_consulta')
-	#métodos
-
+	veterinario = models.OneToOneField(Veterinario, on_delete=models.CASCADE, related_name='realiza_consulta')	
+	
 	class Meta:
 		abstract = True
 		verbose_name_plural = "Consultas"
+		
+class AcoesConsulta(ConsultaAbs):
+		#métodos
+		class Meta:
+			abstract = True
 
-class Consulta (ConsultaAbs):
-	#campos
-	#métodos
-	pass
+class Consulta (AcoesConsulta):
+	
+	def _get_retorno(self):
+		return self._retorno	
+																																
+	def _set_retorno(self,retorno):
+		self._retorno = retorno
+	
+	retorno = property(_get_retorno,_set_retorno)	
 
-class ExameAbs (Servico):
-	#campos
+class ExameAbs (ServicoAbs):
 	animal = models.OneToOneField(Animal, on_delete=models.CASCADE, related_name='amostrado_para_exame')
 	veterinario = models.OneToOneField(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
 	tecnico = models.OneToOneField(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame')
-	resultado = models.TextField(verbose_name='Diagnóstico', max_length=200)
-	#métodos
+	_resultado = models.TextField(verbose_name='Diagnóstico', max_length=200)
 	class Meta:
 		abstract = True
 		verbose_name_plural = "Exames"
-
-class Exame (ExameAbs):
-	#campos
+		
+class AcoesExame(ExameAbs):
 	#métodos
 	pass
+
+class Exame (AcoesExame):
+	
+	def _get_resultado(self):
+		return self._resultado	
+																																
+	def _set_resultado(self,resultado):
+		self._resultado = resultado
+	
+	resultado = property(_get_resultado,_set_resultado)			

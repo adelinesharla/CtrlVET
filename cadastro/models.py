@@ -7,6 +7,8 @@ import abc
 import datetime
 from django.utils import timezone
 
+from django.core.urlresolvers import reverse
+
 'Tradução e estados para PT-BR'
 from django.utils.translation import ugettext_lazy as _
 from localflavor.br.forms import STATE_CHOICES
@@ -194,8 +196,8 @@ class Tutor(AcoesTutor):
 
 #mudar o nome para tutor_detalhe ou tutordetalhe ou tutordetalhes
 class TutorEndTel(Tutor, Endereco, Telefone):
-	def get_absolute_url(self):
-		return reverse('tutor-detail', kwargs={'pk': self.pk})
+    def get_absolute_url(self):
+        return reverse('tutorendtel_detail', kwargs={'pk': self.pk})
 
 
 class AnimalAbs(models.Model):

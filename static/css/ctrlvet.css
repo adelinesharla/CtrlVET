@@ -118,12 +118,6 @@ main {
 	color: #1a237e;
 }
 
-/* Tabelas */
-
-table.highlight > tbody > tr:hover {
-	border-left:5px solid #1a237e;
-}
-
 /* dropdown menu*/
 
 .dropdown-content{
@@ -656,12 +650,6 @@ main {
 
 .picker__close, .picker__today {
 	color: #1a237e;
-}
-
-/* Tabelas */
-
-table.highlight > tbody > tr:hover {
-	border-left:5px solid #1a237e;
 }
 
 /* dropdown menu*/

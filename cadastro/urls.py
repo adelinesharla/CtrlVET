@@ -20,10 +20,14 @@ from cadastro.views import *
 urlpatterns = [
     url(r'^main/$|^$',  MainView.as_view(), name='main'),
 
+    #Url sucess
+    url(r'^success/$',  SuccessView.as_view(), name='success'),
+
     #Urls relacionadas às views de Tutor
     url(r'^tutor/resumo$',  TutorResumo.as_view(), name='tutor_resumo'),
-    url(r'^tutor/detalhes/(?P<tutor_id>\d+)/$', TutorDetalhesView.as_view(), name = 'tutor_detalhes'),
-    url(r'(?P<pk>\d+)/$',TutorEditar.as_view(),  name = 'tutor_editar'),
+    url(r'^tutor/detalhes/(?P<tutor_id>\d+)/', TutorDetalhesView.as_view(), name = 'tutor_detalhes'),
+    url(r'^tutor/detalhes/editar/(?P<pk>\d+)/',TutorEditar.as_view(),  name = 'tutor_editar'),
+    url(r'^tutor/detalhes/deletar/(?P<pk>\d+)/',TutorDeletar.as_view(),  name = 'tutor_deletar'),
     url(r'^tutor/cadastro$', TutorFormView.as_view(), name = 'tutor_cadastro'),
     url(r'^tutor/busca$', TutorBuscaListView.as_view(), name = 'tutor_busca_list_view'),
 

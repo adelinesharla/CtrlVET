@@ -58,7 +58,7 @@
 
 								{% for object in object_list %}
 								<tr>
-									<td><b>{{ object.nome }}</b></td>
+									<td><a href="{% url 'tutor_detalhes' object.pk %}"><b>{{ object.nome }}</b></a></td>
 									<td>{{ object.cpf }}</td>
 									<td>{{ object.email }}</td>
 								</tr>

@@ -19,6 +19,12 @@ from django.forms.models import model_to_dict #iterar em object no template
 import operator
 from django.db.models import Q
 
+
+
+from django.core.urlresolvers import reverse_lazy
+
+
+
 #Não somos selvagens. O uso de 2 espaços como forma de identação é degradante.
 #Tabs são apropriados e garantem uma maior readability ao código
 # :)
@@ -27,12 +33,15 @@ from django.db.models import Q
 class MainView(TemplateView):
 	template_name='cadastro/main.html'
 
+class SuccessView(TemplateView):
+	template_name='cadastro/success.html'	
+
 #Views relacionadas à classe Tutor:
 
 """Classe para listar os tutores"""
 class ListTutor(ListView):
 	model = TutorEndTel
-	paginate_by = 10 			
+	paginate_by = 10		
 
 """Classe de renderização do painel de tutor (sem contexto)"""
 class TutorResumo(ListTutor):
@@ -41,7 +50,7 @@ class TutorResumo(ListTutor):
 'TUTOR FORM VIEW , PARA FORMULARIO DE CADASTRO DO TUTOR'
 class TutorFormView(View):
 	form_class_tutor = TutorModelForm
-	template_formulario = 'cadastro/tutor_form.html'
+	template_formulario = 'cadastro/tutorendtel_form.html'
 
 	def get(self, request):
 		form = self.form_class_tutor()
@@ -59,6 +68,7 @@ class TutorFormView(View):
 class TutorDeletar(DeleteView):
 	model = TutorEndTel
 	#success_url = reverse_lazy('tutor_resumo')
+	success_url = '/success/'
 
 """Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""
 class TutorDetalhesView(DetailView):
@@ -73,7 +83,12 @@ class TutorDetalhesView(DetailView):
 """Classe para editar Tutor"""
 class TutorEditar(UpdateView):
 	model = TutorEndTel
-	template_name_suffix = 'form_update'
+	fields = '__all__'
+	template_name_suffix = '_form_update'
+	success_url = '/success/'
+	#ainda não faço ideia de como fazer isso funcionar
+
+
 
 """Classe para busca de Tutor pelos campos: nome, email e cpf"""
 class TutorBuscaListView(ListTutor):
@@ -131,14 +146,15 @@ class AnimalDetalhesView(DetailView):
 		return context
 
 """Classe para editar Animal"""
-class TutorEditar(UpdateView):
+class AnimalEditar(UpdateView):
+	fields = '__all__'
 	model = Animal
-	template_name_suffix = 'form_update'
+	template_name_suffix = '_form_update'
 
 """Classe para deletar Animal"""
-class TutorDeletar(DeleteView):
+class AnimalDeletar(DeleteView):
 	model = Animal
-	#success_url = reverse_lazy('animal_resumo') 
+	success_url = '/success/'
 
 """Classe para busca de Animal pelos campos: nome, rg, especie e raça"""
 class AnimalBuscaListView(ListAnimal):

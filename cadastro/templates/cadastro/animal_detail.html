@@ -1,76 +1,83 @@
-{% extends "base.html" %}
+{% extends "cadastro/base_visaogeral.html" %}
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">Animal</a>
+
 <a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
-<a href="{{ request.get_absolute_url }}" class="breadcrumb">{{ object.nome }}</a>
+
 {% endblock %}
 
-{% block content %}
+{% block detalhes %}
 
 <div class="card">
 	<div class="card-content">
 		<div class="row">
-			<div class="col s2 m2 l2">
-				<p><b>Nome</b></p>
-			</div> 
-			<div class="col s4 m4 l4">
-				<p>{{ object.nome }}</p>
-			</div> 
-			<div class="col s2 m2 l2">
-				<p><b>RG</b></p>
+			<div class="card-content">
+				<div class="col s2 m2 l2">
+					<p><b>Nome</b></p>
+				</div> 
+				<div class="col s4 m4 l4">
+					<p>{{ object.nome }}</p>
+				</div> 
+				<div class="col s2 m2 l2">
+					<p><b>RG</b></p>
+				</div>
+				<div class="col s4 m4 l4">
+					<p>{{ object.rg }}</p>
+				</div> 
 			</div>
-			<div class="col s4 m4 l4">
-				<p>{{ object.rg }}</p>
-			</div> 
 		</div>
 		
 		<div class="row">
-			<div class="col s2 m2 l2">
-				<p><b>Espécie</b></p>
-			</div> 
-			<div class="col s4 m4 l4">
-				<p>{{ object.especie }}</p>
-			</div> 
-			<div class="col s2 m2 l2">
-				<p><b>Raça</b></p>
-			</div> 
-			<div class="col s4 m4 l4">
-				<p>{{ object.raca }}</p>
-			</div> 
-			<div class="col s2 m2 l2">
-				<p><b>Idade</b></p>
-			</div> 
-			<div class="col s4 m4 l4">
-				<p>{{ object.nascimento }}</p>
+			<div class="card-content">
+				<div class="col s2 m2 l2">
+					<p><b>Espécie</b></p>
+				</div> 
+				<div class="col s4 m4 l4">
+					<p>{{ object.especie }}</p>
+				</div> 
+				<div class="col s2 m2 l2">
+					<p><b>Raça</b></p>
+				</div> 
+				<div class="col s4 m4 l4">
+					<p>{{ object.raca }}</p>
+				</div> 
+				<div class="col s2 m2 l2">
+					<p><b>Idade</b></p>
+				</div> 
+				<div class="col s4 m4 l4">
+					<p>{{ object.nascimento }}</p>
+				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col s2 m2 l2">
-				<p><b>Tutor</b></p>
-			</div> 
-			<div class="col s4 m4 l4">
-				<p>{{ object.tutor.nome }}</p>
+			<div class="card-content">
+				<div class="col s2 m2 l2">
+					<p><b>Tutor</b></p>
+				</div> 
+				<div class="col s4 m4 l4">
+					<p>{{ object.tutor.nome }}</p>
+				</div>
+				<div class="col s2 m2 l2">
+					<p><b>CPF</b></p>
+				</div> 
+				<div class="col s4 m4 l4">
+					<p>{{ object.tutor.cpf }}</p>
+				</div>
 			</div>
-			<div class="col s2 m2 l2">
-				<p><b>CPF</b></p>
-			</div> 
-			<div class="col s4 m4 l4">
-				<p>{{ object.tutor.cpf }}</p>
-			</div>
-			
 		</div>
-
-	
 		
+		<div class="row">
+			<div class="col s12 m12 l12">
+				<div class="card-content right">
+					<a href="{% url 'animal_deletar' object.id %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">delete</i>Deletar</a>
+					<a href="{% url 'animal_editar' object.id %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">edit</i>Editar</a>
+				</div>	
+			</div>
+		</div>
 	</div>
 </div>
-
-
-
-
 
 
 {% endblock %}

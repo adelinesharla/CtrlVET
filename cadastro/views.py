@@ -41,7 +41,7 @@ class SuccessView(TemplateView):
 """Classe para listar os tutores"""
 class ListTutor(ListView):
 	model = TutorEndTel
-	paginate_by = 10		
+	paginate_by = 10	
 
 """Classe de renderização do painel de tutor (sem contexto)"""
 class TutorResumo(ListTutor):

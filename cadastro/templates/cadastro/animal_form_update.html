@@ -1,10 +1,10 @@
-{% extends "cadastro/tutor_form.html" %}
+{% extends "cadastro/animal_form.html" %}
 
 {% load materializecss %}
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'tutor_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
+<a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
 <a href="{{ request.get_absolute_url }}" class="breadcrumb">Editar</a>
 {% endblock %}
 

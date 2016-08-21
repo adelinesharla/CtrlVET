@@ -1,21 +1,21 @@
-{% extends "base.html" %}
+{% extends "cadastro/base_visaogeral.html" %}
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'tutor_resumo' %}" class="breadcrumb">Tutor</a>
 {% endblock %}
 
+
 {% block content %}
-
-
-
 
 <div class="row">
 	<div class="card">
 		<div class="card-content">
-			
 
-			<!-- Busca-->
+			{% block estatisticas %}
+			{% endblock %}
+
+			{% block pesquisa %}
+
 			<div class="row">
 				<div class="nav-wrapper">
 					<!-- A tag action leva a url do search. pode ser colocada uma tag pra view passar o action, tornando o form reusável-->
@@ -29,21 +29,25 @@
 					</form>
 
 					<div class="input-field col s12 m3 l3 right-align">
-						<a href="{% url 'tutor_cadastro' %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">add</i>Adicionar</a>
+						<a href="{% url 'tutor_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
 					</div>
 
 				</div>
 			</div>
 
+			{% endblock %}
 
-			<!-- lista-->
+			{% block lista %}
 
 			<div class="row">
 				<div class="col s12 m12 l12">
-					<span class="card-title">Clientes Cadastrados</span>
+					<span class="card-title">Tutores</span>
 					<div class="divider"></div>
 					<div class="row">
 						<div class="col s12 m12">
+
+							{% if object_list %}
+
 							<table class="reponsive-table centered highlight striped">
 								<thead>
 									<th data-field="">Nome</th>
@@ -67,13 +71,21 @@
 
 							</tbody>
 						</table>
+						
+						{% else %}
+						
+						<p>Nenhum <b>tutor</b> encontrado</p>
+						{% endif %}
+						
 					</div>
 				</div>
 			</div>
-		</div>
 
+			{% endblock %}
+
+		</div>
 	</div>
 </div>
 
-
 {% endblock %}
+

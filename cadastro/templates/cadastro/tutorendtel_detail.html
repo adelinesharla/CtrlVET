@@ -1,13 +1,13 @@
-{% extends "base.html" %}
+{% extends "cadastro/base_visaogeral.html" %}
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">Tutor</a>
+
 <a href="{% url 'tutor_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
 
 {% endblock %}
 
-{% block content %}
+{% block detalhes %}
 
 <div class="card">
 	<div class="card-content">

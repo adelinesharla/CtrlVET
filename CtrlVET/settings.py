@@ -150,7 +150,7 @@ BOWER_COMPONENTS_ROOT = 'components'
 BOWER_INSTALLED_APPS = (
     'jquery',
     'underscore',
-    'materialize',
+    'Materialize',
     'moment',
     'fullcalendar',
     )

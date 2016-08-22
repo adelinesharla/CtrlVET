@@ -390,17 +390,18 @@ class ExameAbs (ServicoAbs):
 class AcoesExame(ExameAbs):
 	@classmethod
 	def estadoExame(veterinario,tecnico,estadoexame):
-	""" SE exame passou por tecnico  SE Sim.
-	resultado do tecnico passou por medico veterinario. SE SIM . Concluído"""
-	"""SE nao pendente"""
 		if tecnico != None:
 			if veterinario != None:
-				return estadoExame = True
-			else
-				return estadoExame = False
-		else
-			return estadoExame = False
+				estadoExame = True
+				return estadoExame
+			else:
+				estadoExame = False
+				return estadoExame
+		else:
+			estadoExame = False
+			return estadoExame
 
+	
 class Exame (AcoesExame):
 	
 	def _get_resultado(self):

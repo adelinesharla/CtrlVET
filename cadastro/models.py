@@ -306,7 +306,7 @@ class AcoesVeterinario(PessoaAbs):
 				
 
 class Veterinario(AcoesVeterinario):
-	pass
+	crmv = models.CharField(verbose_name='CRMV', max_length=10)
 	
 # referente a tecnico	
 class AcoesTecnico(PessoaAbs):

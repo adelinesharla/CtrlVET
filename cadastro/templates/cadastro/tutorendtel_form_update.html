@@ -1,6 +1,6 @@
 {% extends "cadastro/tutor_form.html" %}
 
-{% load materializecss %}
+{% load material_form %}
 
 {% block breadcrumbs %}
 {{ block.super }}
@@ -11,16 +11,14 @@
 {% block form_submit_action %}
 
 <div class="card">
-	<div class="card-content">
-		<span class="card-title">{{ titulo_form }}</span>
-		<div class="divider"></div>
-		
+	<div class="card-content">		
 		<form action="" method="POST"> 
 			<div class="row">
 				{% endblock %}
 
 				{% block form %}
-				{{ block.super }}
+				{% csrf_token %}
+				{% form form=form %}{% endform %}
 				{% endblock %}
 
 				{% block form_submit %}

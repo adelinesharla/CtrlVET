@@ -1,6 +1,6 @@
 {% extends "cadastro/tutor_form.html" %} 
 
-{% load materializecss %}
+{% load material_form %} 
 
 {% block breadcrumbs %}
 {{ block.super }}
@@ -10,14 +10,9 @@
 {% block form_submit_action %}
 
 <div class="card">
-	<div class="card-content">
-		
-		<span class="card-title">Cadastro de Tutor</span>
-		
-		<div class="divider"></div>
-		
+	<div class="card-content">		
 		<form action="cadastro" method="POST"> 
-			<div class="row">
+			
 				
 {% endblock %}
 
@@ -34,7 +29,7 @@
 							</button>
 						</div>
 					</div>
-				</div>
+	
 			</div>
 		</form>
 	</div>

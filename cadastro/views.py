@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.conf.urls import url
 
 """Classes de views genericas utilizadas"""
-from django.views.generic import View, TemplateView, DetailView, UpdateView, DeleteView,ListView, FormView
+from django.views.generic import View, FormView, TemplateView, DetailView, UpdateView, DeleteView, ListView, FormView
 
 'HttpResponse para uma pagina template indicando que a operação foi realizada (verificar se tal página existe)'
 from django.http import HttpResponseRedirect
@@ -47,22 +47,16 @@ class ListTutor(ListView):
 class TutorResumo(ListTutor):
 	template_name='cadastro/tutor_resumo.html'
 
-'TUTOR FORM VIEW , PARA FORMULARIO DE CADASTRO DO TUTOR'
-class TutorFormView(View):
-	form_class_tutor = TutorModelForm
-	template_formulario = 'cadastro/tutorendtel_form.html'
+"""Formulário de cadastro de Tutor"""
+class TutorFormView(FormView):
+	template_name = 'cadastro/tutorendtel_form.html'
+	form_class = TutorModelForm
+	success_url = '/success/'
 
-	def get(self, request):
-		form = self.form_class_tutor()
-		return render(request, self.template_formulario, {'form':form})
-	'Precisei modificar a variável form_class para form_class_tutor e adicionar o form.sve() pra fazer o formulario funcionar'
-	'Se estiver errado por favor corrijam'
-	def post(self, request):
-		form = self.form_class_tutor(request.POST)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/success/')
-		return render(request, self.template_formulario, {'form':form})
+	def form_valid(self, form):
+		form.save()
+		return HttpResponseRedirect('/success/')
+
 
 """Classe para deletar Tutor"""
 class TutorDeletar(DeleteView):
@@ -82,8 +76,9 @@ class TutorDetalhesView(DetailView):
 
 """Classe para editar Tutor"""
 class TutorEditar(UpdateView):
+	form_class = TutorModelForm
 	model = TutorEndTel
-	fields = '__all__'
+	#fields = '__all__'
 	template_name_suffix = '_form_update'
 	success_url = '/success/'
 	#ainda não faço ideia de como fazer isso funcionar
@@ -120,21 +115,15 @@ class ListAnimal(ListView):
 class AnimalResumo(ListAnimal):
 	template_name='cadastro/animal_resumo.html'
 
-'ANIMAL FORM VIEW, PARA FORMULARIO DE CADASTRO DO ANIMAL'    
-class AnimalFormView(View):
-	form_class_animal = AnimalModelForm
-	template_formulario = 'cadastro/animal_form.html'
+"""Formulário de cadastro de Animal"""
+class AnimalFormView(FormView):
+	template_name = 'cadastro/animal_form.html'
+	form_class = AnimalModelForm
+	success_url = '/success/'
 
-	def get(self, request):
-		form = self.form_class_animal()
-		return render(request, self.template_formulario, {'form':form})
-
-	def post(self, request):
-		form = self.form_class_animal(request.POST)
-		if form.is_valid():
-			return HttpResponseRedirect('/success/')
-	
-		return render(request, self.template_formulario, {'form':form})
+	def form_valid(self, form):
+		form.save()
+		return HttpResponseRedirect('/success/')
 
 """Classe para retornar detalhes de Animal (alimenta o template animal_detalhes)"""
 class AnimalDetalhesView(DetailView):
@@ -147,7 +136,8 @@ class AnimalDetalhesView(DetailView):
 
 """Classe para editar Animal"""
 class AnimalEditar(UpdateView):
-	fields = '__all__'
+	form_class = AnimalModelForm
+	#fields = '__all__'
 	model = Animal
 	template_name_suffix = '_form_update'
 

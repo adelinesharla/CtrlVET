@@ -38,4 +38,6 @@ $( document ).ready(function() {
 		out_duration: 200, 
 	}
 	);
+
+	//nesse ponto eu já nem sei mais o que estou fazendo halp
 });

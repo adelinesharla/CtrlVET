@@ -382,13 +382,24 @@ class ExameAbs (ServicoAbs):
 	veterinario = models.OneToOneField(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
 	tecnico = models.OneToOneField(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame')
 	_resultado = models.TextField(verbose_name='Diagnóstico', max_length=200)
+	estadoexame = models.BooleanField(verbose_name='Estado_do_Exame')
 	class Meta:
 		abstract = True
 		verbose_name_plural = "Exames"
 		
 class AcoesExame(ExameAbs):
-	#métodos
-	pass
+	@classmethod
+	def estadoExame(veterinario,tecnico,estadoexame):
+	""" SE exame passou por tecnico  SE Sim.
+	resultado do tecnico passou por medico veterinario. SE SIM . Concluído"""
+	"""SE nao pendente"""
+		if tecnico != None:
+			if veterinario != None:
+				return estadoExame = True
+			else
+				return estadoExame = False
+		else
+			return estadoExame = False
 
 class Exame (AcoesExame):
 	

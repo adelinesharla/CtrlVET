@@ -44,9 +44,9 @@ class AnimalModelForm(forms.ModelForm):
 class ConsultaModelForm(forms.ModelForm):
 	class Meta:
 		model = Consulta
-		fields = {}
+		fields = ('_data','_diagnostico', '_retorno', 'animal', 'veterinario')
 
 class ExameModelForm(forms.ModelForm):
 	class Meta:
 		model = Exame
-		fields = {}
+		fields = ('_data','_diagnostico', 'animal', 'veterinario', 'tecnico', 'resultado')

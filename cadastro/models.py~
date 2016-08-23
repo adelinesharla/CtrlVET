@@ -133,7 +133,7 @@ class PessoaAbs(models.Model):
 		return self._email
 	
 	def _get_cpf(self):
-		self._cpf
+		return self._cpf
 		
 	def _set_nome(self,nome):
 		self._nome = nome
@@ -147,9 +147,6 @@ class PessoaAbs(models.Model):
 	nome = property(_get_nome,_set_nome)
 	email = property(_get_email,_set_email)	
 	cpf = property(_get_cpf,_set_cpf)
-	
-	class Meta:
-		abstract = True		
 	
 	class Meta:
 		abstract = True
@@ -306,7 +303,13 @@ class AcoesVeterinario(PessoaAbs):
 				
 
 class Veterinario(AcoesVeterinario):
-	pass
+	_crmv = models.CharField(verbose_name='CRMV', max_length=10)
+	def _get_crmv(self):
+		return self._crmv
+																									
+	def _set_crmv(self,crmv):
+		self._crmv = crmv 
+	crmv = property(_get_crmv,_set_crmv)
 	
 # referente a tecnico	
 class AcoesTecnico(PessoaAbs):
@@ -328,7 +331,13 @@ class AcoesTecnico(PessoaAbs):
 		abstract = True	
 
 class Tecnico(AcoesTecnico):
-	pass
+	crf = models.CharField(verbose_name='CRF', max_length=10)
+	def _get_crf(self):
+		return self._crf
+																									
+	def _set_crf(self,crf):
+		self._crf = crf 
+	crf = property(_get_crf,_set_crf)
 	
 # classes para servico,consulta e exame	
 class ServicoAbs(models.Model):
@@ -390,17 +399,18 @@ class ExameAbs (ServicoAbs):
 class AcoesExame(ExameAbs):
 	@classmethod
 	def estadoExame(veterinario,tecnico,estadoexame):
-	""" SE exame passou por tecnico  SE Sim.
-	resultado do tecnico passou por medico veterinario. SE SIM . Concluído"""
-	"""SE nao pendente"""
 		if tecnico != None:
 			if veterinario != None:
-				return estadoExame = True
-			else
-				return estadoExame = False
-		else
-			return estadoExame = False
+				estadoExame = True
+				return estadoExame
+			else:
+				estadoExame = False
+				return estadoExame
+		else:
+			estadoExame = False
+			return estadoExame
 
+	
 class Exame (AcoesExame):
 	
 	def _get_resultado(self):
@@ -409,4 +419,22 @@ class Exame (AcoesExame):
 	def _set_resultado(self,resultado):
 		self._resultado = resultado
 	
-	resultado = property(_get_resultado,_set_resultado)			
+	resultado = property(_get_resultado,_set_resultado)
+
+#classes referentes a laboratório
+
+class Laboratorio (models.Models):
+	_nome = models.CharField(verbose_name='Nome', max_length=50)
+	_local = models.CharField(verbose_name='local', max_length=50)
+
+	def _get_nome(self):
+		return self._nome
+	def _get_local(self):
+		return self._local	
+																												
+	def _set_nome(self,nome):
+		self._nome = nome
+	def _set_local(self,local):
+		self.local = local
+	nome = property(_get_nome,_set_nome)	
+	local = property(_get_local,_set_local)	

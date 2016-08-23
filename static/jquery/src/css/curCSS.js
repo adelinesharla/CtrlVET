@@ -7,15 +7,13 @@ define( [
 	"../selector" // Get jQuery.contains
 ], function( jQuery, rnumnonpx, rmargin, getStyles, support ) {
 
-"use strict";
-
 function curCSS( elem, name, computed ) {
 	var width, minWidth, maxWidth, ret,
 		style = elem.style;
 
 	computed = computed || getStyles( elem );
 
-	// Support: IE <=9 only
+	// Support: IE9
 	// getPropertyValue is only needed for .css('filter') (#12537)
 	if ( computed ) {
 		ret = computed.getPropertyValue( name ) || computed[ name ];
@@ -28,7 +26,7 @@ function curCSS( elem, name, computed ) {
 		// Android Browser returns percentage for some values,
 		// but width seems to be reliably pixels.
 		// This is against the CSSOM draft spec:
-		// https://drafts.csswg.org/cssom/#resolved-values
+		// http://dev.w3.org/csswg/cssom/#resolved-values
 		if ( !support.pixelMarginRight() && rnumnonpx.test( ret ) && rmargin.test( name ) ) {
 
 			// Remember the original values
@@ -49,7 +47,7 @@ function curCSS( elem, name, computed ) {
 
 	return ret !== undefined ?
 
-		// Support: IE <=9 - 11 only
+		// Support: IE9-11+
 		// IE returns zIndex value as an integer.
 		ret + "" :
 		ret;

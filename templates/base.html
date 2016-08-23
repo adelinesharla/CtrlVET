@@ -18,13 +18,16 @@
 
 	<!--Import CSS--> 
 
-	<link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.min.css' %}" media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'materialize/dist/css/materialize.min.css' %}" media="screen,projection"/>
 	<link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.css' %}"  media="screen,projection"/>
 
 	<!-- javascript -->
 
-	<script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.min.js' %}"></script>
+	<script src="{% static 'material/js/jquery-2.2.0.js' %}"></script>
+
+
+	<script type="text/javascript" src="{% static 'materialize/dist/js/materialize.min.js' %}"></script>
+	
 	<script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'fullcalendar/dist/fullcalendar.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'fullcalendar/dist/lang-all.js' %}"></script>
@@ -35,7 +38,7 @@
 	<script type="text/javascript" src="{% static 'ctrlvet.js' %}"></script>
 
 	
-	<script src="{% static 'material/js/jquery-2.2.0.js' %}"></script>
+	
 	{% include 'material/includes/material_js.html' %}
 
 </style>
@@ -45,7 +48,7 @@
 
 	<header>
 
-		<nav class="nav-wrapper indigo darken-4">
+		<nav class="nav-wrapper indigo darken-3">
 			<div class="container">
 				<a href="main.html" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
 			</div>
@@ -70,7 +73,7 @@
 			<li class="no-padding">
 				<ul class="collapsible collapsible-accordion">
 
-					<li class="logo center"><div class="container"><img class="responsive-img"  src="{% static 'logo/logo.png' %}"></div></li>
+					<li class="logo center "><div class="container logo-vet"><img class="responsive-img "  src="{% static 'logo/logo.png' %}"></div></li>
 
 					<li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
 
@@ -99,7 +102,7 @@
 	</header>
 
 	<main>
-		<div>
+		<div class='main-ajuste-padding'>
 			{% block content %}
 			{% endblock %}
 		</div>

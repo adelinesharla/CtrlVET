@@ -148,9 +148,9 @@ STATICFILES_DIRS = [
 BOWER_COMPONENTS_ROOT = 'components'
 
 BOWER_INSTALLED_APPS = (
-    'jquery',
+    'jquery#2.2.0',
     'underscore',
-    'Materialize',
+    'materialize',
     'moment',
     'fullcalendar',
     )

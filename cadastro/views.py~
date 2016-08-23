@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.conf.urls import url
 
 """Classes de views genericas utilizadas"""
-from django.views.generic import View, TemplateView, DetailView, UpdateView, DeleteView,ListView, FormView
+from django.views.generic import View, FormView, TemplateView, DetailView, UpdateView, DeleteView, ListView, FormView
 
 'HttpResponse para uma pagina template indicando que a operação foi realizada (verificar se tal página existe)'
 from django.http import HttpResponseRedirect
@@ -19,6 +19,12 @@ from django.forms.models import model_to_dict #iterar em object no template
 import operator
 from django.db.models import Q
 
+
+
+from django.core.urlresolvers import reverse_lazy
+
+
+
 #Não somos selvagens. O uso de 2 espaços como forma de identação é degradante.
 #Tabs são apropriados e garantem uma maior readability ao código
 # :)
@@ -27,38 +33,36 @@ from django.db.models import Q
 class MainView(TemplateView):
 	template_name='cadastro/main.html'
 
+class SuccessView(TemplateView):
+	template_name='cadastro/success.html'	
+
 #Views relacionadas à classe Tutor:
 
 """Classe para listar os tutores"""
 class ListTutor(ListView):
 	model = TutorEndTel
-	paginate_by = 10 			
+	paginate_by = 10	
 
 """Classe de renderização do painel de tutor (sem contexto)"""
 class TutorResumo(ListTutor):
 	template_name='cadastro/tutor_resumo.html'
 
-'TUTOR FORM VIEW , PARA FORMULARIO DE CADASTRO DO TUTOR'
-class TutorFormView(View):
-	form_class_tutor = TutorModelForm
-	template_formulario = 'cadastro/tutor_form.html'
+"""Formulário de cadastro de Tutor"""
+class TutorFormView(FormView):
+	template_name = 'cadastro/tutorendtel_form.html'
+	form_class = TutorModelForm
+	success_url = '/success/'
 
-	def get(self, request):
-		form = self.form_class_tutor()
-		return render(request, self.template_formulario, {'form':form})
-	'Precisei modificar a variável form_class para form_class_tutor e adicionar o form.sve() pra fazer o formulario funcionar'
-	'Se estiver errado por favor corrijam'
-	def post(self, request):
-		form = self.form_class_tutor(request.POST)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/success/')
-		return render(request, self.template_formulario, {'form':form})
+	def form_valid(self, form):
+		form.save()
+		return HttpResponseRedirect('/success/')
+
 
 """Classe para deletar Tutor"""
 class TutorDeletar(DeleteView):
 	model = TutorEndTel
 	#success_url = reverse_lazy('tutor_resumo')
+	success_url = '/success/'
 
 """Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""
 class TutorDetalhesView(DetailView):
@@ -72,8 +76,14 @@ class TutorDetalhesView(DetailView):
 
 """Classe para editar Tutor"""
 class TutorEditar(UpdateView):
+	form_class = TutorModelForm
 	model = TutorEndTel
-	template_name_suffix = 'form_update'
+	#fields = '__all__'
+	template_name_suffix = '_form_update'
+	success_url = '/success/'
+	#ainda não faço ideia de como fazer isso funcionar
+
+
 
 """Classe para busca de Tutor pelos campos: nome, email e cpf"""
 class TutorBuscaListView(ListTutor):
@@ -105,21 +115,15 @@ class ListAnimal(ListView):
 class AnimalResumo(ListAnimal):
 	template_name='cadastro/animal_resumo.html'
 
-'ANIMAL FORM VIEW, PARA FORMULARIO DE CADASTRO DO ANIMAL'    
-class AnimalFormView(View):
-	form_class_animal = AnimalModelForm
-	template_formulario = 'cadastro/animal_form.html'
+"""Formulário de cadastro de Animal"""
+class AnimalFormView(FormView):
+	template_name = 'cadastro/animal_form.html'
+	form_class = AnimalModelForm
+	success_url = '/success/'
 
-	def get(self, request):
-		form = self.form_class_animal()
-		return render(request, self.template_formulario, {'form':form})
-
-	def post(self, request):
-		form = self.form_class_animal(request.POST)
-		if form.is_valid():
-			return HttpResponseRedirect('/success/')
-	
-		return render(request, self.template_formulario, {'form':form})
+	def form_valid(self, form):
+		form.save()
+		return HttpResponseRedirect('/success/')
 
 """Classe para retornar detalhes de Animal (alimenta o template animal_detalhes)"""
 class AnimalDetalhesView(DetailView):
@@ -131,14 +135,16 @@ class AnimalDetalhesView(DetailView):
 		return context
 
 """Classe para editar Animal"""
-class TutorEditar(UpdateView):
+class AnimalEditar(UpdateView):
+	form_class = AnimalModelForm
+	#fields = '__all__'
 	model = Animal
-	template_name_suffix = 'form_update'
+	template_name_suffix = '_form_update'
 
 """Classe para deletar Animal"""
-class TutorDeletar(DeleteView):
+class AnimalDeletar(DeleteView):
 	model = Animal
-	#success_url = reverse_lazy('animal_resumo') 
+	success_url = '/success/'
 
 """Classe para busca de Animal pelos campos: nome, rg, especie e raça"""
 class AnimalBuscaListView(ListAnimal):
@@ -165,7 +171,7 @@ class AnimalBuscaListView(ListAnimal):
 
 class ConsultaFormView(FormView):
 	template_name = ''
-	form_class = ConsultaForm
+	form_class = ConsultaModelForm
 	success_url = ''
 	
 	def form_valid(self, form):
@@ -214,7 +220,7 @@ class ConsultaBuscaListView(ConsultaListView):
 
 class ExameFormView(FormView):
 	template_name = ''
-	form_class = ExameForm
+	form_class = ExameModelForm
 	success_url = ''
 	
 	def form_valid(self, form):
@@ -257,3 +263,38 @@ class ExameBuscaListView(ExameListView):
 	            )
 	
 	        return result
+
+#Views relacionadas à classe Laboratorio:
+
+class LaboratorioFormView(FormView):
+	template_name = ''
+	form_class = LaboratorioModelForm
+	success_url = ''
+	
+	def form_valid(self, form):
+		return super(LaboratorioFormView,self).form_valid(form)
+
+class LaboratorioDeleteView(DeleteView):
+	model = Laboratorio
+	#success_url = reverse_lazy('laboratorio_resumo')
+
+class LaboratorioDetailView(DetailView):
+	pk_url_kwarg = "laboratorio_id"
+	model = Laboratorio.filter
+
+	def get_context_data(self, **kwargs):
+		context = super (LaboratorioDetailView, self).get_context_data(**kwargs)
+		return context
+
+class LaboratorioUpdateView(UpdateView):
+	model = Laboratorio
+	template_name_suffix = 'form_update'
+
+class LaboratorioListView(ListView):
+	model = Laboratorio    	
+	paginate_by = 10 
+
+class LaboratorioResumo(LaboratorioListView):
+	template_name=''
+	pk_last=(Laboratorio.objects.last()).pk
+	list_last_labs=Laboratorio.objects.filter(pk_last)

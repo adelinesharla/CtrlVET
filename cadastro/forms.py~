@@ -7,9 +7,10 @@ from django import forms
 #from django.forms.models import inlineformset_factory
 from material import *
 from .models import *
+from localflavor.br.forms import BRCPFField
 
 class TutorModelForm(forms.ModelForm):
-
+	_cpf = BRCPFField()
 	class Meta:
 		model = TutorEndTel
 		fields = ('_nome', '_email', '_cpf', '_logradouro', '_numero', '_bairro', '_cidade', '_cep', '_uf','_telefone', 'tipo')
@@ -44,9 +45,14 @@ class AnimalModelForm(forms.ModelForm):
 class ConsultaModelForm(forms.ModelForm):
 	class Meta:
 		model = Consulta
-		fields = {}
+		fields = ('_data','_diagnostico', '_retorno', 'animal', 'veterinario')
 
 class ExameModelForm(forms.ModelForm):
 	class Meta:
 		model = Exame
-		fields = {}
+		fields = ('_data','_diagnostico', 'animal', 'veterinario', 'tecnico', '_resultado')
+
+class LaboratorioModelForm(forms.ModelForm):
+	class Meta:
+		model = Laboratorio
+		fields = ('_nome','_loca', 'exames')

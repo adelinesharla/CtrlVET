@@ -263,3 +263,38 @@ class ExameBuscaListView(ExameListView):
 	            )
 	
 	        return result
+
+#Views relacionadas à classe Laboratorio:
+
+class LaboratorioFormView(FormView):
+	template_name = ''
+	form_class = LaboratorioModelForm
+	success_url = ''
+	
+	def form_valid(self, form):
+		return super(LaboratorioFormView,self).form_valid(form)
+
+class LaboratorioDeleteView(DeleteView):
+	model = Laboratorio
+	#success_url = reverse_lazy('laboratorio_resumo')
+
+class LaboratorioDetailView(DetailView):
+	pk_url_kwarg = "laboratorio_id"
+	model = Laboratorio.filter
+
+	def get_context_data(self, **kwargs):
+		context = super (LaboratorioDetailView, self).get_context_data(**kwargs)
+		return context
+
+class LaboratorioUpdateView(UpdateView):
+	model = Laboratorio
+	template_name_suffix = 'form_update'
+
+class LaboratorioListView(ListView):
+	model = Laboratorio    	
+	paginate_by = 10 
+
+class LaboratorioResumo(LaboratorioListView):
+	template_name=''
+	pk_last=(Laboratorio.objects.last()).pk
+	list_last_labs=Laboratorio.objects.filter(pk__lte=pk_last)

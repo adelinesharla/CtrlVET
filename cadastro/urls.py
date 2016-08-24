@@ -24,7 +24,8 @@ url(r'^main/$|^$',  MainView.as_view(), name='main'),
     url(r'^success/$',  SuccessView.as_view(), name='success'),
 
     #Urls relacionadas às views de Tutor
-    url(r'^tutor/resumo$',  TutorResumo.as_view(), name='tutor_resumo'),
+    
+    url(r'^tutor/visaogeral$',  TutorResumo.as_view(), name='tutor_resumo'),
     url(r'^tutor/detalhes/(?P<tutor_id>\d+)/', TutorDetalhesView.as_view(), name = 'tutor_detalhes'),
     url(r'^tutor/detalhes/editar/(?P<pk>\d+)/',TutorEditar.as_view(),  name = 'tutor_editar'),
     url(r'^tutor/detalhes/deletar/(?P<pk>\d+)/',TutorDeletar.as_view(),  name = 'tutor_deletar'),
@@ -33,7 +34,9 @@ url(r'^main/$|^$',  MainView.as_view(), name='main'),
 
 
     #Urls relacionadas às views de Animal
-    url(r'^animal/resumo$',  AnimalResumo.as_view(), name='animal_resumo'),
+    
+      #Urls relacionadas às views de Animal
+    url(r'^animal/visaogeral$',  AnimalResumo.as_view(), name='animal_resumo'),
     url(r'^animal/detalhes/(?P<animal_id>\d+)/$', AnimalDetalhesView.as_view(), name = 'animal_detalhes'),
     url(r'^animal/detalhes/editar/(?P<pk>\d+)/',AnimalEditar.as_view(),  name = 'animal_editar'),
     url(r'^animal/detalhes/deletar/(?P<pk>\d+)/',AnimalDeletar.as_view(),  name = 'animal_deletar'),
@@ -41,15 +44,23 @@ url(r'^main/$|^$',  MainView.as_view(), name='main'),
     url(r'^animal/busca$', AnimalBuscaListView.as_view(), name = 'animal_busca_list_view'),
 
     #Urls relacionadas às views de Consulta
-
+    
+    #url(r'^consulta/cadastro$', ConsultaFormView.as_view(), name = 'consulta_cadastro'),
+    #url(r'^consulta/detalhes/deletar/(?P<pk>\d+)/',ConsultaDeleteView.as_view(),  name = 'consulta_deletar'),
+    #url(r'^consulta/detalhes/(?P<consulta_id>\d+)/$', ConsultaDetailView.as_view(), name = 'consulta_detalhes'),
+    #url(r'(?P<pk>\d+)/$',ConsultaUpdateView.as_view(),  name = 'consulta_update'),
+    #url(r'^consulta/$',ConsultaListView.as_view(), name='consulta'),
+    #url(r'^consulta/resumo$',ConsultaResumo.as_view(), name='consulta_resumo'),
+    #url(r'^consulta/busca$', ConsultaBuscaListView.as_view(), name = 'consulta_busca_list_view'),
+    
     #Urls relacionadas às views de Exame
-
-    #url(r'^consulta/detalhes/(?P<consulta_id>\d+)/$', ConsultarDetalhesView.as_view(), name = 'consulta_detalhes'),
-    #url(r'(?P<pk>\d+)/$',ConsultaEditar.as_view(),  name = 'consulta_editar'),
-    #url(r'^exame/detalhes/(?P<exame_id>\d+)/$', ExaminarDetalhesView.as_view(), name = 'exame_detalhes'),
-    #url(r'(?P<pk>\d+)/$',ExameEditar.as_view(),  name = 'exame_editar'),
-    #url(r'^tutor/$',ListTutor.as_view(), name='tutor'),
-    #url(r'^animal/$',ListAnimal.as_view(), name='animal'),
-    #url(r'^consulta/$',ListConsulta.as_view(), name='consulta'),
-    #url(r'^exame/$',ListExame.as_view(), name='exame'),
+    
+    #url(r'^exame/cadastro$', ExameFormView.as_view(), name = 'Exame_cadastro'),
+    #url(r'^exame/detalhes/deletar/(?P<pk>\d+)/',ExameDeleteView.as_view(),  name = 'exame_deletar'),
+    #url(r'^exame/detalhes/(?P<exame_id>\d+)/$',ExameDetailView.as_view(), name = 'exame_detalhes'),
+    #url(r'(?P<pk>\d+)/$',ExameUpdateView.as_view(),  name = 'exame_update'),
+    #url(r'^exame/$',ExameListView.as_view(), name='exame'),
+    #url(r'^exame/resumo$',ExameResumo.as_view(), name='exame_resumo'),
+    #url(r'^exame/busca$', ExameBuscaListView.as_view(), name = 'exame_busca_list_view'),
+    
     ]

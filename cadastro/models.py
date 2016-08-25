@@ -6,9 +6,8 @@ from django.views.generic.list import ListView,View
 import abc
 import datetime
 from django.utils import timezone
-
+from django.core.validators import RegexValidator
 from django.core.urlresolvers import reverse
-
 'Tradução e estados para PT-BR'
 from django.utils.translation import ugettext_lazy as _
 from localflavor.br.forms import STATE_CHOICES
@@ -90,8 +89,10 @@ class TelefoneAbs(models.Model):
 		('Fixo', 'Fixo'),
 		('Celular', 'Celular'),
     )
-	_telefone =  models.CharField(verbose_name='Telefone', max_length=15)
-	tipo = models.CharField(max_length=15, choices=TIPO_CHOICES)
+	telefone_fixo_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="O formato do número de telefone deve ser: '+999999999'. São Permitidos até 15 dígitos.")
+	_telefone =  models.CharField(validators=[telefone_fixo_regex],verbose_name='Telefone', max_length=15,blank=True)
+	tipo = models.CharField( max_length=15, choices=TIPO_CHOICES)
+	
 	
 	class Meta:
 		abstract = True	

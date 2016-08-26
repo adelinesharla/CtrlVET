@@ -45,13 +45,13 @@ url(r'^main/$|^$',  MainView.as_view(), name='main'),
 
     #Urls relacionadas às views de Consulta
     
-    #url(r'^consulta/cadastro$', ConsultaFormView.as_view(), name = 'consulta_cadastro'),
-    #url(r'^consulta/detalhes/deletar/(?P<pk>\d+)/',ConsultaDeleteView.as_view(),  name = 'consulta_deletar'),
-    #url(r'^consulta/detalhes/(?P<consulta_id>\d+)/$', ConsultaDetailView.as_view(), name = 'consulta_detalhes'),
-    #url(r'(?P<pk>\d+)/$',ConsultaUpdateView.as_view(),  name = 'consulta_update'),
-    #url(r'^consulta/$',ConsultaListView.as_view(), name='consulta'),
-    #url(r'^consulta/resumo$',ConsultaResumo.as_view(), name='consulta_resumo'),
-    #url(r'^consulta/busca$', ConsultaBuscaListView.as_view(), name = 'consulta_busca_list_view'),
+    url(r'^consulta/cadastro$', ConsultaFormView.as_view(), name = 'consulta_cadastro'),
+    url(r'^consulta/detalhes/deletar/(?P<pk>\d+)/',ConsultaDeleteView.as_view(),  name = 'consulta_deletar'),
+    url(r'^consulta/detalhes/(?P<consulta_id>\d+)/$', ConsultaDetailView.as_view(), name = 'consulta_detalhes'),
+    url(r'(?P<pk>\d+)/$',ConsultaUpdateView.as_view(),  name = 'consulta_editar'),
+    url(r'^consulta/$',ConsultaListView.as_view(), name='consulta'),
+    url(r'^consulta/resumo$',ConsultaResumo.as_view(), name='consulta_resumo'),
+    url(r'^consulta/busca$', ConsultaBuscaListView.as_view(), name = 'consulta_busca_list_view'),
     
     #Urls relacionadas às views de Exame
     

@@ -8,6 +8,7 @@ from django import forms
 from material import *
 from .models import *
 from localflavor.br.forms import BRCPFField
+from datetime import datetime 
 
 class TutorModelForm(forms.ModelForm):
 	_cpf = BRCPFField()
@@ -55,4 +56,4 @@ class ExameModelForm(forms.ModelForm):
 class LaboratorioModelForm(forms.ModelForm):
 	class Meta:
 		model = Laboratorio
-		fields = ('_nome','_loca', 'exames')
+		fields = ('_nome','_local', 'exames')

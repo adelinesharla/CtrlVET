@@ -170,12 +170,13 @@ class AnimalBuscaListView(ListAnimal):
 #Views relacionadas à classe Consulta:
 
 class ConsultaFormView(FormView):
-	template_name = ''
+	template_name = 'cadastro/consulta_form.html'
 	form_class = ConsultaModelForm
-	success_url = ''
+	success_url = '/success/'
 	
 	def form_valid(self, form):
-		return super(ConsultaFormView,self).form_valid(form)
+		form.save()
+		return HttpResponseRedirect('/success/')
 
 class ConsultaDeleteView(DeleteView):
 	model = Consulta
@@ -198,7 +199,7 @@ class ConsultaListView(ListView):
 	paginate_by = 10 
 
 class ConsultaResumo(ConsultaListView):
-	template_name=''
+	template_name='cadastro/consulta_resumo.html'
 
 class ConsultaBuscaListView(ConsultaListView):
 	def get_queryset(self):
@@ -208,10 +209,16 @@ class ConsultaBuscaListView(ConsultaListView):
 	        if query:
 	            query_list = query.split()
 	            result = result.filter(
-	                #reduce(operator.and_,
-	                       #(Q(campo1__icontains=q) for q in query_list)) |
-			#reduce(operator.and_,
-	                       #(Q(campo2__icontains=q) for q in query_list))
+	                reduce(operator.and_,
+	                       (Q(_data__icontains=q) for q in query_list)) |
+			reduce(operator.and_,
+	                       (Q(_diagnostico__icontains=q) for q in query_list))|
+			reduce(operator.and_,
+	                       (Q(_retorno__icontains=q) for q in query_list))|
+			reduce(operator.and_,
+	                       (Q(animal__icontains=q) for q in query_list))|
+			reduce(operator.and_,
+	                       (Q(veterinario__icontains=q) for q in query_list))
 	            )
 	
 	        return result
@@ -224,7 +231,8 @@ class ExameFormView(FormView):
 	success_url = ''
 	
 	def form_valid(self, form):
-		return super(ExameFormView,self).form_valid(form)
+		form.save()
+		return HttpResponseRedirect('/success/')
 
 class ExameDeleteView(DeleteView):
 	model = Exame
@@ -272,7 +280,8 @@ class LaboratorioFormView(FormView):
 	success_url = ''
 	
 	def form_valid(self, form):
-		return super(LaboratorioFormView,self).form_valid(form)
+		form.save()
+		return HttpResponseRedirect('/success/')
 
 class LaboratorioDeleteView(DeleteView):
 	model = Laboratorio
@@ -280,7 +289,7 @@ class LaboratorioDeleteView(DeleteView):
 
 class LaboratorioDetailView(DetailView):
 	pk_url_kwarg = "laboratorio_id"
-	model = Laboratorio.filter
+	model = Laboratorio
 
 	def get_context_data(self, **kwargs):
 		context = super (LaboratorioDetailView, self).get_context_data(**kwargs)
@@ -294,7 +303,7 @@ class LaboratorioListView(ListView):
 	model = Laboratorio    	
 	paginate_by = 10 
 
-class LaboratorioResumo(LaboratorioListView):
+"""class LaboratorioResumo(LaboratorioListView):
 	template_name=''
 	pk_last=(Laboratorio.objects.last()).pk
-	list_last_labs=Laboratorio.objects.filter(pk_last)
+	list_last_labs=Laboratorio.objects.filter(pk__lte=pk_last)"""

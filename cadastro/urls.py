@@ -55,12 +55,17 @@ url(r'^main/$|^$',  MainView.as_view(), name='main'),
     
     #Urls relacionadas às views de Exame
     
-    #url(r'^exame/cadastro$', ExameFormView.as_view(), name = 'Exame_cadastro'),
+    url(r'^exame/cadastro$', ExameFormView.as_view(), name = 'exame_cadastro'),
     #url(r'^exame/detalhes/deletar/(?P<pk>\d+)/',ExameDeleteView.as_view(),  name = 'exame_deletar'),
     #url(r'^exame/detalhes/(?P<exame_id>\d+)/$',ExameDetailView.as_view(), name = 'exame_detalhes'),
     #url(r'(?P<pk>\d+)/$',ExameUpdateView.as_view(),  name = 'exame_update'),
-    #url(r'^exame/$',ExameListView.as_view(), name='exame'),
+    url(r'^exame/$',ExameListView.as_view(), name='exame_list'),
     #url(r'^exame/resumo$',ExameResumo.as_view(), name='exame_resumo'),
     #url(r'^exame/busca$', ExameBuscaListView.as_view(), name = 'exame_busca_list_view'),
+
+
+    #Urls relacionadas às views de Laboratório
+    
+    url(r'^laboratorio/resumo$',LaboratorioResumo.as_view(), name='laboratorio_resumo'),
     
     ]

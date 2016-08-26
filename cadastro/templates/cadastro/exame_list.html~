@@ -1,0 +1,98 @@
+{% extends "cadastro/base_visaogeral.html" %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'exame_list' %}" class="breadcrumb">Exames</a>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="card">
+		<div class="card-content">
+
+
+<div class="row">
+				<div class="col s12 m12 l12">
+					<span class="card-title">Exames</span>
+					<div class="divider"></div>
+					<div class="row">
+						<div class="col s12 m12">
+
+							{% if object_list %}
+
+							<table class="reponsive-table highlight striped">
+								<thead>
+									<th data-field="">Nome</th>
+									<th data-field="">CPF</th>
+									<th data-field="">Email</th>
+
+									<!--	<th data-field="">Detalhes</th> -->
+								</tr>
+							</thead>
+
+							<tbody>
+
+								{% for object in object_list %}
+								<tr>
+									<td><a href="{% url 'tutor_detalhes' object.pk %}"><b>{{ object.nome }}</b></a></td>
+									<td>{{ object.cpf }}</td>
+									<td>{{ object.email }}</td>
+								</tr>
+
+								{% endfor %}
+
+							</tbody>
+						</table>
+						
+						{% else %}
+						
+						<p>Nenhum <b>tutor</b> encontrado</p>
+						{% endif %}
+						
+					</div>
+				</div>
+			</div>
+
+
+			{% if is_paginated %}
+
+			{% block paginacao %}
+
+			<div class="row center">
+				<div class="col s12 m12 l12">
+					<ul class="pagination">
+
+						{% if page_obj.has_previous %}
+						<li class="disabled"><a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+						{% else %}
+						<li class="disabled"><a href=""><i class="material-icons">chevron_left</i></a></li>
+						{% endif %}
+
+
+						{% for page in page_obj.paginator.page_range %}
+						<li class="{% if page_obj.number == page %}active indigo darken-4{% else %}waves-effect white{% endif %}""><a href="?page={{ page }}">{{ page }}</a></li>
+						{% endfor %}
+
+						{% if page_obj.has_next %}
+						<li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+						{% else %}
+						<li class="waves-effect"><a href=""><i class="material-icons">chevron_right</i></a></li>
+						{% endif %}
+
+					</ul>
+				</div>	
+			</div>
+
+			{% endblock %}
+			
+			{% endif %}
+			
+			
+
+
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

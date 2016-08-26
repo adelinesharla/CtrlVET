@@ -430,7 +430,7 @@ class Exame (AcoesExame):
 class Laboratorio (models.Model):
 	_nome = models.CharField(verbose_name='Nome', max_length=50)
 	_local = models.CharField(verbose_name='local', max_length=50)
-	exames = models.ForeignKey(Exame, on_delete = models.CASCADE)
+	exames = models.ForeignKey(Exame, null = True, blank = True, on_delete = models.CASCADE)
 
 	def _get_nome(self):
 		return self._nome

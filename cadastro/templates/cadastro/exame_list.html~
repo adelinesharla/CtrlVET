@@ -46,7 +46,7 @@
 						
 						{% else %}
 						
-						<p>Nenhum <b>tutor</b> encontrado</p>
+						<p>Nenhum <b>exame</b> encontrado</p>
 						{% endif %}
 						
 					</div>

@@ -258,6 +258,19 @@ class ExameListView(ListView):
 
 class ExameResumo(ExameListView):
 	template_name='cadastro/exame_list.html'
+	def get_queryset(self):
+	       	result = super(ExameResumo, self).get_queryset()
+	        query = self.request.GET.get('q')
+	        if query:
+	            query_list = query.split()
+	            result = result.filter(
+	                #reduce(operator.and_,
+	                       #(Q(campo1__icontains=q) for q in query_list)) |
+			#reduce(operator.and_,
+	                       #(Q(campo2__icontains=q) for q in query_list))
+	            )
+	
+	        return result
 
 class ExameBuscaListView(ExameListView):
 	def get_queryset(self):

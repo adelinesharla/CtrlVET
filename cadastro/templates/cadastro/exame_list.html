@@ -9,9 +9,34 @@
 <div class="row">
 	<div class="card">
 		<div class="card-content">
+			{% block estatisticas %}
+			{% endblock %}
 
+			{% block pesquisa %}
 
-<div class="row">
+			<div class="row">
+				<div class="nav-wrapper">
+					<!-- A tag action leva a url do search. pode ser colocada uma tag pra view passar o action, tornando o form reusável-->
+					<form id="searchform" action="{% url 'tutor_busca_list_view' %}" method="GET" accept-charset="utf-8"> 
+
+						<div class="input-field col s12 m8 l9">
+							<input type="search" name="q" required>
+							<label for="search"><i class="material-icons">search</i></label>
+							<i class="material-icons">close</i>
+						</div>
+					</form>
+
+					<div class="input-field col s12 m4 l3 right-align">
+						<a href="{% url 'tutor_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
+					</div>
+
+				</div>
+			</div>
+
+			{% endblock %}
+
+				{% block lista %}
+				<div class="row">
 				<div class="col s12 m12 l12">
 					<span class="card-title">Exames</span>
 					<div class="divider"></div>
@@ -52,7 +77,7 @@
 					</div>
 				</div>
 			</div>
-
+			{% endblock %}
 
 			{% if is_paginated %}
 

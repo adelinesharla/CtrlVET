@@ -25,7 +25,7 @@ url(r'^main/$|^$',  MainView.as_view(), name='main'),
 
     #Urls relacionadas às views de Tutor
     
-    url(r'^tutor/visaogeral$',  TutorResumo.as_view(), name='tutor_resumo'),
+    url(r'^tutor/resumo$',  TutorResumo.as_view(), name='tutor_resumo'),
     url(r'^tutor/detalhes/(?P<tutor_id>\d+)/', TutorDetalhesView.as_view(), name = 'tutor_detalhes'),
     url(r'^tutor/detalhes/editar/(?P<pk>\d+)/',TutorEditar.as_view(),  name = 'tutor_editar'),
     url(r'^tutor/detalhes/deletar/(?P<pk>\d+)/',TutorDeletar.as_view(),  name = 'tutor_deletar'),
@@ -36,7 +36,7 @@ url(r'^main/$|^$',  MainView.as_view(), name='main'),
     #Urls relacionadas às views de Animal
     
       #Urls relacionadas às views de Animal
-    url(r'^animal/visaogeral$',  AnimalResumo.as_view(), name='animal_resumo'),
+    url(r'^animal/resumo$',  AnimalResumo.as_view(), name='animal_resumo'),
     url(r'^animal/detalhes/(?P<animal_id>\d+)/$', AnimalDetalhesView.as_view(), name = 'animal_detalhes'),
     url(r'^animal/detalhes/editar/(?P<pk>\d+)/',AnimalEditar.as_view(),  name = 'animal_editar'),
     url(r'^animal/detalhes/deletar/(?P<pk>\d+)/',AnimalDeletar.as_view(),  name = 'animal_deletar'),

@@ -442,4 +442,7 @@ class Laboratorio (models.Model):
 	def _set_local(self,local):
 		self.local = local
 	nome = property(_get_nome,_set_nome)	
-	local = property(_get_local,_set_local)	
+	local = property(_get_local,_set_local)
+
+	def __unicode__(self):
+		return u'%s' % (self.nome)

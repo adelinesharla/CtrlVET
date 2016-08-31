@@ -228,9 +228,9 @@ class ConsultaBuscaListView(ConsultaListView):
 #Views relacionadas à classe Exame:
 
 class ExameFormView(FormView):
-	template_name = ''
+	template_name = 'cadastro/exame_form.html'
 	form_class = ExameModelForm
-	success_url = ''
+	success_url = '/success/'
 	
 	def form_valid(self, form):
 		form.save()
@@ -250,7 +250,7 @@ class ExameDetailView(DetailView):
 
 class ExameUpdateView(UpdateView):
 	model = Exame
-	template_name_suffix = 'form_update'
+	template_name_suffix = '_form_update'
 
 class ExameListView(ListView):
 	model = Exame    	
@@ -258,19 +258,18 @@ class ExameListView(ListView):
 
 class ExameResumo(ExameListView):
 	template_name='cadastro/exame_list.html'
+
 	def get_queryset(self):
-	       	result = super(ExameResumo, self).get_queryset()
+	       	result = super(ExameBuscaListView, self).get_queryset()
 	        query = self.request.GET.get('q')
 	        if query:
 	            query_list = query.split()
 	            result = result.filter(
-	                #reduce(operator.and_,
-	                       #(Q(campo1__icontains=q) for q in query_list)) |
-			#reduce(operator.and_,
-	                       #(Q(campo2__icontains=q) for q in query_list))
-	            )
-	
-	        return result
+	                reduce(operator.and_,
+	                       (Q(pk=q) for q in query_list))
+		    )
+
+
 
 class ExameBuscaListView(ExameListView):
 	def get_queryset(self):
@@ -279,10 +278,16 @@ class ExameBuscaListView(ExameListView):
 	        if query:
 	            query_list = query.split()
 	            result = result.filter(
-	                #reduce(operator.and_,
-	                       #(Q(campo1__icontains=q) for q in query_list)) |
-			#reduce(operator.and_,
-	                       #(Q(campo2__icontains=q) for q in query_list))
+	                reduce(operator.and_,
+	                       (Q(_data__icontains=q) for q in query_list)) |
+			reduce(operator.and_,
+	                       (Q(_diagnostico__icontains=q) for q in query_list)) |
+			reduce(operator.and_,
+	                       (Q(animal__icontains=q) for q in query_list))|
+			reduce(operator.and_,
+	                       (Q(tecnico__icontains=q) for q in query_list)) |
+			reduce(operator.and_,
+	                       (Q(veterinario__icontains=q) for q in query_list))
 	            )
 	
 	        return result
@@ -295,3 +300,12 @@ class LaboratorioListView(ListView):
 
 class LaboratorioResumo(LaboratorioListView):
 	template_name='cadastro/laboratorio_resumo.html'
+
+class LaboratorioDetailView(DetailView):
+	pk_url_kwarg = "laboratorio_id"
+	model = Laboratorio
+
+	def get_context_data(self, **kwargs):
+		context = super (LaboratorioDetailView, self).get_context_data(**kwargs)
+		return context
+	

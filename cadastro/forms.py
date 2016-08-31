@@ -57,7 +57,15 @@ class ConsultaModelForm(forms.ModelForm):
 class ExameModelForm(forms.ModelForm):
 	class Meta:
 		model = Exame
-		fields = ('_data','_diagnostico', 'animal', 'veterinario', 'tecnico', '_resultado')
+		fields = ('_data','_diagnostico', 'animal', 'veterinario', 'tecnico', '_resultado', 'estadoexame')
+	
+	layout = Layout(
+		Fieldset("Exame"),
+			Row('_data'),
+			Row('_diagnostico'),
+			Row('animal', 'tecnico', 'veterinario'),
+			Row('_resultado'),
+		)
 
 class LaboratorioModelForm(forms.ModelForm):
 	class Meta:

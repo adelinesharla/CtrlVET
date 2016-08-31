@@ -5,3 +5,6 @@ from .models import *
 
 admin.site.register(TutorEndTel)
 admin.site.register(Animal)
+admin.site.register(Veterinario)
+admin.site.register(Laboratorio)
+admin.site.register(Tecnico)

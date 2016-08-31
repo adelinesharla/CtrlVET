@@ -243,6 +243,8 @@ class AcoesAnimal(AnimalAbs):
 		
 
 class Animal(AcoesAnimal):
+	def get_absolute_url(self):
+        	return reverse('animal_detail', kwargs={'pk': self.pk})
 	def _get_nome(self):
 		return self._nome
 		
@@ -335,7 +337,7 @@ class AcoesTecnico(PessoaAbs):
 		abstract = True	
 
 class Tecnico(AcoesTecnico):
-	crf = models.CharField(verbose_name='CRF', max_length=10)
+	_crf = models.CharField(verbose_name='CRF', max_length=10)
 	def _get_crf(self):
 		return self._crf
 																									
@@ -346,7 +348,7 @@ class Tecnico(AcoesTecnico):
 # classes para servico,consulta e exame	
 class ServicoAbs(models.Model):
 	_data = models.DateField(verbose_name='Data de Realização')
-	_diagnostico = models.TextField(verbose_name='Diagnóstico', max_length=200)
+	_diagnostico = models.TextField(blank = True, verbose_name='Diagnóstico', max_length=200)
 
 	def _get_data(self):
 		return self._data
@@ -393,9 +395,9 @@ class Consulta (AcoesConsulta):
 class ExameAbs (ServicoAbs):
 	animal = models.OneToOneField(Animal, on_delete=models.CASCADE, related_name='amostrado_para_exame')
 	veterinario = models.OneToOneField(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
-	tecnico = models.OneToOneField(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame')
-	_resultado = models.TextField(verbose_name='Diagnóstico', max_length=200)
-	estadoexame = models.BooleanField(verbose_name='Estado_do_Exame')
+	tecnico = models.OneToOneField(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame', blank = True, null = True)
+	_resultado = models.TextField(blank = True, verbose_name='Resultado', max_length=200)
+	estadoexame = models.BooleanField(blank = True, verbose_name='Estado do Exame')
 	class Meta:
 		abstract = True
 		verbose_name_plural = "Exames"
@@ -416,7 +418,9 @@ class AcoesExame(ExameAbs):
 
 	
 class Exame (AcoesExame):
-	
+	def get_absolute_url(self):
+        	return reverse('exame_detail', kwargs={'pk': self.pk})
+
 	def _get_resultado(self):
 		return self._resultado	
 																																
@@ -431,6 +435,9 @@ class Laboratorio (models.Model):
 	_nome = models.CharField(verbose_name='Nome', max_length=50)
 	_local = models.CharField(verbose_name='local', max_length=50)
 	exames = models.ForeignKey(Exame, null = True, blank = True, on_delete = models.CASCADE)
+	
+	def get_absolute_url(self):
+	        return reverse('tutorendtel_detail', kwargs={'pk': self.pk})
 
 	def _get_nome(self):
 		return self._nome
@@ -442,4 +449,7 @@ class Laboratorio (models.Model):
 	def _set_local(self,local):
 		self.local = local
 	nome = property(_get_nome,_set_nome)	
-	local = property(_get_local,_set_local)	
+	local = property(_get_local,_set_local)
+
+	def __unicode__(self):
+		return u'%s' % (self.nome)

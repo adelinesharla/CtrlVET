@@ -23,36 +23,8 @@
 					<div class="card">
 						<div class="card-content">
 
-						<form id="searchform" action="{% url 'exame_busca_list_view' %}" method="GET" accept-charset="utf-8"> 
-
-						<div class="input-field col s12 m8 l9">
-							<input type="search" name="q" required>
-							<label for="search"><i class="material-icons">search</i></label>
-							<i class="material-icons">close</i>
-						</div>
-					</form>
-
 							<span class="card-title"><a href="{% url 'exame_list' %}">{{ object.nome }}</a></span>
-							<table class="responsive-table centered highlight striped">
-								<thead>
-									<tr>
-										<th data-field="data">Data Entrada</th>
-										<th data-field="name">Status</th>
-										<th data-field="date">Paciente</th>
-									</tr>
-								</thead>
-
-								<tbody>
-									{% for exame in object.exames %}
-									<tr>
-										<td><a href="{% url 'exame_detalhes' object.pk %}"><b>{{ exame.data }}</b></a></td>
-										<td> - </td>
-										<td> {{ exame.animal }} </td>
-									</tr>
-
-									{% endfor %}
-								</tbody>
-							</table>
+							
 						</div>
 						<div class="card-action" align="right">
 							<a href="calendario.html"><i class="material-icons">event</i></a>

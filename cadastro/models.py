@@ -346,7 +346,7 @@ class Tecnico(AcoesTecnico):
 	crf = property(_get_crf,_set_crf)
 	
 # classes para servico,consulta e exame	
-class ServicoAbs(models.Model):
+class AtendimentoAbs(models.Model):
 	_data = models.DateField(verbose_name='Data de Realização')
 	_diagnostico = models.TextField(blank = True, verbose_name='Diagnóstico', max_length=200)
 
@@ -368,10 +368,10 @@ class ServicoAbs(models.Model):
 	class Meta:
 		abstract = True
 
-class ConsultaAbs (ServicoAbs):
+class ConsultaAbs (AtendimentoAbs):
 	_retorno = models.BooleanField(default = 'False')
-	animal = models.OneToOneField(Animal, on_delete=models.CASCADE, related_name='a_ser_consultado')
-	veterinario = models.OneToOneField(Veterinario, on_delete=models.CASCADE, related_name='realiza_consulta')	
+	animal = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='a_ser_consultado')
+	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_consulta')	
 	
 	class Meta:
 		abstract = True
@@ -392,12 +392,14 @@ class Consulta (AcoesConsulta):
 	
 	retorno = property(_get_retorno,_set_retorno)	
 
-class ExameAbs (ServicoAbs):
-	animal = models.OneToOneField(Animal, on_delete=models.CASCADE, related_name='amostrado_para_exame')
-	veterinario = models.OneToOneField(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
-	tecnico = models.OneToOneField(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame', blank = True, null = True)
+class ExameAbs (AtendimentoAbs):
+	tutor = models.ForeignKey(Tutor,on_delete=models.CASCADE, related_name='dono_da_amostra')
+	animal = models.ForeignKey(Animal,null = True, blank = True,on_delete=models.CASCADE, related_name='amostrado_para_exame')
+	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
+	tecnico = models.ForeignKey(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame', blank = True, null = True)
 	_resultado = models.TextField(blank = True, verbose_name='Resultado', max_length=200)
 	estadoexame = models.BooleanField(blank = True, verbose_name='Estado do Exame')
+	laboratorio =  models.ForeignKey(Laboratorio, on_delete=models.CASCADE)
 	class Meta:
 		abstract = True
 		verbose_name_plural = "Exames"
@@ -434,7 +436,6 @@ class Exame (AcoesExame):
 class Laboratorio (models.Model):
 	_nome = models.CharField(verbose_name='Nome', max_length=50)
 	_local = models.CharField(verbose_name='local', max_length=50)
-	exames = models.ForeignKey(Exame, null = True, blank = True, on_delete = models.CASCADE)
 	
 	def get_absolute_url(self):
 	        return reverse('laboratorio_detail', kwargs={'pk': self.pk})

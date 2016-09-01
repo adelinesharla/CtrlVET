@@ -392,45 +392,6 @@ class Consulta (AcoesConsulta):
 	
 	retorno = property(_get_retorno,_set_retorno)	
 
-class ExameAbs (AtendimentoAbs):
-	tutor = models.ForeignKey(Tutor,on_delete=models.CASCADE, related_name='dono_da_amostra')
-	animal = models.ForeignKey(Animal,null = True, blank = True,on_delete=models.CASCADE, related_name='amostrado_para_exame')
-	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
-	tecnico = models.ForeignKey(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame', blank = True, null = True)
-	_resultado = models.TextField(blank = True, verbose_name='Resultado', max_length=200)
-	estadoexame = models.BooleanField(blank = True, verbose_name='Estado do Exame')
-	laboratorio =  models.ForeignKey(Laboratorio, on_delete=models.CASCADE)
-	class Meta:
-		abstract = True
-		verbose_name_plural = "Exames"
-		
-class AcoesExame(ExameAbs):
-	@classmethod
-	def estadoExame(veterinario,tecnico,estadoexame):
-		if tecnico != None:
-			if veterinario != None:
-				estadoExame = True
-				return estadoExame
-			else:
-				estadoExame = False
-				return estadoExame
-		else:
-			estadoExame = False
-			return estadoExame
-
-	
-class Exame (AcoesExame):
-	def get_absolute_url(self):
-        	return reverse('exame_detail', kwargs={'pk': self.pk})
-
-	def _get_resultado(self):
-		return self._resultado	
-																																
-	def _set_resultado(self,resultado):
-		self._resultado = resultado
-	
-	resultado = property(_get_resultado,_set_resultado)
-
 #classes referentes a laboratório
 
 class Laboratorio (models.Model):
@@ -454,3 +415,43 @@ class Laboratorio (models.Model):
 
 	def __unicode__(self):
 		return u'%s' % (self.nome)
+
+class ExameAbs (AtendimentoAbs):
+	tutor = models.ForeignKey(TutorEndTel,on_delete=models.CASCADE, related_name='dono_da_amostra')
+	animal = models.ForeignKey(Animal,null = True, blank = True,on_delete=models.CASCADE, related_name='amostrado_para_exame')
+	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
+	tecnico = models.ForeignKey(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame', blank = True, null = True)
+	_resultado = models.TextField(blank = True, verbose_name='Resultado', max_length=200)
+	estadoexame = models.BooleanField(blank = True, verbose_name='Estado do Exame')
+	laboratorio =  models.ForeignKey(Laboratorio, on_delete=models.CASCADE)
+	class Meta:
+		abstract = True
+		verbose_name_plural = "Exames"
+		
+class AcoesExame(ExameAbs):
+	@classmethod
+	def estadoExame(veterinario,tecnico,estadoexame):
+		if tecnico != None:
+			if veterinario != None:
+				estadoExame = True
+				return estadoExame
+			else:
+				estadoExame = False
+				return estadoExame
+		else:
+			estadoExame = False
+			return estadoExame
+	class Meta:
+		abstract = True
+	
+class Exame (AcoesExame):
+	def get_absolute_url(self):
+        	return reverse('exame_detail', kwargs={'pk': self.pk})
+
+	def _get_resultado(self):
+		return self._resultado	
+																																
+	def _set_resultado(self,resultado):
+		self._resultado = resultado
+	
+	resultado = property(_get_resultado,_set_resultado)

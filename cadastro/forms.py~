@@ -61,9 +61,10 @@ class ExameModelForm(forms.ModelForm):
 	
 	layout = Layout(
 		Fieldset("Exame"),
-			Row('_data', '_resultado'),
+			Row('_data'),
 			Row('_diagnostico'),
 			Row('animal', 'tecnico', 'veterinario'),
+			Row('_resultado'),
 		)
 
 class LaboratorioModelForm(forms.ModelForm):

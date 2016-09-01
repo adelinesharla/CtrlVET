@@ -70,4 +70,4 @@ class ExameModelForm(forms.ModelForm):
 class LaboratorioModelForm(forms.ModelForm):
 	class Meta:
 		model = Laboratorio
-		fields = ('_nome','_local', 'exames')
+		fields = ('_nome','_local')

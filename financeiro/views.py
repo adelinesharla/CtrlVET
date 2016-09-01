@@ -1,5 +1,11 @@
 from django.shortcuts import render
 
+class ProdutoFormView(FormView):
+	pass
+
+class ServicoFormView(FormView):
+	pass
+
 
 
 class ListPagamento(ListView):

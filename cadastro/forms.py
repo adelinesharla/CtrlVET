@@ -32,11 +32,11 @@ class AnimalModelForm(forms.ModelForm):
 		model = Animal
 		fields = {'_nome', '_rg', '_especie', '_raca', 'sexo', '_nascimento', '_idade', 'tutor'}
 
-	auto_chave = forms.BooleanField(required=False, label='Auto rg')
+	
 
 	layout = Layout(
 		Fieldset("Dados do Animal"),
-			Row('_nome', 'sexo', '_rg', 'auto_chave'),
+			Row('_nome', 'sexo', '_rg'),
 			Row('_especie', '_raca'),
 			Row('_nascimento', '_idade'),
 		Fieldset("Dados do Tutor"),
@@ -46,25 +46,29 @@ class AnimalModelForm(forms.ModelForm):
 class ConsultaModelForm(forms.ModelForm):
 	class Meta:
 		model = Consulta
-		fields = ('_data','_diagnostico', '_retorno', 'animal', 'veterinario')
+		fields = ('_retorno', 'animal', 'veterinario', '_data_realizacao')
 
 	layout = Layout(
 		Fieldset("Dados da Consulta"),
-			Row('_data', '_retorno'),
-			Row('_diagnostico'),
+			Row('_data_realizacao','_retorno'),
 			Row('animal', 'veterinario'),
 		)
 class ExameModelForm(forms.ModelForm):
 	class Meta:
 		model = Exame
-		fields = ('_data','_diagnostico', 'animal', 'veterinario', 'tecnico', '_resultado', 'estadoexame')
-	
+		fields = ( 'animal', 'veterinario', 'tecnico')
+		
+
+	observacoes = forms.CharField()
+	numero_amostra = forms.IntegerField()
+	tutor = forms.CharField()
+
 	layout = Layout(
-		Fieldset("Exame"),
-			Row('_data'),
-			Row('_diagnostico'),
-			Row('animal', 'tecnico', 'veterinario'),
-			Row('_resultado'),
+		Fieldset("Dados do Exame"),
+			Row(Span2('tecnico'), 'numero_amostra',),
+		Fieldset("Dados Gerais"),
+			Row('tutor', 'animal', 'veterinario'),
+			Row('observacoes')
 		)
 
 class LaboratorioModelForm(forms.ModelForm):

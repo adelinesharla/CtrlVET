@@ -347,8 +347,8 @@ class Tecnico(AcoesTecnico):
 	
 # classes para servico,consulta e exame	
 class AtendimentoAbs(models.Model):
-	_data = models.DateField(verbose_name='Data de Realização')
-	_diagnostico = models.TextField(blank = True, verbose_name='Diagnóstico', max_length=200)
+	_data = models.DateField(auto_now_add=True)
+	_diagnostico = models.TextField(default = 'Pendente', blank = True, verbose_name='Diagnóstico', max_length=200)
 
 	def _get_data(self):
 		return self._data
@@ -372,6 +372,7 @@ class ConsultaAbs (AtendimentoAbs):
 	_retorno = models.BooleanField(default = 'False')
 	animal = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='a_ser_consultado')
 	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_consulta')	
+	_data_realizacao = models.DateField(verbose_name='Data Agendada')
 	
 	class Meta:
 		abstract = True
@@ -421,7 +422,7 @@ class ExameAbs (AtendimentoAbs):
 	animal = models.ForeignKey(Animal,null = True, blank = True,on_delete=models.CASCADE, related_name='amostrado_para_exame')
 	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
 	tecnico = models.ForeignKey(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame', blank = True, null = True)
-	_resultado = models.TextField(blank = True, verbose_name='Resultado', max_length=200)
+	_resultado = models.TextField(default = 'Pendente', blank = True, verbose_name='Resultado', max_length=200)
 	estadoexame = models.BooleanField(blank = True, verbose_name='Estado do Exame')
 	laboratorio =  models.ForeignKey(Laboratorio, on_delete=models.CASCADE)
 	class Meta:

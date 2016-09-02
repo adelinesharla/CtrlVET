@@ -54,7 +54,6 @@
 									<th data-field="">Veterinário</th>
 									<th data-field="">Paciente</th>
 									<th data-field="">Data</th>
-									<th data-field="">Horário</th>
 
 									<!--	<th data-field="">Detalhes</th> -->
 								</tr>
@@ -64,10 +63,10 @@
 
 								{% for object in object_list %}
 								<tr>
-									<td><a href="{% url 'consulta_detalhes' object.pk %}"><b>{{ object.veterinario.nome }}</b></a></td>
-									<td>{{ object.paciente.nome }}</td>
-									<td>{{ object.data }}</td>
-									<td>{{ object.data }}</td>
+									<td><a href="{% url 'consulta_detalhes' object.pk %}">{{ object.data }}</a></td>
+									<td><b>{{ object.veterinario.nome }}</b></td>
+									<td><a href="{% url 'animal_detalhes' object.animal.pk %}">{{ object.animal.nome }}</a></td>
+									
 								</tr>
 
 								{% endfor %}

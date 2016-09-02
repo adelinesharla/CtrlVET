@@ -219,6 +219,9 @@ class AnimalAbs(models.Model):
 		verbose_name_plural = "Animais"
 		abstract = True
 
+	def get_absolute_url(self):
+		return reverse('animal_detalhes', kwargs={'pk': self.pk})
+
 
 class AcoesAnimal(AnimalAbs):
 	def __unicode__(self):
@@ -400,7 +403,7 @@ class Laboratorio (models.Model):
 	_local = models.CharField(verbose_name='local', max_length=50)
 	
 	def get_absolute_url(self):
-	        return reverse('laboratorio_detail', kwargs={'pk': self.pk})
+			return reverse('laboratorio_detail', kwargs={'pk': self.pk})
 
 	def _get_nome(self):
 		return self._nome

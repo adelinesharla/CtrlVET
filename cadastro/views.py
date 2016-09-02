@@ -140,6 +140,7 @@ class AnimalEditar(UpdateView):
 	#fields = '__all__'
 	model = Animal
 	template_name_suffix = '_form_update'
+	success_url = '/success/'
 
 """Classe para deletar Animal"""
 class AnimalDeletar(DeleteView):
@@ -195,6 +196,7 @@ class ConsultaUpdateView(UpdateView):
 	form_class = ConsultaModelForm
 	model = Consulta
 	template_name_suffix = '_form_update'
+	success_url = '/success/'
 
 class ConsultaListView(ListView):
 	model = Consulta    	
@@ -251,6 +253,7 @@ class ExameDetailView(DetailView):
 class ExameUpdateView(UpdateView):
 	model = Exame
 	template_name_suffix = '_form_update'
+	success_url = '/success/'
 
 class ExameListView(ListView):
 	model = Exame    	

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'djangobower',
     'material',
-    'cadastro'
+    'cadastro',
+    'financeiro',
 ]
 
 MIDDLEWARE_CLASSES = [

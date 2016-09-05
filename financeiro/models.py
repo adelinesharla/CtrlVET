@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django.db import models
@@ -29,7 +32,7 @@ class ItemNota(AcoesItemNota):
 		self._valor = valor
 		
 	nome = property(_get_nome,_set_nome)	
-	valor = property(_get_valor,_set_valor)						
+	valor = property(_get_valor,_set_valor)					
 
 class NotaAbs(models.Model):
 	
@@ -51,7 +54,6 @@ class NotaAbs(models.Model):
 			abstract = True
 	
 class AcoesNota(NotaAbs):
-
 	class Meta:
 			abstract = True
 	
@@ -67,4 +69,10 @@ class Nota(AcoesNota):
 	
 class Debito(models.Model):	
 	itemNota = models.ForeignKey(ItemNota, on_delete = models.CASCADE)
-	nota = models.ForeignKey(Nota, on_delete = models.CASCADE)	
+	nota = models.ForeignKey(Nota, on_delete = models.CASCADE)
+
+class Produto(ItemNota):
+	pass
+
+class Servico(ItemNota):
+	pass

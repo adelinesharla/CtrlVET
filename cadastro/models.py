@@ -426,7 +426,7 @@ class ExameAbs (AtendimentoAbs):
 	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
 	tecnico = models.ForeignKey(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame', blank = True, null = True)
 	_resultado = models.TextField(default = 'Pendente', blank = True, verbose_name='Resultado', max_length=200)
-	estadoexame = models.BooleanField(blank = True, verbose_name='Estado do Exame')
+	estadoexame = models.NullBooleanField(null = True ,blank = True, verbose_name='Estado do Exame')
 	laboratorio =  models.ForeignKey(Laboratorio, on_delete=models.CASCADE)
 	class Meta:
 		abstract = True

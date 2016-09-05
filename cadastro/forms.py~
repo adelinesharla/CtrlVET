@@ -56,7 +56,7 @@ class ConsultaModelForm(forms.ModelForm):
 class ExameModelForm(forms.ModelForm):
 	class Meta:
 		model = Exame
-		fields = ( 'animal', 'veterinario', 'tecnico', tutor)
+		fields = ( 'animal', 'veterinario', 'tecnico', 'tutor')
 		
 
 	observacoes = forms.CharField()

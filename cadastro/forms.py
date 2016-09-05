@@ -61,7 +61,6 @@ class ExameModelForm(forms.ModelForm):
 
 	observacoes = forms.CharField()
 	numero_amostra = forms.IntegerField()
-	tutor = forms.CharField()
 
 	layout = Layout(
 		Fieldset("Dados do Exame"),

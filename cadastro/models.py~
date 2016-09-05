@@ -219,6 +219,9 @@ class AnimalAbs(models.Model):
 		verbose_name_plural = "Animais"
 		abstract = True
 
+	def get_absolute_url(self):
+		return reverse('animal_detalhes', kwargs={'pk': self.pk})
+
 
 class AcoesAnimal(AnimalAbs):
 	def __unicode__(self):
@@ -347,8 +350,8 @@ class Tecnico(AcoesTecnico):
 	
 # classes para servico,consulta e exame	
 class AtendimentoAbs(models.Model):
-	_data = models.DateField(verbose_name='Data de Realização')
-	_diagnostico = models.TextField(blank = True, verbose_name='Diagnóstico', max_length=200)
+	_data = models.DateField(auto_now_add=True)
+	_diagnostico = models.TextField(default = 'Pendente', blank = True, verbose_name='Diagnóstico', max_length=200)
 
 	def _get_data(self):
 		return self._data
@@ -372,6 +375,7 @@ class ConsultaAbs (AtendimentoAbs):
 	_retorno = models.BooleanField(default = 'False')
 	animal = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='a_ser_consultado')
 	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_consulta')	
+	_data_realizacao = models.DateField(verbose_name='Data Agendada')
 	
 	class Meta:
 		abstract = True
@@ -399,7 +403,7 @@ class Laboratorio (models.Model):
 	_local = models.CharField(verbose_name='local', max_length=50)
 	
 	def get_absolute_url(self):
-	        return reverse('laboratorio_detail', kwargs={'pk': self.pk})
+			return reverse('laboratorio_detail', kwargs={'pk': self.pk})
 
 	def _get_nome(self):
 		return self._nome
@@ -417,11 +421,11 @@ class Laboratorio (models.Model):
 		return u'%s' % (self.nome)
 
 class ExameAbs (AtendimentoAbs):
-	tutor = models.ForeignKey(Tutor,on_delete=models.CASCADE, related_name='dono_da_amostra')
+	tutor = models.ForeignKey(TutorEndTel,on_delete=models.CASCADE, related_name='dono_da_amostra')
 	animal = models.ForeignKey(Animal,null = True, blank = True,on_delete=models.CASCADE, related_name='amostrado_para_exame')
 	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
 	tecnico = models.ForeignKey(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame', blank = True, null = True)
-	_resultado = models.TextField(blank = True, verbose_name='Resultado', max_length=200)
+	_resultado = models.TextField(default = 'Pendente', blank = True, verbose_name='Resultado', max_length=200)
 	estadoexame = models.BooleanField(blank = True, verbose_name='Estado do Exame')
 	laboratorio =  models.ForeignKey(Laboratorio, on_delete=models.CASCADE)
 	class Meta:
@@ -454,4 +458,5 @@ class Exame (AcoesExame):
 	def _set_resultado(self,resultado):
 		self._resultado = resultado
 	
-	resultado = property(_get_resultado,_set_resultado)
+	resultado = property(_get_resultado,_set_resultado)	
+	

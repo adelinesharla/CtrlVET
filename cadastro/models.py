@@ -128,7 +128,7 @@ class PessoaAbs(models.Model):
 	#telefone = models.ForeignKey(Telefone, on_delete = models.CASCADE)
 	
 	def __unicode__(self):
-		return u'%s %s' % (self.nome, self.cpf)
+		return u'%s' % (self.nome)
 	
 	def _get_nome(self):
 		return self._nome		

@@ -1,0 +1,42 @@
+{% extends "financeiro/base_visaogeral.html" %}
+
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'estoque_resumo' %}" class="breadcrumb">Estoque</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+	<div class="card">
+		<div class="card-content">
+
+			{% block estatisticas %}
+			{% endblock %}
+
+			{% block cadastro %}
+
+			<div class="row">
+				<div class="nav-wrapper">
+					<div class="input-field col s12 m4 l3 right-align">
+						<a href="{% url 'item_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar Item</a>
+					</div>
+				</div>
+			</div>
+
+			{% endblock cadastro %}
+
+			{% block lista %}
+
+
+			{% endblock lista %}
+
+
+
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

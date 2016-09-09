@@ -8,9 +8,9 @@ python manage.py makemigrations cadastro
 
 python manage.py migrate cadastro
 
-python manage.py makemigrations secretaria
+python manage.py makemigrations financeiro
 
-python manage.py migrate secretaria
+python manage.py migrate financeiro
 
 python manage.py migrate
 

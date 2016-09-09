@@ -40,6 +40,7 @@ class MockUp(TemplateView):
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #url(r'^(?P<template_name>.*)$', MockUp.as_view()),
-    url(r'', include('cadastro.urls'))
+    url(r'', include('cadastro.urls')),
+    url(r'', include('financeiro.urls')),
     #url(r'^agenda', agenda.html),
 ]

@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 
 from django import forms
+from django.forms.models import inlineformset_factory
 
 'importação necessária para criar formulários com mais de uma model'
 #from django.forms.models import inlineformset_factory
@@ -16,14 +17,28 @@ class DebitoModelForm(forms.ModelForm):
 		fields = {'itemNota', 'nota'}
 
 	layout = Layout(
+		Fieldset("Cadastro de Débito"),
+			Row('itemNota', 'nota'),
 		)
 
 class NotaModelForm(forms.ModelForm):
 	class Meta:
 		model = Nota
-		fields = {'_data', '_setor'}
+		fields = {'setor'}
 
 	layout = Layout(
+		Fieldset("Cadastro de Nota"),
+			Row('setor'),
+		)
+
+class ItemNotaModelForm(forms.ModelForm):
+	class Meta:
+		model = ItemNota
+		fields = {'_nome', '_valor'}
+
+	layout = Layout(
+		Fieldset("Itens da nota"),
+			Row('_nome', '_valor'),
 		)
 
 class ProdutoModelForm(forms.ModelForm):
@@ -32,14 +47,17 @@ class ProdutoModelForm(forms.ModelForm):
 		fields = {'_nome', '_valor'}
 
 	layout = Layout(
+		Fieldset("Cadastro de Produto"),
+			Row('_nome', '_valor'),
 		)
 
 class ServicoModelForm(forms.ModelForm):
 	class Meta:
 		model = Debito
-		fields = {'_nome', '_valor'}
+		fields = {'itemNota', 'nota'}
 
 	layout = Layout(
+		Fieldset("Cadastro de Serviço"),
+			Row('itemNota', 'nota'),
 		)
-
 

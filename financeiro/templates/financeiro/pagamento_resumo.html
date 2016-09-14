@@ -15,10 +15,18 @@
 			{% block estatisticas %}
 			{% endblock %}
 
+			{% block relatorios %}
+			<div class="row">
+				<div class="nav-wrapper">
+					<div class="input-field col s12 m12 l12 right-align">
+						<a href="{% url 'debito_prestacaocontas' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons right">assignment</i>Relatórios</a>
+					</div>
+
+				</div>
+			</div>
+			{% endblock %}
+
 			{% block lista %}
-
-
-			
 
 			<div class="row">
 				<div class="col s12 m12 l12">
@@ -97,8 +105,6 @@
 
 
 					{% endblock lista %}
-
-
 
 				</div>
 			</div>

@@ -77,7 +77,7 @@ class Nota(AcoesNota):
 class Debito(models.Model):	
 	itemNota = models.ForeignKey(ItemNota, on_delete = models.CASCADE)
 	nota = models.ForeignKey(Nota, on_delete = models.CASCADE)
-	status = models.BooleanField(verbose_name='Pago')
+	status = models.BooleanField(verbose_name='Pago', default=False)
 
 
 def __unicode__(self):

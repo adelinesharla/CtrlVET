@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.conf.urls import url
 
 """Classes de views genericas utilizadas"""
-from django.views.generic import View, FormView, TemplateView, DetailView, UpdateView, DeleteView, ListView, FormView
+from django.views.generic import View, CreateView, TemplateView, DetailView, UpdateView, DeleteView, ListView, FormView
 
 'HttpResponse para uma pagina template indicando que a operação foi realizada (verificar se tal página existe)'
 from django.http import HttpResponseRedirect
@@ -19,6 +19,8 @@ from django.forms.models import model_to_dict #iterar em object no template
 import operator
 from django.db.models import Q
 
+from django.forms.formsets import formset_factory
+
 
 class SuccessView(TemplateView):
 	template_name='financeiro/success.html'	
@@ -30,12 +32,44 @@ class ProdutoFormView(FormView):
 class ServicoFormView(FormView):
 	pass
 
+
+class PrestacaoContasView(TemplateView):
+	template_name='financeiro/pagamento_pretacaocontas.html'	
+
+class DebitoCreateView(CreateView):
+	form_class = DebitoModelForm
+	template_name = 'financeiro/debito_form.html'
+	success_url = '/success/'
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(DebitoCreateView, self).get_context_data(*args, **kwargs)
+		context['debito_form'] = formset_factory(ProdutoModelForm)
+		return context 
+
+class DebitoFormView(FormView):
+	template_name = 'financeiro/debito_form.html'
+	form_class = DebitoModelForm
+	success_url = '/success/'
+	debito_formset = formset_factory(NotaModelForm)
+
+	def form_valid(self, form):
+		form.save()
+		debito_formset.save()
+		return HttpResponseRedirect('/success/')
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(DebitoFormView, self).get_context_data(*args, **kwargs)
+		context['debito_formset'] = formset_factory(NotaModelForm)
+		return context 
+
+
 class NotaFormView(FormView):
 	template_name = 'financeiro/nota_form.html'
 	form_class = ItemNotaModelForm
 	success_url = '/success/'
 
 	def form_valid(self, faorm):
+		
 		form.save()
 		return HttpResponseRedirect('/success/')
 

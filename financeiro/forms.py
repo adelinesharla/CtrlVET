@@ -18,6 +18,7 @@ class DebitoModelForm(forms.ModelForm):
 
 	layout = Layout(
 		Fieldset("Cadastro de Débito"),
+		
 			Row('itemNota', 'nota'),
 		)
 

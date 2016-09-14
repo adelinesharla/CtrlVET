@@ -17,7 +17,8 @@ urlpatterns = [
     url(r'^pagamentos/cadastro$', NotaFormView.as_view(), name = 'nota_cadastro'),
     url(r'^pagamentos/debitos$', DebitosListView.as_view(), name = 'financeiro_debitos'),
     url(r'^pagamentos/recebidos$', RecebidosListView.as_view(), name = 'financeiro_recebidos'),
-
+    url(r'^pagamentos/cadastro/debito', DebitoFormView.as_view(), name = 'debito_cadastro'),
+    url(r'^pagamentos/relatorio', PrestacaoContasView.as_view(), name = 'debito_prestacaocontas'),
     #Urls relacionadas às views de Estoque
 
     url(r'^estoque/resumo$',  EstoqueResumo.as_view(), name='estoque_resumo'),

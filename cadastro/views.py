@@ -259,21 +259,6 @@ class ExameListView(ListView):
 	model = Exame    	
 	paginate_by = 10
 
-class ExameResumo(ExameListView):
-	template_name='cadastro/exame_list.html'
-
-	def get_queryset(self):
-	       	result = super(ExameBuscaListView, self).get_queryset()
-	        query = self.request.GET.get('q')
-	        if query:
-	            query_list = query.split()
-	            result = result.filter(
-	                reduce(operator.and_,
-	                       (Q(pk=q) for q in query_list))
-		    )
-
-
-
 class ExameBuscaListView(ExameListView):
 	def get_queryset(self):
 	       	result = super(ExameBuscaListView, self).get_queryset()
@@ -307,8 +292,3 @@ class LaboratorioResumo(LaboratorioListView):
 class LaboratorioDetailView(DetailView):
 	pk_url_kwarg = "laboratorio_id"
 	model = Laboratorio
-
-	def get_context_data(self, **kwargs):
-		context = super (LaboratorioDetailView, self).get_context_data(**kwargs)
-		return context
-	

@@ -46,7 +46,7 @@
 					<div class="row">
 						<div class="col s12 m12">
 
-							{% if object.exames %}
+							{% if object.exames.all %}
 
 							<table class="reponsive-table highlight striped">
 								<thead>
@@ -59,7 +59,7 @@
 
 							<tbody>
 
-								{% for object in object.exames_set.all %}
+								{% for object in object.exames.all %}
 								<tr>
 									<td><a href="{% url 'exame_detalhes' object.pk %}"><b>{{ object.data }}</b></a></td>
 									<td>{{ object.animal }}</td>

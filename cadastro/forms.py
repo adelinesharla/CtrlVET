@@ -56,7 +56,7 @@ class ConsultaModelForm(forms.ModelForm):
 class ExameModelForm(forms.ModelForm):
 	class Meta:
 		model = Exame
-		fields = ( 'animal', 'veterinario', 'tecnico', 'tutor')
+		fields = ( 'animal', 'veterinario', 'tecnico', 'tutor', 'laboratorio')
 		
 
 	observacoes = forms.CharField()
@@ -67,7 +67,7 @@ class ExameModelForm(forms.ModelForm):
 			Row(Span2('tecnico'), 'numero_amostra',),
 		Fieldset("Dados Gerais"),
 			Row('tutor', 'animal', 'veterinario'),
-			Row('observacoes')
+			Row('observacoes', 'laboratorio')
 		)
 
 class LaboratorioModelForm(forms.ModelForm):

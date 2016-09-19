@@ -427,7 +427,7 @@ class ExameAbs (AtendimentoAbs):
 	tecnico = models.ForeignKey(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame', blank = True, null = True)
 	_resultado = models.TextField(default = 'Pendente', blank = True, verbose_name='Resultado', max_length=200)
 	estadoexame = models.NullBooleanField(null = True ,blank = True, verbose_name='Estado do Exame')
-	laboratorio =  models.ForeignKey(Laboratorio, on_delete=models.CASCADE)
+	laboratorio =  models.ForeignKey(Laboratorio, on_delete=models.CASCADE, related_name='exames')
 	class Meta:
 		abstract = True
 		verbose_name_plural = "Exames"

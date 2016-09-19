@@ -4,8 +4,8 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'consulta_resumo' %}" class="breadcrumb">Consulta</a>
-<a href="{% url 'consulta_cadastro' %}" class="breadcrumb">Cadastro</a>
+<a href="{% url 'exame_list' %}" class="breadcrumb">Exame</a>
+<a href="{% url 'exame_cadastro' %}" class="breadcrumb">Cadastro</a>
 {% endblock %}
 
 {% block form_submit_action %}

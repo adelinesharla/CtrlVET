@@ -140,6 +140,7 @@ class AnimalEditar(UpdateView):
 	#fields = '__all__'
 	model = Animal
 	template_name_suffix = '_form_update'
+	success_url = '/success/'
 
 """Classe para deletar Animal"""
 class AnimalDeletar(DeleteView):
@@ -195,6 +196,7 @@ class ConsultaUpdateView(UpdateView):
 	form_class = ConsultaModelForm
 	model = Consulta
 	template_name_suffix = '_form_update'
+	success_url = '/success/'
 
 class ConsultaListView(ListView):
 	model = Consulta    	
@@ -251,25 +253,11 @@ class ExameDetailView(DetailView):
 class ExameUpdateView(UpdateView):
 	model = Exame
 	template_name_suffix = '_form_update'
+	success_url = '/success/'
 
 class ExameListView(ListView):
 	model = Exame    	
 	paginate_by = 10
-
-class ExameResumo(ExameListView):
-	template_name='cadastro/exame_list.html'
-
-	def get_queryset(self):
-	       	result = super(ExameBuscaListView, self).get_queryset()
-	        query = self.request.GET.get('q')
-	        if query:
-	            query_list = query.split()
-	            result = result.filter(
-	                reduce(operator.and_,
-	                       (Q(pk=q) for q in query_list))
-		    )
-
-
 
 class ExameBuscaListView(ExameListView):
 	def get_queryset(self):
@@ -303,9 +291,9 @@ class LaboratorioResumo(LaboratorioListView):
 
 class LaboratorioDetailView(DetailView):
 	pk_url_kwarg = "laboratorio_id"
-	model = Exame
+	model = Laboratorio
 
 	def get_context_data(self, **kwargs):
-		context = super (ExameDetailView, self).get_context_data(**kwargs)
+		context = super (LaboratorioDetailView, self).get_context_data(**kwargs)
+		context ['exames_list'] = Exame.objects.filter(laboratorio=pk_url_kwarg)
 		return context
-	

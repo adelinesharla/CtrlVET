@@ -9,5 +9,3 @@ bower install fullcalendar
 bower install moment
 
 bower install jquerys
-
-pip install django-formset-js

@@ -15,3 +15,19 @@ $( document ).ready(function() {
 		out_duration: 200, 
 	});
 });
+
+function AlertSucesso(){
+	  flag = 1;
+	  for (i = 0; i < document.forms[0].getElementsByTagName('input').length; i++ ){
+		  if( document.forms[0][i].value == null || document.forms[0][i].value == "" ){
+				flag = 0;
+		  }
+	  }
+    if (flag == 0) {
+        alert("Erro no formulário!");
+        return false;
+    }else{
+		alert("Sucesso! clique 'ok' para voltar ao resumo!");
+		return true;
+	}
+	};

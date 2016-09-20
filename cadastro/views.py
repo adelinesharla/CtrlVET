@@ -52,16 +52,17 @@ class TutorResumo(ListTutor):
 		context['form'] = TutorBuscaAdvForm()
 		return context
 
+
 """Formulário de cadastro de Tutor"""
 class TutorFormView(FormView):
 	template_name = 'cadastro/tutorendtel_form.html'
 	form_class = TutorModelForm
-	success_url = '/success/'
+	success_url = '/tutor/resumo'
+	
 
 	def form_valid(self, form):
 		form.save()
-		return HttpResponseRedirect('/success/')
-
+		return HttpResponseRedirect('/tutor/resumo')
 
 """Classe para deletar Tutor"""
 class TutorDeletar(DeleteView):
@@ -124,11 +125,11 @@ class AnimalResumo(ListAnimal):
 class AnimalFormView(FormView):
 	template_name = 'cadastro/animal_form.html'
 	form_class = AnimalModelForm
-	success_url = '/success/'
+	success_url = '/animal/resumo'
 
 	def form_valid(self, form):
 		form.save()
-		return HttpResponseRedirect('/success/')
+		return HttpResponseRedirect('/animal/resumo')
 
 """Classe para retornar detalhes de Animal (alimenta o template animal_detalhes)"""
 class AnimalDetalhesView(DetailView):
@@ -178,11 +179,11 @@ class AnimalBuscaListView(ListAnimal):
 class ConsultaFormView(FormView):
 	template_name = 'cadastro/consulta_form.html'
 	form_class = ConsultaModelForm
-	success_url = '/success/'
+	success_url = '/consulta/resumo'
 	
 	def form_valid(self, form):
 		form.save()
-		return HttpResponseRedirect('/success/')
+		return HttpResponseRedirect('/consulta/resumo')
 
 class ConsultaDeleteView(DeleteView):
 	model = Consulta
@@ -237,11 +238,12 @@ class ConsultaBuscaListView(ConsultaListView):
 class ExameFormView(FormView):
 	template_name = 'cadastro/exame_form.html'
 	form_class = ExameModelForm
-	success_url = '/success/'
+	success_url = '/exame/resumo'
 	
 	def form_valid(self, form):
 		form.save()
-		return HttpResponseRedirect('/success/')
+		return HttpResponseRedirect('/exame/resumo')
+
 
 class ExameDeleteView(DeleteView):
 	model = Exame

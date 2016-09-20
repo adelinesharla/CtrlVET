@@ -8,7 +8,9 @@ from django import forms
 from material import *
 from .models import *
 from localflavor.br.forms import BRCPFField
-from datetime import datetime 
+from datetime import datetime
+from localflavor.br.forms import STATE_CHOICES
+
 
 class TutorModelForm(forms.ModelForm):
 	_cpf = BRCPFField()
@@ -25,6 +27,21 @@ class TutorModelForm(forms.ModelForm):
 		Fieldset("Endereço"),
 			Row(Span3('_logradouro'), '_numero'),
 			Row(Span2('_bairro'), Span2('_cidade'), '_cep', ('_uf')),
+		)
+
+class TutorBuscaAdvForm(forms.Form):
+	_nome = forms.CharField(label='Nome', max_length=50)
+	_email = forms.EmailField(label='E-Mail')
+	_cpf = forms.CharField(label='CPF', max_length=11)
+	_bairro = forms.CharField(label='Bairro', max_length=20)
+	_cidade = forms.CharField(label='Cidade', max_length=200)
+	_cep = forms.CharField(label = 'CEP', max_length=15)
+	_uf = forms.ChoiceField(label = 'UF', widget=forms.Select, choices=STATE_CHOICES)
+
+	layout = Layout(
+		Row('_nome', '_cpf'),
+		Row('_email'),
+		Row(Span2('_bairro'), Span2('_cidade'), '_cep', ('_uf')),
 		)
 
 class AnimalModelForm(forms.ModelForm):

@@ -47,6 +47,11 @@ class ListTutor(ListView):
 class TutorResumo(ListTutor):
 	template_name='cadastro/tutor_resumo.html'
 
+	def get_context_data(self, **kwargs):
+		context = super (TutorResumo, self).get_context_data(**kwargs)
+		context['form'] = TutorBuscaAdvForm()
+		return context
+
 """Formulário de cadastro de Tutor"""
 class TutorFormView(FormView):
 	template_name = 'cadastro/tutorendtel_form.html'

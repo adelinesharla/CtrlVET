@@ -44,12 +44,19 @@
 					<!-- Modal Structure -->
 					<div id="buscaavancada" class="modal">
 						<div class="modal-content">
-							<h4>Modal Header</h4>
-							{% csrf_token %}
-							{% form form=form %}{% endform %}
-						</div>
-						<div class="modal-footer">
-							<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Buscar</a>
+							<form action="busca/avancada" method="POST"> 
+
+								<h4>Busca Avançada</h4>
+
+								{% csrf_token %}
+								{% form form=form %}{% endform %}
+
+							</div>
+							<div class="modal-footer">
+								<button class="btn modal-action modal-close waves-effect waves-light indigo darken-4" type="Submit" value="Update">Buscar<i class="material-icons right">search</i>
+								</button>
+
+							</form>
 						</div>
 					</div>
 

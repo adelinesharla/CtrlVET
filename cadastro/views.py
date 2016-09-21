@@ -109,6 +109,22 @@ class TutorBuscaListView(ListTutor):
 
         return result
 
+
+def form_avancado(request):
+	form = TutorBuscaAdvForm
+	if request.method == 'POST':
+		form = TutorBuscaAdvForm(request.POST)
+
+		return HttpResponseRedirect('/success/')
+		
+	else:
+		TutorBuscaAdvForm()
+
+	return HttpResponseRedirect('TutorResumo')
+
+
+
+
 #Views relacionadas à classe Animal:
 
 """Classe para listar os animais"""    

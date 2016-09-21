@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^tutor/detalhes/deletar/(?P<pk>\d+)/',TutorDeletar.as_view(),  name = 'tutor_deletar'),
     url(r'^tutor/cadastro$', TutorFormView.as_view(), name = 'tutor_cadastro'),
     url(r'^tutor/busca$', TutorBuscaListView.as_view(), name = 'tutor_busca_list_view'),
-
+    url(r'^tutor/busca/avancada$', form_avancado, name = 'tutor_busca_avancada'),
 
     #Urls relacionadas às views de Animal
     

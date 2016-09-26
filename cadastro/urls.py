@@ -31,8 +31,9 @@ urlpatterns = [
     url(r'^tutor/detalhes/deletar/(?P<pk>\d+)/',TutorDeletar.as_view(),  name = 'tutor_deletar'),
     url(r'^tutor/cadastro$', TutorFormView.as_view(), name = 'tutor_cadastro'),
     url(r'^tutor/busca$', TutorBuscaListView.as_view(), name = 'tutor_busca_list_view'),
-    url(r'^tutor/busca/avancada$', form_avancado, name = 'tutor_busca_avancada'),
-
+    #url(r'^tutor/busca/avancada$', form_avancado, name = 'tutor_busca_avancada'),
+    url(r'^tutor/busca/avancada$', TutorBuscaAvancadaMixin.as_view(), name = 'tutor_busca_avancada'),
+	 #url(r'^tutor/busca/avancada$', TutorBuscaAvancadaSingle.as_view(), name = 'tutor_busca_avancada'),
     #Urls relacionadas às views de Animal
     
       #Urls relacionadas às views de Animal
@@ -42,6 +43,7 @@ urlpatterns = [
     url(r'^animal/detalhes/deletar/(?P<pk>\d+)/',AnimalDeletar.as_view(),  name = 'animal_deletar'),
     url(r'^animal/cadastro$', AnimalFormView.as_view(), name = 'animal_cadastro'),
     url(r'^animal/busca$', AnimalBuscaListView.as_view(), name = 'animal_busca_list_view'),
+    url(r'^animal/busca/avancada$', AnimalBuscaAvancadaMixin.as_view(), name = 'animal_busca_avancada'),
 
     #Urls relacionadas às views de Consulta
     
@@ -52,6 +54,7 @@ urlpatterns = [
     url(r'^consulta/$',ConsultaListView.as_view(), name='consulta_list'),
     url(r'^consulta/resumo$',ConsultaResumo.as_view(), name='consulta_resumo'),
     url(r'^consulta/busca$', ConsultaBuscaListView.as_view(), name = 'consulta_busca_list_view'),
+    url(r'^consulta/busca/avancada$', ConsultaBuscaAvancadaMixin.as_view(), name = 'consulta_busca_avancada'),
     
     #Urls relacionadas às views de Exame
     
@@ -68,5 +71,6 @@ urlpatterns = [
     
     url(r'^laboratorio/resumo$',LaboratorioResumo.as_view(), name='laboratorio_resumo'),
     url(r'^laboratorio/detalhes/(?P<laboratorio_id>\d+)/$',LaboratorioDetailView.as_view(), name = 'laboratorio_detalhes'),
+    url(r'^laboratorio/detalhes/(?P<laboratorio_id>\d+)/busca/avancada$', ExameBuscaAvancadaMixin.as_view(), name = 'exame_busca_avancada'),
     
     ]

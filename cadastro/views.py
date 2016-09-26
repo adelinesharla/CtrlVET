@@ -4,6 +4,8 @@ from django.conf.urls import url
 
 """Classes de views genericas utilizadas"""
 from django.views.generic import View, FormView, TemplateView, DetailView, UpdateView, DeleteView, ListView, FormView
+from django.views.generic.detail import SingleObjectMixin
+from django.views.generic.edit import ProcessFormView
 
 'HttpResponse para uma pagina template indicando que a operação foi realizada (verificar se tal página existe)'
 from django.http import HttpResponseRedirect
@@ -109,22 +111,36 @@ class TutorBuscaListView(ListTutor):
             )
 
         return result
-
-
-def form_avancado(request):
+        
+"""Classe para fazer a busca avancada dos atributos de tutor"""        
+class TutorBuscaAvancadaMixin(FormView):
 	form = TutorBuscaAdvForm
-	if request.method == 'POST':
-		form = TutorBuscaAdvForm(request.POST)
+	form_class = TutorBuscaAdvForm
+	template_name = 'cadastro/tutor_resumo.html'
+	success_url = '/success/'
+	
+	query=TutorEndTel.objects.all()
+	
 
-		return HttpResponseRedirect('/success/')
-		
-	else:
-		TutorBuscaAdvForm()
-
-	return HttpResponseRedirect('TutorResumo')
-
-
-
+	
+	def get(request,*args):
+		if request.method == 'POST':
+			form = TutorBuscaAdvForm(request.POST)
+			i = 0
+			while i < len(query):
+				if ((form.nome == None) | (query[i].nome__icontains__form.nome)):
+					if ((form.cpf == None) | (query[i].cpf__icontains__form.cpf)): 
+						if ((form.email == None) | (query[i].email__icontains__form.email)): 	
+							if ((form.bairro == None) | (query[i].endereco.bairro__icontains__form.bairro)): 
+								if ((form.cidade == None) | (query[i].endereco.cidade__icontains__form.cidade)):
+									if ((form.cep == None) | (query[i].endereco.cep__icontains__form.cep)): 
+										if ((form.uf == None) | (query[i].endereco.uf__icontains__form.uf)):  
+											lista_retornavel += query[i]
+				i = i+1		
+					
+				
+		else:
+			TutorBuscaAdvForm()
 
 #Views relacionadas à classe Animal:
 
@@ -136,6 +152,12 @@ class ListAnimal(ListView):
 """Classe de renderização do painel de animal (sem contexto)"""
 class AnimalResumo(ListAnimal):
 	template_name='cadastro/animal_resumo.html'
+	
+	def get_context_data(self, **kwargs):
+		context = super (AnimalResumo, self).get_context_data(**kwargs)
+		context['form'] = AnimalBuscaAdvForm()
+		return context
+
 
 """Formulário de cadastro de Animal"""
 class AnimalFormView(FormView):
@@ -189,6 +211,43 @@ class AnimalBuscaListView(ListAnimal):
             )
 
         return result
+        
+"""Classe para fazer a busca avancada dos atributos de animal"""
+class AnimalBuscaAvancadaMixin(ListAnimal,FormView):
+	form = AnimalBuscaAdvForm
+	form_class = AnimalBuscaAdvForm
+	template_name = 'cadastro/animal_resumo.html'
+	#success_url = '/animal/busca/avancada'
+	success_url = '/success/'
+	
+	query=Animal.objects.all()
+	
+	def get(request,*args):
+		if request.method == 'POST':
+			form = AnimalBuscaAdvForm(request.POST)
+			i = 0
+			while i < len(query):
+				if ((form.nome == None) | (query[i].nome__icontains__form.nome)):
+					if ((form.rg == None) | (query[i].rg__icontains__form.rg)): 
+						if ((form.especie == None) | (query[i].especie__icontains__form.especie)): 	
+							if ((form.tutor == None) | (query[i].tutor.nome__icontains__form.tutor)): 
+								if ((form.raca == None) | (query[i].raca__icontains__form.raca)):
+									if ((form.idade == None) | (query[i].idade__icontains__form.idade)): 
+										if ((form.sexo == None) | (query[i].sexo__icontains__form.sexo)):  
+											lista_retornavel += query[i]
+				i = i+1		
+					
+				
+		else:
+			AnimalBuscaAdvForm()
+
+		#return lista_retornavel
+		return HttpResponseRedirect('/animal/resumo')
+		#return HttpResponseRedirect(reverse('seila', kwargs={'pk': self.lista_retornavel.pk}))
+		
+	#def get_queryset(self):
+		#return self.lista_retornavel
+		        
 
 #Views relacionadas à classe Consulta:
 
@@ -226,6 +285,13 @@ class ConsultaListView(ListView):
 
 class ConsultaResumo(ConsultaListView):
 	template_name='cadastro/consulta_resumo.html'
+	
+	def get_context_data(self, **kwargs):
+		context = super (ConsultaResumo, self).get_context_data(**kwargs)
+		context['form'] = ConsultaBuscaAdvForm()
+		return context	
+	
+		
 
 class ConsultaBuscaListView(ConsultaListView):
 	def get_queryset(self):
@@ -248,6 +314,33 @@ class ConsultaBuscaListView(ConsultaListView):
 	            )
 	
 	        return result
+	        
+"""Classe para fazer a busca avancada dos atributos de consulta"""	       	        
+class ConsultaBuscaAvancadaMixin(ListView,FormView):
+	form = ConsultaBuscaAdvForm
+	form_class = ConsultaBuscaAdvForm
+	template_name = 'cadastro/consulta_resumo.html'
+	success_url = '/success/'
+	
+	query=Consulta.objects.all()
+	
+	def get(request,*args):
+		if request.method == 'POST':
+			form = ConsultaBuscaAdvForm(request.POST)
+			i = 0
+			while i < len(query):
+				if ((form.animal == None) | (query[i].animal.nome__icontains__form.animal)):
+					if ((form.veterinario == None) | (query[i].veterinario.nome__icontains__form.veterinario)): 
+						if ((form.data == None) | (query[i].data__icontains__form.data)):
+							lista_retornavel += query[i]
+				i = i+1		
+					
+				
+		else:
+			ConsultaBuscaAdvForm()
+
+		#return lista_retornavel
+		return HttpResponseRedirect('/consulta/resumo')	        
 
 #Views relacionadas à classe Exame:
 
@@ -302,6 +395,34 @@ class ExameBuscaListView(ExameListView):
 	            )
 	
 	        return result
+"""Classe para fazer a busca avancada dos atributos de exame"""	        
+class ExameBuscaAvancadaMixin(ListView,View):	        
+	form = ExameBuscaAdvForm
+	form_class = ExameBuscaAdvForm
+	template_name = 'cadastro/laboratorio_detail.html'
+	#success_url = '/success/'
+	
+	query=Exame.objects.all()
+	
+
+	def get(request,*args):
+		if request.method == 'POST':
+			form = ExameBuscaAdvForm(request.POST)
+			i = 0
+			while i < len(query):
+				if ((form.animal == None) | (query[i].animal.nome__icontains__form.animal)):
+					if ((form.veterinario == None) | (query[i].veterinario.nome__icontains__form.veterinario)): 
+						if ((form.tutor == None) | (query[i].tutor.nome__icontains__form.tutor)): 
+							if ((form.tecnico == None) | (query[i].tecnico.nome__icontains__form.tecnico)): 
+								if ((form.laboratorio == None) | (query[i].laboratorio.nome__icontains__form.laboratorio)): 
+									lista_retornavel += query[i]
+				i = i+1		
+					
+		else:
+			ExameBuscaAdvForm()
+
+		return lista_retornavel
+		#return HttpResponseRedirect('/exame/resumo')	        
 
 #Views relacionadas à classe Laboratorio:
 
@@ -311,7 +432,15 @@ class LaboratorioListView(ListView):
 
 class LaboratorioResumo(LaboratorioListView):
 	template_name='cadastro/laboratorio_resumo.html'
+	
 
 class LaboratorioDetailView(DetailView):
 	pk_url_kwarg = "laboratorio_id"
 	model = Laboratorio
+	
+	def get_context_data(self, **kwargs):
+		context = super (LaboratorioDetailView, self).get_context_data(**kwargs)
+		context['form'] = ExameBuscaAdvForm()
+		return context	
+	
+	

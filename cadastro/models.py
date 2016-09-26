@@ -200,12 +200,13 @@ class TutorEndTel(Tutor, Endereco, Telefone):
     def get_absolute_url(self):
         return reverse('tutorendtel_detail', kwargs={'pk': self.pk})
 
+GENERO_CHOICES = (
+	('FE', 'Feminino'),
+	('MA', 'Masculino'),
+)
 
 class AnimalAbs(models.Model):
-	GENERO_CHOICES = (
-		('FE', 'Feminino'),
-		('MA', 'Masculino'),
-	 )
+
 	_nome = models.CharField(verbose_name='Nome', max_length=50)
 	_rg = models.PositiveSmallIntegerField(verbose_name='RG', unique=True)
 	_especie = models.CharField(verbose_name='Espécie', max_length=50)

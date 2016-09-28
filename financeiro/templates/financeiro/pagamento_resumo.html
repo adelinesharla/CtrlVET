@@ -9,7 +9,7 @@
 {% block content %}
 
 <div class="row">
-	<div class="card">
+
 		<div class="card-content">
 
 			{% block estatisticas %}
@@ -19,7 +19,7 @@
 			<div class="row">
 				<div class="nav-wrapper">
 					<div class="input-field col s12 m12 l12 right-align">
-						<a href="{% url 'debito_prestacaocontas' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons right">assignment</i>Relatórios</a>
+						<a href="{% url 'ano_list' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons right">assignment</i>Relatórios</a>
 					</div>
 
 				</div>
@@ -32,25 +32,33 @@
 				<div class="col s12 m12 l12">
 					<div class="card ">
 						<div class="card-content">
-							<span class="card-title"><a href="{% url 'financeiro_debitos'%}">A receber</a></span>
+							<span class="card-title"><a href="{% url 'financeiro_debitos'%}">A Receber</a></span>
 
 							{% if debitos_list %}
 
 							<table class="reponsive-table centered highlight">
 								<thead>
 									<tr>
+										<th>Id</th>
+										<th>Data de Atendimento</th>
 										<th>Setor</th>
-										<th>Data</th>
+										<th>Cliente</th>
 										<th>Valor(R$)</th>
+										<th>Tipo</th>
+										<th></th>
 									</tr>
 								</thead>
 								<tbody>
 
 									{% for object in debitos_list %}
 									<tr>
-										<td><a href=""><b>{{ object.nota.get_setor_display }}</b></a></td>
-										<td><a href="">{{ object.nota.data }}</td>
+										<td><a href="#"><b>{{ object.pk }}</b></a></td>
+										<td>{{ object.nota.data }}</td>
+										<td>{{ object.nota.get_setor_display }}</td>
+										<td><a href="{% url 'tutor_detalhes' object.nota.atendimento.cliente.pk%}">{{ object.nota.atendimento.cliente.nome }}</a></td>
 										<td>{{ object.itemNota.valor }}</td>
+										<td></td>
+										<td><a href="#">Efetuar Pagamento</a></td>
 									</tr>
 
 									{% endfor %}
@@ -69,39 +77,46 @@
 					<div class="col s12 m12 l12">
 						<div class="card ">
 							<div class="card-content">
-								<span class="card-title"><a href="{% url 'financeiro_recebidos' %}">Ultimos Recebidos</a></span>
+								<span class="card-title"><a href="{% url 'financeiro_recebidos' %}">Últimos Recebidos</a></span>
 
-								{% if recebidos_list %}
+							{% if recebidos_list %}
 
-								<table class="reponsive-table centered highlight">
-									<thead>
-										<tr>
-											<th>Setor</th>
-											<th>Data</th>
-											<th>Valor(R$)</th>
-											<th>Valor Recebido(R$)</th>
-										</tr>
-									</thead>
-									<tbody>
-										{% for object in recebidos_list %}
-										<tr>
-											<td><a href=""><b>{{ object.nota.get_setor_display }}</b></a></td>
-											<td><a href="">{{ object.nota.data }}</td>
-											<td>{{ object.itemNota.valor }}</td>
-											<td>{{ object.itemNota.valor }}</td>
-										</tr>
+							<table class="reponsive-table centered highlight">
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Data de Atendimento</th>
+										<th>Setor</th>
+										<th>Cliente</th>
+										<th>Valor(R$)</th>
+										<th>Tipo</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
 
-										{% endfor %}
-									</tbody>
-								</table>
+									{% for object in recebidos_list %}
+									<tr>
+										<td><a href="#"><b>{{ object.pk }}</b></a></td>
+										<td>{{ object.nota.data }}</td>
+										<td>{{ object.nota.get_setor_display }}</td>
+										<td><a href="{% url 'tutor_detalhes' object.nota.atendimento.cliente.pk%}">{{ object.nota.atendimento.cliente.nome }}</a></td>
+										<td>{{ object.itemNota.valor }}</td>
+										<td></td>
+										<td><a href="#">Nota de Pagamento</a></td>
+									</tr>
 
-								{% else %}
-								<p>Nada encontrado</p>
-								{% endif %}
+									{% endfor %}
+								</tbody>
+							</table>
 
-							</div>
+							{% else %}
+							<p>Nada encontrado</p>
+							{% endif %}
+
 						</div>
 					</div>
+				</div>
 
 
 					{% endblock lista %}

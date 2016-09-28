@@ -4,7 +4,6 @@ from django.conf.urls import url
 
 """Classes de views genericas utilizadas"""
 from django.views.generic import View, CreateView, TemplateView, DetailView, UpdateView, DeleteView, ListView, FormView
-from django.views.generic.detail import SingleObjectMixin
 
 'HttpResponse para uma pagina template indicando que a operação foi realizada (verificar se tal página existe)'
 from django.http import HttpResponseRedirect
@@ -147,80 +146,7 @@ class PagamentoBuscaListView(self):
 
 		return result'''
 
-class AnoList(ListView):
-	model=Ano
 
-class AnoDetalhesView(DetailView):
-	pk_url_kwarg = "ano_id"
-	model = Ano
-
-	def get_context_data(self, **kwargs):
-		context = super (AnoDetalhesView, self).get_context_data(**kwargs)
-
-		debitos = self.object.debitos.all()
-		soma = []
-		for debito in debitos:
-			soma.append(debito.itemNota.valor)
-		context ['valor_total'] = sum(soma)
-		soma = []
-				
-		for debito in debitos:
-			if (debito.nota.setor == '1'):
-				soma.append(debito.itemNota.valor)
-		context ['pequenos'] = sum(soma)
-		soma = []
-
-		for debito in debitos:
-			if (debito.nota.setor == '2'):
-				soma.append(debito.itemNota.valor)
-		context ['grandes'] = sum(soma)	
-		soma = []
-
-		for debito in debitos:
-			if (debito.nota.setor == '3'):
-				soma.append(debito.itemNota.valor)
-		context ['cirurgica'] = sum(soma)	
-		soma = []
-
-		for debito in debitos:
-			if (debito.nota.setor == '4'):
-				soma.append(debito.itemNota.valor)
-		context ['clinica'] = sum(soma)
-		soma = []
-
-		for debito in debitos:
-			if (debito.nota.setor == '5'):
-				soma.append(debito.itemNota.valor)
-		context ['imagem'] = sum(soma)
-		soma = []
-
-		for debito in debitos:
-			if (debito.nota.setor == '6'):
-				soma.append(debito.itemNota.valor)
-		context ['parasitologia'] = sum(soma)
-		soma = []
-
-		for debito in debitos:
-			if (debito.nota.setor == '7'):
-				soma.append(debito.itemNota.valor)
-		context ['microbiologia'] = sum(soma)
-		soma = []
-
-		for debito in debitos:
-			if (debito.nota.setor == '8'):
-				soma.append(debito.itemNota.valor)
-		context ['animal'] = sum(soma)
-		soma = []
-
-		return context
-
-class GeraPdfPrestacaoContas(DetailView):
-	pk_url_kwarg = "ano_id"
-	model = Ano
-	
-	def get(self, request):
-		
-		return response
 
 class EstoqueResumo(TemplateView):
 	template_name='financeiro/estoque_resumo.html'

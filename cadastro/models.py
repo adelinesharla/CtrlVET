@@ -353,7 +353,7 @@ class Tecnico(AcoesTecnico):
 class AtendimentoAbs(models.Model):
 	_data = models.DateField(auto_now_add=True)
 	_diagnostico = models.TextField(default = 'Pendente', blank = True, verbose_name='Diagnóstico', max_length=200)
-
+	cliente = models.ForeignKey(TutorEndTel,on_delete=models.CASCADE, related_name='cliente_a_ser_atendido')
 	def _get_data(self):
 		return self._data
 	
@@ -368,9 +368,6 @@ class AtendimentoAbs(models.Model):
 		
 	diagnostico = property(_get_diagnostico,_set_diagnostico)		
 	data = property(_get_data,_set_data)	
-		
-	class Meta:
-		abstract = True
 
 class ConsultaAbs (AtendimentoAbs):
 	_retorno = models.BooleanField(default = 'False')
@@ -422,7 +419,6 @@ class Laboratorio (models.Model):
 		return u'%s' % (self.nome)
 
 class ExameAbs (AtendimentoAbs):
-	tutor = models.ForeignKey(TutorEndTel,on_delete=models.CASCADE, related_name='dono_da_amostra')
 	animal = models.ForeignKey(Animal,null = True, blank = True,on_delete=models.CASCADE, related_name='amostrado_para_exame')
 	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
 	tecnico = models.ForeignKey(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame', blank = True, null = True)

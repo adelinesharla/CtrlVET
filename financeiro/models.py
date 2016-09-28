@@ -4,6 +4,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from cadastro.models import AtendimentoAbs 
 
 #DAQUI PRA BAIXO SAO AS CLASSES DE NOTA,DEBITO E ITEMNOTA		
 class ItemNotaAbs(models.Model):
@@ -52,7 +53,8 @@ class NotaAbs(models.Model):
 	
 	_data = models.DateField(auto_now_add=True)
 	setor = models.CharField(verbose_name='Setor', max_length=30, choices=SETOR_CHOICES)
-	
+	atendimento = models.OneToOneField(AtendimentoAbs,on_delete=models.CASCADE,primary_key=True)
+
 	class Meta:
 			abstract = True
 
@@ -73,12 +75,25 @@ class Nota(AcoesNota):
 
 	data = property(_get_data,_set_data)
 
+class Ano(models.Model):
+	_ano = models.CharField(verbose_name='Ano',max_length=4)
+
+	def get_absolute_url(self):
+        	return reverse('ano_detail', kwargs={'pk': self.pk})
+
+	def _get_ano(self):
+		return self._ano
+
+	def _set_ano(self, ano):
+		self._ano = ano
+
+	ano = property(_get_ano,_set_ano)
 	
 class Debito(models.Model):	
 	itemNota = models.ForeignKey(ItemNota, on_delete = models.CASCADE)
 	nota = models.ForeignKey(Nota, on_delete = models.CASCADE)
 	status = models.BooleanField(verbose_name='Pago', default=False)
-
+	ano = models.ForeignKey(Ano, on_delete = models.CASCADE, related_name='debitos')
 
 def __unicode__(self):
 	return u'%s - %s' % (self.nota, self._status)
@@ -89,3 +104,5 @@ class Produto(ItemNota):
 
 class Servico(ItemNota):
 	pass
+
+

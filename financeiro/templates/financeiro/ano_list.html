@@ -1,0 +1,74 @@
+{% extends "financeiro/pagamento_resumo.html" %}
+
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'ano_list' %}" class="breadcrumb">Prestação de Contas</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+		<div class="card-content">
+
+			{% block estatisticas %}
+			
+			{% endblock %}
+
+			{% block lista %}
+
+
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<div class="card ">
+						<div class="card-content">
+							<span class="card-title"><a href="{% url 'ano_list'%}">Prestação de Contas</a></span>
+
+							{% if object_list %}
+
+							<table class="reponsive-table centered highlight">
+								<thead>
+									<tr>
+										<th>Ano</th>
+
+										<th>Valor Total (R$)</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									{% for ano in object_list %}
+									<tr>
+										<td>
+											<a href="{% url 'ano_detail' ano.pk %}"><b>{{ ano.ano }}</b></a>
+										</td>
+										<td>
+											<b></b>
+										</td>
+										<td>
+											<a href="#"><b>Imprimir</b></a>
+										</td>
+									</tr>
+									{% endfor %}
+
+								</tbody>
+							</table>
+
+							{% else %}
+							<p>Nenhum relatório encontrado</p>
+							{% endif %}
+
+						</div>
+					</div>
+				</div>
+
+				{% endblock lista %}
+
+
+
+			</div>
+		</div>
+	</div>
+
+
+	{% endblock %}

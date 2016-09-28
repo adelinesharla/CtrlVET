@@ -1,7 +1,5 @@
 {% extends "cadastro/base_visaogeral.html" %}
 
-{% load material_form %} 
-
 {% block breadcrumbs %}
 {{ block.super }}
 <a href="{% url 'animal_resumo' %}" class="breadcrumb">Animais</a>
@@ -24,42 +22,16 @@
 					<!-- A tag action leva a url do search. pode ser colocada uma tag pra view passar o action, tornando o form reusável-->
 					<form id="searchform" action="{% url 'animal_busca_list_view' %}" method="GET" accept-charset="utf-8"> 
 
-						<div class="input-field col s12 m6 l6">
+						<div class="input-field col s12 m8 l9">
 							<input type="search" name="q" required>
 							<label for="search"><i class="material-icons">search</i></label>
 							<i class="material-icons">close</i>
 						</div>
 					</form>
 
-					<!-- Modal Trigger -->
-					<div class="input-field col s12 m3 l3 right-align">
-						<a class="btn waves-effect waves-light indigo darken-4 modal-trigger" href="#buscaavancada"><i class="material-icons left">search</i>Avancada</a>
-					</div>
-
-					<div class="input-field col s12 m3 l3 right-align">
+					<div class="input-field col s12 m4 l3 right-align">
 						<a href="{% url 'animal_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
 					</div>
-
-
-					<!-- Modal Structure -->
-					<div id="buscaavancada" class="modal">
-						<div class="modal-content">
-							<form action="busca/avancada" method="POST"> 
-
-								<h4>Busca Avançada</h4>
-
-								{% csrf_token %}
-								{% form form=form %}{% endform %}
-
-							</div>
-							<div class="modal-footer">
-								<button class="btn modal-action modal-close waves-effect waves-light indigo darken-4" type="Submit" value="Update">Buscar<i class="material-icons right">search</i>
-								</button>
-
-							</form>
-						</div>
-					</div>
-
 
 				</div>
 			</div>

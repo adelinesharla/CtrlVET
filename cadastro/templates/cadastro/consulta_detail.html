@@ -3,6 +3,7 @@
 {% block breadcrumbs %}
 {{ block.super }}
 
+<a href="{% url 'consulta_resumo' %}" class="breadcrumb">Consultas</a>
 <a href="{% url 'consulta_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
 
 {% endblock %}
@@ -17,10 +18,10 @@
 			<div class="row">
 				<div class="section">
 					<div class="col s2 m2 l2">
-						<p><b>Data</b></p>
+						<p><b>Data de Nascimento</b></p>
 					</div> 
 					<div class="col s4 m4 l4">
-						<p>{{ object.data }}</p>
+						<p>{{ object.data|date:"SHORT_DATE_FORMAT" }}</p>
 					</div> 
 					<div class="col s2 m2 l2">
 						<p><b>Retorno</b></p>
@@ -60,13 +61,13 @@
 			<div class="row">
 				<div class="section">
 					<div class="col s2 m2 l2">
-					<p><b>Nome</b></p>
+						<p><b>Nome</b></p>
 					</div> 
 					<div class="col s4 m4 l4">
 						<p><a href="{% url 'animal_detalhes' object.animal.pk %}">{{ object.animal.nome }}</a></p>
 					</div> 
 					<div class="col s2 m2 l2">
-						<p><b>RG do pet</b></p>
+						<p><b>RG</b></p>
 					</div> 
 					<div class="col s4 m4 l4">
 						<p>{{ object.animal.rg }}</p>
@@ -76,12 +77,11 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col s12 m12 l12">
-				<div class="card-content right">
-					<a href="{% url 'consulta_deletar' object.id %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">delete</i>Deletar</a>
-					<a href="{% url 'consulta_editar' object.id %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">edit</i>Editar</a>
-				</div>	
-			</div>
+			<div class="col s12 m12 l12 right-align">
+				<button class="btn waves-effect waves-light indigo darken-4" onClick="javascript:history.go(-1);"><i class="material-icons right">arrow_back</i>Voltar</button>
+				<a class="waves-effect waves-light indigo darken-4 btn" href="{% url 'consulta_deletar' object.id %}" ><i class="material-icons left">delete</i>Deletar</a>
+				<a class="waves-effect waves-light indigo darken-4 btn" href="{% url 'consulta_editar' object.id %}" ><i class="material-icons left">edit</i>Editar</a>
+			</div>	
 		</div>
 
 	</div>

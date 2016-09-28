@@ -1,0 +1,21 @@
+{% extends "cadastro/base_visaogeral.html" %}
+
+
+{% block extrahead %}
+
+{% load scheduletags %}
+
+{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'consulta_resumo' %}" class="breadcrumb">Consultas</a>
+{% endblock %}
+
+
+{% block content %}
+
+{% querystring_for_date 2016[ '10' ] %}
+
+{% endblock %}
+

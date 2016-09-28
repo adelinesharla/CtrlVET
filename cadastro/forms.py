@@ -17,14 +17,13 @@ class TutorModelForm(forms.ModelForm):
 	_cpf = BRCPFField()
 	class Meta:
 		model = TutorEndTel
-		fields = ('_nome', '_email', '_cpf', '_logradouro', '_numero', '_bairro', '_cidade', '_cep', '_uf','_telefone', 'tipo')
+		fields = ('_nome', '_email', '_cpf', '_logradouro', '_numero', '_bairro', '_cidade', '_cep', '_uf','_telefone1','_telefone2')
 
 	layout = Layout(
 		Fieldset("Dados pessoais"),
-			Row('_nome', '_cpf'),
+			Row(Span2('_nome'), '_cpf'),
 		Fieldset("Contato"),
-			Row('_email'),
-			Row(Span3('_telefone'), 'tipo'),
+			Row(Span2('_telefone1'), Span2('_telefone2'), Span2('_email')),
 		Fieldset("Endereço"),
 			Row(Span3('_logradouro'), '_numero'),
 			Row(Span2('_bairro'), Span2('_cidade'), '_cep', ('_uf')),

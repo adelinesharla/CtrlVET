@@ -85,13 +85,9 @@ class Endereco(AcoesEndereco):
 			
 
 class TelefoneAbs(models.Model):
-	TIPO_CHOICES = (
-		('Fixo', 'Fixo'),
-		('Celular', 'Celular'),
-    )
 	telefone_fixo_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="O formato do número de telefone deve ser: '+999999999'. São Permitidos até 15 dígitos.")
-	_telefone =  models.CharField(validators=[telefone_fixo_regex],verbose_name='Telefone', max_length=15,blank=True)
-	tipo = models.CharField( max_length=15, choices=TIPO_CHOICES)
+	_telefone1 =  models.CharField(validators=[telefone_fixo_regex],verbose_name='Telefone de Contato 1', max_length=15,blank=True)
+	_telefone2 =  models.CharField(validators=[telefone_fixo_regex],null = True,verbose_name='Telefone de Contato 2', max_length=15,blank=True)
 	
 	
 	class Meta:

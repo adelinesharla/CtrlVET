@@ -100,7 +100,7 @@ class ConsultaBuscaAdvForm(forms.Form):
 class ExameModelForm(forms.ModelForm):
 	class Meta:
 		model = Exame
-		fields = ( 'animal', 'veterinario', 'tecnico', 'tutor', 'laboratorio')
+		fields = ( 'animal', 'veterinario', 'tecnico', 'cliente', 'laboratorio')
 		
 
 	observacoes = forms.CharField()
@@ -110,7 +110,7 @@ class ExameModelForm(forms.ModelForm):
 		Fieldset("Dados do Exame"),
 			Row(Span2('tecnico'), 'numero_amostra',),
 		Fieldset("Dados Gerais"),
-			Row('tutor', 'animal', 'veterinario'),
+			Row('cliente', 'animal', 'veterinario'),
 			Row('observacoes', 'laboratorio')
 		)
 		

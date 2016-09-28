@@ -4,7 +4,7 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'animal_resumo' %}" class="breadcrumb">Animais</a>
+<a href="{% url 'animal_resumo' %}" class="breadcrumb">Animais Cadastrados</a>
 {% endblock %}
 
 
@@ -33,9 +33,9 @@
 					</form>
 
 					<!-- Modal Trigger -->
-					<div class="input-field col s12 m3 l3 right-align">
+					<div class="input-field col s12 m6 l6 right-align">
 						<a class="btn waves-effect waves-light indigo darken-4 modal-trigger" href="#buscaavancada"><i class="material-icons left">search</i>Avancada</a>
-					</div>
+
 
 					<!-- Modal Structure -->
 					<div id="buscaavancada" class="modal">
@@ -56,7 +56,6 @@
 						</div>
 					</div>
 
-					<div class="input-field col s12 m4 l3 right-align">
 						<a href="{% url 'animal_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
 					</div>
 
@@ -69,7 +68,7 @@
 
 			<div class="row">
 				<div class="col s12 m12 l12">
-					<span class="card-title">Animais</span>
+					<span class="card-title">Animais Cadastrados</span>
 					<div class="divider"></div>
 					<div class="row">
 						<div class="col s12 m12">
@@ -78,9 +77,11 @@
 
 							<table class="responsive-table highlight striped">
 								<thead>
-									<th data-field="">Nome</th>
 									<th data-field="">RG</th>
+									<th data-field="">Nome</th>
 									<th data-field="">Tutor</th>
+									<th data-field="">Espécie</th>
+									<th data-field="">Idade</th>
 
 									<!--	<th data-field="">Detalhes</th> -->
 								</tr>
@@ -90,9 +91,13 @@
 
 								{% for object in object_list %}
 								<tr>
-									<td><a href="{% url 'animal_detalhes' object.pk %}"><b>{{ object.nome }}</b></a></td>
-									<td>{{ object.rg }}</td>
-									<td>{{ object.tutor }}</td>
+									<td><a href="{% url 'animal_detalhes' object.pk %}"><b>{{ object.rg }}</b></a></td>
+									<td>{{ object.nome }}</td>
+									<td><a href="{% url 'tutor_detalhes' object.tutor.pk %}"><b>{{ object.tutor }}</b></a></td>
+									<td>{{ object.especie }}</td>
+									<td>{{ object.idade }}</td>
+									<td><a href="{% url 'animal_editar' object.pk %}"><b>Editar</b></a></td>
+									<td><a href="{% url 'animal_deletar' object.pk %}"><b>Excluir</b></a></td>
 								</tr>
 
 								{% endfor %}

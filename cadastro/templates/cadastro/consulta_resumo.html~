@@ -66,8 +66,8 @@
 								<tr>
 									<td>{{ object.veterinario.nome }}</td>
 									<td><a href="{% url 'animal_detalhes' object.pk %}">{{ object.animal.nome }}</a></td>
-									<td><a href="{% url 'tutor_detalhes' object.cliente.pk %}">{{ object.cliente }}</a></td>
 									<td>{{ object.data|date:"d/m/Y" }}</a></td>
+									<td><a href="{% url 'consulta_detalhes' object.pk %}">{{ object.pk }}</a></td>
 								</tr>
 
 								{% endfor %}

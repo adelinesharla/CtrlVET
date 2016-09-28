@@ -419,7 +419,6 @@ class Laboratorio (models.Model):
 		return u'%s' % (self.nome)
 
 class ExameAbs (AtendimentoAbs):
-	tutor = models.ForeignKey(TutorEndTel,on_delete=models.CASCADE, related_name='dono_da_amostra')
 	animal = models.ForeignKey(Animal,null = True, blank = True,on_delete=models.CASCADE, related_name='amostrado_para_exame')
 	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
 	tecnico = models.ForeignKey(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame', blank = True, null = True)

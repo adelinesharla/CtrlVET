@@ -104,13 +104,20 @@ class AcoesTelefone(TelefoneAbs):
 
 
 class Telefone(AcoesTelefone):
-	def _get_telefone(self):
-		return self._telefone		
+	def _get_telefone1(self):
+		return self._telefone1		
 	
-	def _set_telefone(self,telefone):
-		self._telefone = telefone
+	def _set_telefone1(self,telefone):
+		self._telefone1 = telefone1
+
+	def _get_telefone2(self):
+		return self._telefone2		
+	
+	def _set_telefone2(self,telefone):
+		self._telefone2 = telefone2
 					
-	telefone = property(_get_telefone,_set_telefone)
+	telefone1 = property(_get_telefone1,_set_telefone1)
+	telefone2 = property(_get_telefone2,_set_telefone2)
 
 	class Meta:
 		abstract = True	

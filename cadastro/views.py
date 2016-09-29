@@ -64,7 +64,12 @@ class TutorFormView(FormView):
 
 	def form_valid(self, form):
 		form.save()
-		return HttpResponseRedirect('/tutor/resumo')
+		return HttpResponseRedirect(self.success_url)
+
+	def post(self, form, **kwargs):
+		if "cancel" in self.request.POST:
+        		return HttpResponseRedirect(self.success_url)
+		return super(TutorFormView, self).post(self, form, **kwargs)
 
 """Classe para deletar Tutor"""
 class TutorDeletar(DeleteView):
@@ -88,8 +93,13 @@ class TutorEditar(UpdateView):
 	model = TutorEndTel
 	#fields = '__all__'
 	template_name_suffix = '_form_update'
-	success_url = '/success/'
-	#ainda não faço ideia de como fazer isso funcionar
+	success_url = '/tutor/resumo'
+
+	def post(self, form, **kwargs):
+		if "cancel" in self.request.POST:
+			self.object = self.get_object()
+        		return HttpResponseRedirect(self.success_url)
+		return super(TutorEditar, self).post(self, form, **kwargs)
 
 
 
@@ -169,6 +179,11 @@ class AnimalFormView(FormView):
 		form.save()
 		return HttpResponseRedirect('/animal/resumo')
 
+	def post(self, form, **kwargs):
+		if "cancel" in self.request.POST:
+        		return HttpResponseRedirect(self.success_url)
+		return super(AnimalFormView, self).post(self, form, **kwargs)
+	
 """Classe para retornar detalhes de Animal (alimenta o template animal_detalhes)"""
 class AnimalDetalhesView(DetailView):
 	pk_url_kwarg = "animal_id"
@@ -184,7 +199,13 @@ class AnimalEditar(UpdateView):
 	#fields = '__all__'
 	model = Animal
 	template_name_suffix = '_form_update'
-	success_url = '/success/'
+	success_url = '/animal/resumo'
+
+	def post(self, form, **kwargs):
+		if "cancel" in self.request.POST:
+			self.object = self.get_object()
+        		return HttpResponseRedirect(self.success_url)
+		return super(AnimalEditar, self).post(self, form, **kwargs)
 
 """Classe para deletar Animal"""
 class AnimalDeletar(DeleteView):

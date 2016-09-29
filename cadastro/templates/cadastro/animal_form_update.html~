@@ -1,10 +1,10 @@
-{% extends "cadastro/tutor_form.html" %}
+{% extends "cadastro/animal_form.html" %}
 
-{% load material_form %}
+{% load material_form %} 
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'tutor_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
+<a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
 <a href="{{ request.get_absolute_url }}" class="breadcrumb">Editar</a>
 {% endblock %}
 
@@ -17,8 +17,7 @@
 				{% endblock %}
 
 				{% block form %}
-				{% csrf_token %}
-				{% form form=form %}{% endform %}
+				{{ block.super }}
 				{% endblock %}
 
 				{% block form_submit %}
@@ -28,7 +27,7 @@
 						<div class="form-actions">
 							<button class="btn waves-effect waves-light indigo darken-4" type="reset" value="Reset"><i class="material-icons right">clear</i>Limpar</button>
 							<button class="btn waves-effect waves-light indigo darken-4" type="submit" name="cancel" value="Cancel"><i class="material-icons right">cancel</i>Cancelar</button>
-							<button class="btn waves-effect waves-light indigo darken-4" type="submit" value="Update">Salvar<i class="material-icons right">edit</i></button>
+							<button class="btn waves-effect waves-light indigo darken-4" type="submit" value="Update">Enviar<i class="material-icons right">edit</i></button>
 						</div>
 					</div>
 				</div>

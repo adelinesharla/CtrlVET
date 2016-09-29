@@ -59,7 +59,6 @@
 					</div>
 
 					</div>
-				</div>
 			</div>
 
 			{% endblock %}
@@ -93,7 +92,7 @@
 									<td><a href="{% url 'tutor_detalhes' object.pk %}"><b>{{ object.pk }}</b></a></td>
 									<td>{{ object.nome }}</td>
 									<td>{{ object.email }}</td>
-									<td>{{ object.telefone1 }}</td>
+									<td>{{ object.telefone.telefone1 }}</td>
 									<td><a href="{% url 'tutor_editar' object.pk %}"><b>Editar</b></a></td>
 									<td><a href="{% url 'tutor_deletar' object.pk %}"><b>Excluir</b></a></td>
 								</tr>

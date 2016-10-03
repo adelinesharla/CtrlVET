@@ -281,6 +281,11 @@ class ConsultaFormView(FormView):
 		form.save()
 		return HttpResponseRedirect('/consulta/resumo')
 
+	def get_initial(self):
+		initial=super(ConsultaFormView, self).get_initial()
+		initial['retorno'] = False
+		return initial
+
 class ConsultaDeleteView(DeleteView):
 	model = Consulta
 	success_url = '/success/'

@@ -30,7 +30,7 @@
 					</form>
 
 					<div class="input-field col s12 m4 l3 right-align">
-						<a href="{% url 'consulta_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
+						<a href="{% url 'consulta_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Agendar</a>
 					</div>
 
 				</div>
@@ -51,10 +51,10 @@
 
 							<table class="responsive-table highlight striped">
 								<thead>
-									<th data-field="">Veterinário</th>
+									<th data-field="">Data</th>
 									<th data-field="">Animal</th>
 									<th data-field="">Tutor</th>
-									<th data-field="">Data</th>
+									<th data-field="">Veterinário</th>
 
 									<!--	<th data-field="">Detalhes</th> -->
 								</tr>
@@ -64,10 +64,12 @@
 
 								{% for object in object_list %}
 								<tr>
+									<td>{{ object.data_realizacao|date:"d/m/Y" }}</a></td>
+									<td><a href="{% url 'animal_detalhes' object.animal.pk %}">{{ object.animal.nome }}</a></td>
+									<td><a href="{% url 'tutor_detalhes' object.animal.tutor.pk %}">{{ object.animal.tutor.nome }}</a></td>
 									<td>{{ object.veterinario.nome }}</td>
-									<td><a href="{% url 'animal_detalhes' object.pk %}">{{ object.animal.nome }}</a></td>
-									<td><a href="{% url 'tutor_detalhes' object.cliente.pk %}">{{ object.cliente }}</a></td>
-									<td>{{ object.data|date:"d/m/Y" }}</a></td>
+									<td><a href="{% url 'consulta_editar' object.pk %}"><b>Editar</b></a></td>
+									<td><a href="{% url 'consulta_deletar' object.pk %}"><b>Excluir</b></a></td>
 								</tr>
 
 								{% endfor %}

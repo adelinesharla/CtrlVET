@@ -290,7 +290,7 @@ class Tecnico(AcoesTecnico):
 class AtendimentoAbs(models.Model):
 	_data = models.DateField(auto_now_add=True)
 	_diagnostico = models.TextField(default = 'Pendente', blank = True, verbose_name='Diagnóstico', max_length=200)
-	cliente = models.ForeignKey(null = True ,blank = True,TutorEndTel,on_delete=models.CASCADE, related_name='cliente_a_ser_atendido')
+	cliente = models.ForeignKey(TutorEndTel,on_delete=models.CASCADE, related_name='cliente_a_ser_atendido', null = True ,blank = True)
 	def _get_data(self):
 		return self._data
 	
@@ -307,7 +307,7 @@ class AtendimentoAbs(models.Model):
 	data = property(_get_data,_set_data)	
 
 class ConsultaAbs (AtendimentoAbs):
-	_retorno = models.BooleanField(default = 'False')
+	_retorno = models.BooleanField(default = 'False', blank = True)
 	animal = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='a_ser_consultado')
 	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_consulta')	
 	_data_realizacao = models.DateField(verbose_name='Data Agendada')
@@ -328,7 +328,14 @@ class Consulta (AcoesConsulta):
 	def _set_retorno(self,retorno):
 		self._retorno = retorno
 	
+	def _get_data_realizacao(self):
+		return self._data_realizacao	
+																																
+	def _set_data_realizacao(self,data_realizacao):
+		self._data_realizacao = data_realizacao
+	
 	retorno = property(_get_retorno,_set_retorno)	
+	data_realizacao = property(_get_data_realizacao,_set_data_realizacao)
 
 #classes referentes a laboratório
 

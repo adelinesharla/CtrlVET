@@ -13,6 +13,7 @@
 <div class="card">
 	<div class="card-content">
 		<span class='card-title'>Detalhes de Consulta {{ object.id }}</span>
+		<div class="card-content">
 		<div class="divider"></div>
 		<span class='card-title'>Dados da Consulta</span>
 		<div class="card-content">

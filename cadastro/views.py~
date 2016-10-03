@@ -202,7 +202,7 @@ class AnimalEditar(UpdateView):
 	success_url = '/animal/resumo'
 
 	def post(self, form, **kwargs):
-		 if "cancel" in self.request.POST:
+		if "cancel" in self.request.POST:
 			self.object = self.get_object()
         		return HttpResponseRedirect(self.success_url)
 		return super(AnimalEditar, self).post(self, form, **kwargs)
@@ -280,6 +280,11 @@ class ConsultaFormView(FormView):
 	def form_valid(self, form):
 		form.save()
 		return HttpResponseRedirect('/consulta/resumo')
+
+	def get_initial(self):
+		initial=super(ConsultaFormView, self).get_initial()
+		initial['retorno'] = False
+		return self.initial
 
 class ConsultaDeleteView(DeleteView):
 	model = Consulta

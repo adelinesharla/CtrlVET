@@ -307,7 +307,7 @@ class AtendimentoAbs(models.Model):
 	data = property(_get_data,_set_data)	
 
 class ConsultaAbs (AtendimentoAbs):
-	_retorno = models.BooleanField(default = 'False')
+	_retorno = models.BooleanField()
 	animal = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='a_ser_consultado')
 	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_consulta')	
 	_data_realizacao = models.DateField(verbose_name='Data Agendada')
@@ -328,7 +328,14 @@ class Consulta (AcoesConsulta):
 	def _set_retorno(self,retorno):
 		self._retorno = retorno
 	
+	def _get_data_realizacao(self):
+		return self._data_realizacao	
+																																
+	def _set_data_realizacao(self,data_realizacao):
+		self._data_realizacao = data_realizacao
+	
 	retorno = property(_get_retorno,_set_retorno)	
+	data_realizacao = property(_get_data_realizacao,_set_data_realizacao)
 
 #classes referentes a laboratório
 

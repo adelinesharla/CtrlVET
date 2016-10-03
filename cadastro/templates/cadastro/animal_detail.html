@@ -3,7 +3,7 @@
 {% block breadcrumbs %}
 {{ block.super }}
 
-<a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
+<a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">Detalhes de {{ object.nome }}</a>
 
 {% endblock %}
 
@@ -14,18 +14,26 @@
 		<span class='card-title'>Detalhes de {{ object.nome }}</span>
 		<div class="divider"></div>
 		<div class="card-content">
+		<div class="row">
+		<span class='card-title'>Dados do Animal</span>
 			<div class="row">
 				<div class="section">
 					<div class="col s2 m2 l2">
 						<p><b>Nome</b></p>
 					</div> 
-					<div class="col s4 m4 l4">
+					<div class="col s3 m3 l3">
 						<p>{{ object.nome }}</p>
 					</div> 
 					<div class="col s2 m2 l2">
+						<p><b>Sexo</b></p>
+					</div> 
+					<div class="col s3 m3 l3">
+						<p>{{ object.sexo }}</p>
+					</div> 
+					<div class="col s1 m1 l1">
 						<p><b>RG</b></p>
 					</div>
-					<div class="col s4 m4 l4">
+					<div class="col s1 m1 l1">
 						<p>{{ object.rg }}</p>
 					</div> 
 				</div>
@@ -51,31 +59,39 @@
 			<div class="row">
 				<div class="section">
 					<div class="col s2 m2 l2">
-						<p><b>Idade</b></p>
+						<p><b>Data de Nascimento</b></p>
 					</div> 
 					<div class="col s4 m4 l4">
 						<p>{{ object.nascimento }}</p>
+					</div>
+					<div class="col s2 m2 l2">
+						<p><b>Idade</b></p>
+					</div> 
+					<div class="col s4 m4 l4">
+						<p>{{ object.idade }}</p>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<span class='card-title'>Tutor de {{ object.nome }}</span>
-		<div class="divider"></div>
+		<span class='card-title'>Dados do Tutor</span>
 		<div class="card-content">
 			<div class="row">
 				<div class="section">
 					<div class="col s2 m2 l2">
 						<p><b>Tutor</b></p>
 					</div> 
-					<div class="col s4 m4 l4">
-						<p><a href="{% url 'tutor_detalhes' object.pk %}"> {{ object.tutor.nome }} </a></p>
+					<div class="col s3 m3 l3">
+						<p>{{ object.tutor.nome }} </p>
 					</div>
 					<div class="col s2 m2 l2">
 						<p><b>CPF</b></p>
 					</div> 
-					<div class="col s4 m4 l4">
+					<div class="col s3 m3 l3">
 						<p>{{ object.tutor.cpf }}</p>
+					</div>
+					<div class="col s2 m2 l2">
+						<p><a href="{% url 'tutor_detalhes' object.pk %}"> Mais Informações de {{ object.tutor.nome }} </a></p>
 					</div>
 				</div>
 			</div>

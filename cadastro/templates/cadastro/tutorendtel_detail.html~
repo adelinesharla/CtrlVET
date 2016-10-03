@@ -3,7 +3,7 @@
 {% block breadcrumbs %}
 {{ block.super }}
 
-<a href="{% url 'tutor_detalhes' object.id %}" class="breadcrumb">Detalhes de {{ object.nome }}</a>
+<a href="{% url 'tutor_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
 
 {% endblock %}
 

@@ -351,3 +351,13 @@ class ItemNotaFormView(FormView):
 	def form_valid(self, form):
 		form.save()
 		return HttpResponseRedirect('/success/')
+
+class EfetuarPagamento(UpdateView):
+	form_class = DebitoModelForm
+	model = Debito
+	success_url = '/pagamentos/resumo'
+	def form_valid(self, form):
+		
+		form.save()
+		return success_url
+	

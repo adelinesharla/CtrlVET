@@ -55,7 +55,7 @@
 			<!-- Dropdown de more -->
 			<ul id="dropdown1" class="dropdown-content">
 				<li><a href="#!">Login</a></li>
-				<li><a href="#!">Sing up</a></li>
+				<li><a href="#!">Sign up</a></li>
 				<li class="divider"></li>
 				<li><a href="#!">Help</a></li>
 			</ul>

@@ -46,7 +46,7 @@
 											<b></b>
 										</td>
 										<td>
-											<a href="{% url 'gerarPdf' ano.ano %}"><b>Imprimir</b></a>
+											<a href="{% url 'gerarPdf' object.ano %}"><b>Imprimir</b></a>
 										</td>
 									</tr>
 									{% endfor %}

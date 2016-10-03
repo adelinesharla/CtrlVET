@@ -100,7 +100,7 @@
 										<td><a href="#"><b>{{ object.pk }}</b></a></td>
 										<td>{{ object.nota.data }}</td>
 										<td>{{ object.nota.get_setor_display }}</td>
-										<td><a href="#">{{ object.nota.atendimento.cliente.nome }}</a></td>
+										<td><a href="{% url 'tutor_detalhes' object.nota.atendimento.cliente.pk%}">{{ object.nota.atendimento.cliente.nome }}</a></td>
 										<td>{{ object.itemNota.valor }}</td>
 										<td></td>
 										<td><a href="#">Nota de Pagamento</a></td>

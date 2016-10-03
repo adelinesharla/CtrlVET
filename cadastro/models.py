@@ -127,8 +127,6 @@ class PessoaAbs(models.Model):
 	_nome = models.CharField(verbose_name='Nome', max_length=50)
 	_email = models.EmailField(verbose_name='E-Mail')
 	_cpf = models.CharField(verbose_name='CPF', max_length=11)
-	#endereco = models.ForeignKey(Endereco, on_delete = models.CASCADE)
-	#telefone = models.ForeignKey(Telefone, on_delete = models.CASCADE)
 	
 	def __unicode__(self):
 		return u'%s' % (self.nome)
@@ -161,32 +159,7 @@ class PessoaAbs(models.Model):
 
 class AcoesTutor(PessoaAbs):
 	def __unicode__(self):
-		return u'%s %s' % (self.nome, self.cpf)
-				
-	@classmethod
-	def retornarID(tutor_id):
-		lista = (Tutor.objects.get(self.id_ == tutor_id)) 
-		return lista
-		
-	@classmethod	
-	def verificarAtributos(item):
-		lista_tutor = Tutor.objects.get(nome__icontains = item) 
-		lista_tutor += Tutor.objects.filter(email__icontains = item) 	
-		lista_tutor += Tutor.objects.filter(cpf__icontains = item) 		
-		lista_retornavel = list(set(lista_tutor))		
-		return lista_retornavel
-		
-	@classmethod	
-	def buscarTutor(atributo_de_busca):	
-		lista_tutor = AcoesTutor.retornarID(atributo_de_busca)
-		if lista_retornavel != None: 
-			return lista_retornavel
-		lista_retornavel = AcoesTutor.verificarAtributos(atributo_de_busca) 	
-		return lista_retornavel
-			
-	@classmethod		
-	def listarAnimais(animal_id):
-		return animais.objects.filter(self.id_ == animal_id) 			
+		return u'%s' % (self.nome)		
 			
 	class Meta:
 		verbose_name_plural = "Tutores"
@@ -204,12 +177,11 @@ class TutorEndTel(Tutor, Endereco, Telefone):
         return reverse('tutorendtel_detail', kwargs={'pk': self.pk})
 
 GENERO_CHOICES = (
-	('FE', 'Feminino'),
-	('MA', 'Masculino'),
-)
+		('FE', 'Feminino'),
+		('MA', 'Masculino'),
+	)
 
 class AnimalAbs(models.Model):
-
 	_nome = models.CharField(verbose_name='Nome', max_length=50)
 	_rg = models.PositiveSmallIntegerField(verbose_name='RG', unique=True)
 	_especie = models.CharField(verbose_name='Espécie', max_length=50)
@@ -229,22 +201,8 @@ class AnimalAbs(models.Model):
 
 class AcoesAnimal(AnimalAbs):
 	def __unicode__(self):
-		return u'%s %s' % (self.nome, self.rg)
-		
-	@classmethod		
-	def verificarID(animal_id):
-		return animais.objects.filter(self.id_ == animal_id)
-		
-	
-	@classmethod	
-	def verificarAtributos(item):
-		lista_animal = Animal.objects.get(nome__icontains = item) 
-		lista_animal += Animal.objects.filter(rg__icontains = item) 	
-		lista_animal += Animal.objects.filter(especie__icontains = item)
-		lista_animal += Animal.objects.filter(raca__icontains = item) 		
-		lista_retornavel = list(set(lista_animal))		
-		return lista_retornavel			
-		
+		return u'%s' % (self.nome)
+
 	class Meta:
 		abstract = True
 		
@@ -252,6 +210,7 @@ class AcoesAnimal(AnimalAbs):
 class Animal(AcoesAnimal):
 	def get_absolute_url(self):
         	return reverse('animal_detail', kwargs={'pk': self.pk})
+
 	def _get_nome(self):
 		return self._nome
 		
@@ -296,20 +255,8 @@ class Animal(AcoesAnimal):
 	idade = property(_get_idade,_set_idade)
 
 # referente a veterinario
-class AcoesVeterinario(PessoaAbs):			
-	@classmethod
-	def retornarID(veterinario_id):
-		lista = (Veterinario.objects.get(self.id_ == veterinario_id)) 
-		return lista
+class AcoesVeterinario(PessoaAbs):
 		
-	@classmethod	
-	def buscarVeterinario(atributo_de_busca):	
-		lista_veterinario = AcoesVeterinario.retornarID(atributo_de_busca)
-		if lista_retornavel != None: 
-			return lista_retornavel
-		lista_retornavel = AcoesVeterinario.verificarAtributos(atributo_de_busca) 	
-		return lista_retornavel
-			
 	class Meta:
 		verbose_name_plural = "Veterinarios"
 		abstract = True	
@@ -325,20 +272,7 @@ class Veterinario(AcoesVeterinario):
 	crmv = property(_get_crmv,_set_crmv)
 	
 # referente a tecnico	
-class AcoesTecnico(PessoaAbs):
-	@classmethod
-	def retornarID(tecnico_id):
-		lista = (Tecnico.objects.get(self.id_ == tecnico_id)) 
-		return lista
-		
-	@classmethod	
-	def buscarTecnico(atributo_de_busca):	
-		lista_tecnico = AcoesTecnico.retornarID(atributo_de_busca)
-		if lista_retornavel != None: 
-			return lista_retornavel
-		lista_retornavel = AcoesTecnico.verificarAtributos(atributo_de_busca) 	
-		return lista_retornavel
-			
+class AcoesTecnico(PessoaAbs):		
 	class Meta:
 		verbose_name_plural = "Tecnicos"
 		abstract = True	
@@ -356,7 +290,7 @@ class Tecnico(AcoesTecnico):
 class AtendimentoAbs(models.Model):
 	_data = models.DateField(auto_now_add=True)
 	_diagnostico = models.TextField(default = 'Pendente', blank = True, verbose_name='Diagnóstico', max_length=200)
-	cliente = models.ForeignKey(TutorEndTel,on_delete=models.CASCADE, related_name='cliente_a_ser_atendido')
+	cliente = models.ForeignKey(TutorEndTel,on_delete=models.CASCADE, related_name='cliente_a_ser_atendido', null = True ,blank = True)
 	def _get_data(self):
 		return self._data
 	
@@ -383,7 +317,6 @@ class ConsultaAbs (AtendimentoAbs):
 		verbose_name_plural = "Consultas"
 		
 class AcoesConsulta(ConsultaAbs):
-		#métodos
 		class Meta:
 			abstract = True
 

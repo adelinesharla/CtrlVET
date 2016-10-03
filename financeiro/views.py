@@ -22,6 +22,13 @@ from django.db.models import Q
 
 from django.forms.formsets import formset_factory
 
+'Importacao para gerar pdf'
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import landscape
+from django.http import HttpResponse
+
+
 
 class SuccessView(TemplateView):
 	template_name='financeiro/success.html'	
@@ -215,12 +222,123 @@ class AnoDetalhesView(DetailView):
 		return context
 
 class GeraPdfPrestacaoContas(DetailView):
-	pk_url_kwarg = "ano_id"
-	model = Ano
+	model=Ano
+
+	def get(self, request,ano):
+		pk_url_kwarg = "ano_id"
+		model = Ano
 	
-	def get(self, request):
+		response = HttpResponse(content_type='application/pdf')
+		x =str(ano)
+		response['Content-Disposition'] = 'attachment; filename= "Prestacao de contas.pdf"'
+		pdf = canvas.Canvas(response)
+		pdf.setLineWidth(.2)
+		pdf.setFont('Helvetica', 12, leading=None)
 		
+		pdf.setFont('Helvetica', 16, leading=None)
+		pdf.drawString(30,800,'Prestação de Contas''(Jan - Dez)')
+		pdf.drawString(265,800,ano)
+		pdf.setFont('Helvetica', 14, leading=None)
+		
+		coluna = 30
+		colunaP = 440
+		linha = 750
+		espacamento = 35
+		
+		pdf.drawString(coluna,linha,'Setor')
+		pdf.drawString(400,linha,'Valor Arrecadado (R$)')
+		pdf.line(coluna,739,540,739)
+		pdf.setFont('Helvetica', 12, leading=None)
+		debitos = Debito.objects.all()
+		linha = linha-espacamento
+		soma = []
+		
+		for debito in debitos:
+			if (debito.nota.setor == '1' and debito.ano.ano == ano):
+				soma.append(debito.itemNota.valor)
+		pdf.drawString(coluna,linha,'Clínica de Pequenos')
+		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
+		
+		soma = []
+		linha = linha-espacamento
+		
+		for debito in debitos:
+			if (debito.nota.setor == '2'and debito.ano.ano == ano):
+				soma.append(debito.itemNota.valor)
+		pdf.drawString(coluna,linha,'Clínica de Grandes')
+		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
+		
+		soma = []
+		linha = linha-espacamento
+		
+		for debito in debitos:
+			if (debito.nota.setor == '3'and debito.ano.ano == ano):
+				soma.append(debito.itemNota.valor)
+		pdf.drawString(coluna,linha,'Clínica Cirúrgica')
+		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))	
+			
+		soma = []
+		linha = linha-espacamento
+		
+		for debito in debitos:
+			if (debito.nota.setor == '4'and debito.ano.ano == ano):
+				soma.append(debito.itemNota.valor)
+		pdf.drawString(coluna,linha,'Patologia Clínica')
+		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))	
+		
+		soma = []
+		linha = linha-espacamento
+		
+		for debito in debitos:
+			if (debito.nota.setor == '5'and debito.ano.ano == ano):
+				soma.append(debito.itemNota.valor)
+		pdf.drawString(coluna,linha,'Diagnóstico por Imagem')
+		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))	
+		
+		soma = []
+		linha = linha-espacamento
+		
+		for debito in debitos:
+			if (debito.nota.setor == '6'and debito.ano.ano == ano):
+				soma.append(debito.itemNota.valor)
+		pdf.drawString(coluna,linha,'Parasitologia')
+		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
+			
+		soma = []
+		linha = linha-espacamento
+		
+		for debito in debitos:
+			if (debito.nota.setor == '7'and debito.ano.ano == ano):
+				soma.append(debito.itemNota.valor)
+		pdf.drawString(coluna,linha,'Microbiologia')
+		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
+		
+		soma = []
+		linha = linha-espacamento
+		
+		for debito in debitos:
+			if (debito.nota.setor == '8'and debito.ano.ano == ano):
+				soma.append(debito.itemNota.valor)
+		pdf.drawString(coluna,linha,'Patologia Animal')
+		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
+		
+		soma = []
+		linha = linha-espacamento
+		
+		pdf.line(30,459,540,459)
+		
+		for debito in debitos:
+			if debito.ano.ano == ano:
+				soma.append(debito.itemNota.valor)
+		pdf.drawString(coluna,linha,'Valor Total Arrecadado (R$)')
+		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
+		
+		soma = []
+		linha = linha-espacamento
+		pdf.showPage()
+		pdf.save()
 		return response
+
 
 class EstoqueResumo(TemplateView):
 	template_name='financeiro/estoque_resumo.html'

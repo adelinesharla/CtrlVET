@@ -25,6 +25,7 @@
 						<div class="card-content">
 							<div class="row">
 							<span class="card-title"><a href="#">Prestação de Contas {{ object.ano }} (Jan - Dez)</a></span>
+								<a href="{% url 'gerarPdf' object.ano %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>gerarPdf</a>
 							</div>
 							{% if object.debitos.all %}
 

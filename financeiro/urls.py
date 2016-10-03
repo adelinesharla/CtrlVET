@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^pagamentos/cadastro/debito', DebitoFormView.as_view(), name = 'debito_cadastro'),
     url(r'^pagamentos/relatorio$', AnoList.as_view(), name = 'ano_list'),
     url(r'^pagamentos/relatorio/(?P<ano_id>\d+)/', AnoDetalhesView.as_view(), name = 'ano_detail'),
+    url(r'^pagamentos/relatorio/gerarPdf/([0-9][0-9][0-9][0-9])', GeraPdfPrestacaoContas.as_view(), name = 'gerarPdf'),
     #Urls relacionadas às views de Estoque
 
     url(r'^estoque/resumo$',  EstoqueResumo.as_view(), name='estoque_resumo'),

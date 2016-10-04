@@ -4,8 +4,9 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
+<a href="{% url 'laboratorio_resumo' %}" class="breadcrumb">Exames</a>
+<a href="{% url 'laboratorio_detalhes' object.id %}" class="breadcrumb">{{ object.nome }}</a>
 
-<a href="{% url 'laboratorio_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
 
 {% endblock %}
 
@@ -36,7 +37,7 @@
 					</div>
 
 					<div class="input-field col s12 m4 l3 right-align">
-						<a href="{% url 'exame_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
+						<a href="{% url 'exame_cadastro' object.pk %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
 					</div>
 
 
@@ -65,8 +66,8 @@
 			{% endblock %}
 
 
-		{% block lista %}
-				<div class="row">
+			{% block lista %}
+			<div class="row">
 				<div class="col s12 m12 l12">
 					<span class="card-title">Exames</span>
 					<div class="divider"></div>
@@ -139,4 +140,4 @@
 			{% endblock %}
 			
 			{% endif %}
-{% endblock %}
+			{% endblock %}

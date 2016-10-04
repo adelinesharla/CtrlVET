@@ -49,8 +49,6 @@ class AnimalModelForm(forms.ModelForm):
 		model = Animal
 		fields = {'_nome', '_rg', '_especie', '_raca', 'sexo', '_nascimento', '_idade', 'tutor'}
 
-	
-
 	layout = Layout(
 		Fieldset("Dados do Animal"),
 			Row('_nome', 'sexo', '_rg'),
@@ -97,13 +95,15 @@ class ConsultaBuscaAdvForm(forms.Form):
 		)
 		
 class ExameModelForm(forms.ModelForm):
+
+	def __init__(self, *args, **kwargs):
+		super(ExameModelForm, self).__init__(*args, **kwargs)
+		self.fields['laboratorio'].label = ''
+
 	class Meta:
 		model = Exame
-		fields = ( 'animal', 'veterinario', 'tecnico', 'cliente', 'laboratorio')
-		
-
-	observacoes = forms.CharField()
-	numero_amostra = forms.IntegerField()
+		fields = ( 'animal', 'veterinario', 'tecnico', 'cliente', 'laboratorio', 'numero_amostra', 'observacoes')
+		widgets = {'laboratorio': forms.HiddenInput()}
 
 	layout = Layout(
 		Fieldset("Dados do Exame"),
@@ -112,7 +112,7 @@ class ExameModelForm(forms.ModelForm):
 			Row('cliente', 'animal', 'veterinario'),
 			Row('observacoes', 'laboratorio')
 		)
-		
+	
 class ExameBuscaAdvForm(forms.Form):		
 	_animal = forms.CharField(label='Animal', max_length=50, required=False)
 	_veterinario = forms.CharField(label='Veterinario', max_length=50, required=False)

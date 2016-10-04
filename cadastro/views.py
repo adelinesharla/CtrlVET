@@ -373,12 +373,18 @@ class ConsultaBuscaAvancadaMixin(ListView,FormView):
 class ExameFormView(FormView):
 	template_name = 'cadastro/exame_form.html'
 	form_class = ExameModelForm
-	success_url = '/exame/resumo'
+	success_url = '/success/'
 	
-	def form_valid(self, form):
+	def form_valid(self, form, **kwargs):
+		form.laboratorio = Laboratorio.objects.get(pk=self.kwargs.get('pk'))
 		form.save()
-		return HttpResponseRedirect('/exame/resumo')
+		return HttpResponseRedirect(self.success_url)
 
+	def get_initial(self):
+		super(ExameFormView, self).get_initial()
+		laboratorio = Laboratorio.objects.get(pk=self.kwargs.get('pk'))
+		self.initial = {"laboratorio":laboratorio}
+		return self.initial
 
 class ExameDeleteView(DeleteView):
 	model = Exame
@@ -467,6 +473,4 @@ class LaboratorioDetailView(DetailView):
 	def get_context_data(self, **kwargs):
 		context = super (LaboratorioDetailView, self).get_context_data(**kwargs)
 		context['form'] = ExameBuscaAdvForm()
-		return context	
-	
-	
+		return context

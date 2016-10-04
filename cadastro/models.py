@@ -362,16 +362,19 @@ class Laboratorio (models.Model):
 		return u'%s' % (self.nome)
 
 class ExameAbs (AtendimentoAbs):
-	animal = models.ForeignKey(Animal,null = True, blank = True,on_delete=models.CASCADE, related_name='amostrado_para_exame')
+	animal = models.ForeignKey(Animal,null = True, blank = True,on_delete=models.CASCADE, related_name='mostrado_para_exame')
 	veterinario = models.ForeignKey(Veterinario, on_delete=models.CASCADE, related_name='realiza_diagnostico')
 	tecnico = models.ForeignKey(Tecnico, on_delete=models.CASCADE, related_name='realiza_exame', blank = True, null = True)
 	_resultado = models.TextField(default = 'Pendente', blank = True, verbose_name='Resultado', max_length=200)
+	observacoes = models.CharField(blank=True, null=True, verbose_name='Observações', max_length=200)
+	numero_amostra = models.PositiveSmallIntegerField(blank=True, null=True, verbose_name='Número de amostra')
 	estadoexame = models.NullBooleanField(null = True ,blank = True, verbose_name='Estado do Exame')
-	laboratorio =  models.ForeignKey(Laboratorio, on_delete=models.CASCADE, related_name='exames')
+	laboratorio =  models.ForeignKey(Laboratorio, on_delete=models.CASCADE, related_name='exames', blank=True, null=True)
 	class Meta:
 		abstract = True
 		verbose_name_plural = "Exames"
 		
+
 class AcoesExame(ExameAbs):
 	@classmethod
 	def estadoExame(veterinario,tecnico,estadoexame):

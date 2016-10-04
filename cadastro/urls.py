@@ -58,19 +58,24 @@ urlpatterns = [
     
     #Urls relacionadas às views de Exame
     
-    url(r'^exame/cadastro$', ExameFormView.as_view(), name = 'exame_cadastro'),
-    url(r'^exame/detalhes/deletar/(?P<pk>\d+)/',ExameDeleteView.as_view(),  name = 'exame_deletar'),
-    url(r'^exame/detalhes/(?P<exame_id>\d+)/',ExameDetailView.as_view(), name = 'exame_detalhes'),
-    url(r'exame/detalhes/editar/(?P<pk>\d+)/',ExameUpdateView.as_view(),  name = 'exame_editar'),
-    url(r'^exame/$',ExameListView.as_view(), name='exame_list'),
+    url(r'^exames/$',LaboratorioResumo.as_view(), name='laboratorio_resumo'),
+    url(r'^exames/laboratorio/detalhes/(?P<laboratorio_id>\d+)/$',LaboratorioDetailView.as_view(), name = 'laboratorio_detalhes'),
+    url(r'^exames/laboratorio/detalhes/(?P<laboratorio_id>\d+)/busca/avancada$', ExameBuscaAvancadaMixin.as_view(), name = 'exame_busca_avancada'),
+    url(r'^exames/laboratorio/cadastro/(?P<pk>\d+)/', ExameFormView.as_view(), name = 'exame_cadastro'),
+
+    url(r'^exames/detalhes/deletar/(?P<pk>\d+)/',ExameDeleteView.as_view(),  name = 'exame_deletar'),
+    url(r'^exames/detalhes/(?P<exame_id>\d+)/',ExameDetailView.as_view(), name = 'exame_detalhes'),
+    url(r'exames/detalhes/editar/(?P<pk>\d+)/',ExameUpdateView.as_view(),  name = 'exame_editar'),
+    
+    #url(r'^exame/$',ExameListView.as_view(), name='exame_list'),
     #url(r'^exame/resumo$',ExameResumo.as_view(), name='exame_resumo'),
-    url(r'^exame/busca$', ExameBuscaListView.as_view(), name = 'exame_busca_list_view'),
+    url(r'^exames/busca$', ExameBuscaListView.as_view(), name = 'exame_busca_list_view'),
 
+    #exame/
+    #exame/laboratorio/pk/exames
+    #exame/laboratorio/pk/cadastro
+    #exame/laboratorio/pk/exame/pk/detalhes
+    #exame/laboratorio/pk/exame/pk/editar
+    #
 
-    #Urls relacionadas às views de Laboratório
-    
-    url(r'^laboratorio/resumo$',LaboratorioResumo.as_view(), name='laboratorio_resumo'),
-    url(r'^laboratorio/detalhes/(?P<laboratorio_id>\d+)/$',LaboratorioDetailView.as_view(), name = 'laboratorio_detalhes'),
-    url(r'^laboratorio/detalhes/(?P<laboratorio_id>\d+)/busca/avancada$', ExameBuscaAvancadaMixin.as_view(), name = 'exame_busca_avancada'),
-    
     ]

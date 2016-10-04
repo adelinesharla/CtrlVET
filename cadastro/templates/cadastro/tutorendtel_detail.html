@@ -13,112 +13,124 @@
 	<div class="card-content">
 		<span class='card-title'>Detalhes de {{ object.nome }}</span>
 		<div class='divider'></div>
-		<span class='card-title'>Dados pessoais</span>
-		<div class="row">
-			<div class="card-content">
-				<div class="col s2 m2 l2">
-					<p><b>Nome</b></p>
-				</div> 
-				<div class="col s4 m4 l4">
-					<p>{{ object.nome }}</p>
-				</div> 
-				<div class="col s2 m2 l2">
-					<p><b>CPF</b></p>
-				</div>
-				<div class="col s4 m4 l4">
-					<p>{{ object.cpf }}</p>
-				</div> 
-			</div>
-		</div>
 		
-		<span class='card-title'>Contato</span>
-		<div class="row">
-			<div class="card-content">
-				<div class="col s2 m2 l2">
-					<p><b>Telefone 1</b></p>
-				</div> 
-				<div class="col s2 m2 l2">
-					<p>{{ object.telefone1 }}</p>
-				</div>
-				<div class="col s2 m2 l2">
-					<p><b>Telefone 2</b></p>
-				</div> 
-				<div class="col s2 m2 l2">
-					<p>{{ object.telefone2 }}</p>
-				</div> 
-				<div class="col s2 m2 l2">
-					<p><b>Email</b></p>
-				</div> 
-				<div class="col s2 m2 l2">
-					<p>{{ object.email }}</p>
-				</div> 
-			</div>
-		</div>
-		
-		<span class='card-title'>Endereço</span>
-		<div class="row">
-			<div class="card-content">
-				<div class="col s2 m2 l2">
-					<p><b>Logradouro</b></p>
-				</div> 
-				<div class="col s4 m4 l4">
-					<p>{{ object.logradouro }}</p>
-				</div> 
-				<div class="col s2 m2 l2">
-					<p><b>Número</b></p>
-				</div>
-				<div class="col s4 m4 l4">
-					<p>{{ object.numero }}</p>
-				</div> 
-			</div>
-		</div>
-		<div class="row">
-			<div class="card-content">
-				<div class="col s2 m2 l2">
-					<p><b>Bairro</b></p>
-				</div> 
-				<div class="col s2 m2 l2">
-					<p>{{ object.bairro }}</p>
-				</div> 
-				<div class="col s2 m2 l2">
-					<p><b>Cidade</b></p>
-				</div>
-				<div class="col s2 m2 l2">
-					<p>{{ object.cidade }}</p>
-				</div> 
+		<div class="card-content">
+			
+			<div class="row">
 
-				<div class="col s1 m1 l1">
-					<p><b>CEP</b></p>
-				</div> 
-				<div class="col s1 m1 l1">
-					<p>{{ object.cep }}</p>
-				</div> 
-				<div class="col s1 m1 l1">
-					<p><b>UF</b></p>
+				<span class='card-title'>Dados pessoais</span>
+
+				<div class="row">
+					<div class="section">
+						<div class="col s2 m2 l2">
+							<p><b>Nome</b></p>
+						</div> 
+						<div class="col s4 m4 l4">
+							<p>{{ object.nome }}</p>
+						</div> 
+						<div class="col s2 m2 l2">
+							<p><b>CPF</b></p>
+						</div>
+						<div class="col s4 m4 l4">
+							<p>{{ object.cpf }}</p>
+						</div> 
+					</div>
 				</div>
-				<div class="col s1 m1 l1">
-					<p>{{ object.uf }}</p>
-				</div> 
+
+				<span class='card-title'>Contato</span>
+				<div class="row">
+					<div class="section">
+						<div class="col s2 m2 l2">
+							<p><b>Telefone 1</b></p>
+						</div> 
+						<div class="col s2 m2 l2">
+							<p>{{ object.telefone1 }}</p>
+						</div>
+						<div class="col s2 m2 l2">
+							<p><b>Telefone 2</b></p>
+						</div> 
+						<div class="col s2 m2 l2">
+							<p>{{ object.telefone2 }}</p>
+						</div> 
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="section">
+						<div class="col s3 m3 l3">
+							<p><b>Email</b></p>
+						</div> 
+						<div class="col s9 m9 l9">
+							<p>{{ object.email }}</p>
+						</div> 
+					</div>
+				</div>
+
+				<span class='card-title'>Endereço</span>
+				<div class="row">
+					<div class="section">
+						<div class="col s2 m2 l2">
+							<p><b>Logradouro</b></p>
+						</div> 
+						<div class="col s4 m4 l4">
+							<p>{{ object.logradouro }}</p>
+						</div> 
+						<div class="col s2 m2 l2">
+							<p><b>Número</b></p>
+						</div>
+						<div class="col s4 m4 l4">
+							<p>{{ object.numero }}</p>
+						</div> 
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="section">
+						<div class="col s2 m2 l2">
+							<p><b>Bairro</b></p>
+						</div> 
+						<div class="col s2 m2 l2">
+							<p>{{ object.bairro }}</p>
+						</div> 
+						<div class="col s2 m2 l2">
+							<p><b>Cidade</b></p>
+						</div>
+						<div class="col s2 m2 l2">
+							<p>{{ object.cidade }}</p>
+						</div> 
+
+						<div class="col s1 m1 l1">
+							<p><b>CEP</b></p>
+						</div> 
+						<div class="col s1 m1 l1">
+							<p>{{ object.cep }}</p>
+						</div> 
+						<div class="col s1 m1 l1">
+							<p><b>UF</b></p>
+						</div>
+						<div class="col s1 m1 l1">
+							<p>{{ object.uf }}</p>
+						</div> 
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col s12 m12 l12">
+						<div class="card-content right">
+							<button class="btn waves-effect waves-light indigo darken-4" onClick="javascript:history.go(-1);"><i class="material-icons right">arrow_back</i>Voltar</button>
+							<a class="waves-effect waves-light indigo darken-4 btn" href="{% url 'tutor_deletar' object.id %}" ><i class="material-icons left">delete</i>Deletar</a>
+							<a class="waves-effect waves-light indigo darken-4 btn" href="{% url 'tutor_editar' object.id %}" ><i class="material-icons left">edit</i>Editar</a>
+						</div>	
+					</div>
+				</div>
+			
 			</div>
+
 		</div>
 
-		<div class="row">
-		</div>
-		<div class="row">
-		</div>
-		
-		<div class="row">
-			<div class="col s12 m12 l12">
-				<div class="card-content right">
-				<button class="btn waves-effect waves-light indigo darken-4" onClick="javascript:history.go(-1);"><i class="material-icons right">arrow_back</i>Voltar</button>
-				<a class="waves-effect waves-light indigo darken-4 btn" href="{% url 'tutor_deletar' object.id %}" ><i class="material-icons left">delete</i>Deletar</a>
-				<a class="waves-effect waves-light indigo darken-4 btn" href="{% url 'tutor_editar' object.id %}" ><i class="material-icons left">edit</i>Editar</a>
-			</div>	
-		</div>
 	</div>
 </div>
-</div>
-
 
 
 

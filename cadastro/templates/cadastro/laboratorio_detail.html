@@ -4,7 +4,7 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'laboratorio_resumo' %}" class="breadcrumb">Exames</a>
+<a href="{% url 'laboratorio_resumo' %}" class="breadcrumb">Laboratórios</a>
 <a href="{% url 'laboratorio_detalhes' object.id %}" class="breadcrumb">{{ object.nome }}</a>
 
 
@@ -32,14 +32,8 @@
 					</form>
 					
 					<!-- Modal Trigger -->
-					<div class="input-field col s12 m3 l3 right-align">
+					<div class="input-field col s12 m6 l6 right-align">
 						<a class="btn waves-effect waves-light indigo darken-4 modal-trigger" href="#buscaavancada"><i class="material-icons left">search</i>Avancada</a>
-					</div>
-
-					<div class="input-field col s12 m4 l3 right-align">
-						<a href="{% url 'exame_cadastro' object.pk %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
-					</div>
-
 
 					<!-- Modal Structure -->
 					<div id="buscaavancada" class="modal">
@@ -60,16 +54,18 @@
 						</div>
 					</div>
 
+						<a href="{% url 'exame_cadastro' object.pk %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Agendar</a>
+					</div>
+
 				</div>
 			</div>
 
 			{% endblock %}
 
-
 			{% block lista %}
 			<div class="row">
 				<div class="col s12 m12 l12">
-					<span class="card-title">Exames</span>
+					<span class="card-title">Exames Agendados - Laboratório {{ object.nome }}</span>
 					<div class="divider"></div>
 					<div class="row">
 						<div class="col s12 m12">
@@ -79,8 +75,10 @@
 							<table class="reponsive-table highlight striped">
 								<thead>
 									<th data-field="">Data</th>
-									<th data-field="">Animal</th>
-									<th data-field="">Tecnico</th>
+									<th data-field="">Animal/Número da Amostra</th>
+									<th data-field="">Tutor/Dono da Amostra</th>
+									<th data-field="">Técnico</th>
+									<th data-field="">Veterinário</th>
 									<!--	<th data-field="">Detalhes</th> -->
 								</tr>
 							</thead>
@@ -89,9 +87,13 @@
 
 								{% for object in object.exames.all %}
 								<tr>
-									<td><a href="{% url 'exame_detalhes' object.pk %}"><b>{{ object.data }}</b></a></td>
-									<td>{{ object.animal }}</td>
+									<td><a href="{% url 'exame_detalhes' object.pk %}"><b>{{ object.data|date:"d/m/Y" }}</b></a></td>
+									<td><a href="{% url 'animal_detalhes' object.animal.pk %}">{{ object.animal }}</a></td>
+									<td><a href="{% url 'tutor_detalhes' object.animal.tutor.pk %}">{{ object.animal.tutor }}</a></td>
 									<td>{{ object.tecnico }}</td>
+									<td>{{ object.veterinario }}</td>
+									<td><a href="{% url 'exame_editar' object.pk %}"><b>Editar</b></a></td>
+									<td><a href="{% url 'exame_deletar' object.pk %}"><b>Excluir</b></a></td>
 								</tr>
 
 								{% endfor %}

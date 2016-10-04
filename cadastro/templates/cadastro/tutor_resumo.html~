@@ -29,11 +29,10 @@
 							<label for="search"><i class="material-icons">search</i></label>
 							<i class="material-icons">close</i>
 						</div>
-					
 					</form>
 
 					<!-- Modal Trigger -->
-					<div class="input-field col s12 m6 l6 right-align">
+					<div class="input-field col s12 m4 l4 right-align">
 						<a class="btn waves-effect waves-light indigo darken-4 modal-trigger" href="#buscaavancada"><i class="material-icons left">search</i>Avancada</a>
 
 					<!-- Modal Structure -->
@@ -54,11 +53,10 @@
 							</form>
 						</div>
 					</div>
-
 						<a href="{% url 'tutor_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
 					</div>
 
-					</div>
+				</div>
 			</div>
 
 			{% endblock %}
@@ -92,7 +90,7 @@
 									<td><a href="{% url 'tutor_detalhes' object.pk %}"><b>{{ object.pk }}</b></a></td>
 									<td>{{ object.nome }}</td>
 									<td>{{ object.email }}</td>
-									<td>{{ object.telefone.telefone1 }}</td>
+									<td>{{ object.telefone1 }}</td>
 									<td><a href="{% url 'tutor_editar' object.pk %}"><b>Editar</b></a></td>
 									<td><a href="{% url 'tutor_deletar' object.pk %}"><b>Excluir</b></a></td>
 								</tr>

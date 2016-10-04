@@ -23,7 +23,7 @@
 					<div class="card">
 						<div class="card-content">
 
-							<span class="card-title"><a href="{% url 'exame_list' %}">{{ object.nome }}</a></span>
+							<span class="card-title"><a href="{% url 'laboratorio_detalhes' object.pk %}">{{ object.nome }}</a></span>
 							
 						</div>
 						<div class="card-action" align="right">

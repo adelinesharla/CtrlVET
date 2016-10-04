@@ -29,7 +29,28 @@
 						</div>
 					</form>
 
-					<div class="input-field col s12 m4 l3 right-align">
+					<!-- Modal Trigger -->
+					<div class="input-field col s12 m4 l4 right-align">
+						<a class="btn waves-effect waves-light indigo darken-4 modal-trigger" href="#buscaavancada"><i class="material-icons left">search</i>Avancada</a>
+
+					<!-- Modal Structure -->
+					<div id="buscaavancada" class="modal">
+						<div class="modal-content">
+							<form action="busca/avancada" method="POST"> 
+
+								<h4>Busca Avançada</h4>
+
+								{% csrf_token %}
+								{% form form=form %}{% endform %}
+
+							</div>
+							<div class="modal-footer">
+								<button class="btn modal-action modal-close waves-effect waves-light indigo darken-4" type="Submit" value="Update">Buscar<i class="material-icons right">search</i>
+								</button>
+
+							</form>
+						</div>
+					</div>
 						<a href="{% url 'consulta_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Agendar</a>
 					</div>
 
@@ -64,7 +85,7 @@
 
 								{% for object in object_list %}
 								<tr>
-									<td>{{ object.data_realizacao|date:"d/m/Y" }}</a></td>
+									<td><a href="{% url 'consulta_detalhes' object.pk %}">{{ object.data_realizacao|date:"d/m/Y" }}</a></td>
 									<td><a href="{% url 'animal_detalhes' object.animal.pk %}">{{ object.animal.nome }}</a></td>
 									<td><a href="{% url 'tutor_detalhes' object.animal.tutor.pk %}">{{ object.animal.tutor.nome }}</a></td>
 									<td>{{ object.veterinario.nome }}</td>

@@ -11,16 +11,6 @@ from .models import *
 from localflavor.br.forms import BRCPFField
 from datetime import datetime 
 
-class DebitoModelForm(forms.ModelForm):
-	class Meta:
-		model = Debito
-		fields = {'itemNota', 'nota'}
-
-	layout = Layout(
-		Fieldset("Cadastro de Débito"),
-		
-			Row('itemNota', 'nota'),
-		)
 
 class NotaModelForm(forms.ModelForm):
 	class Meta:
@@ -52,13 +42,5 @@ class ProdutoModelForm(forms.ModelForm):
 			Row('_nome', '_valor'),
 		)
 
-class ServicoModelForm(forms.ModelForm):
-	class Meta:
-		model = Debito
-		fields = {'itemNota', 'nota'}
 
-	layout = Layout(
-		Fieldset("Cadastro de Serviço"),
-			Row('itemNota', 'nota'),
-		)
 

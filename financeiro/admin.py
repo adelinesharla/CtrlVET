@@ -6,5 +6,4 @@ from .models import *
 
 admin.site.register(Nota)
 admin.site.register(ItemNota)
-admin.site.register(Debito)
 admin.site.register(Ano)

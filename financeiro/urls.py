@@ -15,12 +15,13 @@ urlpatterns = [
     #url(r'^pagamentos/detalhes/editar/(?P<pk>\d+)/',financeiroEditar.as_view(),  name = 'financeiro_editar'),
     #url(r'^pagamentos/detalhes/deletar/(?P<pk>\d+)/',financeiroDeletar.as_view(),  name = 'financeiro_deletar'),
     url(r'^pagamentos/cadastro$', NotaFormView.as_view(), name = 'nota_cadastro'),
-    url(r'^pagamentos/debitos$', DebitosListView.as_view(), name = 'financeiro_debitos'),
+    url(r'^pagamentos/debitos$', ListView.as_view(), name = 'financeiro_debitos'),
     url(r'^pagamentos/recebidos$', RecebidosListView.as_view(), name = 'financeiro_recebidos'),
-    url(r'^pagamentos/cadastro/debito', DebitoFormView.as_view(), name = 'debito_cadastro'),
+    #url('^pagamentos/cadastro/debito', DebitoFormView.as_view(), name = 'debito_cadastro'),
     url(r'^pagamentos/relatorio$', AnoList.as_view(), name = 'ano_list'),
     url(r'^pagamentos/relatorio/(?P<ano_id>\d+)/', AnoDetalhesView.as_view(), name = 'ano_detail'),
     url(r'^pagamentos/relatorio/gerarPdf/([0-9][0-9][0-9][0-9])', GeraPdfPrestacaoContas.as_view(), name = 'gerarPdf'),
+    url(r'^pagamentos/resumo/gerarPdf/(?P<nota_id>\d+)/', GeraPdfNotaDePagamento.as_view(), name = 'nota_de_pagamento'),
     #Urls relacionadas às views de Estoque
 
     url(r'^estoque/resumo$',  EstoqueResumo.as_view(), name='estoque_resumo'),

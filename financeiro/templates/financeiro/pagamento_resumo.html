@@ -103,7 +103,7 @@
 										<td><a href="#">{{ object.nota.atendimento.cliente.nome }}</a></td>
 										<td>{{ object.itemNota.valor }}</td>
 										<td></td>
-										<td><a href="#">Nota de Pagamento</a></td>
+										<td><a href="{% url 'nota_de_pagamento'  object.pk %}">Nota de Pagamento</a></td>
 									</tr>
 
 									{% endfor %}

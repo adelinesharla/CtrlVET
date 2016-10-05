@@ -388,6 +388,7 @@ class ExameFormView(FormView):
 
 class ExameDeleteView(DeleteView):
 	model = Exame
+	success_url = '/success/'
 	#success_url = reverse_lazy('consulta_resumo')
 
 class ExameDetailView(DetailView):
@@ -401,6 +402,7 @@ class ExameDetailView(DetailView):
 class ExameUpdateView(UpdateView):
 	model = Exame
 	template_name_suffix = '_form_update'
+	form_class = ExameModelForm
 	success_url = '/success/'
 
 class ExameListView(ListView):

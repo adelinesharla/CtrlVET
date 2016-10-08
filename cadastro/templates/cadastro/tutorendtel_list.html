@@ -1,6 +1,5 @@
 {% extends "cadastro/tutor_resumo.html" %}
 
-
 {% block breadcrumbs %}
 {{ block.super }}
 <a href="{% url 'tutor_busca_list_view' %}" class="breadcrumb">Busca</a>
@@ -21,43 +20,6 @@
 			{{ block.super }}
 
 			{% endblock %}
-
-			{% if is_paginated %}
-
-			{% block paginacao %}
-
-			<div class="row center">
-				<div class="col s12 m12 l12">
-					<ul class="pagination">
-
-						{% if page_obj.has_previous %}
-						<li class="disabled"><a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
-						{% else %}
-						<li class="disabled"><a href=""><i class="material-icons">chevron_left</i></a></li>
-						{% endif %}
-
-
-						{% for page in page_obj.paginator.page_range %}
-						<li class="{% if page_obj.number == page %}active indigo darken-4{% else %}waves-effect white{% endif %}""><a href="?page={{ page }}">{{ page }}</a></li>
-						{% endfor %}
-
-						{% if page_obj.has_next %}
-						<li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
-						{% else %}
-						<li class="waves-effect"><a href=""><i class="material-icons">chevron_right</i></a></li>
-						{% endif %}
-
-					</ul>
-				</div>	
-			</div>
-
-			{% endblock %}
-			
-			{% endif %}
-			
-			
-
-
 
 		</div>
 	</div>

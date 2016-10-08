@@ -1,15 +1,9 @@
 npm install -g bower
-
 pip install django-bower
-
 pip install django-material
-
 bower install fullcalendar
-
 bower install moment
-
-bower install jquerys
-
+bower install jquery
 pip install django-formset-js
-
 pip install reportlab
+pip install django-localflavor

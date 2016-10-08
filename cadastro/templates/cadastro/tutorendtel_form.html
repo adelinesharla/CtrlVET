@@ -5,6 +5,7 @@
 {% block breadcrumbs %}
 {{ block.super }}
 <a href="{% url 'tutor_cadastro' %}" class="breadcrumb">Cadastro</a>
+
 {% endblock %}
 
 {% block form_submit_action %}
@@ -12,22 +13,22 @@
 <div class="card">
 	<div class="card-content">		
 		<form action="cadastro" method="POST"> 
-			
-
-			{% endblock %}
-			{% block form %}
-			{{ block.super }}
-			{% endblock %}
-
-			{% block form_submit %}
-
 			<div class="row">
-				<div class="col s12 m12 l12 right-align">
-					<div class="form-actions">
-						<button class="btn waves-effect waves-light indigo darken-4" type="reset" value="Reset"><i class="material-icons right">clear</i>Limpar</button>
-						<button class="btn waves-effect waves-light indigo darken-4" type="submit" name="cancel" value="Cancel"><i class="material-icons right">cancel</i>Cancelar</button>
-						<button onclick="AlertSucesso()" class="btn waves-effect waves-light indigo darken-4" type="submit" value="Update">Salvar<i class="material-icons right">send</i>
-						</button>
+
+				{% endblock %}
+				{% block form %}
+				{{ block.super }}
+				{% endblock %}
+
+				{% block form_submit %}
+
+				<div class="row">
+					<div class="col s12 m12 l12 right-align">
+						<div class="form-actions">
+							<button class="btn waves-effect waves-light indigo darken-4" type="reset" value="Reset"><i class="material-icons right">clear</i>Limpar</button>
+							<button class="btn waves-effect waves-light indigo darken-4" type="submit" name="cancel" value="Cancel"><i class="material-icons right">cancel</i>Cancelar</button>
+							<button class="btn waves-effect waves-light indigo darken-4" type="submit" value="Update">Salvar<i class="material-icons right">send</i></button>
+						</div>
 					</div>
 				</div>
 

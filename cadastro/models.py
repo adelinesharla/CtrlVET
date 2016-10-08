@@ -183,13 +183,14 @@ GENERO_CHOICES = (
 
 class AnimalAbs(models.Model):
 	_nome = models.CharField(verbose_name='Nome', max_length=50)
-	_rg = models.PositiveSmallIntegerField(verbose_name='RG', unique=True)
+	_rg = models.PositiveSmallIntegerField(verbose_name='RG', unique=True, blank = True)
 	_especie = models.CharField(verbose_name='Espécie', max_length=50)
 	_raca = models.CharField(verbose_name='Raça', max_length=50)
 	sexo = models.CharField(verbose_name='Sexo', max_length=15, choices=GENERO_CHOICES)
 	_nascimento = models.DateField(verbose_name='Data de Nascimento')
+	_obito = models.DateField(verbose_name='Data de Óbito', null = True ,blank = True)
 	_idade = models.PositiveSmallIntegerField(verbose_name='Idade')
-	tutor = models.ForeignKey(TutorEndTel, on_delete = models.CASCADE)
+	tutor = models.ForeignKey(TutorEndTel, on_delete = models.CASCADE, related_name='animais')
 
 	class Meta:
 		verbose_name_plural = "Animais"

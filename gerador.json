@@ -1,0 +1,22 @@
+http://www.json-generator.com/
+
+[  
+  '{{repeat(50, 50)}}',
+  {
+    "model": "cadastro.tutorendtel",
+    "pk": "{{index([0])}}",
+        "fields": {
+          "_nome": "{{firstName()}} {{surname()}}",
+          "_email": "{{email([random])}}",
+            "_cpf": "{{random(['47534335795'],['90458347310'],['25579654995'],['57768474007'],['70255485379'],['42968826786'],['83005513289'],['05613341885'],['84785314087'],['53758471672'],['73622874295'],['53386262171'],['56392661557'],['64003916735'],['64575754471'],['13812668602'])}}",
+                "_logradouro": "{{street()}}",
+                "_numero": "{{integer([1], [3])}}",
+                    "_bairro": "{{company()}}",
+                    "_cidade": "{{random(['Alegre'], ['Ibatiba'], ['Muniz Freire'], ['Rive'], ['Guaçuí'], ['Cachoeiro'], ['Varresai'], ['Muqui'], ['Jerônimo Monteiro'])}}",
+                        "_cep": "{{integer([15], [15])}}",
+                            "_uf": "{{random(['SP'], ['MG'], ['ES'], ['RJ'])}}",
+                                "_telefone1": "{{integer([111111111], [99999999999])}}",
+                                    "_telefone2": "{{integer([111111111], [99999999999])}}"
+                                    }
+                                }
+                            ]

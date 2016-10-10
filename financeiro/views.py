@@ -28,7 +28,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.lib.pagesizes import landscape
 from reportlab.platypus import Image
 from django.http import HttpResponse
-import datetime
+from datetime import datetime
 from reportlab.lib import colors
 
 
@@ -343,19 +343,18 @@ class GeraPdfNotaDePagamento(DetailView):
 		response['Content-Disposition'] = 'attachment; filename= "Nota de Pagamento.pdf"'
 		pdf = canvas.Canvas(response)
 		pdf.setLineWidth(.2)
-		
-		#largura 1 a 595
-		#altura 1 a 825
+		dataAtual = datetime.now()
 		pdf.line(20,820,574,820)
 		pdf.line(20,820,20,20)
 		pdf.line(574,820,574,20)
 		pdf.line(20,20,574,20)
 		
-		logo ='static/logo/ufes.png'
+		logo ='static/media/logo/ufes.png'
 		pdf.drawImage(logo,30,695, width = None, height = None)
 		
 		pdf.setFont('Helvetica', 18, leading=None)
 		pdf.drawString(185,790,'Universidade Federal do Espírito Santo')
+		pdf.drawString(185,670,'Controle de Pagamento')
 		pdf.drawString(265,740,'Hospital Veterinário')
 		pdf.setFont('Helvetica', 16, leading=None)
 		pdf.drawString(240,765,'Centro de Ciências Agrárias')
@@ -364,76 +363,92 @@ class GeraPdfNotaDePagamento(DetailView):
 		pdf.drawString(302,695,'Área Experimental do CCA-UFES, Alegre-ES-Brasil')
 		pdf.line(20,690,574,690)
 		
-		
-		pdf.setFont('Helvetica', 18, leading=None)
-		pdf.drawString(185,670,'Controle de Pagamento')
 		pdf.setFont('Helvetica', 12, leading=None)
 		
-		hovet = 'static/logo/hovet2.jpg'
+		hovet = 'static/media/logo/hovet2.jpg'
 		pdf.drawImage(hovet,430,545, width = None, height = None)
 		
 		notas = Nota.objects.filter(pk = nota_id)
+		consultas = Consulta.objects.all()
 		
-		pdf.drawString(30,640,'Setor: ')
-		pdf.drawString(30,620,'Animal: ')
-		pdf.drawString(30,600,'RG: ')
-		pdf.drawString(30,580,'Proprietário: ')
-		pdf.drawString(30,560,'Telefone: ')
-		
+		pdf.drawString(30,620,'Proprietário: ')
+		pdf.drawString(30,600,'Telefone: ')
+		cont = 0
+		terminou = False
 		for nota in notas:
-			#pdf.drawString(70,550,debito.nota.atendimento.cliente)
-			pdf.drawString(70,640,nota.get_setor_display())	
-			#pdf.drawString(70,590,debito.nota.atendimento.animal)	
+			pdf.drawString(30,640,'Setor: '+nota.get_setor_display())	
+			if nota.atendimento.cliente != None:
+				pdf.drawString(100,620,nota.atendimento.cliente.nome)	
+				pdf.drawString(85,600,nota.atendimento.cliente.telefone1)
+				
+			
 			data = nota.data	
 			if nota.status == False:
 				foiPago = 'Não'
 			else:
 				foiPago = 'Sim'	
 				
+			pdf.drawString(30,580,'Recebimento: '+foiPago)
+			pdf.drawString(30,560,'Data: '+str(data.day)+'/'+str(data.month)+'/'+str(data.year))		
+					
 		x1= 20
 		y1 = 540
 		x2 = 574	
 		espacamento = 20
-		#diferenca de 15 pra linha de cima e 5 pra linha de baixo
 		pdf.line(x1,y1,x2,y1)
-		pdf.drawString(200,525,'Procedimentos ')
-		pdf.drawString(470,525,'Valor ')
-		y1 = y1- espacamento
-		pdf.line(x1,y1,x2,y1)
+		pdf.drawString(200,525,'PROCEDIMENTOS ')
+		pdf.drawString(500,525,'VALOR ')
+		y1 = y1 - espacamento
+		pdf.line(x1,y1,x2,y1)	
+		pdf.line(460,y1+espacamento,460,y1)	
+		soma = []
+		numItens = 0
 		
-		"""for nota in notas:
-			pdf.drawString(30,505,nota.itemNota.nome)
-			pdf.drawString(470,505,"%d,00" % notas.itemNota.valor)
-			y1 = y1- espacamento
-			pdf.line(x1,y1,x2,y1)
-		
-		
-		pdf.drawString(30,505,'Consulta')
-		y1 = y1- espacamento
-		pdf.line(x1,y1,x2,y1)
-		pdf.drawString(30,485,'material')
-		y1 = y1- espacamento
-		pdf.line(x1,y1,x2,y1)
-			
-		
-		"""
-		y0 = 485	
-	
 		for nota in notas:
 			for item in nota.itemNota.all():
-				pdf.drawString(30,y0,item.nome)
-				pdf.drawString(470,y0,"%d,00" % item.valor)
-				y1 = y1- espacamento
-				pdf.line(x1,y1,x2,y1)
+				numItens = numItens+1
 		
-		
-		pdf.drawString(30,100,'Recebimento: '+foiPago)
-		pdf.drawString(468,30,'Data: '+str(data.day)+'/'+str(data.month)+'/'+str(data.year))
-		pdf.showPage()
+		for nota in notas:
+			for item in nota.itemNota.all():
+				y1 = y1 - 15	
+				pdf.drawString(30,y1,item.nome)
+				pdf.drawString(500,y1,"%d,00" % item.valor)
+				soma.append(item.valor)
+				y1 = y1 - 5
+				pdf.line(x1,y1,x2,y1)		
+				pdf.line(460,y1+espacamento,460,y1) #linha vertical
+				cont = cont + 1
+				if cont >22:
+					terminou = True
+					cont = 0
+					if terminou == True:	
+						if numItens % 23 != 0:
+							pdf.showPage()
+							y1 = 805
+							pdf.drawString(200,y1,'PROCEDIMENTOS ')
+							pdf.drawString(500,y1,'VALOR ')
+							y1 = y1-5
+							pdf.line(x1,y1,x2,y1)
+							pdf.line(460,y1+espacamento,460,y1)	
+						
+							pdf.line(20,820,574,820)
+							pdf.line(20,820,20,20)
+							pdf.line(574,820,574,20)
+							pdf.line(20,20,574,20)
+						terminou = False
+					
+					
+				
+		y1 = y1 - espacamento				
+		pdf.line(x1,y1,x2,y1)
+		pdf.line(460,y1+espacamento,460,y1)
+		pdf.drawString(230,y1+5,'TOTAL')
+		pdf.drawString(500,y1+5,"%d,00" % sum(soma))
+		pdf.setFont('Helvetica', 11, leading=None)
+		pdf.drawString(30,30,'Emissão do Relatório: '+str(dataAtual.day)+'/'+str(dataAtual.month)+'/'+str(dataAtual.year))	
 		pdf.save()
 		return response
 	
-		
 
 
 class EstoqueResumo(TemplateView):

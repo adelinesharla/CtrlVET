@@ -233,7 +233,7 @@
 			}
 		},
 		value: '',
-		lang: 'en',
+		lang: 'pt',
 
 		format:	'Y/m/d H:i',
 		formatTime:	'H:i',

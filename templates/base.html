@@ -18,24 +18,21 @@
 
 	<!--Import CSS--> 
 
-	<link type="text/css" rel="stylesheet" href="{% static 'materialize/dist/css/materialize.min.css' %}" media="screen,projection"/>
-	<link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.css' %}"  media="screen,projection"/>
 
-	<!-- javascript -->
-
-	<script src="{% static 'material/js/jquery-2.2.0.js' %}"></script>
-
-
-	<script type="text/javascript" src="{% static 'materialize/dist/js/materialize.min.js' %}"></script>
+	<!-- Compiled and minified CSS -->
 	
-	<script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'fullcalendar/dist/fullcalendar.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'fullcalendar/dist/lang-all.js' %}"></script>
+	<link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="{% static 'js/jquery-2.2.0.js' %}"></script>
+	
+	<script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+
 
 	<!-- custom css e js-->
 
-	<link type="text/css" rel="stylesheet" href="{% static 'ctrlvet.css' %}"  media="screen,projection"/>
-	<script type="text/javascript" src="{% static 'ctrlvet.js' %}"></script>
+	<link type="text/css" rel="stylesheet" href="{% static 'css/ctrlvet.css' %}"  media="screen,projection"/>
+	<script type="text/javascript" src="{% static 'js/ctrlvet.js' %}"></script>
 	
 	{% include 'material/includes/material_js.html' %}
 
@@ -71,7 +68,7 @@
 			<li class="no-padding">
 				<ul class="collapsible collapsible-accordion">
 
-					<li class="logo center "><div class="container logo-vet"><img class="responsive-img "  src="{% static 'logo/logo.png' %}"></div></li>
+					<li class="logo center "><div class="container logo-vet"><img class="responsive-img "  src="{% static 'media/logo/logo.png' %}"></div></li>
 
 					<li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
 
@@ -113,11 +110,11 @@
 			<div class="row">
 				<div class="col s12 m12 l12 black-text text-lighten-4">
 					Sistema de gestão do Hospital Veterinário HOVET
-			</div>
 				</div>
+			</div>
 			<div class="row">
 				<div class="col s12 m12 l12 black-text text-lighten-4">
-						BR 482, km 63 - Tel. (27) 8803-4503 - Área experimental do CCA-UFES, Alegre - ES - Brasil
+					BR 482, km 63 - Tel. (27) 8803-4503 - Área experimental do CCA-UFES, Alegre - ES - Brasil
 				</div>
 			</div>
 		</div></p>

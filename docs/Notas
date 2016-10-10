@@ -1,0 +1,16 @@
+Estrutura de arquivos
+
+.settings/
+CtrlVET/
+cadastro/
+financeiro/
+secretaria/
+scripts/ 
+assets/
+	css/
+	js/
+	fonts/
+	img/
+static/
+templates/
+...

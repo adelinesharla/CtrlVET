@@ -1,18 +1,21 @@
-{% extends "cadastro/consulta_form.html" %}
+{% extends "cadastro/base_visaogeral.html" %}
 
 {% load material_form %}
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'consulta_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
-<a href="{{ request.get_absolute_url }}" class="breadcrumb">Editar</a>
+<a href="{% url 'laboratorio_resumo' %}" class="breadcrumb">Laboratórios</a>
+<a href="" class="breadcrumb">{{ object.laboratorio }}</a>
+<a href="" class="breadcrumb">Edição</a>
+<a href="exame_detail" class="breadcrumb">{{ object.pk }}</a>
+
 {% endblock %}
 
 {% block form_submit_action %}
 
 <div class="card">
 	<div class="card-content">		
-		<form action="" method="POST"> 
+		<form action="update" method="POST"> 
 			<div class="row">
 				{% endblock %}
 

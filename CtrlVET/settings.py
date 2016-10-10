@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djangobower',
-    'djangoformsetjs',
     'material',
     'cadastro',
     'financeiro',
@@ -131,29 +129,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'assets/media')
 
 MEDIA_URL = '/media/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'assets')
+]
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder',
-    )
+)
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "media"),
-    os.path.join(STATIC_ROOT, "css"),
-    os.path.join(STATIC_ROOT, "js"),
-]
 
-BOWER_COMPONENTS_ROOT = 'components'
-
-BOWER_INSTALLED_APPS = (
-    'jquery#2.2.0',
-    'underscore',
-    'materialize',
-    'moment',
-    'fullcalendar',
-    )
 

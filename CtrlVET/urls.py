@@ -37,6 +37,16 @@ class MockUp(TemplateView):
     Para que as urls de templates sejam mapeados como view e com os argumentos 
     passados para a função get_context_data.
     """
+
+# Overrides the default 400 handler django.views.defaults.bad_request
+handler400 = 'cadastro.bad_request'
+# Overrides the default 403 handler django.views.defaults.permission_denied
+handler403 = 'cadastro.views.permission_denied'
+# Overrides the default 404 handler django.views.defaults.page_not_found
+handler404 = 'cadastro.views.page_not_found'
+# Overrides the default 500 handler django.views.defaults.server_error
+handler500 = 'cadastro.views.server_error'	
+	
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #url(r'^(?P<template_name>.*)$', MockUp.as_view()),

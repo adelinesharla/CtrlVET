@@ -248,7 +248,9 @@ class GeraPdfPrestacaoContas(DetailView):
 		
 		for nota in notas:
 			if (nota.setor == '1' and nota.ano.ano == ano):
-				soma.append(nota.itemNota.valor)
+				itens= nota.itemNota.all()
+				for item in itens:
+					soma.append(item.valor)
 		pdf.drawString(coluna,linha,'Clínica de Pequenos')
 		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
 		
@@ -257,7 +259,9 @@ class GeraPdfPrestacaoContas(DetailView):
 		
 		for nota in notas:
 			if (nota.setor == '2'and nota.ano.ano == ano):
-				soma.append(nota.itemNota.valor)
+				itens= nota.itemNota.all()
+				for item in itens:
+					soma.append(item.valor)
 		pdf.drawString(coluna,linha,'Clínica de Grandes')
 		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
 		
@@ -266,7 +270,9 @@ class GeraPdfPrestacaoContas(DetailView):
 		
 		for nota in notas:
 			if (nota.setor == '3'and nota.ano.ano == ano):
-				soma.append(nota.itemNota.valor)
+				itens= nota.itemNota.all()
+				for item in itens:
+					soma.append(item.valor)
 		pdf.drawString(coluna,linha,'Clínica Cirúrgica')
 		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))	
 			
@@ -275,7 +281,9 @@ class GeraPdfPrestacaoContas(DetailView):
 		
 		for nota in notas:
 			if (nota.setor == '4'and nota.ano.ano == ano):
-				soma.append(nota.itemNota.valor)
+				itens= nota.itemNota.all()
+				for item in itens:
+					soma.append(item.valor)
 		pdf.drawString(coluna,linha,'Patologia Clínica')
 		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))	
 		
@@ -284,7 +292,9 @@ class GeraPdfPrestacaoContas(DetailView):
 		
 		for nota in notas:
 			if (nota.setor == '5'and nota.ano.ano == ano):
-				soma.append(nota.itemNota.valor)
+				itens= nota.itemNota.all()
+				for item in itens:
+					soma.append(item.valor)
 		pdf.drawString(coluna,linha,'Diagnóstico por Imagem')
 		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))	
 		
@@ -293,7 +303,9 @@ class GeraPdfPrestacaoContas(DetailView):
 		
 		for nota in notas:
 			if (nota.setor == '6'and nota.ano.ano == ano):
-				soma.append(nota.itemNota.valor)
+				itens= nota.itemNota.all()
+				for item in itens:
+					soma.append(item.valor)
 		pdf.drawString(coluna,linha,'Parasitologia')
 		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
 			
@@ -302,7 +314,9 @@ class GeraPdfPrestacaoContas(DetailView):
 		
 		for nota in notas:
 			if (nota.setor == '7'and nota.ano.ano == ano):
-				soma.append(nota.itemNota.valor)
+				itens= nota.itemNota.all()
+				for item in itens:
+					soma.append(item.valor)
 		pdf.drawString(coluna,linha,'Microbiologia')
 		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
 		
@@ -311,7 +325,9 @@ class GeraPdfPrestacaoContas(DetailView):
 		
 		for nota in notas:
 			if (nota.setor == '8'and nota.ano.ano == ano):
-				soma.append(nota.itemNota.valor)
+				itens= nota.itemNota.all()
+				for item in itens:
+					soma.append(item.valor)
 		pdf.drawString(coluna,linha,'Patologia Animal')
 		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
 		
@@ -322,7 +338,9 @@ class GeraPdfPrestacaoContas(DetailView):
 		
 		for nota in notas:
 			if nota.ano.ano == ano:
-				soma.append(nota.itemNota.valor)
+				itens= nota.itemNota.all()
+				for item in itens:
+					soma.append(item.valor)
 		pdf.drawString(coluna,linha,'Valor Total Arrecadado (R$)')
 		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
 		

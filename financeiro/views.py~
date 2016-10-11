@@ -248,7 +248,9 @@ class GeraPdfPrestacaoContas(DetailView):
 		
 		for nota in notas:
 			if (nota.setor == '1' and nota.ano.ano == ano):
-				soma.append(debito.itemNota.valor)
+				itens= nota.itemNota.all()
+				for item in itens:
+					soma.append(item.valor)
 		pdf.drawString(coluna,linha,'Clínica de Pequenos')
 		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
 		

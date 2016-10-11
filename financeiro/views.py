@@ -29,7 +29,6 @@ from reportlab.lib.pagesizes import landscape
 from reportlab.platypus import Image
 from django.http import HttpResponse
 from datetime import datetime
-from reportlab.lib import colors
 
 
 
@@ -243,13 +242,13 @@ class GeraPdfPrestacaoContas(DetailView):
 		pdf.drawString(400,linha,'Valor Arrecadado (R$)')
 		pdf.line(coluna,739,540,739)
 		pdf.setFont('Helvetica', 12, leading=None)
-		notas = Notas.objects.all()
+		notas = Nota.objects.all()
 		linha = linha-espacamento
 		soma = []
 		
 		for nota in notas:
 			if (nota.setor == '1' and nota.ano.ano == ano):
-				soma.append(debito.itemNota.valor)
+				soma.append(nota.itemNota.valor)
 		pdf.drawString(coluna,linha,'Clínica de Pequenos')
 		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
 		
@@ -369,7 +368,6 @@ class GeraPdfNotaDePagamento(DetailView):
 		pdf.drawImage(hovet,430,545, width = None, height = None)
 		
 		notas = Nota.objects.filter(pk = nota_id)
-		consultas = Consulta.objects.all()
 		
 		pdf.drawString(30,620,'Proprietário: ')
 		pdf.drawString(30,600,'Telefone: ')
@@ -448,8 +446,6 @@ class GeraPdfNotaDePagamento(DetailView):
 		pdf.drawString(30,30,'Emissão do Relatório: '+str(dataAtual.day)+'/'+str(dataAtual.month)+'/'+str(dataAtual.year))	
 		pdf.save()
 		return response
-	
-
 
 class EstoqueResumo(TemplateView):
 	template_name='financeiro/estoque_resumo.html'

@@ -4,10 +4,10 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'laboratorio_resumo' %}" class="breadcrumb">Laboratórios</a>
+<a href="{% url 'laboratorio_resumo' %}" class="breadcrumb">Laboratórios Cadastrados</a>
 <a href="" class="breadcrumb">{{ object.laboratorio }}</a>
-<a href="" class="breadcrumb">Edição</a>
 <a href="exame_detail" class="breadcrumb">{{ object.pk }}</a>
+<a href="" class="breadcrumb">Edição</a>
 
 {% endblock %}
 

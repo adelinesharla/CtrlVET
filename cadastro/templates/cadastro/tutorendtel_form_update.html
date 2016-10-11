@@ -3,8 +3,8 @@
 {% load material_form %}
 
 {% block breadcrumbs %}
-{{ block.super }}
-<a href="{% url 'tutor_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
+<a href="{% url 'animal_resumo' %}" class="breadcrumb">Animais Cadastrados</a>
+<a href="{% url 'tutor_detalhes' object.id %}" class="breadcrumb">{{ object.nome }}</a>
 <a href="{{ request.get_absolute_url }}" class="breadcrumb">Editar</a>
 {% endblock %}
 

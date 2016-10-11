@@ -4,8 +4,8 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">Tutor</a>
-<a href="{% url 'tutor_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
+<a href="{% url 'tutor_resumo' %}" class="breadcrumb">Clientes Cadastrados</a>
+<a href="{% url 'tutor_detalhes' object.id %}" class="breadcrumb">{{ object.nome }}</a>
 <a href="{{ request.get_absolute_url }}" class="breadcrumb">Deletar</a>
 {% endblock %}
 
@@ -28,7 +28,7 @@
 					<div class="col s12 m12 l12 right-align">
 						<div class="form-actions">
 							<button class="btn waves-effect waves-light indigo darken-4" onClick="javascript:history.go(-1);"><i class="material-icons right">arrow_back</i>Voltar</button>
-							<button class="btn waves-effect waves-light indigo darken-5" type="submit" value="Confirm">Confirmar<i class="material-icons right">check</i></button>
+							<button class="btn waves-effect waves-light indigo darken-4" type="submit" value="Confirm">Confirmar<i class="material-icons right">check</i></button>
 						</div>
 					</div>
 				</div>

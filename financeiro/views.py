@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 'Importando Formularios necessários para views de tutor e animal'
 from .forms import *
 'Importando Models necessárias para views de tutor e animal'
-from .models import *
+from cadastro.models import Consulta,Exame
 
 from django.forms.models import model_to_dict #iterar em object no template
 
@@ -343,8 +343,8 @@ class GeraPdfPrestacaoContas(DetailView):
 					soma.append(item.valor)
 		pdf.drawString(coluna,linha,'Valor Total Arrecadado (R$)')
 		pdf.drawString(colunaP,linha,"%d,00" % sum(soma))
-		
-		pdf.showPage()
+		dataAtual = datetime.now()
+		pdf.drawString(30,30,'Emissão do Relatório: '+str(dataAtual.day)+'/'+str(dataAtual.month)+'/'+str(dataAtual.year))	
 		pdf.save()
 		return response
 		
@@ -391,21 +391,30 @@ class GeraPdfNotaDePagamento(DetailView):
 		pdf.drawString(30,600,'Telefone: ')
 		cont = 0
 		terminou = False
+		
 		for nota in notas:
 			pdf.drawString(30,640,'Setor: '+nota.get_setor_display())	
-			if nota.atendimento.cliente != None:
+			if hasattr(nota.atendimento.cliente ,'pk') == True:
 				pdf.drawString(100,620,nota.atendimento.cliente.nome)	
 				pdf.drawString(85,600,nota.atendimento.cliente.telefone1)
 				
-			
-			data = nota.data	
-			if nota.status == False:
-				foiPago = 'Não'
-			else:
-				foiPago = 'Sim'	
+			if hasattr(nota.atendimento,'data_realizacao') :
+				pdf.drawString(30,580,'Deu Certo: ')
 				
-			pdf.drawString(30,580,'Recebimento: '+foiPago)
-			pdf.drawString(30,560,'Data: '+str(data.day)+'/'+str(data.month)+'/'+str(data.year))		
+			if hasattr(nota.atendimento,'resultado') :
+				pdf.drawString(30,580,'Deu Certo: ')
+							
+				
+			""" is instance deve ser utilizado no if e no elif abaixo"""	
+								
+			if isinstance(nota.atendimento,Consulta):	
+				consulta = Consulta(nota.atendimento)
+				pdf.drawString(30,580,'Animal: '+consulta.animal.nome)
+			
+		
+			elif isinstance(nota.atendimento,Exame):	
+				exame = Exame(nota.atendimento)
+				pdf.drawString(30,580,'Amostra: '+exame.amostra)		
 					
 		x1= 20
 		y1 = 540
@@ -451,9 +460,7 @@ class GeraPdfNotaDePagamento(DetailView):
 							pdf.line(20,820,20,20)
 							pdf.line(574,820,574,20)
 							pdf.line(20,20,574,20)
-						terminou = False
-					
-					
+						terminou = False				
 				
 		y1 = y1 - espacamento				
 		pdf.line(x1,y1,x2,y1)
@@ -464,7 +471,7 @@ class GeraPdfNotaDePagamento(DetailView):
 		pdf.drawString(30,30,'Emissão do Relatório: '+str(dataAtual.day)+'/'+str(dataAtual.month)+'/'+str(dataAtual.year))	
 		pdf.save()
 		return response
-
+	
 class EstoqueResumo(TemplateView):
 	template_name='financeiro/estoque_resumo.html'
 

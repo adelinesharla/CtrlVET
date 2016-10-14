@@ -34,32 +34,29 @@
 					<!-- Modal Trigger -->
 					<div class="input-field col s12 m6 l6 right-align">
 						<a class="btn waves-effect waves-light indigo darken-4 modal-trigger" href="#buscaavancada"><i class="material-icons left">search</i>Avancada</a>
-
-						<!-- Modal Structure -->
-						<div id="buscaavancada" class="modal">
-							<div class="modal-content">
-								<form action="busca/avancada" method="POST"> 
-
-									<h4>Busca Avançada</h4>
-
-									{% csrf_token %}
-									{% form form=form %}{% endform %}
-
-								</div>
-								<div class="modal-footer">
-									<button class="btn modal-action modal-close waves-effect waves-light indigo darken-4" type="Submit" value="Update">Buscar<i class="material-icons right">search</i>
-									</button>
-
-								</form>
-							</div>
-						</div>
-
 						<a href="{% url 'animal_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
 					</div>
 
+
+					<!-- Modal Structure -->
+					<div id="buscaavancada" class="modal">
+						<div class="modal-content">
+							<form action="{% url 'animal_busca_list_view' %}" method="GET"> 
+								<h4>Busca Avançada</h4>
+
+								{% csrf_token %}
+								{% form form=form %}{% endform %}
+
+							</div>
+							<div class="modal-footer">
+								<button class="btn modal-action modal-close waves-effect waves-light indigo darken-4" type="Submit" value="Update">Buscar<i class="material-icons right">search</i>
+								</button>
+							</form>
+						</div>
+
+					</div>
 				</div>
 			</div>
-
 			{% endblock %}
 
 			{% block lista %}
@@ -76,10 +73,10 @@
 							<table class="responsive-table highlight striped">
 								<thead>
 									<tr>
-										<th data-field="">RG</th>
-										<th data-field="">Nome</th>
-										<th data-field="">Tutor</th>
-										<th data-field="">Espécie</th>
+										<th data-field=""><a href="{% url 'animal_resumo' %}?ordering=pk&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">RG</a></th>
+										<th data-field=""><a href="{% url 'animal_resumo' %}?ordering=_nome&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nome</a></th>
+										<th data-field=""><a href="{% url 'animal_resumo' %}?ordering=tutor&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Tutor</a></th>
+										<th data-field=""><a href="{% url 'animal_resumo' %}?ordering=_especie&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Espécie</a></th>
 										<th data-field="">Idade</th>
 
 										<!--	<th data-field="">Detalhes</th> -->
@@ -90,8 +87,8 @@
 
 									{% for object in object_list %}
 									<tr>
-										<td><a href="{% url 'animal_detalhes' object.pk %}"><b>{{ object.rg }}</b></a></td>
-										<td>{{ object.nome }}</td>
+										<td><b><a href="{% url 'animal_detalhes' object.pk %}">{{ object.rg }}</a></b></td>
+										<td><a href="{% url 'animal_detalhes' object.pk %}">{{ object.nome }}</a></td>
 										<td><a href="{% url 'tutor_detalhes' object.tutor.pk %}"><b>{{ object.tutor }}</b></a></td>
 										<td>{{ object.especie }}</td>
 										<td>{{ object.idade }}</td>

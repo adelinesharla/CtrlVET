@@ -14,24 +14,20 @@ $( document ).ready(function() {
 		in_duration: 300,
 		out_duration: 200, 
 	});
-	jQuery('#datetimepicker1').datetimepicker({
-		lang:'pt',
-	});
-
 });
 
 function AlertSucesso(){
-	flag = 1;
-	for (i = 0; i < document.forms[0].getElementsByTagName('input').length; i++ ){
-		if( document.forms[0][i].value == null || document.forms[0][i].value == "" ){
-			flag = 0;
-		}
-	}
-	if (flag == 0) {
-		alert("Erro no formulário!");
-		return false;
-	}else{
+	  flag = 1;
+	  for (i = 0; i < document.forms[0].getElementsByTagName('input').length; i++ ){
+		  if( document.forms[0][i].value == null || document.forms[0][i].value == "" ){
+				flag = 0;
+		  }
+	  }
+    if (flag == 0) {
+        alert("Erro no formulário!");
+        return false;
+    }else{
 		alert("Sucesso! clique 'ok' para voltar ao resumo!");
 		return true;
 	}
-};
+	};

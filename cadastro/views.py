@@ -35,24 +35,24 @@ from django.core.urlresolvers import reverse_lazy
 # :)
 
 def page_not_found(request):
-    # Dict to pass to template, data could come from DB query
-    values_for_template = {}
-    return render(request,'404.html',values_for_template,status=404)
+	# Dict to pass to template, data could come from DB query
+	values_for_template = {}
+	return render(request,'404.html',values_for_template,status=404)
 
 def server_error(request):
-    # Dict to pass to template, data could come from DB query
-    values_for_template = {}
-    return render(request,'500.html',values_for_template,status=500)
+	# Dict to pass to template, data could come from DB query
+	values_for_template = {}
+	return render(request,'500.html',values_for_template,status=500)
 
 def bad_request(request):
-    # Dict to pass to template, data could come from DB query
-    values_for_template = {}
-    return render(request,'400.html',values_for_template,status=400)
+	# Dict to pass to template, data could come from DB query
+	values_for_template = {}
+	return render(request,'400.html',values_for_template,status=400)
 
 def permission_denied(request):
-    # Dict to pass to template, data could come from DB query
-    values_for_template = {}
-    return render(request,'403.html',values_for_template,status=403)
+	# Dict to pass to template, data could come from DB query
+	values_for_template = {}
+	return render(request,'403.html',values_for_template,status=403)
 
 
 """Classe de renderização da main (sem contexto)"""
@@ -67,18 +67,29 @@ class SuccessView(TemplateView):
 """Classe para listar os tutores"""
 class ListTutor(ListView):
 	model = TutorEndTel
-	paginate_by = 10	
+	ordering = ['pk']
+	context_object_name = 'object_list'
+	paginate_by = 10
+
+	def get_context_data(self, **kwargs):
+		context = super (ListTutor, self).get_context_data(**kwargs)
+		context['form'] = TutorBuscaAdvForm()
+		context['current_order'] = self.get_ordering()
+		context['order'] = self.order
+		return context
+
+	def get_ordering(self):
+		self.order = self.request.GET.get('order', 'asc')
+		selected_ordering = self.request.GET.get('ordering', 'pk')
+		if self.order == "desc":
+			selected_ordering = "-" + selected_ordering
+		return selected_ordering
 
 	
 
 """Classe de renderização do painel de tutor (sem contexto)"""
 class TutorResumo(ListTutor):
 	template_name='cadastro/tutor_resumo.html'
-
-	def get_context_data(self, **kwargs):
-		context = super (TutorResumo, self).get_context_data(**kwargs)
-		context['form'] = TutorBuscaAdvForm()
-		return context
 
 
 """Formulário de cadastro de Tutor"""
@@ -94,7 +105,7 @@ class TutorFormView(FormView):
 
 	def post(self, form, **kwargs):
 		if "cancel" in self.request.POST:
-        		return HttpResponseRedirect(self.success_url)
+				return HttpResponseRedirect(self.success_url)
 		return super(TutorFormView, self).post(self, form, **kwargs)
 
 """Classe para deletar Tutor"""
@@ -124,66 +135,77 @@ class TutorEditar(UpdateView):
 	def post(self, form, **kwargs):
 		if "cancel" in self.request.POST:
 			self.object = self.get_object()
-        		return HttpResponseRedirect(self.success_url)
+			return HttpResponseRedirect(self.success_url)
 		return super(TutorEditar, self).post(self, form, **kwargs)
 
 
 
 """Classe para busca de Tutor pelos campos: nome, email e cpf"""
 class TutorBuscaListView(ListTutor):
-    def get_queryset(self):
-        result = super(TutorBuscaListView, self).get_queryset()
-
-        query = self.request.GET.get('q')
-        if query:
-            query_list = query.split()
-            result = result.filter(
-                reduce(operator.and_,
-                       (Q(_nome__icontains=q) for q in query_list)) |
-                reduce(operator.and_,
-                       (Q(_email__icontains=q) for q in query_list)) |
-		reduce(operator.and_,
-                       (Q(_cpf__icontains=q) for q in query_list))
-            )
-
-        return result
-        
-"""Classe para fazer a busca avancada dos atributos de tutor"""        
-class TutorBuscaAvancadaMixin(FormView):
-	form = TutorBuscaAdvForm
+	ordering = ['pk']
 	form_class = TutorBuscaAdvForm
-	template_name = 'cadastro/tutor_resumo.html'
-	success_url = '/success/'
-	
-	query=TutorEndTel.objects.all()
-	
 
+	def get_queryset(self):
+		result = super(TutorBuscaListView, self).get_queryset()
+		
+		current_order = self.get_ordering()
+		order = self.order
+		
+		query = self.request.GET.get('q')
+		form = self.form_class(self.request.GET or None)
+
+		if query:
+			query_list = query.split()
+			result = result.filter(
+				reduce(operator.and_,
+					   (Q(_nome__icontains=q) for q in query_list)) |
+				reduce(operator.and_,
+					   (Q(_email__icontains=q) for q in query_list)) |
+		reduce(operator.and_,
+					   (Q(_cpf__icontains=q) for q in query_list))
+			)
 	
-	def get(request,*args):
-		if request.method == 'POST':
-			form = TutorBuscaAdvForm(request.POST)
-			i = 0
-			while i < len(query):
-				if ((form.nome == None) | (query[i].nome__icontains__form.nome)):
-					if ((form.cpf == None) | (query[i].cpf__icontains__form.cpf)): 
-						if ((form.email == None) | (query[i].email__icontains__form.email)): 	
-							if ((form.bairro == None) | (query[i].endereco.bairro__icontains__form.bairro)): 
-								if ((form.cidade == None) | (query[i].endereco.cidade__icontains__form.cidade)):
-									if ((form.cep == None) | (query[i].endereco.cep__icontains__form.cep)): 
-										if ((form.uf == None) | (query[i].endereco.uf__icontains__form.uf)):  
-											lista_retornavel += query[i]
-				i = i+1		
-					
-				
 		else:
-			TutorBuscaAdvForm()
+			if form.is_valid():
+				if form.cleaned_data['_nome']:
+					result = result.filter(_nome__icontains=form.cleaned_data['_nome'])
+				if form.cleaned_data['_cpf']:
+					result = result.filter(_cpf__icontains=form.cleaned_data['_cpf'])
+				if form.cleaned_data['_email']:
+					result = result.filter(_email__icontains=form.cleaned_data['_email'])
+				if form.cleaned_data['_bairro']:
+					result = result.filter(_bairro__icontains=form.cleaned_data['_bairro'])
+				if form.cleaned_data['_cidade']:
+					result = result.filter(_cidade__icontains=form.cleaned_data['_cidade'])
+				if form.cleaned_data['_cep']:
+					result = result.filter(_cep__icontains=form.cleaned_data['_cep'])
+				if form.cleaned_data['_uf']:
+					result = result.filter(_uf__icontains=form.cleaned_data['_uf'])	
+
+		return result
 
 #Views relacionadas à classe Animal:
 
 """Classe para listar os animais"""    
 class ListAnimal(ListView):
 	model = Animal    	
-	paginate_by = 10 
+	paginate_by = 10
+	ordering = ['pk']
+	context_object_name = 'object_list'
+
+	def get_context_data(self, **kwargs):
+		context = super (ListAnimal, self).get_context_data(**kwargs)
+		context['form'] = AnimalBuscaAdvForm()
+		context['current_order'] = self.get_ordering()
+		context['order'] = self.order
+		return context
+
+	def get_ordering(self):
+		self.order = self.request.GET.get('order', 'asc')
+		selected_ordering = self.request.GET.get('ordering', 'pk')
+		if self.order == "desc":
+			selected_ordering = "-" + selected_ordering
+		return selected_ordering
 
 """Classe de renderização do painel de animal (sem contexto)"""
 class AnimalResumo(ListAnimal):
@@ -207,7 +229,7 @@ class AnimalFormView(FormView):
 
 	def post(self, form, **kwargs):
 		if "cancel" in self.request.POST:
-        		return HttpResponseRedirect(self.success_url)
+				return HttpResponseRedirect(self.success_url)
 		return super(AnimalFormView, self).post(self, form, **kwargs)
 	
 """Classe para retornar detalhes de Animal (alimenta o template animal_detalhes)"""
@@ -230,8 +252,14 @@ class AnimalEditar(UpdateView):
 	def post(self, form, **kwargs):
 		if "cancel" in self.request.POST:
 			self.object = self.get_object()
-        		return HttpResponseRedirect(self.success_url)
+			return HttpResponseRedirect(self.success_url)
 		return super(AnimalEditar, self).post(self, form, **kwargs)
+
+class AnimalObito(UpdateView):
+	form_class = AnimalObitoForm
+	model = Animal
+	template_name_suffix = '_form_update_obito'
+	success_url = '/animal/resumo'
 
 """Classe para deletar Animal"""
 class AnimalDeletar(DeleteView):
@@ -240,61 +268,59 @@ class AnimalDeletar(DeleteView):
 
 """Classe para busca de Animal pelos campos: nome, rg, especie e raça"""
 class AnimalBuscaListView(ListAnimal):
-    def get_queryset(self):
-        result = super(AnimalBuscaListView, self).get_queryset()
-
-        query = self.request.GET.get('q')
-        if query:
-            query_list = query.split()
-            result = result.filter(
-                reduce(operator.and_,
-                       (Q(_nome__icontains=q) for q in query_list)) |
-                reduce(operator.and_,
-                       (Q(_rg__icontains=q) for q in query_list)) |
-		reduce(operator.and_,
-                       (Q(_especie__icontains=q) for q in query_list)) |
-		reduce(operator.and_,
-                       (Q(_raca__icontains=q) for q in query_list))
-            )
-
-        return result
-        
-"""Classe para fazer a busca avancada dos atributos de animal"""
-class AnimalBuscaAvancadaMixin(ListAnimal,FormView):
-	form = AnimalBuscaAdvForm
+	ordering = ['pk']
 	form_class = AnimalBuscaAdvForm
-	template_name = 'cadastro/animal_resumo.html'
-	#success_url = '/animal/busca/avancada'
-	success_url = '/success/'
-	
-	query=Animal.objects.all()
-	
-	def get(request,*args):
-		if request.method == 'POST':
-			form = AnimalBuscaAdvForm(request.POST)
-			i = 0
-			while i < len(query):
-				if ((form.nome == None) | (query[i].nome__icontains__form.nome)):
-					if ((form.rg == None) | (query[i].rg__icontains__form.rg)): 
-						if ((form.especie == None) | (query[i].especie__icontains__form.especie)): 	
-							if ((form.tutor == None) | (query[i].tutor.nome__icontains__form.tutor)): 
-								if ((form.raca == None) | (query[i].raca__icontains__form.raca)):
-									if ((form.idade == None) | (query[i].idade__icontains__form.idade)): 
-										if ((form.sexo == None) | (query[i].sexo__icontains__form.sexo)):  
-											lista_retornavel += query[i]
-				i = i+1		
-					
-				
-		else:
-			AnimalBuscaAdvForm()
 
-		#return lista_retornavel
-		return HttpResponseRedirect('/animal/resumo')
-		#return HttpResponseRedirect(reverse('seila', kwargs={'pk': self.lista_retornavel.pk}))
+	def get_queryset(self):
+		result = super(AnimalBuscaListView, self).get_queryset()
+
+		current_order = self.get_ordering()
+		order = self.order
 		
-	#def get_queryset(self):
-		#return self.lista_retornavel
-		        
+		query = self.request.GET.get('q')
+		form = self.form_class(self.request.GET or None)
+
+		
+		if query:
+			query_list = query.split()
+			result = result.filter(
+				reduce(operator.and_,
+					   (Q(_nome__icontains=q) for q in query_list)) |
+				reduce(operator.and_,
+					   (Q(_rg__icontains=q) for q in query_list)) |
+		reduce(operator.and_,
+					   (Q(_especie__icontains=q) for q in query_list)) |
+		reduce(operator.and_,
+					   (Q(_raca__icontains=q) for q in query_list))
+			)
+
+		else:
+			
+			
+			if form.is_valid():
+
+				if form.cleaned_data['_animal']:
+					result = result.filter(_nome__icontains=form.cleaned_data['_animal'])
+				if form.cleaned_data['_rg']:
+					result = result.filter(_rg__icontains=form.cleaned_data['_rg'])
+				if form.cleaned_data['_raca']:
+					result = result.filter(_raca__icontains=form.cleaned_data['_raca'])
+				if form.cleaned_data['sexo']:
+					result = result.filter(sexo__icontains=form.cleaned_data['sexo'])
+				if form.cleaned_data['_idade']:
+					result = result.filter(_idade__icontains=form.cleaned_data['_idade'])
+				if form.cleaned_data['_especie']:
+					result = result.filter(_especie__icontains=form.cleaned_data['_especie'])
+				
+				'''if form.cleaned_data['_tutor']:
+																	result = result.filter(tutor=TutorEndTel.objects.filter(_nome__icontains=form.cleaned_data['_tutor']))'''
+
+					#result = Animal.objects.filter(_tutor__icontains=tutor for tutor in tutores)
+
+		return result		
+			
+
+
 
 #Views relacionadas à classe Consulta:
 
@@ -347,26 +373,26 @@ class ConsultaResumo(ConsultaListView):
 
 class ConsultaBuscaListView(ConsultaListView):
 	def get_queryset(self):
-        	result = super(ConsultaBuscaListView, self).get_queryset()
+			result = super(ConsultaBuscaListView, self).get_queryset()
 
-	        query = self.request.GET.get('q')
-	        if query:
-	            query_list = query.split()
-	            result = result.filter(
-	                reduce(operator.and_,
-	                       (Q(_data__icontains=q) for q in query_list)) |
+			query = self.request.GET.get('q')
+			if query:
+				query_list = query.split()
+				result = result.filter(
+					reduce(operator.and_,
+						   (Q(_data__icontains=q) for q in query_list)) |
 			reduce(operator.and_,
-	                       (Q(_diagnostico__icontains=q) for q in query_list))|
+						   (Q(_diagnostico__icontains=q) for q in query_list))|
 			reduce(operator.and_,
-	                       (Q(_retorno__icontains=q) for q in query_list))|
+						   (Q(_retorno__icontains=q) for q in query_list))|
 			reduce(operator.and_,
-	                       (Q(animal__icontains=q) for q in query_list))|
+						   (Q(animal__icontains=q) for q in query_list))|
 			reduce(operator.and_,
-	                       (Q(veterinario__icontains=q) for q in query_list))
-	            )
+						   (Q(veterinario__icontains=q) for q in query_list))
+				)
 	
-	        return result
-	        
+			return result
+			
 """Classe para fazer a busca avancada dos atributos de consulta"""	       	        
 class ConsultaBuscaAvancadaMixin(ListView,FormView):
 	form = ConsultaBuscaAdvForm
@@ -437,24 +463,24 @@ class ExameListView(ListView):
 
 class ExameBuscaListView(ExameListView):
 	def get_queryset(self):
-	       	result = super(ExameBuscaListView, self).get_queryset()
-	        query = self.request.GET.get('q')
-	        if query:
-	            query_list = query.split()
-	            result = result.filter(
-	                reduce(operator.and_,
-	                       (Q(_data__icontains=q) for q in query_list)) |
+			result = super(ExameBuscaListView, self).get_queryset()
+			query = self.request.GET.get('q')
+			if query:
+				query_list = query.split()
+				result = result.filter(
+					reduce(operator.and_,
+						   (Q(_data__icontains=q) for q in query_list)) |
 			reduce(operator.and_,
-	                       (Q(_diagnostico__icontains=q) for q in query_list)) |
+						   (Q(_diagnostico__icontains=q) for q in query_list)) |
 			reduce(operator.and_,
-	                       (Q(animal__icontains=q) for q in query_list))|
+						   (Q(animal__icontains=q) for q in query_list))|
 			reduce(operator.and_,
-	                       (Q(tecnico__icontains=q) for q in query_list)) |
+						   (Q(tecnico__icontains=q) for q in query_list)) |
 			reduce(operator.and_,
-	                       (Q(veterinario__icontains=q) for q in query_list))
-	            )
+						   (Q(veterinario__icontains=q) for q in query_list))
+				)
 	
-	        return result
+			return result
 """Classe para fazer a busca avancada dos atributos de exame"""	        
 class ExameBuscaAvancadaMixin(ListView,View):	        
 	form = ExameBuscaAdvForm

@@ -67,7 +67,7 @@
 							<p><b>Data de Nascimento</b></p>
 						</div> 
 						<div class="col s4 m4 l4">
-							<p>{{ object.nascimento }}</p>
+							<p>{{ object.nascimento|date:"d/m/Y" }}</p>
 						</div>
 						<div class="col s2 m2 l2">
 							<p><b>Idade</b></p>
@@ -77,6 +77,21 @@
 						</div>
 					</div>
 				</div>
+
+				{% if object.obito %}
+
+				<div class="row">
+					<div class="section">
+						<div class="col s2 m2 l2">
+							<p><b>Data de Óbito</b></p>
+						</div> 
+						<div class="col s4 m4 l4">
+							<p>{{ object.obito|date:"d/m/Y" }}</p>
+						</div>
+					</div>
+				</div>
+
+				{% endif %}
 
 
 				<span class='card-title'>Dados do Tutor</span>
@@ -100,11 +115,18 @@
 					</div>
 				</div>
 
+
+
 				<div class="section">
 					<div class="row">
 						<div class="section">
 							<div class="col s12 m12 l12">
 								<p><a href="{% url 'tutor_detalhes' object.pk %}"> Mais Informações de {{ object.tutor.nome }} </a></p>
+							</div>
+						</div>
+						<div class="section">
+							<div class="col s12 m12 l12">
+								<p><a href="{% url 'animal_obito' object.id %}"> Declarar óbito de {{ object.nome }} </a></p>
 							</div>
 						</div>
 					</div>

@@ -10,11 +10,47 @@ from django.core.validators import RegexValidator
 from django.core.urlresolvers import reverse
 'Tradução e estados para PT-BR'
 from django.utils.translation import ugettext_lazy as _
-from localflavor.br.forms import STATE_CHOICES
 
 #from django.core.exceptions import ValidationError
 
 'Estas classes implementam os campos de Tutor do Subsistema Secretaria e sua respectivas regras de negócio.'
+
+STATE_CHOICES = (
+	('', '----'),
+	('AC', 'Acre'), 
+	('AL', 'Alagoas'), 
+	('AP', 'Amapá'), 
+	('AM', 'Amazonas'), 
+	('BA', 'Bahia'), 
+	('CE', 'Ceará'), 
+	('DF', 'Distrito Federal'), 
+	('ES', 'Espírito Santo'), 
+	('GO', 'Goiás'), 
+	('MA', 'Maranhão'), 
+	('MT', 'Mato Grosso'), 
+	('MS', 'Mato Grosso do Sul'), 
+	('MG', 'Minas Gerais'), 
+	('PA', 'Pará'),
+	('PB', 'Paraíba'), 
+	('PR', 'Paraná'), 
+	('PE', 'Pernambuco'), 
+	('PI', 'Piauí'), 
+	('RJ', 'Rio de Janeiro'), 
+	('RN', 'Rio Grande do Norte'), 
+	('RS', 'Rio Grande do Sul'), 
+	('RO', 'Rondônia'), 
+	('RR', 'Roraima'), 
+	('SC', 'Santa Catarina'), 
+	('SP', 'São Paulo'), 
+	('SE', 'Sergipe'), 
+	('TO', 'Tocantins')
+	)
+
+GENERO_CHOICES = (
+		('', '----'),
+		('FE', 'Feminino'),
+		('MA', 'Masculino'),
+	)
 
 class EnderecoAbs(models.Model):
 	_logradouro = models.CharField(verbose_name='Logradouro', max_length=200)
@@ -176,11 +212,6 @@ class TutorEndTel(Tutor, Endereco, Telefone):
     def get_absolute_url(self):
         return reverse('tutorendtel_detail', kwargs={'pk': self.pk})
 
-GENERO_CHOICES = (
-		('FE', 'Feminino'),
-		('MA', 'Masculino'),
-	)
-
 class AnimalAbs(models.Model):
 	_nome = models.CharField(verbose_name='Nome', max_length=50)
 	_rg = models.PositiveSmallIntegerField(verbose_name='RG', unique=True, blank = True)
@@ -188,7 +219,7 @@ class AnimalAbs(models.Model):
 	_raca = models.CharField(verbose_name='Raça', max_length=50)
 	sexo = models.CharField(verbose_name='Sexo', max_length=15, choices=GENERO_CHOICES)
 	_nascimento = models.DateField(verbose_name='Data de Nascimento')
-	_obito = models.DateField(verbose_name='Data de Óbito', null = True ,blank = True)
+	_obito = models.DateField(verbose_name='Data de Óbito', blank = True)
 	_idade = models.PositiveSmallIntegerField(verbose_name='Idade')
 	tutor = models.ForeignKey(TutorEndTel, on_delete = models.CASCADE, related_name='animais')
 
@@ -210,7 +241,7 @@ class AcoesAnimal(AnimalAbs):
 
 class Animal(AcoesAnimal):
 	def get_absolute_url(self):
-        	return reverse('animal_detail', kwargs={'pk': self.pk})
+		return reverse('animal_detail', kwargs={'pk': self.pk})
 
 	def _get_nome(self):
 		return self._nome
@@ -226,6 +257,9 @@ class Animal(AcoesAnimal):
 		
 	def _get_nascimento(self):
 		return self._nascimento
+
+	def _get_obito(self):
+		return self._obito
 		
 	def _get_idade(self):
 		return self._idade
@@ -244,9 +278,12 @@ class Animal(AcoesAnimal):
 		
 	def _set_nascimento(self,nascimento):
 		self._nascimento = nascimento
+
+	def _set_obito(self,obito):
+		self._obito = obito
 		
 	def _set_idade(self,idade):
-		self._idade = idade		
+		self._idade = idade	
 	
 	nome = property(_get_nome,_set_nome)		
 	rg = property(_get_rg,_set_rg)
@@ -254,6 +291,7 @@ class Animal(AcoesAnimal):
 	raca = property(_get_raca,_set_raca)
 	nascimento = property(_get_nascimento,_set_nascimento)
 	idade = property(_get_idade,_set_idade)
+	obito = property(_get_obito,_set_obito)
 
 # referente a veterinario
 class AcoesVeterinario(PessoaAbs):

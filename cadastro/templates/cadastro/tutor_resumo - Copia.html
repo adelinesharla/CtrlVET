@@ -36,28 +36,25 @@
 						<a class="btn waves-effect waves-light indigo darken-4 modal-trigger" href="#buscaavancada"><i class="material-icons left">search</i>Avancada</a>
 						<a href="{% url 'tutor_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
 					</div>
+
+
 					<!-- Modal Structure -->
 					<div id="buscaavancada" class="modal">
-						<form action="{% url 'tutor_busca_list_view' %}" method="GET"> 
-							<div class="modal-content">
-
+						<div class="modal-content">
+							<form action="{% url 'tutor_busca_list_view' %}" method="GET"> 
 								<h4>Busca Avançada</h4>
 
+								{% csrf_token %}
 								{% form form=form %}{% endform %}
 
 							</div>
 							<div class="modal-footer">
 								<button class="btn modal-action modal-close waves-effect waves-light indigo darken-4" type="Submit" value="Update">Buscar<i class="material-icons right">search</i>
 								</button>
-							</div>
-						</form>
-
+							</form>
+						</div>
 					</div>
-
 				</div>
-
-
-
 			</div>
 		</div>
 
@@ -117,7 +114,6 @@
 
 
 								{% for page in page_obj.paginator.page_range %}
-								
 								<li class="{% if page_obj.number == page %}active indigo darken-4{% else %}waves-effect white{% endif %}""><a href="?page={{ page }}">{{ page }}</a></li>
 								{% endfor %}
 

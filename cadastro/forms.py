@@ -9,8 +9,7 @@ from material import *
 from .models import *
 from localflavor.br.forms import BRCPFField
 from datetime import datetime
-from localflavor.br.forms import STATE_CHOICES
-from .models import GENERO_CHOICES
+from .models import GENERO_CHOICES, STATE_CHOICES
 
 
 class TutorModelForm(forms.ModelForm):
@@ -47,31 +46,59 @@ class TutorBuscaAdvForm(forms.Form):
 class AnimalModelForm(forms.ModelForm):
 	class Meta:
 		model = Animal
-		fields = {'_nome', '_rg', '_especie', '_raca', 'sexo', '_nascimento', '_idade', 'tutor'}
+		fields = {'_nome', '_rg', '_especie', '_raca', 'sexo', '_nascimento', '_obito', '_idade', 'tutor'}
+		widgets = {
+		'_obito': forms.HiddenInput(),
+		}
 
 	layout = Layout(
 		Fieldset("Dados do Animal"),
 			Row('_nome', 'sexo', '_rg'),
 			Row('_especie', '_raca'),
 			Row('_nascimento', '_idade'),
+			Row('_obito'),
 		Fieldset("Dados do Tutor"),
 			Row('tutor')
 		)
 
+class AnimalObitoForm(forms.ModelForm):
+	class Meta:
+		model = Animal
+		fields = {'_nome', '_rg', '_especie', '_raca', 'sexo', '_nascimento', '_obito', '_idade', 'tutor'}
+		widgets = {
+		'_nome': forms.HiddenInput(),
+		'_rg': forms.HiddenInput(),
+		'_especie': forms.HiddenInput(),
+		'_raca': forms.HiddenInput(),
+		'sexo': forms.HiddenInput(),
+		'_nascimento': forms.HiddenInput(),
+		'_idade': forms.HiddenInput(),
+		'tutor': forms.HiddenInput()
+		}
+
+	layout = Layout(
+		Fieldset("Data de Óbito"),
+			Row('_obito'),
+		)
+
 class AnimalBuscaAdvForm(forms.Form):
-	_nome = forms.CharField(label='Nome', max_length=50, required=False)
+	_animal = forms.CharField(label='Nome do Animal', max_length=50, required=False)
 	_rg = forms.IntegerField(label='RG', required=False)
 	_especie = forms.CharField(label='Especie', max_length=50, required=False)
 	_raca = forms.CharField(label='Raca', max_length=50, required=False)
 	sexo = forms.ChoiceField(label = 'Sexo', widget=forms.Select, choices=GENERO_CHOICES, required=False)
 	_idade = forms.IntegerField(label='Idade', required=False)
-	_tutor = forms.CharField(label='Tutor', max_length=50, required=False)
-	
+	_tutor = forms.CharField(label='Nome do Tutor', max_length=50, required=False)
+	#_cpf = forms.CharField(label='CPF', max_length=11, required=False)
+
 	layout = Layout(
-		Row('_nome', 'sexo', '_rg'),
-		Row('_especie', '_raca'),
-		Row('_tutor', '_idade'),
+		Fieldset("Dados do Animal"),
+			Row('_animal', 'sexo', '_rg'),
+			Row('_especie', '_raca', '_idade'),
+		Fieldset("Dados do Tutor"),
+			Row('_tutor'),
 		)
+
 				
 class ConsultaModelForm(forms.ModelForm):
 	class Meta:

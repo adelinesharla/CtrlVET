@@ -1,9 +1,14 @@
-npm install -g bower
-pip install django-bower
+### Requirements ###
 pip install django-material
-bower install fullcalendar
-bower install moment
-bower install jquery
-pip install django-formset-js
 pip install reportlab
+pip install django-formset-js
 pip install django-localflavor
+
+
+
+### Old Requirements ###
+#npm install -g bower
+#pip install django-bower
+#bower install fullcalendar
+#bower install moment
+#bower install jquery

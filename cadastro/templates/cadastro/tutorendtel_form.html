@@ -12,7 +12,8 @@
 
 <div class="card">
 	<div class="card-content">		
-		{% include "cadastro/form.html" %}
+		{% csrf_token %}
+		{% form form=form %}{% endform %}
 	</div>
 </div>
 

@@ -43,4 +43,11 @@ function AlertSucesso(){
 	}
 };
 
+function AlertSucesso(){
+
+}
+
+function('#datetimepicker').datetimepicker () {
+    ignoreReadonly: false;
+};
 

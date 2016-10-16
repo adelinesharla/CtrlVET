@@ -8,7 +8,7 @@
 
 				{% if object_list %}
 
-				<table class="reponsive-table highlight striped">
+				<table class="highlight striped">
 					<thead>
 						<th data-field=""><a href="{% url 'tutor_resumo' %}?ordering=pk&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Id</a></th>
 						<th data-field=""><a href="{% url 'tutor_resumo' %}?ordering=_nome&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nome</a></th>
@@ -26,8 +26,15 @@
 						<td class=".hide-on-small-only">{{ object.cidade }}</td>
 						<td class="hide-on-small-only">{{ object.email }}</td>
 						<td class="hide-on-small-only">{{ object.telefone1 }}</td>
-						<td><a href="{% url 'tutor_editar' object.pk %}"><b>Editar</b></a></td>
-						<td><a href="{% url 'tutor_deletar' object.pk %}"><b>Excluir</b></a></td>
+						
+						<td class="hide-on-small-only"><a href="{% url 'tutor_editar' object.pk %}"><b>Editar</b></a></td>
+						<td class="hide-on-small-only"><a href="{% url 'tutor_deletar' object.pk %}"><b>Excluir</b></a></td>
+
+						<td class="hide-on-med-and-up"><a class="btn-floating waves-effect waves-light indigo darken-4" href="{% url 'tutor_editar' object.pk %}"><i class="material-icons">mode_edit</i></a></td>
+						<td class="hide-on-med-and-up"><a class="btn-floating waves-effect waves-light indigo darken-4" href="{% url 'tutor_deletar' object.pk %}"><i class="material-icons">delete</i></a></td>
+
+
+
 					</tr>
 
 					{% endfor %}

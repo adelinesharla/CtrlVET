@@ -28,6 +28,31 @@ class TutorModelForm(forms.ModelForm):
 			Row(Span2('_bairro'), Span2('_cidade'), '_cep', ('_uf')),
 		)
 
+class TutorModelFormDisable(forms.ModelForm):
+	_cpf = BRCPFField()
+	_uf = forms.CharField(label='UF', max_length=20, required=False)
+	
+	def __init__(self, readonly_form=False, *args, **kwargs):
+		super(TutorModelFormDisable, self).__init__(*args, **kwargs)
+		for field in self.fields:
+			self.fields[field].widget.attrs['readonly'] = True
+
+	class Meta:
+		model = TutorEndTel
+		fields = ('_nome', '_email', '_cpf', '_logradouro', '_numero', '_bairro', '_cidade', '_cep', '_uf','_telefone1','_telefone2')
+    
+
+	layout = Layout(
+		Fieldset("Dados pessoais"),
+			Row(Span2('_nome'), '_cpf'),
+		Fieldset("Contato"),
+			Row(Span2('_telefone1'), Span2('_telefone2'), Span2('_email')),
+		Fieldset("Endereço"),
+			Row(Span3('_logradouro'), '_numero'),
+			Row(Span2('_bairro'), Span2('_cidade'), '_cep', ('_uf')),
+		)
+
+
 class TutorBuscaAdvForm(forms.Form):
 	_nome = forms.CharField(label='Nome', max_length=50, required=False)
 	_email = forms.EmailField(label='E-Mail', required=False)
@@ -54,6 +79,30 @@ class AnimalModelForm(forms.ModelForm):
 		widgets = {
 		'_obito': forms.HiddenInput(),
 		}
+
+	layout = Layout(
+		Fieldset("Dados do Animal"),
+			Row('_nome', 'sexo', '_rg'),
+			Row('_especie', '_raca'),
+			Row('_nascimento', '_idade'),
+			Row('_obito'),
+		Fieldset("Dados do Tutor"),
+			Row('tutor')
+		)
+
+class AnimalModelFormDisable(forms.ModelForm):
+	sexo = forms.CharField(label='Sexo', max_length=10, required=False)
+
+	def __init__(self, *args, **kwargs):
+		super(AnimalModelFormDisable, self).__init__(*args, **kwargs)
+		for field in self.fields:
+			self.fields[field].widget.attrs['readonly'] = True
+
+	class Meta:
+		model = Animal
+		fields = {'_nome', '_rg', '_especie', '_raca', 'sexo', '_nascimento', '_obito', '_idade', 'tutor'}
+
+
 
 	layout = Layout(
 		Fieldset("Dados do Animal"),
@@ -114,6 +163,23 @@ class ConsultaModelForm(forms.ModelForm):
 			Row('_data_realizacao','_retorno'),
 			Row('animal', 'veterinario'),
 		)
+
+class ConsultaModelFormDisable(forms.ModelForm):
+
+	def __init__(self, *args, **kwargs):
+		super(ConsultaModelForm, self).__init__(*args, **kwargs)
+		for field in self.fields:
+			self.fields[field].widget.attrs['readonly'] = True
+
+	class Meta:
+		model = Consulta
+		fields = ('_retorno', 'animal', 'veterinario', '_data_realizacao')
+
+	layout = Layout(
+		Fieldset("Dados da Consulta"),
+			Row('_data_realizacao','_retorno'),
+			Row('animal', 'veterinario'),
+		)
 		
 class ConsultaBuscaAdvForm(forms.Form):
 	_animal = forms.CharField(label='Animal', max_length=50, required=False)
@@ -122,10 +188,36 @@ class ConsultaBuscaAdvForm(forms.Form):
 	
 	layout = Layout(
 		Row('_animal', '_veterinario'),
-		Row('_data'),	
+		Row('_data'),
 		)
 		
+class ExameModelFormDisable(forms.ModelForm):
+
+	def __init__(self, *args, **kwargs):
+		super(ExameModelForm, self).__init__(*args, **kwargs)
+		for field in self.fields:
+			self.fields[field].widget.attrs['readonly'] = True
+
+	class Meta:
+		model = Exame
+		fields = ( 'animal', 'veterinario', 'tecnico', 'cliente', 'laboratorio', 'numero_amostra', 'observacoes')
+		widgets = {'laboratorio': forms.HiddenInput()}
+
+	layout = Layout(
+		Fieldset("Dados do Exame"),
+			Row('laboratorio'),
+			Row(Span2('tecnico'), 'numero_amostra',),
+		Fieldset("Dados Gerais"),
+			Row('cliente', 'animal', 'veterinario'),
+			Row('observacoes')
+		)
+
 class ExameModelForm(forms.ModelForm):
+
+	def __init__(self, *args, **kwargs):
+		super(ConsultaModelForm, self).__init__(*args, **kwargs)
+		for field in self.fields:
+			self.fields[field].widget.attrs['readonly'] = True
 
 	def __init__(self, *args, **kwargs):
 		super(ExameModelForm, self).__init__(*args, **kwargs)
@@ -143,7 +235,7 @@ class ExameModelForm(forms.ModelForm):
 			Row('cliente', 'animal', 'veterinario'),
 			Row('observacoes', 'laboratorio')
 		)
-	
+
 class ExameBuscaAdvForm(forms.Form):		
 	_animal = forms.CharField(label='Animal', max_length=50, required=False)
 	_veterinario = forms.CharField(label='Veterinario', max_length=50, required=False)

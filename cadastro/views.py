@@ -120,13 +120,48 @@ class TutorDeletar(DeleteView):
 
 """Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""
 class TutorDetalhesView(DetailView):
-	pk_url_kwarg = "tutor_id"
 	model = TutorEndTel
 
 	def get_context_data(self, **kwargs):
 		context = super (TutorDetalhesView, self).get_context_data(**kwargs)
 		return context
 
+"""Classe para editar Tutor"""
+class TutorDetalhesViewForm(UpdateView):
+	form_class = TutorModelFormDisable
+	model = TutorEndTel
+	template_name_suffix = '_detail'
+	success_url = '/tutor/resumo'
+
+	def get_context_data(self, **kwargs):
+		context = super (TutorDetalhesViewForm, self).get_context_data(**kwargs)
+		context['action_form'] = 'null'
+		return context
+
+	def post(self, form, **kwargs):
+		if "POST" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		if "GET" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		return super(TutorDetalhesViewForm, self).post(self, form, **kwargs)
+
+"""Classe para editar Tutor"""
+class TutorEditar(UpdateView):
+	form_class = TutorModelFormDisable
+	model = TutorEndTel
+	template_name_suffix = '_form_detail'
+	success_url = '/tutor/resumo'
+
+	def get_context_data(self, **kwargs):
+		context = super (TutorEditar, self).get_context_data(**kwargs)
+		context['action_form'] = 'update'
+		return context
+
+	def post(self, form, **kwargs):
+		if "cancel" in self.request.POST:
+			self.object = self.get_object()
+			return HttpResponseRedirect(self.success_url)
+		return super(TutorEditar, self).post(self, form, **kwargs)
 
 """Classe para editar Tutor"""
 class TutorEditar(UpdateView):
@@ -249,12 +284,30 @@ class AnimalFormView(FormView):
 	
 """Classe para retornar detalhes de Animal (alimenta o template animal_detalhes)"""
 class AnimalDetalhesView(DetailView):
-	pk_url_kwarg = "animal_id"
 	model = Animal
-	
+
 	def get_context_data(self, **kwargs):
 		context = super (AnimalDetalhesView, self).get_context_data(**kwargs)
 		return context
+
+class AnimalDetalhesViewForm(UpdateView):
+	form_class = AnimalModelFormDisable
+	model = Animal
+	template_name_suffix = '_detail'
+	success_url = '/animal/resumo'
+
+	def get_context_data(self, **kwargs):
+		context = super (AnimalDetalhesViewForm, self).get_context_data(**kwargs)
+		context['action_form'] = 'null'
+		return context
+
+	def post(self, form, **kwargs):
+		if "POST" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		if "GET" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		return super(AnimalDetalhesViewForm, self).post(self, form, **kwargs)
+
 
 """Classe para editar Animal"""
 class AnimalEditar(UpdateView):
@@ -499,6 +552,24 @@ class ExameDetailView(DetailView):
 	def get_context_data(self, **kwargs):
 		context = super (ExameDetailView, self).get_context_data(**kwargs)
 		return context
+
+class ExameDetailViewForm(UpdateView):
+	form_class = ExameModelFormDisable
+	model = Exame
+	template_name_suffix = '_detail'
+	success_url = '/exame/resumo'
+
+	def get_context_data(self, **kwargs):
+		context = super (ExameDetailViewForm, self).get_context_data(**kwargs)
+		context['action_form'] = 'null'
+		return context
+
+	def post(self, form, **kwargs):
+		if "POST" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		if "GET" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		return super(ExameDetailViewForm, self).post(self, form, **kwargs)
 
 class ExameUpdateView(UpdateView):
 	model = Exame

@@ -4,7 +4,7 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">animal</a>
+
 <a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
 <a href="{{ request.get_absolute_url }}" class="breadcrumb">Deletar</a>
 {% endblock %}

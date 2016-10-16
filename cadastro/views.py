@@ -26,8 +26,7 @@ from django.db.models import Q
 
 
 
-from django.core.urlresolvers import reverse_lazy
-
+from django.core.urlresolvers import reverse_lazy, reverse
 
 
 #Não somos selvagens. O uso de 2 espaços como forma de identação é degradante.
@@ -74,6 +73,8 @@ class ListTutor(ListView):
 	def get_context_data(self, **kwargs):
 		context = super (ListTutor, self).get_context_data(**kwargs)
 		context['form'] = TutorBuscaAdvForm()
+		context['action_search'] = reverse_lazy('tutor_busca_list_view', urlconf=None, args=None, kwargs=None)
+		context['action_add'] = reverse_lazy('tutor_cadastro', urlconf=None, args=None, kwargs=None)
 		context['current_order'] = self.get_ordering()
 		context['order'] = self.order
 		return context
@@ -98,6 +99,10 @@ class TutorFormView(FormView):
 	form_class = TutorModelForm
 	success_url = '/tutor/resumo'
 	
+	def get_context_data(self, **kwargs):
+		context = super (TutorFormView, self).get_context_data(**kwargs)
+		context['action_form'] = 'cadastro'
+		return context
 
 	def form_valid(self, form):
 		form.save()
@@ -111,7 +116,6 @@ class TutorFormView(FormView):
 """Classe para deletar Tutor"""
 class TutorDeletar(DeleteView):
 	model = TutorEndTel
-	#success_url = reverse_lazy('tutor_resumo')
 	success_url = '/success/'
 
 """Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""
@@ -128,9 +132,13 @@ class TutorDetalhesView(DetailView):
 class TutorEditar(UpdateView):
 	form_class = TutorModelForm
 	model = TutorEndTel
-	#fields = '__all__'
 	template_name_suffix = '_form_update'
 	success_url = '/tutor/resumo'
+
+	def get_context_data(self, **kwargs):
+		context = super (TutorEditar, self).get_context_data(**kwargs)
+		context['action_form'] = 'update'
+		return context
 
 	def post(self, form, **kwargs):
 		if "cancel" in self.request.POST:
@@ -196,6 +204,8 @@ class ListAnimal(ListView):
 	def get_context_data(self, **kwargs):
 		context = super (ListAnimal, self).get_context_data(**kwargs)
 		context['form'] = AnimalBuscaAdvForm()
+		context['action_search'] = reverse_lazy('animal_busca_list_view', urlconf=None, args=None, kwargs=None)
+		context['action_add'] = reverse_lazy('animal_cadastro', urlconf=None, args=None, kwargs=None)
 		context['current_order'] = self.get_ordering()
 		context['order'] = self.order
 		return context
@@ -223,6 +233,11 @@ class AnimalFormView(FormView):
 	form_class = AnimalModelForm
 	success_url = '/animal/resumo'
 
+	def get_context_data(self, **kwargs):
+		context = super (AnimalFormView, self).get_context_data(**kwargs)
+		context['action_form'] = 'cadastro'
+		return context
+
 	def form_valid(self, form):
 		form.save()
 		return HttpResponseRedirect('/animal/resumo')
@@ -249,6 +264,11 @@ class AnimalEditar(UpdateView):
 	template_name_suffix = '_form_update'
 	success_url = '/animal/resumo'
 
+	def get_context_data(self, **kwargs):
+		context = super (AnimalEditar, self).get_context_data(**kwargs)
+		context['action_form'] = 'update'
+		return context
+
 	def post(self, form, **kwargs):
 		if "cancel" in self.request.POST:
 			self.object = self.get_object()
@@ -260,6 +280,11 @@ class AnimalObito(UpdateView):
 	model = Animal
 	template_name_suffix = '_form_update_obito'
 	success_url = '/animal/resumo'
+
+	def get_context_data(self, **kwargs):
+		context = super (AnimalObito, self).get_context_data(**kwargs)
+		context['action_form'] = 'update'
+		return context
 
 """Classe para deletar Animal"""
 class AnimalDeletar(DeleteView):
@@ -328,6 +353,11 @@ class ConsultaFormView(FormView):
 	template_name = 'cadastro/consulta_form.html'
 	form_class = ConsultaModelForm
 	success_url = '/consulta/resumo'
+
+	def get_context_data(self, **kwargs):
+		context = super (ConsultaFormView, self).get_context_data(**kwargs)
+		context['action_form'] = 'cadastro'
+		return context
 	
 	def form_valid(self, form):
 		form.save()
@@ -357,19 +387,33 @@ class ConsultaUpdateView(UpdateView):
 	template_name_suffix = '_form_update'
 	success_url = '/success/'
 
+	def get_context_data(self, **kwargs):
+		context = super (ConsultaUpdateView, self).get_context_data(**kwargs)
+		context['action_form'] = 'update'
+		return context
+
 class ConsultaListView(ListView):
 	model = Consulta    	
-	paginate_by = 10 
+	paginate_by = 10
+
+	def get_context_data(self, **kwargs):
+		context = super (ConsultaListView, self).get_context_data(**kwargs)
+		context['form'] = ConsultaBuscaAdvForm()
+		context['action_search'] = reverse_lazy('consulta_busca_list_view', urlconf=None, args=None, kwargs=None)
+		context['action_add'] = reverse_lazy('consulta_cadastro', urlconf=None, args=None, kwargs=None)
+		context['current_order'] = self.get_ordering()
+		context['order'] = self.order
+		return context
+
+	def get_ordering(self):
+		self.order = self.request.GET.get('order', 'asc')
+		selected_ordering = self.request.GET.get('ordering', 'pk')
+		if self.order == "desc":
+			selected_ordering = "-" + selected_ordering
+		return selected_ordering
 
 class ConsultaResumo(ConsultaListView):
 	template_name='cadastro/consulta_resumo.html'
-	
-	def get_context_data(self, **kwargs):
-		context = super (ConsultaResumo, self).get_context_data(**kwargs)
-		context['form'] = ConsultaBuscaAdvForm()
-		return context	
-	
-		
 
 class ConsultaBuscaListView(ConsultaListView):
 	def get_queryset(self):
@@ -426,6 +470,11 @@ class ExameFormView(FormView):
 	template_name = 'cadastro/exame_form.html'
 	form_class = ExameModelForm
 	success_url = '/success/'
+
+	def get_context_data(self, **kwargs):
+		context = super (ExameFormView, self).get_context_data(**kwargs)
+		context['action_form'] = 'cadastro'
+		return context
 	
 	def form_valid(self, form, **kwargs):
 		form.laboratorio = Laboratorio.objects.get(pk=self.kwargs.get('pk'))
@@ -457,9 +506,30 @@ class ExameUpdateView(UpdateView):
 	form_class = ExameModelForm
 	success_url = '/success/'
 
+	def get_context_data(self, **kwargs):
+		context = super (ExameUpdateView, self).get_context_data(**kwargs)
+		context['action_form'] = 'update'
+		return context
+
 class ExameListView(ListView):
 	model = Exame    	
 	paginate_by = 10
+
+	def get_context_data(self, **kwargs):
+		context = super (ExameListView, self).get_context_data(**kwargs)
+		context['form'] = ExameBuscaAdvForm()
+		context['action_search'] = reverse_lazy('exame_busca_list_view', urlconf=None, args=None, kwargs=None)
+		context['action_add'] = reverse_lazy('exame_cadastro', urlconf=None, args=None, kwargs=None)
+		context['current_order'] = self.get_ordering()
+		context['order'] = self.order
+		return context
+
+	def get_ordering(self):
+		self.order = self.request.GET.get('order', 'asc')
+		selected_ordering = self.request.GET.get('ordering', 'pk')
+		if self.order == "desc":
+			selected_ordering = "-" + selected_ordering
+		return selected_ordering
 
 class ExameBuscaListView(ExameListView):
 	def get_queryset(self):
@@ -480,35 +550,7 @@ class ExameBuscaListView(ExameListView):
 						   (Q(veterinario__icontains=q) for q in query_list))
 				)
 	
-			return result
-"""Classe para fazer a busca avancada dos atributos de exame"""	        
-class ExameBuscaAvancadaMixin(ListView,View):	        
-	form = ExameBuscaAdvForm
-	form_class = ExameBuscaAdvForm
-	template_name = 'cadastro/laboratorio_detail.html'
-	#success_url = '/success/'
-	
-	query=Exame.objects.all()
-	
-
-	def get(request,*args):
-		if request.method == 'POST':
-			form = ExameBuscaAdvForm(request.POST)
-			i = 0
-			while i < len(query):
-				if ((form.animal == None) | (query[i].animal.nome__icontains__form.animal)):
-					if ((form.veterinario == None) | (query[i].veterinario.nome__icontains__form.veterinario)): 
-						if ((form.tutor == None) | (query[i].tutor.nome__icontains__form.tutor)): 
-							if ((form.tecnico == None) | (query[i].tecnico.nome__icontains__form.tecnico)): 
-								if ((form.laboratorio == None) | (query[i].laboratorio.nome__icontains__form.laboratorio)): 
-									lista_retornavel += query[i]
-				i = i+1		
-					
-		else:
-			ExameBuscaAdvForm()
-
-		return lista_retornavel
-		#return HttpResponseRedirect('/exame/resumo')	        
+			return result        
 
 #Views relacionadas à classe Laboratorio:
 
@@ -527,4 +569,7 @@ class LaboratorioDetailView(DetailView):
 	def get_context_data(self, **kwargs):
 		context = super (LaboratorioDetailView, self).get_context_data(**kwargs)
 		context['form'] = ExameBuscaAdvForm()
+		context['action_search'] = reverse_lazy('exame_busca_list_view')
+		pk = self.object.pk
+		context['action_add'] = reverse('exame_cadastro', kwargs={'pk': pk})
 		return context

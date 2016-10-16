@@ -1,0 +1,48 @@
+
+
+<div class="row">
+	<div class="col s12 m12 l12">
+		<span class="card-title">Consultas Agendadas</span>
+		<div class="divider"></div>
+		<div class="row">
+			<div class="col s12 m12">
+
+				{% if object_list %}
+
+				<table class="responsive-table highlight striped">
+					<thead>
+						<th data-field="">Data</th>
+						<th data-field="">Animal</th>
+						<th data-field="">Tutor</th>
+						<th data-field="">Veterinário</th>
+
+						<!--	<th data-field="">Detalhes</th> -->
+					</tr>
+				</thead>
+
+				<tbody>
+
+					{% for object in object_list %}
+					<tr>
+						<td><a href="{% url 'consulta_detalhes' object.pk %}">{{ object.data_realizacao|date:"d/m/Y" }}</a></td>
+						<td><a href="{% url 'animal_detalhes' object.animal.pk %}">{{ object.animal.nome }}</a></td>
+						<td><a href="{% url 'tutor_detalhes' object.animal.tutor.pk %}">{{ object.animal.tutor.nome }}</a></td>
+						<td>{{ object.veterinario.nome }}</td>
+						<td><a href="{% url 'consulta_editar' object.pk %}"><b>Editar</b></a></td>
+						<td><a href="{% url 'consulta_deletar' object.pk %}"><b>Excluir</b></a></td>
+					</tr>
+
+					{% endfor %}
+
+				</tbody>
+			</table>
+
+			{% else %}
+
+			<p>Nenhuma <i>consulta</i> encontrada</p>
+
+			{% endif %}
+
+		</div>
+	</div>
+</div>

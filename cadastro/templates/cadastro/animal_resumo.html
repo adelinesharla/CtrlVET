@@ -19,137 +19,18 @@
 
 			{% block pesquisa %}
 
-			<div class="row">
-				<div class="nav-wrapper">
-					<!-- A tag action leva a url do search. pode ser colocada uma tag pra view passar o action, tornando o form reusável-->
-					<form id="searchform" action="{% url 'animal_busca_list_view' %}" method="GET" accept-charset="utf-8"> 
-						
-						<div class="input-field col s12 m6 l6">
-							<input type="search" name="q" required>
-							<label for="search"><i class="material-icons">search</i></label>
-							<i class="material-icons">close</i>
-						</div>
-					</form>
+			{% include "cadastro/pesquisa.html" %}
 
-					<!-- Modal Trigger -->
-					<div class="input-field col s12 m6 l6 right-align">
-						<a class="btn waves-effect waves-light indigo darken-4 modal-trigger" href="#buscaavancada"><i class="material-icons left">search</i>Avancada</a>
-						<a href="{% url 'animal_cadastro' %}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
-					</div>
-
-
-					<!-- Modal Structure -->
-					<div id="buscaavancada" class="modal">
-						<div class="modal-content">
-							<form action="{% url 'animal_busca_list_view' %}" method="GET"> 
-								<h4>Busca Avançada</h4>
-
-								{% csrf_token %}
-								{% form form=form %}{% endform %}
-
-							</div>
-							<div class="modal-footer">
-								<button class="btn modal-action modal-close waves-effect waves-light indigo darken-4" type="Submit" value="Update">Buscar<i class="material-icons right">search</i>
-								</button>
-							</form>
-						</div>
-
-					</div>
-				</div>
-			</div>
 			{% endblock %}
 
 			{% block lista %}
 
-			<div class="row">
-				<div class="col s12 m12 l12">
-					<span class="card-title">Animais Cadastrados</span>
-					<div class="divider"></div>
-					<div class="row">
-						<div class="col s12 m12">
-
-							{% if object_list %}
-
-							<table class="responsive-table highlight striped">
-								<thead>
-									<tr>
-										<th data-field=""><a href="{% url 'animal_resumo' %}?ordering=pk&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">RG</a></th>
-										<th data-field=""><a href="{% url 'animal_resumo' %}?ordering=_nome&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nome</a></th>
-										<th data-field=""><a href="{% url 'animal_resumo' %}?ordering=tutor&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Tutor</a></th>
-										<th data-field=""><a href="{% url 'animal_resumo' %}?ordering=_especie&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Espécie</a></th>
-										<th data-field="">Idade</th>
-
-										<!--	<th data-field="">Detalhes</th> -->
-									</tr>
-								</thead>
-
-								<tbody>
-
-									{% for object in object_list %}
-									<tr>
-										<td><b><a href="{% url 'animal_detalhes' object.pk %}">{{ object.rg }}</a></b></td>
-										<td><a href="{% url 'animal_detalhes' object.pk %}">{{ object.nome }}</a></td>
-										<td><a href="{% url 'tutor_detalhes' object.tutor.pk %}"><b>{{ object.tutor }}</b></a></td>
-										<td>{{ object.especie }}</td>
-										<td>{{ object.idade }}</td>
-										<td><a href="{% url 'animal_editar' object.pk %}"><b>Editar</b></a></td>
-										<td><a href="{% url 'animal_deletar' object.pk %}"><b>Excluir</b></a></td>
-									</tr>
-
-									{% endfor %}
-
-								</tbody>
-							</table>
-							
-							{% block paginacao %}
-
-							{% if is_paginated %}
-
-
-							<div class="row center">
-								<div class="col s12 m12 l12">
-									<ul class="pagination">
-
-										{% if page_obj.has_previous %}
-										<li class="disabled"><a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
-										{% else %}
-										<li class="disabled"><a href=""><i class="material-icons">chevron_left</i></a></li>
-										{% endif %}
-
-
-										{% for page in page_obj.paginator.page_range %}
-										<li class="{% if page_obj.number == page %}active indigo darken-4{% else %}waves-effect white{% endif %}""><a href="?page={{ page }}">{{ page }}</a></li>
-										{% endfor %}
-
-										{% if page_obj.has_next %}
-										<li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
-										{% else %}
-										<li class="waves-effect"><a href=""><i class="material-icons">chevron_right</i></a></li>
-										{% endif %}
-
-									</ul>
-								</div>	
-							</div>
-
-							{% endif %}
-
-							{% endblock %}
-
-							{% else %}
-
-							<p>Nenhum animal encontrado</p>
-
-							{% endif %}
-							
-						</div>
-					</div>
-				</div>
-			</div>
+			{% include "cadastro/animal_listagem.html" %}
 
 			{% endblock %}
 			
 		</div>
 	</div>
-
-	{% endblock %}
+</div>
+{% endblock %}
 

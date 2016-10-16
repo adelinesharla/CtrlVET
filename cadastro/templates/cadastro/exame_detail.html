@@ -86,13 +86,13 @@
 							<p><b>Animal</b></p>
 						</div> 
 						<div class="col s4 m4 l4">
-							<p>{{ object.animal.nome }}</p>
+							<p><a href="{% url 'tutor_detalhes' object.animal.pk %}">{{ object.animal.nome }}</a></p>
 						</div> 
 						<div class="col s2 m2 l2">
 							<p><b>RG</b></p>
 						</div> 
 						<div class="col s4 m4 l4">
-							<p>{{ object.animal.rg }}</p>
+							<p>{{ object.animal.rg }}</a></p>
 						</div> 
 
 					</div>
@@ -104,7 +104,7 @@
 							<p><b>Tutor</b></p>
 						</div> 
 						<div class="col s4 m4 l4">
-							<p>{{ object.animal.tutor }}</p>
+							<p><a href="{% url 'tutor_detalhes' object.animal.tutor.pk %}">{{ object.animal.tutor }}</a></p>
 						</div> 
 					</div>
 				</div>

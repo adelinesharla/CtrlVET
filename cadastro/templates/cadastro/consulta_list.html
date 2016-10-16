@@ -1,29 +1,22 @@
-{% extends "cadastro/base_visaogeral.html" %}
+{% extends "cadastro/consulta_resumo.html" %}
 
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'tutor_resumo' %}" class="breadcrumb">Clientes Cadastrados</a>
+<a href="" class="breadcrumb">Busca</a>
 {% endblock %}
 
-
 {% block content %}
-
 <div class="row">
 	<div class="card">
 		<div class="card-content">
 
-			{% block estatisticas %}
-			{% endblock %}
-
 			{% block pesquisa %}
-
-			{% include "cadastro/pesquisa.html" %}
-
+			{{ block.super }}
 			{% endblock %}
 
 			{% block lista %}
 
-			{% include "cadastro/tutor_listagem.html" %}
+			{{ block.super }}
 
 			{% endblock %}
 
@@ -32,4 +25,3 @@
 </div>
 
 {% endblock %}
-

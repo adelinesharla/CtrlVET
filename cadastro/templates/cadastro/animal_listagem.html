@@ -1,0 +1,56 @@
+<div class="row">
+	<div class="col s12 m12 l12">
+		<span class="card-title">Animais Cadastrados</span>
+		<div class="divider"></div>
+		<div class="row">
+			<div class="col s12 m12">
+
+				{% if object_list %}
+
+				<table class="responsive-table highlight striped">
+					<thead>
+						<tr>
+							<th data-field=""><a href="{% url 'animal_resumo' %}?ordering=pk&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">RG</a></th>
+							<th data-field=""><a href="{% url 'animal_resumo' %}?ordering=_nome&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nome</a></th>
+							<th data-field=""><a href="{% url 'animal_resumo' %}?ordering=tutor&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Tutor</a></th>
+							<th data-field=""><a href="{% url 'animal_resumo' %}?ordering=_especie&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Espécie</a></th>
+							<th data-field="">Idade</th>
+
+							<!--	<th data-field="">Detalhes</th> -->
+						</tr>
+					</thead>
+
+					<tbody>
+
+						{% for object in object_list %}
+						<tr>
+							<td><b><a href="{% url 'animal_detalhes' object.pk %}">{{ object.rg }}</a></b></td>
+							<td><a href="{% url 'animal_detalhes' object.pk %}">{{ object.nome }}</a></td>
+							<td><a href="{% url 'tutor_detalhes' object.tutor.pk %}"><b>{{ object.tutor }}</b></a></td>
+							<td>{{ object.especie }}</td>
+							<td>{{ object.idade }}</td>
+							<td><a href="{% url 'animal_editar' object.pk %}"><b>Editar</b></a></td>
+							<td><a href="{% url 'animal_deletar' object.pk %}"><b>Excluir</b></a></td>
+						</tr>
+
+						{% endfor %}
+
+					</tbody>
+				</table>
+
+				{% block paginacao %}
+
+				{% include "cadastro/paginacao.html" %}
+
+				{% endblock %}
+
+				{% else %}
+
+				<p>Nenhum animal encontrado</p>
+
+				{% endif %}
+
+			</div>
+		</div>
+	</div>
+</div>

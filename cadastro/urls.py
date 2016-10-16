@@ -62,14 +62,12 @@ urlpatterns = [
     
     url(r'^exames/$',LaboratorioResumo.as_view(), name='laboratorio_resumo'),
     url(r'^exames/laboratorio/detalhes/(?P<laboratorio_id>\d+)/$',LaboratorioDetailView.as_view(), name = 'laboratorio_detalhes'),
-    url(r'^exames/laboratorio/detalhes/(?P<laboratorio_id>\d+)/busca/avancada$', ExameBuscaAvancadaMixin.as_view(), name = 'exame_busca_avancada'),
-    url(r'^exames/laboratorio/cadastro/(?P<pk>\d+)/$', ExameFormView.as_view(), name = 'exame_cadastro'),
-
+    url(r'^exames/laboratorio/(?P<pk>\d+)/cadastro/', ExameFormView.as_view(), name = 'exame_cadastro'),
     url(r'^exames/detalhes/deletar/(?P<pk>\d+)/$',ExameDeleteView.as_view(),  name = 'exame_deletar'),
     url(r'^exames/detalhes/(?P<exame_id>\d+)/$',ExameDetailView.as_view(), name = 'exame_detalhes'),
     url(r'^exames/detalhes/editar/(?P<pk>\d+)/',ExameUpdateView.as_view(),  name = 'exame_editar'),
     
-    #url(r'^exame/$',ExameListView.as_view(), name='exame_list'),
+    url(r'^exame/$',ExameListView.as_view(), name='exame_list'),
     #url(r'^exame/resumo$',ExameResumo.as_view(), name='exame_resumo'),
     url(r'^exames/busca$', ExameBuscaListView.as_view(), name = 'exame_busca_list_view'),
 

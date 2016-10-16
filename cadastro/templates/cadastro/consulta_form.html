@@ -4,43 +4,17 @@
 
 {% block breadcrumbs %}
 {{ block.super }}
+<a href="{% url 'consulta_resumo' %}" class="breadcrumb">Animais Cadastrados</a>
 <a href="{% url 'consulta_resumo' %}" class="breadcrumb">Consulta</a>
 <a href="{% url 'consulta_cadastro' %}" class="breadcrumb">Cadastro</a>
 {% endblock %}
 
-{% block form_submit_action %}
+{% block form %}
 
 <div class="card">
-	<div class="card-content">	
-		<form action="cadastro" method="POST"> 
-
-			{% endblock %}
-
-			{% block form %}
-
-			<div class="row">
-				
-				<div class="col s12 m12 l12">
-					{% csrf_token %}
-					{% form form=form %}{% endform %}
-				</div>
-
-				{% endblock %}
-
-				{% block form_submit %}
-
-				<div class="row">
-					<div class="col s12 m12 l12 right-align">
-						<div class="form-actions">
-							<button class="btn waves-effect waves-light indigo darken-4" type="reset" value="Reset"><i class="material-icons right">clear</i>Limpar</button>
-							<button class="btn waves-effect waves-light indigo darken-4" type="submit" name="cancel" value="Cancel"><i class="material-icons right">cancel</i>Cancelar</button>
-							<button onclick="AlertSucesso()" class="btn waves-effect waves-light indigo darken-4" type="submit" value="Update">Salvar<i class="material-icons right">send</i>
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
+	<div class="card-content">		
+		{% include "cadastro/form.html" %}
 	</div>
 </div>
+
 {% endblock %}

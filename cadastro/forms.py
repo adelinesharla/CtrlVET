@@ -44,6 +44,10 @@ class TutorBuscaAdvForm(forms.Form):
 		)
 
 class AnimalModelForm(forms.ModelForm):
+	def __init__(self, *args, **kwargs):
+		super(AnimalModelForm, self).__init__(*args, **kwargs)
+		self.fields['_obito'].label = ''
+		
 	class Meta:
 		model = Animal
 		fields = {'_nome', '_rg', '_especie', '_raca', 'sexo', '_nascimento', '_obito', '_idade', 'tutor'}

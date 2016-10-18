@@ -25,6 +25,7 @@ $( document ).ready(function() {
 		minDate: 0,
 	});
 
+
 });
 
 function AlertSucesso(){

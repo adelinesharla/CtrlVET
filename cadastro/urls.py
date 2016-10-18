@@ -26,7 +26,7 @@ urlpatterns = [
     #Urls relacionadas às views de Tutor
     
     url(r'^tutor/resumo$',  TutorResumo.as_view(), name='tutor_resumo'),
-    url(r'^tutor/detalhes/(?P<pk>\d+)/', TutorDetalhesViewForm.as_view(), name = 'tutor_detalhes'),
+    url(r'^tutor/detalhes/(?P<pk>\d+)/', TutorDetalhesView.as_view(), name = 'tutor_detalhes'),
     url(r'^tutor/detalhes/editar/(?P<pk>\d+)/',TutorEditar.as_view(),  name = 'tutor_editar'),
     url(r'^tutor/detalhes/deletar/(?P<pk>\d+)/',TutorDeletar.as_view(),  name = 'tutor_deletar'),
     url(r'^tutor/cadastro$', TutorFormView.as_view(), name = 'tutor_cadastro'),
@@ -38,7 +38,7 @@ urlpatterns = [
     
       #Urls relacionadas às views de Animal
     url(r'^animal/resumo$',  AnimalResumo.as_view(), name='animal_resumo'),
-    url(r'^animal/detalhes/(?P<pk>\d+)/', AnimalDetalhesViewForm.as_view(), name = 'animal_detalhes'),
+    url(r'^animal/detalhes/(?P<pk>\d+)/', AnimalDetalhesView.as_view(), name = 'animal_detalhes'),
     url(r'^animal/detalhes/editar/(?P<pk>\d+)/',AnimalEditar.as_view(),  name = 'animal_editar'),
     url(r'^animal/detalhes/obito/(?P<pk>\d+)/',AnimalObito.as_view(),  name = 'animal_obito'),
     url(r'^animal/detalhes/deletar/(?P<pk>\d+)/',AnimalDeletar.as_view(),  name = 'animal_deletar'),
@@ -64,7 +64,7 @@ urlpatterns = [
     url(r'^exames/laboratorio/detalhes/(?P<laboratorio_id>\d+)/$',LaboratorioDetailView.as_view(), name = 'laboratorio_detalhes'),
     url(r'^exames/laboratorio/(?P<pk>\d+)/cadastro/', ExameFormView.as_view(), name = 'exame_cadastro'),
     url(r'^exames/detalhes/deletar/(?P<pk>\d+)/$',ExameDeleteView.as_view(),  name = 'exame_deletar'),
-    url(r'^exames/detalhes/(?P<exame_id>\d+)/$',ExameDetailView.as_view(), name = 'exame_detalhes'),
+    url(r'^exames/detalhes/(?P<pk>\d+)/',ExameDetailView.as_view(), name = 'exame_detalhes'),
     url(r'^exames/detalhes/editar/(?P<pk>\d+)/',ExameUpdateView.as_view(),  name = 'exame_editar'),
     
     url(r'^exame/$',ExameListView.as_view(), name='exame_list'),

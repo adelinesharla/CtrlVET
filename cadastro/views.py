@@ -546,7 +546,6 @@ class ExameDeleteView(DeleteView):
 	#success_url = reverse_lazy('consulta_resumo')
 
 class ExameDetailView(DetailView):
-	pk_url_kwarg = "exame_id"
 	model = Exame
 
 	def get_context_data(self, **kwargs):
@@ -557,7 +556,7 @@ class ExameDetailViewForm(UpdateView):
 	form_class = ExameModelFormDisable
 	model = Exame
 	template_name_suffix = '_detail'
-	success_url = '/exame/resumo'
+	success_url = 'exames'
 
 	def get_context_data(self, **kwargs):
 		context = super (ExameDetailViewForm, self).get_context_data(**kwargs)

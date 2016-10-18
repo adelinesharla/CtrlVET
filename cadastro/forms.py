@@ -36,6 +36,7 @@ class TutorModelFormDisable(forms.ModelForm):
 		super(TutorModelFormDisable, self).__init__(*args, **kwargs)
 		for field in self.fields:
 			self.fields[field].widget.attrs['readonly'] = True
+		self.fields['_uf'].widget.attrs['disabled'] = True
 
 	class Meta:
 		model = TutorEndTel
@@ -91,12 +92,15 @@ class AnimalModelForm(forms.ModelForm):
 		)
 
 class AnimalModelFormDisable(forms.ModelForm):
-	sexo = forms.CharField(label='Sexo', max_length=10, required=False)
 
 	def __init__(self, *args, **kwargs):
 		super(AnimalModelFormDisable, self).__init__(*args, **kwargs)
 		for field in self.fields:
 			self.fields[field].widget.attrs['readonly'] = True
+		self.fields['sexo'].widget.attrs['disabled'] = True
+		self.fields['tutor'].widget.attrs['disabled'] = True
+		self.fields['_nascimento'].widget.attrs['disabled'] = True
+		self.fields['_obito'].widget.attrs['disabled'] = True
 
 	class Meta:
 		model = Animal
@@ -108,8 +112,7 @@ class AnimalModelFormDisable(forms.ModelForm):
 		Fieldset("Dados do Animal"),
 			Row('_nome', 'sexo', '_rg'),
 			Row('_especie', '_raca'),
-			Row('_nascimento', '_idade'),
-			Row('_obito'),
+			Row('_nascimento', '_idade', '_obito'),
 		Fieldset("Dados do Tutor"),
 			Row('tutor')
 		)
@@ -194,14 +197,18 @@ class ConsultaBuscaAdvForm(forms.Form):
 class ExameModelFormDisable(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
-		super(ExameModelForm, self).__init__(*args, **kwargs)
+		super(ExameModelFormDisable, self).__init__(*args, **kwargs)
 		for field in self.fields:
 			self.fields[field].widget.attrs['readonly'] = True
+		self.fields['veterinario'].widget.attrs['disabled'] = True
+		self.fields['animal'].widget.attrs['disabled'] = True
+		self.fields['cliente'].widget.attrs['disabled'] = True
+		self.fields['tecnico'].widget.attrs['disabled'] = True
+		self.fields['laboratorio'].widget.attrs['disabled'] = True
 
 	class Meta:
 		model = Exame
 		fields = ( 'animal', 'veterinario', 'tecnico', 'cliente', 'laboratorio', 'numero_amostra', 'observacoes')
-		widgets = {'laboratorio': forms.HiddenInput()}
 
 	layout = Layout(
 		Fieldset("Dados do Exame"),

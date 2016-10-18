@@ -14,11 +14,16 @@ $( document ).ready(function() {
 		in_duration: 300,
 		out_duration: 200, 
 	});
-	
-	jQuery.fn.datetimepicker.defaults['lang'] = 'pt-Br';
-	jQuery.fn.datetimepicker.defaults['maxDate'] = 0;
 
+	jQuery.fn.datetimepicker.defaults['lang'] = 'pt';
 
+	jQuery('#id__nascimento').datetimepicker({
+		maxDate: 0,
+	});
+
+	jQuery('#id__data_realizacao').datetimepicker({
+		minDate: 0,
+	});
 
 });
 
@@ -38,5 +43,8 @@ function AlertSucesso(){
 	}
 };
 
+function AlertSucesso(){
+
+}
 
 

@@ -219,7 +219,7 @@ class AnimalAbs(models.Model):
 	_raca = models.CharField(verbose_name='Raça', max_length=50)
 	sexo = models.CharField(verbose_name='Sexo', max_length=15, choices=GENERO_CHOICES)
 	_nascimento = models.DateField(verbose_name='Data de Nascimento')
-	_obito = models.DateField(verbose_name='Data de Óbito', blank = True)
+	_obito = models.DateField(verbose_name='Data de Óbito', null = True ,blank = True)
 	_idade = models.PositiveSmallIntegerField(verbose_name='Idade')
 	tutor = models.ForeignKey(TutorEndTel, on_delete = models.CASCADE, related_name='animais')
 

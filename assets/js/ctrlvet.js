@@ -47,7 +47,4 @@ function AlertSucesso(){
 
 }
 
-function('#datetimepicker').datetimepicker () {
-    ignoreReadonly: false;
-};
 

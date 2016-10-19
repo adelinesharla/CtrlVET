@@ -409,7 +409,6 @@ class ConsultaFormView(FormView):
 	def form_valid(self, form):
 		#form.laboratorio = Laboratorio.objects.get(pk=self.kwargs.get('pk'))
 		animal = form.cleaned_data['animal']
-		print animal.pk
 		consulta = form.save()
 		consulta.cliente = Animal.objects.get(pk=animal.pk).tutor
 		consulta.save()

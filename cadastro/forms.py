@@ -241,8 +241,6 @@ class ExameModelForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(ExameModelForm, self).__init__(*args, **kwargs)
 		self.fields['laboratorio'].label = ''
-		for field in self.fields:
-			self.fields[field].widget.attrs['readonly'] = True		
 
 	class Meta:
 		model = Exame

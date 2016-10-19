@@ -17,22 +17,48 @@
 							<th>Setor</th>
 							<th>Cliente</th>
 							<th>Valor(R$)</th>
-							<th>Tipo</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 
-						{% for object in debitos_list %}
+
+						{% for nota in debitos_list %}
 						<tr>
-							<td><a href="#"><b>{{ object.pk }}</b></a></td>
-							<td>{{ object.nota.data }}</td>
-							<td>{{ object.nota.get_setor_display }}</td>
-							<td><a href="#">{{ object.nota.atendimento.cliente.nome }}</a></td>
-							<td>{{ object.itemNota.valor }}</td>
+							<td><b>{{ nota.pk }}</b></td>
+							<td>{{ nota.data }}</td>
+							<td>{{ nota.get_setor_display }}</td>
+							<td><a href="{% url 'tutor_detalhes' nota.atendimento.cliente.pk %}">{{ nota.atendimento.cliente.nome }}</a></td>
+							<td>{{ nota.total }}</td>
 							<td></td>
-							<td><a href="#">Efetuar Pagamento</a></td>
+							<td><a href="#"></a></td>
+							<td><a class="modal-trigger" href="#reliza_pagamento{{ nota.pk }}">Efetuar Pagamento</a></td>
 						</tr>
+
+						<!-- Modal Trigger -->
+
+						<!-- Modal Structure -->
+						<div id="reliza_pagamento{{ nota.pk }}" class="modal">
+							<div class="modal-content">
+								<h4>Confirmar pagamento</h4>
+								<div class="row">
+									<div class="col s12 m6 l6">
+										<p>Nota: {{ nota.pk }} </p>
+										<p>Total: {{ nota.total }}</p>
+									</div>
+									<div class="col s12 m6 l6">
+										<p>Data: {{ nota.data }}</p>
+									</div>
+									
+									
+									
+								</div>
+							</div>
+							<div class="modal-footer">
+								<a href="{% url 'efetuar_pagamento' nota.pk %}" class="modal-action modal-close btn waves-effect waves-light indigo darken-4">Confirmar</a>
+							</div>
+						</div>
+
 
 						{% endfor %}
 					</tbody>
@@ -63,21 +89,20 @@
 								<th>Setor</th>
 								<th>Cliente</th>
 								<th>Valor(R$)</th>
-								<th>Tipo</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 
-							{% for object in recebidos_list %}
+							{% for nota in recebidos_list %}
 							<tr>
-								<td><a href="#"><b>{{ object.pk }}</b></a></td>
-								<td>{{ object.nota.data }}</td>
-								<td>{{ object.nota.get_setor_display }}</td>
-								<td><a href="#">{{ object.nota.atendimento.cliente.nome }}</a></td>
-								<td>{{ object.itemNota.valor }}</td>
+								<td><b>{{ nota.pk }}</b></td>
+								<td>{{ nota.data }}</td>
+								<td>{{ nota.get_setor_display }}</td>
+								<td><a href="{% url 'tutor_detalhes' nota.atendimento.cliente.pk %}">{{ nota.atendimento.cliente.nome }}</a></td>
+								<td>{{ nota.total }}</td>
 								<td></td>
-								<td><a href="{% url 'nota_de_pagamento'  object.pk %}">Nota de Pagamento</a></td>
+								<td><a href="{% url 'nota_de_pagamento'  nota.pk %}">Nota de Pagamento</a></td>
 							</tr>
 
 							{% endfor %}
@@ -93,5 +118,7 @@
 		</div>
 	</div>
 </div>
+
+<!-- Modal Trigger -->
 
 

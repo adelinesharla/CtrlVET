@@ -30,6 +30,7 @@ from reportlab.platypus import Image
 from django.http import HttpResponse
 from datetime import datetime
 
+from django.db.models import Sum
 
 
 class SuccessView(TemplateView):
@@ -95,9 +96,13 @@ class PagamentoResumo(TemplateView):
 	
 	def get_context_data(self, *args, **kwargs):
 		context = super(PagamentoResumo, self).get_context_data(*args, **kwargs)
-		context['recebidos_list'] = Nota.objects.filter(status=1).order_by('status')[:5]
-		context['debitos_list'] = Nota.objects.filter(status=0).order_by('status')[:5]
+		#context['recebidos_list'] = Nota.objects.filter(status=1).order_by('status')[:5]
+		#context['debitos_list'] = Nota.objects.filter(status=0).order_by('status')[:5]
+		#context['total'] = (Nota.objects.filter(status=1).annotate(total=Sum('itemNota', field="_valor"))['total'])
+		context['recebidos_list'] = (Nota.objects.filter(status=1).annotate(total=Sum('itemNota___valor'))).order_by('status')[:5]
+		context['debitos_list'] = (Nota.objects.filter(status=0).annotate(total=Sum('itemNota___valor'))).order_by('status')[:5]
 		return context 
+
 
 
 '''class ListPagamento(ListView):
@@ -483,3 +488,14 @@ class ItemNotaFormView(FormView):
 	def form_valid(self, form):
 		form.save()
 		return HttpResponseRedirect('/success/')
+
+class EfetuarPagamento(View):
+	model = Nota
+	success_url = '/pagamentos/resumo'
+
+	def get(self, args, **kwargs):
+		nota =  Nota.objects.get(pk=self.kwargs['pk'])
+		nota.status = True
+		nota.save()
+		return HttpResponseRedirect(self.success_url)
+		

@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^pagamentos/relatorio/gerarPdf/([0-9][0-9][0-9][0-9])', GeraPdfPrestacaoContas.as_view(), name = 'gerarPdf'),
     url(r'^pagamentos/resumo/gerarPdf/(?P<nota_id>\d+)/', GeraPdfNotaDePagamento.as_view(), name = 'nota_de_pagamento'),
     #Urls relacionadas às views de Estoque
-
+    url(r'^pagamentos/resumo/efetuarpagamento/(?P<pk>\d+)/$',  EfetuarPagamento.as_view(), name='efetuar_pagamento'),
     url(r'^estoque/resumo$',  EstoqueResumo.as_view(), name='estoque_resumo'),
     url(r'^estoque/cadastro$', ItemNotaFormView.as_view(), name = 'item_cadastro'),    
 ]

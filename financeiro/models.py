@@ -91,7 +91,7 @@ class AcoesNota(NotaAbs):
 class Nota(AcoesNota):
 	
 	def get_absolute_url(self):
-        	return reverse('nota_detail', kwargs={'pk': self.pk})
+		return reverse('nota_detail', kwargs={'pk': self.pk})
 
 	def _get_data(self):
 		return self._data		

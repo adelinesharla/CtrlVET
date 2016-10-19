@@ -40,13 +40,13 @@
 									{% for ano in object_list %}
 									<tr>
 										<td>
-											<a href="{% url 'ano_detail' ano.pk %}"><b>{{ ano.ano }}</b></a>
+											<b>{{ ano.ano }}</b>
 										</td>
 										<td>
 											<b></b>
 										</td>
 										<td>
-											<a href="{% url 'gerarPdf' ano.ano %}"><b>Imprimir</b></a>
+											<a href="{% url 'gerarPdf' ano.ano %}"><b>Imprimir</b><i class="material-icons">print</i></a>
 										</td>
 									</tr>
 									{% endfor %}

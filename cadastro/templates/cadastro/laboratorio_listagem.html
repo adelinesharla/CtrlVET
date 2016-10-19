@@ -4,17 +4,21 @@
 
 <div class="row">
 	<div class="col s12 m12 l6">
-		<div class="card">
+		<a href="{% url 'laboratorio_detalhes' object.pk %}"><div class="card">
 			<div class="card-content">
-
-				<span class="card-title"><a href="{% url 'laboratorio_detalhes' object.pk %}">{{ object.nome }}</a></span>
-
+				<div class="row">
+					<div class="col s6 m6 l6">
+						<span class="card-title">{{ object.nome }}</span>
+					</div>
+					<div class="col s6 m6 l6 right-align">
+						<span class="card-title"><i class="material-icons">event</i></span>
+					</div>
+					
+				</div>
 			</div>
-			<div class="card-action" align="right">
-				<a href="calendario.html"><i class="material-icons">event</i></a>
-			</div>
-		</div>
+		</a>
 	</div>
+</div>
 
 
 {% endfor %}

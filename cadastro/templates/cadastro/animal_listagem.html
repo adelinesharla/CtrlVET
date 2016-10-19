@@ -26,7 +26,7 @@
 						<tr>
 							<td><b><a href="{% url 'animal_detalhes' object.pk %}">{{ object.rg }}</a></b></td>
 							<td><a href="{% url 'animal_detalhes' object.pk %}">{{ object.nome }}</a></td>
-							<td  class="hide-on-small-only"><a href="{% url 'tutor_detalhes' object.tutor.pk %}"><b>{{ object.tutor }}</b></a></td>
+							<td  class="hide-on-small-only"><a href="{% url 'tutor_detalhes' object.tutor.pk %}"><b>{{ object.tutor.nome }}</b></a></td>
 							<td  class="hide-on-small-only">{{ object.especie }}</td>
 							<td  class="hide-on-small-only" >{{ object.idade }}</td>
 							

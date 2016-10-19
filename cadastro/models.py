@@ -407,7 +407,7 @@ class ExameAbs (AtendimentoAbs):
 	_resultado = models.TextField(default = 'Pendente', blank = True, verbose_name='Resultado', max_length=200)
 	observacoes = models.CharField(blank=True, null=True, verbose_name='Observações', max_length=200)
 	numero_amostra = models.PositiveSmallIntegerField(blank=True, null=True, verbose_name='Número de amostra')
-	estadoexame = models.NullBooleanField(null = True ,blank = True, verbose_name='Estado do Exame')
+	estadoexame = models.NullBooleanField(null = True, blank = True, verbose_name='Estado do Exame')
 	laboratorio =  models.ForeignKey(Laboratorio, on_delete=models.CASCADE, related_name='exames', blank=True, null=True)
 	class Meta:
 		abstract = True

@@ -1,4 +1,4 @@
-#!/bin/sh
+cd ..
 
 rm db.sqlite3
 

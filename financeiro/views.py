@@ -154,7 +154,7 @@ class PagamentoBuscaListView(self):
 
 class AnoList(ListView):
 	model=Ano
-
+	
 class AnoDetalhesView(DetailView):
 	pk_url_kwarg = "ano_id"
 	model = Ano

@@ -23,8 +23,8 @@ class Ano(models.Model):
 
 	ano = property(_get_ano,_set_ano)
 		
-def __unicode__(self):
-	return u'%s - %s' % (self.nota, self._status)
+	def __unicode__(self):
+		return u'%s - %s' % (self.nota, self._status)
 	
 	
 class ItemNotaAbs(models.Model):

@@ -5,6 +5,7 @@ from django.conf.urls import url
 """Classes de views genericas utilizadas"""
 from django.views.generic import View, CreateView, TemplateView, DetailView, UpdateView, DeleteView, ListView, FormView
 from django.views.generic.detail import SingleObjectMixin
+from _functools import reduce
 
 'HttpResponse para uma pagina template indicando que a operação foi realizada (verificar se tal página existe)'
 from django.http import HttpResponseRedirect

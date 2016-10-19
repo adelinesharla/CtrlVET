@@ -67,6 +67,9 @@ class EnderecoAbs(models.Model):
 class AcoesEndereco(EnderecoAbs):
 	def __unicode__(self):
 		return u'%s %s' % (self.logradouro, self.numero)
+	
+	def __str__(self):
+		return u'%s %s' % (self.logradouro, self.numero)		
 
 	class Meta:
 		verbose_name_plural = "Endereços"
@@ -166,6 +169,9 @@ class PessoaAbs(models.Model):
 	
 	def __unicode__(self):
 		return u'%s' % (self.nome)
+
+	def __str__(self):
+		return u'%s' % (self.nome)	
 	
 	def _get_nome(self):
 		return self._nome		
@@ -234,6 +240,9 @@ class AnimalAbs(models.Model):
 class AcoesAnimal(AnimalAbs):
 	def __unicode__(self):
 		return u'%s' % (self.nome)
+	
+	def __str__(self):
+		return u'%s' % (self.nome)	
 
 	class Meta:
 		abstract = True
@@ -303,6 +312,13 @@ class AcoesVeterinario(PessoaAbs):
 
 class Veterinario(AcoesVeterinario):
 	_crmv = models.CharField(verbose_name='CRMV', max_length=10)
+	
+	def __unicode__(self):
+		return u'%s' % (self.nome)
+	
+	def __str__(self):
+		return u'%s' % (self.nome)	
+
 	def _get_crmv(self):
 		return self._crmv
 																									
@@ -318,6 +334,13 @@ class AcoesTecnico(PessoaAbs):
 
 class Tecnico(AcoesTecnico):
 	_crf = models.CharField(verbose_name='CRF', max_length=10)
+
+	def __unicode__(self):
+		return u'%s' % (self.nome)
+	
+	def __str__(self):
+		return u'%s' % (self.nome)	
+
 	def _get_crf(self):
 		return self._crf
 																									
@@ -330,6 +353,7 @@ class AtendimentoAbs(models.Model):
 	_data = models.DateField(auto_now_add=True)
 	_diagnostico = models.TextField(default = 'Pendente', blank = True, verbose_name='Diagnóstico', max_length=200)
 	cliente = models.ForeignKey(TutorEndTel,on_delete=models.CASCADE, related_name='cliente_a_ser_atendido', null = True ,blank = True)
+	
 	def _get_data(self):
 		return self._data
 	
@@ -399,6 +423,9 @@ class Laboratorio (models.Model):
 
 	def __unicode__(self):
 		return u'%s' % (self.nome)
+	
+	def __str__(self):
+		return u'%s' % (self.nome)	
 
 class ExameAbs (AtendimentoAbs):
 	animal = models.ForeignKey(Animal,null = True, blank = True,on_delete=models.CASCADE, related_name='mostrado_para_exame')

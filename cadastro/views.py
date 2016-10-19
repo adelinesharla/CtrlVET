@@ -6,8 +6,7 @@ from django.conf.urls import url
 from django.views.generic import View, FormView, TemplateView, DetailView, UpdateView, DeleteView, ListView, FormView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import ProcessFormView
-
-
+from _functools import reduce
 
 
 'HttpResponse para uma pagina template indicando que a operação foi realizada (verificar se tal página existe)'

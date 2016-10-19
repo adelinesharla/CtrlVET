@@ -15,6 +15,15 @@ $( document ).ready(function() {
 		out_duration: 200, 
 	});
 
+	jQuery.fn.datetimepicker.defaults['lang'] = 'pt';
+	
+	jQuery('#id__nascimento').datetimepicker({
+		maxDate: 0,
+	});
+
+	jQuery('#id__data_realizacao').datetimepicker({
+		minDate: 0,
+	});
 
 });
 

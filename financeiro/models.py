@@ -24,10 +24,10 @@ class Ano(models.Model):
 	ano = property(_get_ano,_set_ano)
 		
 	def __unicode__(self):
-		return u'%s - %s' % (self.ano)
+		return u'%s' % (self.ano)
 	
 	def __str__(self):
-		return u'%s - %s' % (self.ano)
+		return u'%s' % (self.ano)
 	
 class ItemNotaAbs(models.Model):
 	_nome = models.CharField(verbose_name='Nome',max_length=150)

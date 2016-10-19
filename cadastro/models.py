@@ -358,7 +358,10 @@ class AtendimentoAbs(models.Model):
 		return self._data
 	
 	def _get_diagnostico(self):
-		return self._diagnostico	
+		return self._diagnostico
+
+	def _get_cliente(self):
+		return self._cliente	
 																																
 	def _set_diagnostico(self,diagnostico):
 		self._diagnostico = diagnostico

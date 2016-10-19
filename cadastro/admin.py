@@ -8,6 +8,7 @@ admin.site.register(Laboratorio)
 admin.site.register(Tecnico)
 admin.site.register(Animal)
 admin.site.register(Exame)
+admin.site.register(Consulta)
 admin.site.register(TutorEndTel)
 
 

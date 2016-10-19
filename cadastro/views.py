@@ -390,11 +390,6 @@ class AnimalBuscaListView(ListAnimal):
 					result = result.filter(_idade__icontains=form.cleaned_data['_idade'])
 				if form.cleaned_data['_especie']:
 					result = result.filter(_especie__icontains=form.cleaned_data['_especie'])
-				
-				'''if form.cleaned_data['_tutor']:
-																	result = result.filter(tutor=TutorEndTel.objects.filter(_nome__icontains=form.cleaned_data['_tutor']))'''
-
-					#result = Animal.objects.filter(_tutor__icontains=tutor for tutor in tutores)
 
 		return result		
 			
@@ -412,7 +407,12 @@ class ConsultaFormView(FormView):
 		return context
 	
 	def form_valid(self, form):
-		form.save()
+		#form.laboratorio = Laboratorio.objects.get(pk=self.kwargs.get('pk'))
+		animal = form.cleaned_data['animal']
+		print animal.pk
+		consulta = form.save()
+		consulta.cliente = Animal.objects.get(pk=animal.pk).tutor
+		consulta.save()
 		return HttpResponseRedirect('/consulta/resumo')
 
 	def get_initial(self):

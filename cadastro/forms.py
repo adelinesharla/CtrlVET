@@ -157,15 +157,28 @@ class AnimalBuscaAdvForm(forms.Form):
 
 				
 class ConsultaModelForm(forms.ModelForm):
+
+	def __init__(self, *args, **kwargs):
+		super(ConsultaModelForm, self).__init__(*args, **kwargs)
+		self.fields['cliente'].label = ''
+
 	class Meta:
 		model = Consulta
-		fields = ('_retorno', 'animal', 'veterinario', '_data_realizacao')
+		fields = ('_retorno', 'animal', 'veterinario', '_data_realizacao', 'cliente')
+		widgets = {
+		'cliente': forms.HiddenInput()
+		}
 
 	layout = Layout(
 		Fieldset("Dados da Consulta"),
 			Row('_data_realizacao','_retorno'),
 			Row('animal', 'veterinario'),
+			Row('cliente')
 		)
+
+		
+
+
 
 class ConsultaModelFormDisable(forms.ModelForm):
 
@@ -226,13 +239,10 @@ class ExameModelFormDisable(forms.ModelForm):
 class ExameModelForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
-		super(ConsultaModelForm, self).__init__(*args, **kwargs)
-		for field in self.fields:
-			self.fields[field].widget.attrs['readonly'] = True
-
-	def __init__(self, *args, **kwargs):
 		super(ExameModelForm, self).__init__(*args, **kwargs)
 		self.fields['laboratorio'].label = ''
+		for field in self.fields:
+			self.fields[field].widget.attrs['readonly'] = True		
 
 	class Meta:
 		model = Exame

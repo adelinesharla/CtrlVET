@@ -97,9 +97,6 @@ class PagamentoResumo(TemplateView):
 	
 	def get_context_data(self, *args, **kwargs):
 		context = super(PagamentoResumo, self).get_context_data(*args, **kwargs)
-		#context['recebidos_list'] = Nota.objects.filter(status=1).order_by('status')[:5]
-		#context['debitos_list'] = Nota.objects.filter(status=0).order_by('status')[:5]
-		#context['total'] = (Nota.objects.filter(status=1).annotate(total=Sum('itemNota', field="_valor"))['total'])
 		context['recebidos_list'] = (Nota.objects.filter(status=1).annotate(total=Sum('itemNota___valor'))).order_by('status')[:5]
 		context['debitos_list'] = (Nota.objects.filter(status=0).annotate(total=Sum('itemNota___valor'))).order_by('status')[:5]
 		return context 

@@ -28,7 +28,8 @@
 							<td><b>{{ nota.pk }}</b></td>
 							<td>{{ nota.data }}</td>
 							<td>{{ nota.get_setor_display }}</td>
-							<td><a href="{% url 'tutor_detalhes' nota.atendimento.cliente.pk %}">{{ nota.atendimento.cliente.nome }}</a></td>
+
+							<td><a href="{% if nota.atendimento.animal. %}{% url 'tutor_detalhes' nota.atendimento.cliente.pk %}{% else %}""{% endif %}">{{ nota.atendimento.cliente.nome }}</a></td>
 							<td>{{ nota.total }}</td>
 							<td></td>
 							<td><a href="#"></a></td>
@@ -48,10 +49,7 @@
 									</div>
 									<div class="col s12 m6 l6">
 										<p>Data: {{ nota.data }}</p>
-									</div>
-									
-									
-									
+									</div>								
 								</div>
 							</div>
 							<div class="modal-footer">

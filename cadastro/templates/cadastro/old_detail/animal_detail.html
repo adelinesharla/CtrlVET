@@ -1,0 +1,153 @@
+{% extends "cadastro/base_visaogeral.html" %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+
+<a href="{% url 'animal_resumo' %}" class="breadcrumb">Animais Cadastrados</a>
+<a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">{{ object.nome }}</a>
+
+{% endblock %}
+
+{% block detalhes %}
+
+<div class="card">
+	<div class="card-content">
+		<span class='card-title'>Detalhes de {{ object.nome }}</span>
+		<div class="divider"></div>
+		
+		<div class="card-content">
+			
+			<div class="row">
+				
+				<span class='card-title'>Dados do Animal</span>
+				
+				<div class="row">
+					<div class="section">
+						<div class="col s2 m2 l2">
+							<p><b>Nome</b></p>
+						</div> 
+						<div class="col s3 m3 l3">
+							<p>{{ object.nome }}</p>
+						</div> 
+						<div class="col s2 m2 l2">
+							<p><b>Sexo</b></p>
+						</div> 
+						<div class="col s3 m3 l3">
+							<p>{{ object.sexo }}</p>
+						</div> 
+						<div class="col s1 m1 l1">
+							<p><b>RG</b></p>
+						</div>
+						<div class="col s1 m1 l1">
+							<p>{{ object.rg }}</p>
+						</div> 
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="section">
+						<div class="col s2 m2 l2">
+							<p><b>Espécie</b></p>
+						</div> 
+						<div class="col s4 m4 l4">
+							<p>{{ object.especie }}</p>
+						</div> 
+						<div class="col s2 m2 l2">
+							<p><b>Raça</b></p>
+						</div> 
+						<div class="col s4 m4 l4">
+							<p>{{ object.raca }}</p>
+						</div> 
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="section">
+						<div class="col s2 m2 l2">
+							<p><b>Data de Nascimento</b></p>
+						</div> 
+						<div class="col s4 m4 l4">
+							<p>{{ object.nascimento|date:"d/m/Y" }}</p>
+						</div>
+						<div class="col s2 m2 l2">
+							<p><b>Idade</b></p>
+						</div> 
+						<div class="col s4 m4 l4">
+							<p>{{ object.idade }}</p>
+						</div>
+					</div>
+				</div>
+
+				{% if object.obito %}
+
+				<div class="row">
+					<div class="section">
+						<div class="col s2 m2 l2">
+							<p><b>Data de Óbito</b></p>
+						</div> 
+						<div class="col s4 m4 l4">
+							<p>{{ object.obito|date:"d/m/Y" }}</p>
+						</div>
+					</div>
+				</div>
+
+				{% endif %}
+
+
+				<span class='card-title'>Dados do Tutor</span>
+
+				<div class="section">
+					<div class="row">
+						<div class="section">
+							<div class="col s2 m2 l2">
+								<p><b>Tutor</b></p>
+							</div> 
+							<div class="col s3 m3 l3">
+								<p>{{ object.tutor.nome }} </p>
+							</div>
+							<div class="col s2 m2 l2">
+								<p><b>CPF</b></p>
+							</div> 
+							<div class="col s3 m3 l3">
+								<p>{{ object.tutor.cpf }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="section">
+					<div class="row">
+						<div class="section">
+							<div class="col s12 m12 l12">
+								<p><a href="{% url 'tutor_detalhes' object.pk %}"> Mais Informações de {{ object.tutor.nome }} </a></p>
+							</div>
+						</div>
+						<div class="section">
+							<div class="col s12 m12 l12">
+								<p><a href="{% url 'animal_obito' object.id %}"> Declarar óbito de {{ object.nome }} </a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12 m12 l12">
+						<div class="card-content right">
+							<button class="btn waves-effect waves-light indigo darken-4" onClick="javascript:history.go(-1);"><i class="material-icons right">arrow_back</i>Voltar</button>
+							<a href="{% url 'animal_deletar' object.id %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">delete</i>Deletar</a>
+							<a href="{% url 'animal_editar' object.id %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">edit</i>Editar</a>
+						</div>	
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
+

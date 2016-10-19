@@ -26,6 +26,8 @@ class Ano(models.Model):
 	def __unicode__(self):
 		return u'%s - %s' % (self.nota, self._status)
 	
+	def __str__(self):
+		return u'%s - %s' % (self.nota, self._status)
 	
 class ItemNotaAbs(models.Model):
 	_nome = models.CharField(verbose_name='Nome',max_length=150)

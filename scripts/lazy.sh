@@ -9,5 +9,6 @@ python manage.py migrate
 python manage.py makemigrations cadastro 
 python manage.py makemigrations financeiro
 python manage.py migrate
-python manage.py createsuperuser --username admin --email joyce.ambrosio@gmail.com
 python manage.py loaddata scripts/json_data/*.json
+python manage.py createsuperuser --username admin --email joyce.ambrosio@gmail.com
+

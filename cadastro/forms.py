@@ -170,9 +170,13 @@ class ConsultaModelForm(forms.ModelForm):
 class ConsultaModelFormDisable(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
-		super(ConsultaModelForm, self).__init__(*args, **kwargs)
+		super(ConsultaModelFormDisable, self).__init__(*args, **kwargs)
 		for field in self.fields:
 			self.fields[field].widget.attrs['readonly'] = True
+		self.fields['animal'].widget.attrs['disabled'] = True
+		self.fields['veterinario'].widget.attrs['disabled'] = True
+		self.fields['_data_realizacao'].widget.attrs['disabled'] = True
+		self.fields['_retorno'].widget.attrs['disabled'] = True
 
 	class Meta:
 		model = Consulta

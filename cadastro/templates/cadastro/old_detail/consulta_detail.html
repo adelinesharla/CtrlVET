@@ -1,0 +1,110 @@
+{% extends "cadastro/base_visaogeral.html" %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+
+<a href="{% url 'consulta_resumo' %}" class="breadcrumb">Consultas</a>
+<a href="{% url 'consulta_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
+
+{% endblock %}
+
+{% block detalhes %}
+
+<div class="card">
+	<div class="card-content">
+		<span class='card-title'>Detalhes de Consulta {{ object.id }}</span>
+		<div class="divider"></div>
+
+		<div class="card-content">
+
+			<div class="row">
+
+				<div class="row">
+					<span class='card-title'>Dados da Consulta</span>
+					<div class="section">
+						<div class="col s2 m2 l2">
+							<p><b>Data</b></p>
+						</div> 
+						<div class="col s4 m4 l4">
+							<p>{{ object.data_realizacao|date:"SHORT_DATE_FORMAT" }}</p>
+						</div> 
+						<div class="col s6 m6 l6">
+							{% if object.retorno == True %}
+							<p><b>Consulta de retorno.</b></p>
+							{% else %}
+							<p><b>A consulta não é de retorno.</b></p>
+							{% endif %}
+						</div> 
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="section">
+						<div class="col s2 m2 l2">
+							<p><b>Diagnostico</b></p>
+						</div> 
+						<div class="col s4 m4 l4">
+							<p>{{ object.diagnostico  }}</p>
+						</div> 
+					</div>
+				</div>
+				
+				<span class='card-title'>Dados do(a) Veterinário(a)</span>
+				<div class="row">
+					<div class="section">
+						<div class="section">
+							<div class="col s2 m2 l2">
+								<p><b>Veterinario(a)</b></p>
+							</div> 
+							<div class="col s4 m4 l4">
+								<p>{{ object.veterinario.nome }}</p>
+							</div> 
+							<div class="col s2 m2 l2">
+								<p><b>CRMV</b></p>
+							</div> 
+							<div class="col s4 m4 l4">
+								<p>{{ object.veterinario.crmv }}</p>
+							</div> 
+						</div> 
+					</div>
+				</div>
+
+				<span class='card-title'>Dados do Animal</span>
+				<div class="row">
+					<div class="section">
+						<div class="col s2 m2 l2">
+							<p><b>Nome</b></p>
+						</div> 
+						<div class="col s3 m3 l3">
+							<p>{{ object.animal.nome }}</p>
+						</div> 
+						<div class="col s2 m2 l2">
+							<p><b>RG</b></p>
+						</div> 
+						<div class="col s3 m3 l3">
+							<p>{{ object.animal.rg }}</p>
+						</div> 
+						<div class="col s2 m2 l2">
+							<p><a href="{% url 'animal_detalhes' object.animal.pk %}"> Mais informações de {{ object.animal.nome }}</a></p>
+						</div> 
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12 m12 l12">
+						<div class="card-content right">
+							<button class="btn waves-effect waves-light indigo darken-4" onClick="javascript:history.go(-1);"><i class="material-icons right">arrow_back</i>Voltar</button>
+							<a class="waves-effect waves-light indigo darken-4 btn" href="{% url 'consulta_deletar' object.id %}" ><i class="material-icons left">delete</i>Deletar</a>
+							<a class="waves-effect waves-light indigo darken-4 btn" href="{% url 'consulta_editar' object.id %}" ><i class="material-icons left">edit</i>Editar</a>
+						</div>	
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+

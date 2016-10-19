@@ -134,6 +134,7 @@ class TutorDetalhesViewForm(UpdateView):
 
 	def get_context_data(self, **kwargs):
 		context = super (TutorDetalhesViewForm, self).get_context_data(**kwargs)
+		context['tutor'] = TutorEndTel.objects.get(pk=self.kwargs.get('pk'))
 		context['action_form'] = 'null'
 		return context
 
@@ -278,7 +279,7 @@ class AnimalFormView(FormView):
 
 	def post(self, form, **kwargs):
 		if "cancel" in self.request.POST:
-				return HttpResponseRedirect(self.success_url)
+			return HttpResponseRedirect(self.success_url)
 		return super(AnimalFormView, self).post(self, form, **kwargs)
 	
 """Classe para retornar detalhes de Animal (alimenta o template animal_detalhes)"""
@@ -297,6 +298,7 @@ class AnimalDetalhesViewForm(UpdateView):
 
 	def get_context_data(self, **kwargs):
 		context = super (AnimalDetalhesViewForm, self).get_context_data(**kwargs)
+		context['animal'] = Animal.objects.get(pk=self.kwargs.get('pk'))
 		context['action_form'] = 'null'
 		return context
 
@@ -397,8 +399,6 @@ class AnimalBuscaListView(ListAnimal):
 		return result		
 			
 
-
-
 #Views relacionadas à classe Consulta:
 
 class ConsultaFormView(FormView):
@@ -426,12 +426,30 @@ class ConsultaDeleteView(DeleteView):
 	#success_url = reverse_lazy('consulta_resumo')
 
 class ConsultaDetailView(DetailView):
-	pk_url_kwarg = "consulta_id"
 	model = Consulta
 
 	def get_context_data(self, **kwargs):
 		context = super (ConsultaDetailView, self).get_context_data(**kwargs)
 		return context
+
+class ConsultaDetailViewForm(UpdateView):
+	form_class = ConsultaModelFormDisable
+	model = Consulta
+	template_name_suffix = '_detail'
+	success_url = '/consulta/resumo'
+
+	def get_context_data(self, **kwargs):
+		context = super (ConsultaDetailViewForm, self).get_context_data(**kwargs)
+		context['animal'] = Consulta.objects.get(pk=self.kwargs.get('pk')).animal
+		context['action_form'] = 'null'
+		return context
+
+	def post(self, form, **kwargs):
+		if "POST" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		if "GET" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		return super(ConsultaDetailViewForm, self).post(self, form, **kwargs)
 
 class ConsultaUpdateView(UpdateView):
 	form_class = ConsultaModelForm

@@ -1,0 +1,136 @@
+/* Main header footer
+========================================================================== */
+/* Fix na posição do conteúdo main */
+header, main, footer {
+	padding-left: 240px;
+}
+@media only screen and (max-width:992px) {
+	header, main, footer {
+		padding-left: 0;
+	}
+}
+
+/* Fix na posição do conteúdo footer flex */
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+main {
+	flex: 1 0 auto;
+}
+
+/* Navbar barra de navegacao
+========================================================================== */
+nav {
+	background-color: #283593;
+}
+@media only screen and (min-width:601px) {
+	nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+		height: 100px; /*tamanho navbar, os dois valores devem ser iguais*/
+		line-height: 100px;
+	}
+	.navbar-fixed {
+		height: 64px;
+	}
+}
+.main-ajuste-padding {
+	padding: 0px 10px 10px 10px;
+}
+.side-nav.fixed {
+	padding-top: 15px;
+	width: 240px; /* tamanho side bar side nav mudar correspondencia no js*/
+}
+.side-nav .collapsible-header, .side-nav.fixed .collapsible-header {
+	padding: 0 30px;
+}
+
+/* Cor dos icones navbar */
+.side-nav li>a>i, .side-nav li>a>[class^="mdi-"], .side-nav li>a>[class*="mdi-"], .side-nav li>a>i.material-icons {
+	color: #212121;
+}
+
+/* Dropdown Menu
+========================================================================== */
+.dropdown-content {
+	min-width: 200px !important;
+}
+.dropdown-content li>a, .dropdown-content li>span {
+	font-size: 14px !important;
+	color: #212121 !important;
+	display: block;
+	line-height: 22px;
+	padding: 14px 16px;
+}
+
+/* Logo
+========================================================================== */
+.logo-vet {
+	max-width: 50%;
+}
+/* Ajustes brand logo */
+.navbar-material .nav-wrapper .brand-logo img {
+	height: 10px;
+}
+
+nav .brand-logo {
+	position: absolute;
+	color: #fff;
+	display: inline-block;
+	font-size: 2.1rem;
+	padding: 0;
+	white-space: nowrap;
+}
+
+/* Icones icons
+========================================================================== */
+/* Fix na posição dos ícones */
+i.material-icons, i.material-icons + span {
+	vertical-align: middle;
+}
+/* Links
+========================================================================== */
+a {
+	color: #1a237e;
+}
+
+/* Cards
+========================================================================== */
+/* Cor dos card action */
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+	color: #1a237e;
+}
+
+/* Breadcrumbs 
+========================================================================== */
+/* Breadcrumbs */
+.breadcrumb {
+	font-size: 12px;
+}
+.breadcrumb:before {
+	font-size: 20px;
+}
+.breadcrumb:last-child {
+	font-weight: bold;
+}
+#caminho {
+	height: 30px;
+	line-height: 30px;
+	background-color: #1a237e;
+	color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+@media only screen and (max-width:992px) {
+	#caminho {
+		padding-left: 10px;
+	}
+}
+
+/* Row
+========================================================================== */
+.row {
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+

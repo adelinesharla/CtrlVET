@@ -1,6 +1,10 @@
 $( document ).ready(function() {
 	Materialize.updateTextFields();
-	$('.button-collapse').sideNav();
+	$('.button-collapse').sideNav({
+      menuWidth: 240, // Default is 240
+     
+  }
+  );
 	$('.collapsible').collapsible({
 		accordion : true
 	});

@@ -22,7 +22,6 @@
 	<!-- Compiled and minified CSS -->
 	
 	<link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
-	<link type="text/css" rel="stylesheet" href="{% static 'material/css/forms.css' %}"  media="screen,projection"/>
 	<link type="text/css" rel="stylesheet" href="{% static 'material/css/jquery.datetimepicker.css' %}"  media="screen,projection"/>
 	<link type="text/css" rel="stylesheet" href="{% static 'material/css/responsive.dataTables.css' %}"  media="screen,projection"/>
 	
@@ -34,22 +33,23 @@
 
 
 	<!-- custom css e js-->
-
-	<link type="text/css" rel="stylesheet" href="{% static 'css/ctrlvet.css' %}"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'css/fixes.css' %}"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'css/forms.css' %}"  media="screen,projection"/>
 	<script type="text/javascript" src="{% static 'js/ctrlvet.js' %}"></script>
-	
-	{% include 'material/includes/material_js.html' %}
+	<!-- 
+	<script type="text/javascript" src="{% static 'material/js/jquery.formset.js' %}"></script>
+	<script type="text/javascript" src="{% static 'material/js/jquery.datetimepicker.js' %}"></script>-->
 
-</style>
+	{% include 'material/includes/material_js.html' %}
 
 </head>
 <body class="grey lighten-5">
 
 	<header>
 
-		<nav class="nav-wrapper indigo darken-3">
+		<nav class="nav-wrapper">
 			<div class="container">
-				<a href="main.html" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+				<a href="{% url 'main' %}" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
 			</div>
 
 
@@ -72,9 +72,9 @@
 			<li class="no-padding">
 				<ul class="collapsible collapsible-accordion">
 
-					<li class="logo center "><div class="container logo-vet"><img class="responsive-img "  src="{% static 'media/logo/logo.png' %}"></div></li>
+					<li class="logo center "><div class="container logo-vet"><img class="responsive-img "  src="{% static 'media/logo/logo100.png' %}"></div></li>
 
-					<li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
+					<li class="bold hide-on-large-only"><a href="{% url 'main' %}" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
 
 					<li class="bold"><a href="{% url 'tutor_resumo' %}" class="collapsible-header"><i class="material-icons">face</i>Clientes</a></li>
 					<li class="bold"><a href="{% url 'animal_resumo' %}" class="collapsible-header"><i class="material-icons">pets</i>Animais</a></li>
@@ -90,22 +90,21 @@
 
 		<nav id="caminho">
 			<div class="col s12">
-
 				{% block breadcrumbs %}
 				<a href="{% url 'main' %}" class="breadcrumb">Main</a>
 				{% endblock %}
-
 			</div>
 		</nav>
 
 	</header>
 
-	<main>
-		<div class='main-ajuste-padding'>
-			{% block content %}
-			{% endblock %}
-		</div>
-	</main>
+	<!-- Main content -->
+		<main>
+			<div class='main-ajuste-padding'>
+				{% block content %}
+				{% endblock %}
+			</div>
+		</main>
 
 	<!-- Footer -->
 

@@ -8,23 +8,20 @@
 
 {% block content %}
 
-<div class="row">
-	<div class="col s12 m12 l12">
-		
-		{% block relatorios %}
 
-		{% include "financeiro/pagamento_relatorios.html" %}
 
-		{% endblock %}
+{% block relatorios %}
 
-		{% block pagamento_listagem %}
+{% include "financeiro/pagamento_relatorios.html" %}
 
-		{% include "financeiro/pagamento_listagem.html" %}
+{% endblock %}
 
-		{% endblock %}
+{% block pagamento_listagem %}
 
-	</div>
-</div>
+{% include "financeiro/pagamento_listagem.html" %}
+
+{% endblock %}
+
 
 
 {% endblock %}

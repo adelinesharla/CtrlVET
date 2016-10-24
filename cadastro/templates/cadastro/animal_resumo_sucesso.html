@@ -1,0 +1,36 @@
+{% extends "cadastro/base_visaogeral.html" %}
+
+{% load material_form %} 
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'animal_resumo' %}" class="breadcrumb">Animais Cadastrados</a>
+{% endblock %}
+
+
+{% block content %}
+{% include "cadastro/modal.html" %}
+<div class="row">
+	<div class="card">
+		<div class="card-content">
+
+			{% block estatisticas %}
+			{% endblock %}
+
+			{% block pesquisa %}
+
+			{% include "cadastro/pesquisa.html" %}
+
+			{% endblock %}
+
+			{% block lista %}
+
+			{% include "cadastro/animal_listagem.html" %}
+
+			{% endblock %}
+			
+		</div>
+	</div>
+</div>
+{% endblock %}
+

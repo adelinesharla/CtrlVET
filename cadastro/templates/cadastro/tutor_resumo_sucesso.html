@@ -1,0 +1,35 @@
+{% extends "cadastro/base_visaogeral.html" %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'tutor_resumo' %}" class="breadcrumb">Clientes Cadastrados</a>
+{% endblock %}
+
+
+{% block content %}
+{% include "cadastro/modal_edit.html" %}
+<div class="row">
+	<div class="card">
+		<div class="card-content">
+
+			{% block estatisticas %}
+			{% endblock %}
+
+			{% block pesquisa %}
+
+			{% include "cadastro/pesquisa.html" %}
+
+			{% endblock %}
+
+			{% block lista %}
+
+			{% include "cadastro/tutor_listagem.html" %}
+
+			{% endblock %}
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+

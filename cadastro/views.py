@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.conf.urls import url
 
 """Classes de views genericas utilizadas"""
-from django.views.generic import View, FormView, TemplateView, DetailView, UpdateView, DeleteView, ListView, FormView
+from django.views.generic import View, TemplateView, DetailView, UpdateView, DeleteView, ListView, FormView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import ProcessFormView
 from _functools import reduce
@@ -23,6 +23,10 @@ from django.forms.models import model_to_dict #iterar em object no template
 import operator
 from django.db.models import Q
 
+from django.http import *
+from django.template import RequestContext
+
+import socket
 
 
 from django.core.urlresolvers import reverse_lazy, reverse
@@ -32,6 +36,7 @@ from django.core.urlresolvers import reverse_lazy, reverse
 #Tabs são apropriados e garantem uma maior readability ao código
 # :)
 
+		
 def page_not_found(request):
 	# Dict to pass to template, data could come from DB query
 	values_for_template = {}
@@ -53,6 +58,7 @@ def permission_denied(request):
 	return render(request,'403.html',values_for_template,status=403)
 
 
+	
 """Classe de renderização da main (sem contexto)"""
 class MainView(TemplateView):
 	template_name='cadastro/main.html'
@@ -91,12 +97,17 @@ class ListTutor(ListView):
 class TutorResumo(ListTutor):
 	template_name='cadastro/tutor_resumo.html'
 
+"""Classe de renderização do painel de tutor (sem contexto)"""
+class TutorResumoSucesso(ListTutor):
+	template_name='cadastro/tutor_resumo_sucesso.html'
+
 
 """Formulário de cadastro de Tutor"""
 class TutorFormView(FormView):
 	template_name = 'cadastro/tutorendtel_form.html'
 	form_class = TutorModelForm
 	success_url = '/tutor/resumo'
+
 	
 	def get_context_data(self, **kwargs):
 		context = super (TutorFormView, self).get_context_data(**kwargs)
@@ -104,8 +115,8 @@ class TutorFormView(FormView):
 		return context
 
 	def form_valid(self, form):
-		form.save()
-		return HttpResponseRedirect(self.success_url)
+		novo_form = form.save()		
+		return HttpResponseRedirect(reverse_lazy('tutor_success',args=(novo_form.pk,))) 
 
 	def post(self, form, **kwargs):
 		if "cancel" in self.request.POST:
@@ -115,7 +126,39 @@ class TutorFormView(FormView):
 """Classe para deletar Tutor"""
 class TutorDeletar(DeleteView):
 	model = TutorEndTel
-	success_url = '/success/'
+	success_url = '/tutor/resumo/Sucesso'
+		
+
+"""Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""		
+class TutorDetalhesViewSuccess(DetailView):
+	model = TutorEndTel
+
+	def get_context_data(self, **kwargs):
+		context = super (TutorDetalhesViewSuccess, self).get_context_data(**kwargs)
+		return context
+
+
+		
+"""Classe para editar Tutor"""
+class TutorDetalhesViewSuccessForm(UpdateView):
+	form_class = TutorModelFormDisable
+	model = TutorEndTel
+	template_name_suffix = '_success'
+	success_url = '/tutor/resumo'
+
+	def get_context_data(self, **kwargs):
+		context = super (TutorDetalhesViewSuccessForm, self).get_context_data(**kwargs)
+		context['tutor'] = TutorEndTel.objects.get(pk=self.kwargs.get('pk'))
+		context['action_form'] = 'null'
+		return context
+
+	def post(self, form, **kwargs):
+		if "POST" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		if "GET" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		return super(TutorDetalhesViewSuccessForm, self).post(self, form, **kwargs)		
+
 
 """Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""
 class TutorDetalhesView(DetailView):
@@ -125,6 +168,7 @@ class TutorDetalhesView(DetailView):
 		context = super (TutorDetalhesView, self).get_context_data(**kwargs)
 		return context
 
+		
 """Classe para editar Tutor"""
 class TutorDetalhesViewForm(UpdateView):
 	form_class = TutorModelFormDisable
@@ -147,29 +191,12 @@ class TutorDetalhesViewForm(UpdateView):
 
 """Classe para editar Tutor"""
 class TutorEditar(UpdateView):
-	form_class = TutorModelFormDisable
-	model = TutorEndTel
-	template_name_suffix = '_form_detail'
-	success_url = '/tutor/resumo'
-
-	def get_context_data(self, **kwargs):
-		context = super (TutorEditar, self).get_context_data(**kwargs)
-		context['action_form'] = 'update'
-		return context
-
-	def post(self, form, **kwargs):
-		if "cancel" in self.request.POST:
-			self.object = self.get_object()
-			return HttpResponseRedirect(self.success_url)
-		return super(TutorEditar, self).post(self, form, **kwargs)
-
-"""Classe para editar Tutor"""
-class TutorEditar(UpdateView):
 	form_class = TutorModelForm
 	model = TutorEndTel
 	template_name_suffix = '_form_update'
-	success_url = '/tutor/resumo'
-
+	success_url = '/tutor/resumo/Sucesso'
+	success_url2 = '/tutor/resumo'
+	
 	def get_context_data(self, **kwargs):
 		context = super (TutorEditar, self).get_context_data(**kwargs)
 		context['action_form'] = 'update'
@@ -178,7 +205,7 @@ class TutorEditar(UpdateView):
 	def post(self, form, **kwargs):
 		if "cancel" in self.request.POST:
 			self.object = self.get_object()
-			return HttpResponseRedirect(self.success_url)
+			return HttpResponseRedirect(self.success_url2)
 		return super(TutorEditar, self).post(self, form, **kwargs)
 
 
@@ -260,6 +287,15 @@ class AnimalResumo(ListAnimal):
 		context = super (AnimalResumo, self).get_context_data(**kwargs)
 		context['form'] = AnimalBuscaAdvForm()
 		return context
+		
+"""Classe de renderização do painel de animal (sem contexto)"""
+class AnimalResumoSucesso(ListAnimal):
+	template_name='cadastro/animal_resumo_sucesso.html'
+	
+	def get_context_data(self, **kwargs):
+		context = super (AnimalResumoSucesso, self).get_context_data(**kwargs)
+		context['form'] = AnimalBuscaAdvForm()
+		return context
 
 
 """Formulário de cadastro de Animal"""
@@ -272,16 +308,43 @@ class AnimalFormView(FormView):
 		context = super (AnimalFormView, self).get_context_data(**kwargs)
 		context['action_form'] = 'cadastro'
 		return context
-
+	
 	def form_valid(self, form):
-		form.save()
-		return HttpResponseRedirect('/animal/resumo')
+		novo_form = form.save()		
+		return HttpResponseRedirect(reverse_lazy('animal_detalhes_sucesso',args=(novo_form.pk,))) 
 
 	def post(self, form, **kwargs):
 		if "cancel" in self.request.POST:
 			return HttpResponseRedirect(self.success_url)
 		return super(AnimalFormView, self).post(self, form, **kwargs)
 	
+"""Classe para retornar detalhes de Animal (alimenta o template animal_detalhes)"""
+class AnimalDetalhesViewSuccess(DetailView):
+	model = Animal
+
+	def get_context_data(self, **kwargs):
+		context = super (AnimalDetalhesViewSuccess, self).get_context_data(**kwargs)
+		return context
+
+class AnimalDetalhesViewSuccessForm(UpdateView):
+	form_class = AnimalModelFormDisable
+	model = Animal
+	template_name_suffix = '_success'
+	success_url = '/animal/resumo'
+
+	def get_context_data(self, **kwargs):
+		context = super (AnimalDetalhesViewSuccessForm, self).get_context_data(**kwargs)
+		context['animal'] = Animal.objects.get(pk=self.kwargs.get('pk'))
+		context['action_form'] = 'null'
+		return context
+
+	def post(self, form, **kwargs):
+		if "POST" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		if "GET" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		return super(AnimalDetalhesViewSuccessForm, self).post(self, form, **kwargs)
+
 """Classe para retornar detalhes de Animal (alimenta o template animal_detalhes)"""
 class AnimalDetalhesView(DetailView):
 	model = Animal
@@ -316,7 +379,8 @@ class AnimalEditar(UpdateView):
 	#fields = '__all__'
 	model = Animal
 	template_name_suffix = '_form_update'
-	success_url = '/animal/resumo'
+	success_url = '/animal/resumo/Sucesso'
+	success_url2 = '/animal/resumo'
 
 	def get_context_data(self, **kwargs):
 		context = super (AnimalEditar, self).get_context_data(**kwargs)
@@ -326,24 +390,31 @@ class AnimalEditar(UpdateView):
 	def post(self, form, **kwargs):
 		if "cancel" in self.request.POST:
 			self.object = self.get_object()
-			return HttpResponseRedirect(self.success_url)
+			return HttpResponseRedirect(self.success_url2)
 		return super(AnimalEditar, self).post(self, form, **kwargs)
 
 class AnimalObito(UpdateView):
 	form_class = AnimalObitoForm
 	model = Animal
 	template_name_suffix = '_form_update_obito'
-	success_url = '/animal/resumo'
-
+	success_url = '/animal/resumo/Sucesso'
+	success_url2 = '/animal/resumo'
+	
 	def get_context_data(self, **kwargs):
 		context = super (AnimalObito, self).get_context_data(**kwargs)
 		context['action_form'] = 'update'
 		return context
+		
+	def post(self, form, **kwargs):
+		if "cancel" in self.request.POST:
+			self.object = self.get_object()
+			return HttpResponseRedirect(self.success_url2)
+		return super(AnimalObito, self).post(self, form, **kwargs)
 
 """Classe para deletar Animal"""
 class AnimalDeletar(DeleteView):
 	model = Animal
-	success_url = '/success/'
+	success_url = '/animal/resumo/Sucesso'
 
 """Classe para busca de Animal pelos campos: nome, rg, especie e raça"""
 class AnimalBuscaListView(ListAnimal):
@@ -390,6 +461,11 @@ class AnimalBuscaListView(ListAnimal):
 					result = result.filter(_idade__icontains=form.cleaned_data['_idade'])
 				if form.cleaned_data['_especie']:
 					result = result.filter(_especie__icontains=form.cleaned_data['_especie'])
+				
+				'''if form.cleaned_data['_tutor']:
+																	result = result.filter(tutor=TutorEndTel.objects.filter(_nome__icontains=form.cleaned_data['_tutor']))'''
+
+					#result = Animal.objects.filter(_tutor__icontains=tutor for tutor in tutores)
 
 		return result		
 			
@@ -406,13 +482,14 @@ class ConsultaFormView(FormView):
 		context['action_form'] = 'cadastro'
 		return context
 	
+
 	def form_valid(self, form):
 		#form.laboratorio = Laboratorio.objects.get(pk=self.kwargs.get('pk'))
 		animal = form.cleaned_data['animal']
 		consulta = form.save()
 		consulta.cliente = Animal.objects.get(pk=animal.pk).tutor
 		consulta.save()
-		return HttpResponseRedirect('/consulta/resumo')
+		return HttpResponseRedirect(reverse_lazy('connsulta_detalhes_sucesso',args=(consulta.pk,))) 
 
 	def get_initial(self):
 		initial=super(ConsultaFormView, self).get_initial()
@@ -421,7 +498,7 @@ class ConsultaFormView(FormView):
 
 class ConsultaDeleteView(DeleteView):
 	model = Consulta
-	success_url = '/success/'
+	success_url = '/consulta/resumo/Sucesso'
 	#success_url = reverse_lazy('consulta_resumo')
 
 class ConsultaDetailView(DetailView):
@@ -449,6 +526,32 @@ class ConsultaDetailViewForm(UpdateView):
 		if "GET" in self.request.POST:
 			return HttpResponseRedirect(self.permission_denied)
 		return super(ConsultaDetailViewForm, self).post(self, form, **kwargs)
+
+class ConsultaDetailViewSuccess(DetailView):
+	model = Consulta
+
+	def get_context_data(self, **kwargs):
+		context = super (ConsultaDetailViewSuccessView, self).get_context_data(**kwargs)
+		return context
+
+class ConsultaDetailViewSuccessForm(UpdateView):
+	form_class = ConsultaModelFormDisable
+	model = Consulta
+	template_name_suffix = '_success'
+	success_url = '/consulta/resumo'
+
+	def get_context_data(self, **kwargs):
+		context = super (ConsultaDetailViewSuccessForm, self).get_context_data(**kwargs)
+		context['animal'] = Consulta.objects.get(pk=self.kwargs.get('pk')).animal
+		context['action_form'] = 'null'
+		return context
+
+	def post(self, form, **kwargs):
+		if "POST" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		if "GET" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		return super(ConsultaDetailViewSuccessForm, self).post(self, form, **kwargs)
 
 class ConsultaUpdateView(UpdateView):
 	form_class = ConsultaModelForm
@@ -483,6 +586,9 @@ class ConsultaListView(ListView):
 
 class ConsultaResumo(ConsultaListView):
 	template_name='cadastro/consulta_resumo.html'
+
+class ConsultaResumoSucesso(ConsultaListView):
+	template_name='cadastro/consulta_resumo_success.html'
 
 class ConsultaBuscaListView(ConsultaListView):
 	def get_queryset(self):

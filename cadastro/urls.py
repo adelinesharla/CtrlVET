@@ -25,9 +25,11 @@ urlpatterns = [
 
     #Urls relacionadas às views de Tutor
     
-    url(r'^tutor/resumo$',  TutorResumo.as_view(), name='tutor_resumo'),
-    url(r'^tutor/detalhes/(?P<pk>\d+)/', TutorDetalhesViewForm.as_view(), name = 'tutor_detalhes'),
-    url(r'^tutor/detalhes/editar/(?P<pk>\d+)/',TutorEditar.as_view(),  name = 'tutor_editar'),
+    url(r'^tutor/resumo$',  TutorResumo.as_view(), name='tutor_resumo'), 
+	url(r'^tutor/resumo/Sucesso$',  TutorResumoSucesso.as_view(), name='tutor_resumo_sucesso'), 
+	url(r'^tutor/detalhes/(?P<pk>\d+)/Sucesso', TutorDetalhesViewSuccessForm.as_view(), name = 'tutor_success'), 
+    url(r'^tutor/detalhes/(?P<pk>\d+)/', TutorDetalhesViewForm.as_view(), name = 'tutor_detalhes'),   
+	url(r'^tutor/detalhes/editar/(?P<pk>\d+)/',TutorEditar.as_view(),  name = 'tutor_editar'),
     url(r'^tutor/detalhes/deletar/(?P<pk>\d+)/',TutorDeletar.as_view(),  name = 'tutor_deletar'),
     url(r'^tutor/cadastro$', TutorFormView.as_view(), name = 'tutor_cadastro'),
     url(r'^tutor/busca$', TutorBuscaListView.as_view(), name = 'tutor_busca_list_view'),
@@ -37,8 +39,10 @@ urlpatterns = [
     #Urls relacionadas às views de Animal
     
       #Urls relacionadas às views de Animal
-    url(r'^animal/resumo$',  AnimalResumo.as_view(), name='animal_resumo'),
-    url(r'^animal/detalhes/(?P<pk>\d+)/', AnimalDetalhesViewForm.as_view(), name = 'animal_detalhes'),
+    url(r'^animal/resumo$',  AnimalResumo.as_view(), name='animal_resumo'),   
+	url(r'^animal/resumo/Sucesso$',  AnimalResumoSucesso.as_view(), name='animal_resumo_sucesso'),
+	url(r'^animal/detalhes/(?P<pk>\d+)/Sucesso', AnimalDetalhesViewSuccessForm.as_view(), name = 'animal_detalhes_sucesso'),
+	url(r'^animal/detalhes/(?P<pk>\d+)/', AnimalDetalhesViewForm.as_view(), name = 'animal_detalhes'),
     url(r'^animal/detalhes/editar/(?P<pk>\d+)/',AnimalEditar.as_view(),  name = 'animal_editar'),
     url(r'^animal/detalhes/obito/(?P<pk>\d+)/',AnimalObito.as_view(),  name = 'animal_obito'),
     url(r'^animal/detalhes/deletar/(?P<pk>\d+)/',AnimalDeletar.as_view(),  name = 'animal_deletar'),
@@ -52,9 +56,11 @@ urlpatterns = [
     url(r'^consulta/cadastro$', ConsultaFormView.as_view(), name = 'consulta_cadastro'),
     url(r'^consulta/detalhes/deletar/(?P<pk>\d+)/',ConsultaDeleteView.as_view(),  name = 'consulta_deletar'),
     url(r'^consulta/detalhes/(?P<pk>\d+)/', ConsultaDetailViewForm.as_view(), name = 'consulta_detalhes'),
+    url(r'^consulta/detalhes/(?P<pk>\d+)/Sucesso', ConsultaDetailViewSuccessForm.as_view(), name = 'consulta_detalhes_sucesso'),
     url(r'^consulta/detalhes/editar/(?P<pk>\d+)/',ConsultaUpdateView.as_view(),  name = 'consulta_editar'),
     url(r'^consulta/$',ConsultaListView.as_view(), name='consulta_list'),
     url(r'^consulta/resumo$',ConsultaResumo.as_view(), name='consulta_resumo'),
+	url(r'^consulta/resumo/Sucesso$',ConsultaResumoSucesso.as_view(), name='consulta_resumo_sucesso'),
     url(r'^consulta/busca$', ConsultaBuscaListView.as_view(), name = 'consulta_busca_list_view'),
     url(r'^consulta/busca/avancada$', ConsultaBuscaAvancadaMixin.as_view(), name = 'consulta_busca_avancada'),
     
@@ -70,7 +76,6 @@ urlpatterns = [
     url(r'^exame/$',ExameListView.as_view(), name='exame_list'),
     #url(r'^exame/resumo$',ExameResumo.as_view(), name='exame_resumo'),
     url(r'^exames/busca$', ExameBuscaListView.as_view(), name = 'exame_busca_list_view'),
-
     #exame/
     #exame/laboratorio/pk/exames
     #exame/laboratorio/pk/cadastro

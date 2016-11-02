@@ -72,8 +72,10 @@
 		<ul id="nav-mobile" class="side-nav fixed">
 			<li class="no-padding">
 				<ul class="collapsible collapsible-accordion">
-
-					<li class="logo center "><div class="container logo-vet"><img class="responsive-img "  src="{% static 'media/logo/logo100.png' %}"></div></li>
+					
+					<li class="logo"><a id="logo-container" class="brand-logo" href="/" >
+						<object id="front-page-logo" type="image/png" data="{% static 'media/logo/logo100.png' %}">Browser não suporta imagens</object></a>
+					</li>
 
 					<li class="bold hide-on-large-only"><a href="{% url 'main' %}" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
 
@@ -83,7 +85,7 @@
 					<li class="bold"><a href="{% url 'consulta_resumo' %}" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
 					<!--<li class="bold"><a href="{% url 'estoque_resumo' %}" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>-->
 					<li class="bold"><a href="{% url 'pagamento_resumo' %}" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>
-
+					
 				</ul>
 			</li>     
 		</ul>
@@ -92,7 +94,7 @@
 		<nav id="caminho">
 			<div class="col s12">
 				{% block breadcrumbs %}
-				<a href="{% url 'main' %}" class="breadcrumb">Main</a>
+				<a href="{% url 'main' %}" class="breadcrumb">Início</a>
 				{% endblock %}
 			</div>
 		</nav>
@@ -100,28 +102,28 @@
 	</header>
 
 	<!-- Main content -->
-		<main>
-			<div class='main-ajuste-padding'>
-				{% block content %}
-				{% endblock %}
-			</div>
-		</main>
+	<main>
+		<div class='main-ajuste-padding'>
+			{% block content %}
+			{% endblock %}
+		</div>
+	</main>
 
 	<!-- Footer -->
 
-	<footer class="caminho grey lighten-3">
-		<p><div class="container">
-			<div class="row">
-				<div class="col s12 m12 l12 black-text text-lighten-4">
-					Sistema de gestão do Hospital Veterinário HOVET
+	<footer class="footer-body grey lighten-3">
+		<div class="footer-copyright center">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m12 l4 black-text text-lighten-4" id="footer-font">
+						<p>Sistema de gestão do Hospital Veterinário HOVET</p>
+					</div>
+					<div class="col s12 m12 l8 black-text text-lighten-4" id="footer-font">
+						<p>BR 482, km 63 - Tel. (27) 8803-4503 - Área experimental do CCA-UFES, Alegre - ES - Brasil</p>
+					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col s12 m12 l12 black-text text-lighten-4">
-					BR 482, km 63 - Tel. (27) 8803-4503 - Área experimental do CCA-UFES, Alegre - ES - Brasil
-				</div>
-			</div>
-		</div></p>
+		</div>
 	</footer>
 </body>
 </html>

@@ -66,8 +66,31 @@ nav {
 /* Logo
 ========================================================================== */
 .logo-vet {
-	max-width: 50%;
+	max-width: 100%;
 }
+
+li.logo {
+	text-align:center;
+	margin-top:0px;
+	margin-bottom:0px;
+}
+
+#logo-container{
+	height: 100px; /* Altura da logo */
+	margin-bottom: 32px;
+	text-align: center;
+}
+
+#front-page-logo{
+	display:inline-block;
+	height:100%;
+	pointer-events:none;
+}
+
+#logo-container:hover{
+	background-color:transparent;
+}
+
 /* Ajustes brand logo */
 .navbar-material .nav-wrapper .brand-logo img {
 	height: 10px;
@@ -134,3 +157,23 @@ a {
 	margin-bottom: 0px;
 }
 
+/* Footer
+========================================================================== */
+
+#footer-font{
+	font-size:x-small;
+}
+
+#footer-body {
+	height: 50px;
+	line-height: 50px;
+	background-color: #b0bec5 !important;
+	color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+@media only screen and (max-width:992px) {
+	#footer-body {
+		padding-left: 10px;
+	}
+}

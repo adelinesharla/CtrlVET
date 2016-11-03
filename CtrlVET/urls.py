@@ -52,5 +52,6 @@ urlpatterns = [
     #url(r'^(?P<template_name>.*)$', MockUp.as_view()),
     url(r'', include('cadastro.urls')),
     url(r'', include('financeiro.urls')),
+    url(r'', include('consulta.urls')),
     #url(r'^agenda', agenda.html),
 ]

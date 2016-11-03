@@ -1,59 +1,21 @@
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
 
 <div class="row">
 	<div class="col s12 m12 l12">
-		<span class="card-title">Clientes Cadastrados</span>
+		<span class="card-title">Tutores Cadastrados</span>
 		<div class="divider"></div>
-		<div class="row">
-			<div class="col s12 m12">
 
-				{% if object_list %}
+		{% load render_table from django_tables2 %}
+		{% render_table table  %}
 
-				<table class="highlight striped">
-					<thead>
-						<th data-field=""><a href="{% url 'tutor_resumo' %}?ordering=pk&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Id</a></th>
-						<th data-field=""><a href="{% url 'tutor_resumo' %}?ordering=_nome&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nome</a></th>
-						<th data-field=""><a href="{% url 'tutor_resumo' %}?ordering=_cidade&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Cidade</a></th>
-						<th class="hide-on-small-only"data-field="">Email</th>
-						<th class="hide-on-small-only"data-field="">Telefone</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					{% for object in object_list %}
-					<tr>
-						<td>{{ object.pk }}</td>
-						<td><b><a href="{% url 'tutor_detalhes' object.pk %}">{{ object.nome }}</a></b></td>
-						<td class=".hide-on-small-only">{{ object.cidade }}</td>
-						<td class="hide-on-small-only">{{ object.email }}</td>
-						<td class="hide-on-small-only">{{ object.telefone1 }}</td>
-						
-						<td class="hide-on-small-only"><a href="{% url 'tutor_editar' object.pk %}"><b>Editar</b></a></td>
-						<td class="hide-on-small-only"><a href="{% url 'tutor_deletar' object.pk %}"><b>Excluir</b></a></td>
-
-						<td class="hide-on-med-and-up"><a class="btn-floating waves-effect waves-light indigo darken-4" href="{% url 'tutor_editar' object.pk %}"><i class="material-icons">mode_edit</i></a></td>
-						<td class="hide-on-med-and-up"><a class="btn-floating waves-effect waves-light indigo darken-4" href="{% url 'tutor_deletar' object.pk %}"><i class="material-icons">delete</i></a></td>
-
-
-
-					</tr>
-
-					{% endfor %}
-
-				</tbody>
-			</table>
-
-			{% block paginacao %}
-
-			{% include "cadastro/paginacao.html" %}
-
-			{% endblock %}
-
-			{% else %}
-
-			<p>Nenhum <i>Cliente</i> encontrado</p>
-
-			{% endif %}
-
-		</div>
 	</div>
 </div>

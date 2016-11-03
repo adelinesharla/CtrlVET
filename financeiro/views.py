@@ -34,6 +34,10 @@ from datetime import datetime
 from django.db.models import Sum
 
 
+from django_tables2 import MultiTableMixin, SingleTableView, RequestConfig
+from .tables import *
+
+
 class SuccessView(TemplateView):
 	template_name='financeiro/success.html'	
 

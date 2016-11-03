@@ -37,13 +37,17 @@ $( document ).ready(function() {
 		}
 	};
 
+
+
 	$('#id__telefone1').mask(SPMaskBehavior, spOptions, {placeholder:"(99)9999-99999"});
 	$('#id__telefone2').mask(SPMaskBehavior, spOptions, {placeholder:"(99)9999-99999"});
 	$('#id__cep').mask('00000-000', {placeholder:"00000-000"});
 	$('#id__cpf').mask('000.000.000-00', {placeholder:"000.000.000-00"}, {reverse: true});
 	$('#id__valor').mask('000.000.000.000.000,00', {reverse: true});
 
-
+	$('.excluir').click(function(event){
+		$('#modal1').modal('open');
+	});
 
 });
 
@@ -61,6 +65,8 @@ function AlertSucesso(){
 	$('#id__cpf').cleanVal();
 	$('#id__valor').cleanVal();
 
+
+
 	flag = 1;
 	for (i = 0; i < document.forms[0].getElementsByTagName('input').length; i++ ){
 		if( document.forms[0][i].value == null || document.forms[0][i].value == "" ){
@@ -75,3 +81,5 @@ function AlertSucesso(){
 		return true;
 	}
 };
+
+

@@ -186,10 +186,6 @@ class ConsultaModelForm(forms.ModelForm):
 			Row('cliente')
 		)
 
-		
-
-
-
 class ConsultaModelFormDisable(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):

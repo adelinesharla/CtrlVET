@@ -8,6 +8,8 @@ from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import ProcessFormView
 from _functools import reduce
 
+from django.core.urlresolvers import reverse_lazy, reverse
+
 
 'HttpResponse para uma pagina template indicando que a operação foi realizada (verificar se tal página existe)'
 from django.http import HttpResponseRedirect
@@ -28,13 +30,8 @@ from django.template import RequestContext
 
 import socket
 
-
-from django.core.urlresolvers import reverse_lazy, reverse
-
-
-#Não somos selvagens. O uso de 2 espaços como forma de identação é degradante.
-#Tabs são apropriados e garantem uma maior readability ao código
-# :)
+from django_tables2 import MultiTableMixin, SingleTableView, RequestConfig
+from .tables import *
 
 		
 def page_not_found(request):
@@ -69,29 +66,21 @@ class SuccessView(TemplateView):
 #Views relacionadas à classe Tutor:
 
 """Classe para listar os tutores"""
-class ListTutor(ListView):
+
+
+class ListTutor(SingleTableView):
 	model = TutorEndTel
-	ordering = ['pk']
-	context_object_name = 'object_list'
-	paginate_by = 10
+	table_class = TutorEndTelTable
+	table_pagination = {
+		'per_page': 10
+	}
 
 	def get_context_data(self, **kwargs):
 		context = super (ListTutor, self).get_context_data(**kwargs)
 		context['form'] = TutorBuscaAdvForm()
 		context['action_search'] = reverse_lazy('tutor_busca_list_view', urlconf=None, args=None, kwargs=None)
 		context['action_add'] = reverse_lazy('tutor_cadastro', urlconf=None, args=None, kwargs=None)
-		context['current_order'] = self.get_ordering()
-		context['order'] = self.order
 		return context
-
-	def get_ordering(self):
-		self.order = self.request.GET.get('order', 'asc')
-		selected_ordering = self.request.GET.get('ordering', 'pk')
-		if self.order == "desc":
-			selected_ordering = "-" + selected_ordering
-		return selected_ordering
-
-	
 
 """Classe de renderização do painel de tutor (sem contexto)"""
 class TutorResumo(ListTutor):
@@ -126,7 +115,7 @@ class TutorFormView(FormView):
 """Classe para deletar Tutor"""
 class TutorDeletar(DeleteView):
 	model = TutorEndTel
-	success_url = '/tutor/resumo/Sucesso'
+	success_url = '/tutor/resumo/sucesso'
 		
 
 """Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""		
@@ -137,8 +126,6 @@ class TutorDetalhesViewSuccess(DetailView):
 		context = super (TutorDetalhesViewSuccess, self).get_context_data(**kwargs)
 		return context
 
-
-		
 """Classe para editar Tutor"""
 class TutorDetalhesViewSuccessForm(UpdateView):
 	form_class = TutorModelFormDisable
@@ -158,18 +145,8 @@ class TutorDetalhesViewSuccessForm(UpdateView):
 		if "GET" in self.request.POST:
 			return HttpResponseRedirect(self.permission_denied)
 		return super(TutorDetalhesViewSuccessForm, self).post(self, form, **kwargs)		
-
-
-"""Classe para retornar detalhes de Tutor (alimenta o template tutor_detalhes)"""
-class TutorDetalhesView(DetailView):
-	model = TutorEndTel
-
-	def get_context_data(self, **kwargs):
-		context = super (TutorDetalhesView, self).get_context_data(**kwargs)
-		return context
-
 		
-"""Classe para editar Tutor"""
+"""Classe para visualizar Tutor"""
 class TutorDetalhesViewForm(UpdateView):
 	form_class = TutorModelFormDisable
 	model = TutorEndTel
@@ -194,7 +171,7 @@ class TutorEditar(UpdateView):
 	form_class = TutorModelForm
 	model = TutorEndTel
 	template_name_suffix = '_form_update'
-	success_url = '/tutor/resumo/Sucesso'
+	success_url = '/tutor/resumo/sucesso'
 	success_url2 = '/tutor/resumo'
 	
 	def get_context_data(self, **kwargs):
@@ -211,16 +188,17 @@ class TutorEditar(UpdateView):
 
 
 """Classe para busca de Tutor pelos campos: nome, email e cpf"""
-class TutorBuscaListView(ListTutor):
-	ordering = ['pk']
+class TutorBuscaListView(SingleTableView):
+	model = TutorEndTel
+	table_class = TutorEndTelTable
 	form_class = TutorBuscaAdvForm
+	
+	table_pagination = {
+		'per_page': 10
+	}
 
 	def get_queryset(self):
-		result = super(TutorBuscaListView, self).get_queryset()
-		
-		current_order = self.get_ordering()
-		order = self.order
-		
+		result = super(TutorBuscaListView, self).get_queryset()		
 		query = self.request.GET.get('q')
 		form = self.form_class(self.request.GET or None)
 
@@ -254,30 +232,31 @@ class TutorBuscaListView(ListTutor):
 
 		return result
 
+	def get_context_data(self, **kwargs):
+		context = super (TutorBuscaListView, self).get_context_data(**kwargs)
+		context['form'] = TutorBuscaAdvForm()
+		context['action_search'] = reverse_lazy('tutor_busca_list_view', urlconf=None, args=None, kwargs=None)
+		context['action_add'] = reverse_lazy('tutor_cadastro', urlconf=None, args=None, kwargs=None)
+		return context
+
+
 #Views relacionadas à classe Animal:
 
 """Classe para listar os animais"""    
-class ListAnimal(ListView):
-	model = Animal    	
-	paginate_by = 10
-	ordering = ['pk']
-	context_object_name = 'object_list'
+class ListAnimal(SingleTableView):
+	model = Animal
+	table_class = AnimalTable
+	table_pagination = {
+		'per_page': 10
+	}
 
 	def get_context_data(self, **kwargs):
 		context = super (ListAnimal, self).get_context_data(**kwargs)
 		context['form'] = AnimalBuscaAdvForm()
 		context['action_search'] = reverse_lazy('animal_busca_list_view', urlconf=None, args=None, kwargs=None)
 		context['action_add'] = reverse_lazy('animal_cadastro', urlconf=None, args=None, kwargs=None)
-		context['current_order'] = self.get_ordering()
-		context['order'] = self.order
 		return context
 
-	def get_ordering(self):
-		self.order = self.request.GET.get('order', 'asc')
-		selected_ordering = self.request.GET.get('ordering', 'pk')
-		if self.order == "desc":
-			selected_ordering = "-" + selected_ordering
-		return selected_ordering
 
 """Classe de renderização do painel de animal (sem contexto)"""
 class AnimalResumo(ListAnimal):
@@ -346,12 +325,6 @@ class AnimalDetalhesViewSuccessForm(UpdateView):
 		return super(AnimalDetalhesViewSuccessForm, self).post(self, form, **kwargs)
 
 """Classe para retornar detalhes de Animal (alimenta o template animal_detalhes)"""
-class AnimalDetalhesView(DetailView):
-	model = Animal
-
-	def get_context_data(self, **kwargs):
-		context = super (AnimalDetalhesView, self).get_context_data(**kwargs)
-		return context
 
 class AnimalDetalhesViewForm(UpdateView):
 	form_class = AnimalModelFormDisable
@@ -379,7 +352,7 @@ class AnimalEditar(UpdateView):
 	#fields = '__all__'
 	model = Animal
 	template_name_suffix = '_form_update'
-	success_url = '/animal/resumo/Sucesso'
+	success_url = '/animal/resumo/sucesso'
 	success_url2 = '/animal/resumo'
 
 	def get_context_data(self, **kwargs):
@@ -397,7 +370,7 @@ class AnimalObito(UpdateView):
 	form_class = AnimalObitoForm
 	model = Animal
 	template_name_suffix = '_form_update_obito'
-	success_url = '/animal/resumo/Sucesso'
+	success_url = '/animal/resumo/sucesso'
 	success_url2 = '/animal/resumo'
 	
 	def get_context_data(self, **kwargs):
@@ -414,23 +387,23 @@ class AnimalObito(UpdateView):
 """Classe para deletar Animal"""
 class AnimalDeletar(DeleteView):
 	model = Animal
-	success_url = '/animal/resumo/Sucesso'
+	success_url = '/animal/resumo/sucesso'
 
 """Classe para busca de Animal pelos campos: nome, rg, especie e raça"""
-class AnimalBuscaListView(ListAnimal):
-	ordering = ['pk']
+class AnimalBuscaListView(SingleTableView):
+	model = Animal
+	table_class = AnimalTable
 	form_class = AnimalBuscaAdvForm
+	
+	table_pagination = {
+		'per_page': 10
+	}
 
 	def get_queryset(self):
-		result = super(AnimalBuscaListView, self).get_queryset()
-
-		current_order = self.get_ordering()
-		order = self.order
-		
+		result = super(AnimalBuscaListView, self).get_queryset()		
 		query = self.request.GET.get('q')
 		form = self.form_class(self.request.GET or None)
 
-		
 		if query:
 			query_list = query.split()
 			result = result.filter(
@@ -445,8 +418,6 @@ class AnimalBuscaListView(ListAnimal):
 			)
 
 		else:
-			
-			
 			if form.is_valid():
 
 				if form.cleaned_data['_animal']:
@@ -467,7 +438,14 @@ class AnimalBuscaListView(ListAnimal):
 
 					#result = Animal.objects.filter(_tutor__icontains=tutor for tutor in tutores)
 
-		return result		
+		return result
+
+	def get_context_data(self, **kwargs):
+		context = super (AnimalBuscaListView, self).get_context_data(**kwargs)
+		context['form'] = AnimalBuscaAdvForm()
+		context['action_search'] = reverse_lazy('animal_busca_list_view', urlconf=None, args=None, kwargs=None)
+		context['action_add'] = reverse_lazy('animal_cadastro', urlconf=None, args=None, kwargs=None)
+		return context	
 			
 
 #Views relacionadas à classe Consulta:
@@ -498,7 +476,7 @@ class ConsultaFormView(FormView):
 
 class ConsultaDeleteView(DeleteView):
 	model = Consulta
-	success_url = '/consulta/resumo/Sucesso'
+	success_url = '/consulta/resumo/sucesso'
 	#success_url = reverse_lazy('consulta_resumo')
 
 class ConsultaDetailView(DetailView):
@@ -564,25 +542,20 @@ class ConsultaUpdateView(UpdateView):
 		context['action_form'] = 'update'
 		return context
 
-class ConsultaListView(ListView):
-	model = Consulta    	
-	paginate_by = 10
+class ConsultaListView(SingleTableView):
+	model = Consulta
+	table_class = ConsultaTable 	
+	table_pagination = {
+		'per_page': 10
+	}
 
 	def get_context_data(self, **kwargs):
 		context = super (ConsultaListView, self).get_context_data(**kwargs)
 		context['form'] = ConsultaBuscaAdvForm()
 		context['action_search'] = reverse_lazy('consulta_busca_list_view', urlconf=None, args=None, kwargs=None)
 		context['action_add'] = reverse_lazy('consulta_cadastro', urlconf=None, args=None, kwargs=None)
-		context['current_order'] = self.get_ordering()
-		context['order'] = self.order
 		return context
 
-	def get_ordering(self):
-		self.order = self.request.GET.get('order', 'asc')
-		selected_ordering = self.request.GET.get('ordering', 'pk')
-		if self.order == "desc":
-			selected_ordering = "-" + selected_ordering
-		return selected_ordering
 
 class ConsultaResumo(ConsultaListView):
 	template_name='cadastro/consulta_resumo.html'
@@ -712,16 +685,8 @@ class ExameListView(ListView):
 		context['form'] = ExameBuscaAdvForm()
 		context['action_search'] = reverse_lazy('exame_busca_list_view', urlconf=None, args=None, kwargs=None)
 		context['action_add'] = reverse_lazy('exame_cadastro', urlconf=None, args=None, kwargs=None)
-		context['current_order'] = self.get_ordering()
-		context['order'] = self.order
 		return context
 
-	def get_ordering(self):
-		self.order = self.request.GET.get('order', 'asc')
-		selected_ordering = self.request.GET.get('ordering', 'pk')
-		if self.order == "desc":
-			selected_ordering = "-" + selected_ordering
-		return selected_ordering
 
 class ExameBuscaListView(ExameListView):
 	def get_queryset(self):
@@ -754,14 +719,26 @@ class LaboratorioResumo(LaboratorioListView):
 	template_name='cadastro/laboratorio_resumo.html'
 	
 
-class LaboratorioDetailView(DetailView):
+class LaboratorioDetailView(SingleTableView):
 	pk_url_kwarg = "laboratorio_id"
-	model = Laboratorio
+	model = Exame
+	table_class = ExameTable
+	template_name = 'cadastro/laboratorio_detail.html'
+	table_pagination = {
+		'per_page': 10
+	}
 	
 	def get_context_data(self, **kwargs):
 		context = super (LaboratorioDetailView, self).get_context_data(**kwargs)
 		context['form'] = ExameBuscaAdvForm()
 		context['action_search'] = reverse_lazy('exame_busca_list_view')
-		pk = self.object.pk
+		context['object'] = Laboratorio.objects.get(pk=self.kwargs.get('laboratorio_id'))
+		pk = self.kwargs.get('laboratorio_id')
 		context['action_add'] = reverse('exame_cadastro', kwargs={'pk': pk})
 		return context
+
+	def get_table_data(self, **kwargs):
+		if self.table_data is not None:
+			return self.table_data
+		elif hasattr(self, 'object_list'):
+			return self.object_list.filter(laboratorio=self.kwargs.get('laboratorio_id'))

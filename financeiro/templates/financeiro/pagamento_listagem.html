@@ -23,7 +23,7 @@
 						{% for nota in debitos_list %}
 						<tr>
 							<td><b>{{ nota.pk }}</b></td>
-							<td>{{ nota.data }}</td>
+							<td>{{ nota.data|date:"SHORT_DATE_FORMAT" }}</td>
 							<td>{{ nota.get_setor_display }}</td>
 							<td class="hide-on-small-only"><a href="{% url 'tutor_detalhes' nota.atendimento.cliente.pk %}">{{ nota.atendimento.cliente.nome }}</a></td>
 							<td>{{ nota.total }}</td>
@@ -60,6 +60,7 @@
 				{% else %}
 				<p>Nenhum pagamento <i>a receber</i> encontrado</p>
 				{% endif %}
+				
 			</div>
 		</div>
 	</div>
@@ -90,7 +91,7 @@
 						{% for nota in recebidos_list %}
 						<tr>
 							<td><b>{{ nota.pk }}</b></td>
-							<td>{{ nota.data }}</td>
+							<td>{{ nota.data|date:"SHORT_DATE_FORMAT" }}</td>
 							<td class="hide-on-small-only">{{ nota.get_setor_display }}</td>
 							<td class="hide-on-small-only"><a href="{% url 'tutor_detalhes' nota.atendimento.cliente.pk %}">{{ nota.atendimento.cliente.nome }}</a></td>
 							<td>{{ nota.total }}</td>

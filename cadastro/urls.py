@@ -26,8 +26,8 @@ urlpatterns = [
     #Urls relacionadas às views de Tutor
     
     url(r'^tutor/resumo$',  TutorResumo.as_view(), name='tutor_resumo'), 
-	url(r'^tutor/resumo/Sucesso$',  TutorResumoSucesso.as_view(), name='tutor_resumo_sucesso'), 
-	url(r'^tutor/detalhes/(?P<pk>\d+)/Sucesso', TutorDetalhesViewSuccessForm.as_view(), name = 'tutor_success'), 
+	url(r'^tutor/resumo/sucesso$',  TutorResumoSucesso.as_view(), name='tutor_resumo_sucesso'), 
+	url(r'^tutor/detalhes/(?P<pk>\d+)/sucesso', TutorDetalhesViewSuccessForm.as_view(), name = 'tutor_success'), 
     url(r'^tutor/detalhes/(?P<pk>\d+)/', TutorDetalhesViewForm.as_view(), name = 'tutor_detalhes'),   
 	url(r'^tutor/detalhes/editar/(?P<pk>\d+)/',TutorEditar.as_view(),  name = 'tutor_editar'),
     url(r'^tutor/detalhes/deletar/(?P<pk>\d+)/',TutorDeletar.as_view(),  name = 'tutor_deletar'),
@@ -40,8 +40,8 @@ urlpatterns = [
     
       #Urls relacionadas às views de Animal
     url(r'^animal/resumo$',  AnimalResumo.as_view(), name='animal_resumo'),   
-	url(r'^animal/resumo/Sucesso$',  AnimalResumoSucesso.as_view(), name='animal_resumo_sucesso'),
-	url(r'^animal/detalhes/(?P<pk>\d+)/Sucesso', AnimalDetalhesViewSuccessForm.as_view(), name = 'animal_detalhes_sucesso'),
+	url(r'^animal/resumo/sucesso$',  AnimalResumoSucesso.as_view(), name='animal_resumo_sucesso'),
+	url(r'^animal/detalhes/(?P<pk>\d+)/sucesso', AnimalDetalhesViewSuccessForm.as_view(), name = 'animal_detalhes_sucesso'),
 	url(r'^animal/detalhes/(?P<pk>\d+)/', AnimalDetalhesViewForm.as_view(), name = 'animal_detalhes'),
     url(r'^animal/detalhes/editar/(?P<pk>\d+)/',AnimalEditar.as_view(),  name = 'animal_editar'),
     url(r'^animal/detalhes/obito/(?P<pk>\d+)/',AnimalObito.as_view(),  name = 'animal_obito'),
@@ -56,31 +56,32 @@ urlpatterns = [
     url(r'^consulta/cadastro$', ConsultaFormView.as_view(), name = 'consulta_cadastro'),
     url(r'^consulta/detalhes/deletar/(?P<pk>\d+)/',ConsultaDeleteView.as_view(),  name = 'consulta_deletar'),
     url(r'^consulta/detalhes/(?P<pk>\d+)/', ConsultaDetailViewForm.as_view(), name = 'consulta_detalhes'),
-    url(r'^consulta/detalhes/(?P<pk>\d+)/Sucesso', ConsultaDetailViewSuccessForm.as_view(), name = 'consulta_detalhes_sucesso'),
+    url(r'^consulta/detalhes/(?P<pk>\d+)/sucesso', ConsultaDetailViewSuccessForm.as_view(), name = 'consulta_detalhes_sucesso'),
     url(r'^consulta/detalhes/editar/(?P<pk>\d+)/',ConsultaUpdateView.as_view(),  name = 'consulta_editar'),
     url(r'^consulta/$',ConsultaListView.as_view(), name='consulta_list'),
     url(r'^consulta/resumo$',ConsultaResumo.as_view(), name='consulta_resumo'),
-	url(r'^consulta/resumo/Sucesso$',ConsultaResumoSucesso.as_view(), name='consulta_resumo_sucesso'),
+	url(r'^consulta/resumo/sucesso$',ConsultaResumoSucesso.as_view(), name='consulta_resumo_sucesso'),
     url(r'^consulta/busca$', ConsultaBuscaListView.as_view(), name = 'consulta_busca_list_view'),
     url(r'^consulta/busca/avancada$', ConsultaBuscaAvancadaMixin.as_view(), name = 'consulta_busca_avancada'),
     
     #Urls relacionadas às views de Exame
     
     url(r'^exames/$',LaboratorioResumo.as_view(), name='laboratorio_resumo'),
+    url(r'^exames/busca$', ExameBuscaListView.as_view(), name = 'exame_busca_list_view'),
+    
     url(r'^exames/laboratorio/detalhes/(?P<laboratorio_id>\d+)/$',LaboratorioDetailView.as_view(), name = 'laboratorio_detalhes'),
     url(r'^exames/laboratorio/(?P<pk>\d+)/cadastro/', ExameFormView.as_view(), name = 'exame_cadastro'),
     url(r'^exames/detalhes/deletar/(?P<pk>\d+)/$',ExameDeleteView.as_view(),  name = 'exame_deletar'),
     url(r'^exames/detalhes/(?P<pk>\d+)/',ExameDetailViewForm.as_view(), name = 'exame_detalhes'),
     url(r'^exames/detalhes/editar/(?P<pk>\d+)/',ExameUpdateView.as_view(),  name = 'exame_editar'),
-    
-    url(r'^exame/$',ExameListView.as_view(), name='exame_list'),
-    #url(r'^exame/resumo$',ExameResumo.as_view(), name='exame_resumo'),
-    url(r'^exames/busca$', ExameBuscaListView.as_view(), name = 'exame_busca_list_view'),
-    #exame/
-    #exame/laboratorio/pk/exames
-    #exame/laboratorio/pk/cadastro
-    #exame/laboratorio/pk/exame/pk/detalhes
-    #exame/laboratorio/pk/exame/pk/editar
+
+
+
+    #exames/
+    #exames/laboratorio/pk/exames
+    #exames/laboratorio/pk/cadastro
+    #exames/laboratorio/pk/exame/pk/detalhes
+    #exames/laboratorio/pk/exame/pk/editar
     #
 
     ]

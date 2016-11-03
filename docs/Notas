@@ -36,3 +36,7 @@ paginacao.html -> bloco de paginação, geralmente invocado pela *_listagem.html
 pesquisa.html -> bloco de pesquisa. Possui o cadastro e, por hora o botão cadastro sempre será invocado com ele
 
 Os templates continuam os mesmos por causa dos breadcrumbs.
+
+
+Adição de tables2 
+Docs : http://django-tables2.readthedocs.io/

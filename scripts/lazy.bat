@@ -1,8 +1,10 @@
 cd ..
 
-rm db.sqlite3
-rm -rf cadastro\migrations
-rm -rf financeiro\migrations
+del db.sqlite3
+del /s /q cadastro\migrations\*.*
+rd /s /q cadastro\migrations\
+del /s /q financeiro\migrations\*.*
+rd /s /q financeiro\migrations\
 
 python manage.py migrate
 python manage.py makemigrations cadastro 

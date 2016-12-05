@@ -136,8 +136,8 @@ class FichaAtendimentoPequenos(forms.Form):
 	contactantes = forms.CharField(label='Contactantes', max_length=100)
 	ectoparasitas = forms.ChoiceField(label = 'Ectoparasitas', widget=forms.Select, choices = ECTOPARASITAS_CHOICES)
 	tipoDeControle = forms.CharField(label='Tipo de controle', max_length=100)
-	##contatoComRoedores = forms.Booleanfield(label = 'Contato com roedores',Field.default = false)
-	##contatoProdutosToxicos = forms.Booleanfield(label = 'Contato com produtos tóxicos',Field.default = false)
+	#contatoComRoedores = forms.Booleanfield(label = 'Contato com roedores',Field.default = false)
+	#contatoProdutosToxicos = forms.Booleanfield(label = 'Contato com produtos tóxicos',Field.default = false)
 	qual = forms.CharField(label='Qual', max_length=100)
 	banho = forms.CharField(label='Banho', max_length=50)
 	

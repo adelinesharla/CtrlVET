@@ -96,9 +96,9 @@ OUTROS_CHOICES	= (
 		('BI', 'Biópsia'),
 		('SO', 'Sorologia'),
 		('PMO', 'PMO'),
-	)			
+	)	
 
-class FichaAtendimentoPequenos(forms.Form):
+class CabecalhoForm(forms.Form):
 	nome = forms.CharField(label='Nome',max_length=100)
 	rg = forms.IntegerField(label='RG')
 	data = forms.DateField(label='Data')
@@ -112,6 +112,14 @@ class FichaAtendimentoPequenos(forms.Form):
 	bairro = forms.CharField(label='Endereço', max_length=20)
 	email = forms.EmailField(label='E-Mail')
 	telefone = forms.CharField(label='Telefone',max_length=15)
+	
+class RodapeForm(forms.Form):
+	docente = forms.CharField(label='Docente', max_length=100)
+	medicoVeterinario = forms.CharField(label='Veterinário', max_length=100)
+	aluno = forms.CharField(label='Aluno', max_length=100)
+	estagiario = forms.CharField(label='Estagiário', max_length=100)
+
+class FichaAtendimentoPequenos(forms.Form):
 	
 	queixaEhistoria = forms.CharField(label='Queixa principal e história médica recente', max_length=100)
 	#medicacoes = forms.CharField(label='Medicações', max_length=100)
@@ -170,20 +178,12 @@ class FichaAtendimentoPequenos(forms.Form):
 	prescricao =  forms.CharField(label='Prescrição', max_length=100)
 	retorno = forms.DateField(label='Retorno')
 	alta = forms.DateField(label='Alta')
-	encaminhamento = forms.CharField(label='Encaminhamento', max_length=100)
-	docente = forms.CharField(label='Docente', max_length=100)
-	medicoVeterinario = forms.CharField(label='Veterinário', max_length=100)
-	aluno = forms.CharField(label='Aluno', max_length=100)
-	estagiario = forms.CharField(label='Estagiário', max_length=100)
-	
+	encaminhamento = forms.CharField(label='Encaminhamento', max_len)
+
 	
 	
 class FichaRetornoPequenos(forms.Form):
 	
-	nome = forms.CharField(label='Nome',max_length=100)
-	rg = forms.IntegerField(label='RG')
-	peso = forms.DecimalField(label='Peso(Kg)',max_digits=4, decimal_places=3)
-	data = forms.DateField(label='Data')
 	anamnese = forms.CharField(label='Anamnese',max_length=500)
 	
 	estadoDeHidratacao = forms.ChoiceField(label = 'Estado de hidratação', widget=forms.Select, choices = HIDRATACAO_CHOICES)
@@ -216,35 +216,21 @@ class FichaRetornoPequenos(forms.Form):
 	prescricao =  forms.CharField(label='Prescrição', max_length=100)
 	retorno = forms.DateField(label='Retorno')
 	alta = forms.DateField(label='Alta')
-	docente = forms.CharField(label='Docente', max_length=100)
-	medicoVeterinario = forms.CharField(label='Veterinário', max_length=100)
-	aluno = forms.CharField(label='Aluno', max_length=100)
-	estagiario = forms.CharField(label='Estagiário', max_length=100)
 	
+'''Essa ficha também deve ser utiilizada para o retorno'''
+class FichaAtendimentoGrandes(forms.Form):
+	anamnese = forms.CharField(label='Anamnese',max_length=3000)
 	
+	'''alimentacao'''
 	
+	outros = forms.CharField(label='Outros achados',max_length=500)
+	suspeita = forms.CharField(label='Suspeita Clínica',max_length=300)
+	prognostico = forms.CharField(label='Prognóstico',max_length=300)
+	diagnostico = forms.CharField(label='Diagnóstico',max_length=500)
+	
+	tratamento = forms.CharField(label='Protocolo de Tratamento',max_length=3000)
+	observacoes = forms.CharField(label='Observações',max_length=500)	
 	
 
-'''			
-class ConsultaModelForm(forms.ModelForm):
-
-	def __init__(self, *args, **kwargs):
-		super(ConsultaModelForm, self).__init__(*args, **kwargs)
-		self.fields['cliente'].label = ''
-
-	class Meta:
-		model = Consulta
-		fields = ('_retorno', 'animal', 'veterinario', '_data_realizacao', 'cliente')
-		widgets = {
-		'cliente': forms.HiddenInput()
-		}
-
-	layout = Layout(
-		Fieldset("Dados da Consulta"),
-			Row('_data_realizacao','_retorno'),
-			Row('animal', 'veterinario'),
-			Row('cliente')
-		)
-'''
 
 

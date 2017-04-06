@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'cadastro',
     'financeiro',
     'consulta',
+    'login',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -150,3 +151,4 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
     },
 }
+LOGIN_REDIRECT_URL = 'main'

@@ -53,5 +53,6 @@ urlpatterns = [
     url(r'', include('cadastro.urls')),
     url(r'', include('financeiro.urls')),
     url(r'', include('consulta.urls')),
+    url(r'', include('login.urls')),
     #url(r'^agenda', agenda.html),
 ]

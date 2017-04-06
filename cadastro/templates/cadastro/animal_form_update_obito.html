@@ -1,0 +1,21 @@
+{% extends "cadastro/animal_form.html" %}
+
+{% load material_form %} 
+
+{% block breadcrumbs %}
+<a href="{% url 'main' %}" class="breadcrumb">Main</a>
+<a href="{% url 'animal_resumo' %}" class="breadcrumb">Animais Cadastrados</a>
+<a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">{{ object.nome }}</a>
+<a href="{{ request.get_absolute_url }}" class="breadcrumb">Declarar Óbito</a>
+{% endblock %}
+
+{% block form %}
+
+<div class="card">
+	<div class="card-content">		
+		{% include "cadastro/form.html" %}
+	</div>
+</div>
+
+{% endblock %}
+

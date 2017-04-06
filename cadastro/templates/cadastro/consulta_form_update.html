@@ -1,0 +1,20 @@
+{% extends "cadastro/base_visaogeral.html" %}
+
+{% load material_form %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'consulta_resumo' %}" class="breadcrumb">Animais Cadastrados</a>
+<a href="{% url 'consulta_detalhes' object.id %}" class="breadcrumb">Detalhes</a>
+<a href="{{ request.get_absolute_url }}" class="breadcrumb">Editar</a>
+{% endblock %}
+
+{% block form %}
+
+<div class="card">
+	<div class="card-content">		
+		{% include "cadastro/form.html" %}
+	</div>
+</div>
+
+{% endblock %}

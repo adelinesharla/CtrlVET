@@ -1,0 +1,42 @@
+Estrutura de arquivos
+
+.settings/
+CtrlVET/
+cadastro/
+financeiro/
+secretaria/
+scripts/ 
+assets/
+	css/
+	js/
+	fonts/
+	img/
+static/
+templates/
+...
+
+
+Sistema de templates
+
+Sistema de templates está revisado para atender ao princípio DRY.
+
+Por módulo, com exclusão do financeiro e de estoque, existem basicamente os templates:
+
+base_visaogeral.html
+*_resumo.html
+*_detail.html
+*_form.html
+*_form_update.html
+*_list.html
+
+Foi criado um segundo padrão de templates filhos , que são blocos de informação, que são invocados nos templates pai e seus parametros são passados por parametro pelas views. Algums eles são:
+
+*_listagem.html -> bloco de listagem de informações e tabelas específicas
+paginacao.html -> bloco de paginação, geralmente invocado pela *_listagem.html
+pesquisa.html -> bloco de pesquisa. Possui o cadastro e, por hora o botão cadastro sempre será invocado com ele
+
+Os templates continuam os mesmos por causa dos breadcrumbs.
+
+
+Adição de tables2 
+Docs : http://django-tables2.readthedocs.io/

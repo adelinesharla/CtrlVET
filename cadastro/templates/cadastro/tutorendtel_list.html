@@ -1,0 +1,27 @@
+{% extends "cadastro/tutor_resumo.html" %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="" class="breadcrumb">Busca</a>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="card">
+		<div class="card-content">
+
+			{% block pesquisa %}
+			{{ block.super }}
+			{% endblock %}
+
+			{% block lista %}
+
+			{{ block.super }}
+
+			{% endblock %}
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

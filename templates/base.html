@@ -1,152 +1,134 @@
-  {% load staticfiles %}
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html lang="pt" xml:lang="pt">
 <head>
-  <meta charset="utf-8">
+	<meta charset="utf-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Ctrl VET</title>
+	<link rel="icon" type="image/png" href="{% static 'media/favicon/favicon.png' %}"/>
 
-  <!--Import material-icons-->
-  
-  <link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<title>Ctrl VET</title>
 
-  <!--Import CSS--> 
+	<!--Import material-icons-->
 
-  <link type="text/css" rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.min.css' %}" media="screen,projection"/>
-  <link type="text/css" rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.css' %}"  media="screen,projection"/>
+	<link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- javascript -->
+	<!--Import CSS--> 
 
-  <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'Materialize/dist/js/materialize.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'fullcalendar/dist/fullcalendar.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'fullcalendar/dist/lang-all.js' %}"></script>
 
-  <!-- custom css -->
+	<!-- Compiled and minified CSS -->
+	
+	<link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'material/css/jquery.datetimepicker.css' %}"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'material/css/responsive.dataTables.css' %}"  media="screen,projection"/>
+	
 
-  <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}"  media="screen,projection"/>
+	<!-- Compiled and minified JavaScript -->
+	
+	<script type="text/javascript" src="{% static 'js/jquery-2.2.0.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.mask.min.js' %}"></script>
 
-</style>
+
+	<!-- custom css e js-->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/fixes.css' %}"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'css/forms.css' %}"  media="screen,projection"/>
+	<script type="text/javascript" src="{% static 'js/ctrlvet.js' %}"></script>
+	<!-- 
+	<script type="text/javascript" src="{% static 'material/js/jquery.formset.js' %}"></script>
+	<script type="text/javascript" src="{% static 'material/js/jquery.datetimepicker.js' %}"></script>-->
+
+	{% include 'material/includes/material_js.html' %}
 
 </head>
-<body>
+<body class="grey lighten-5">
 
-  <header>
+	<header>
 
-    <nav class="nav-wrapper indigo darken-4">
-      <div class="container">
-        <a href="main.html" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
-      </div>
-
-      <ul class="right hide-on-med-and-down">
-        <li><a href="main.html"><i class="material-icons right">account_circle</i>Login</a></li>
-      </ul>
-    </nav>
-
-    <ul id="nav-mobile" class="side-nav fixed">
-      <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-
-          <li class="logo"><div class="container"><img class="responsive-img" src="{% static 'logo/logo.png' %}"></div></li>
-
-          <li class="bold hide-on-large-only"><a href="main.html" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
-
-          <li class="bold"><a href="clienteresumo.html" class="collapsible-header"><i class="material-icons">face</i>Cliente</a></li>
-          <li class="bold"><a href="pacienteresumo.html" class="collapsible-header"><i class="material-icons">pets</i>Paciente</a></li>
-          <li class="bold"><a href="exameresumo.html" class="collapsible-header"><i class="material-icons">local_pharmacy</i>Exames</a></li>
-          <li class="bold"><a href="consultaresumo.html" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
-          <li class="bold"><a href="estoqueresumo.html" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>
-          <li class="bold"><a href="pagamentosresumo.html" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>
-        </ul>
-      </li>     
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-
-    <nav id="caminho">
-      <div class="col s12">
-        <a href="main.html" class="breadcrumb">Principal</a>
-        <a href="" class="breadcrumb">Atual</a>
-      </div>
-    </nav>
-
-  </header>
-
-  <main>
-    <div>
-      {% block content %}
-      {% endblock %}
-    </div>
-  </main>
-
-  <!-- Footer -->
-
-  <footer class="caminho grey lighten-3">
-    <div class="container">
-      <div class="row">
-        <div class="col s12 m12 l12 ">
-          <p class="black-text text-lighten-4">Sistema de gestão do Hospital Veterinário HOVET
-          </p>
-           <p class="black-text text-lighten-4">
-         BR 482, km 63 - Tel. (27) 8803-4503 - Área experimental do CCA-UFES, Alegre - ES - Brasil
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-</body>
-
-<script type="text/javascript">
-
-  $( document ).ready(function() {
-    $(".button-collapse").sideNav();
-    $('.collapsible').collapsible({
-      accordion : true
-    });
-
-    Materialize.updateTextFields();
-
-    $('select').material_select();
+		<nav class="nav-wrapper z-depth-4">
+			<div class="container">
+				<a href="{% url 'main' %}" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+			</div>
 
 
-    $('.datepicker').pickadate({
-      format: 'mm/dd/yyyy',
-      selectMonths: true, 
-      selectYears: 15,
-      firstDay: 0,
+			<!-- Dropdown de more -->
+			<ul id="dropdown1" class="dropdown-content">
+				{{ user }}
+				{% if user.is_anonymous %}
+				<li><a href="{% url 'login' %}">Login</a></li>
+				<li><a href="{% url 'signup' %}">Sign up</a></li>
+				{% else %}
+				<li><a href="{% url 'logout' %}">Logout</a></li>
+				{% endif %}
+				<li class="divider"></li>
+				<li><a href="#!">Help</a></li>
+			</ul>
 
-      monthsFull: [ 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro' ],
-      monthsShort: [ 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez' ],
-      weekdaysFull: [ 'domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado' ],
-      weekdaysShort: [ 'dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab' ],
-      weekdaysMin: ['d', 's', 't', 'q', 'q', 's', 's'],
-      today: 'hoje',
-      clear: 'limpar',
-      close: 'fechar',
-      format: 'mm/dd/yyyy',
-      formatSubmit: 'yyyy/mm/dd'
+			<!-- More -->
+			<ul class="right hide-on-med-and-down">
+				<li><a class="dropdown-button" href="" data-activates="dropdown1"><i class="small material-icons">more_vert</i></a></li>
+			</ul>
 
-    });
+		</nav>
 
-    $('input:not([placeholder])').attr('placeholder', '');
+		<ul id="nav-mobile" class="side-nav fixed z-depth-3">
+			<li class="no-padding">
+				<ul class="collapsible collapsible-accordion">
+					
+					<li class="logo"><a id="logo-container" class="brand-logo" href="/" >
+						<object id="front-page-logo" type="image/png" data="{% static 'media/logo/logo100.png' %}">Browser não suporta imagens</object></a>
+					</li>
 
-    $('.modal-trigger').leanModal({
-      dismissible: true, 
-      opacity: .5, 
-      in_duration: 300,
-      out_duration: 200, 
-    }
-    );
-  });
+					<li class="bold hide-on-large-only"><a href="{% url 'main' %}" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
 
-</script>
+					<li class="bold"><a href="{% url 'tutor_resumo' %}" class="collapsible-header"><i class="material-icons">face</i>Clientes</a></li>
+					<li class="bold"><a href="{% url 'animal_resumo' %}" class="collapsible-header"><i class="material-icons">pets</i>Animais</a></li>
+					<li class="bold"><a href="{% url 'laboratorio_resumo' %}" class="collapsible-header"><i class="material-icons">local_pharmacy</i>Exames</a></li>
+					<li class="bold"><a href="{% url 'consulta_resumo' %}" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
+					<!--<li class="bold"><a href="{% url 'estoque_resumo' %}" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>-->
+					<li class="bold"><a href="{% url 'pagamento_resumo' %}" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>
+					
+				</ul>
+			</li>     
+		</ul>
+		<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 
+		<nav id="caminho">
+			<div class="col s12">
+				{% block breadcrumbs %}
+				<a href="{% url 'main' %}" class="breadcrumb">Início</a>
+				{% endblock %}
+			</div>
+		</nav>
+
+	</header>
+
+	<!-- Main content -->
+	<main>
+		<div class='main-ajuste-padding'>
+			{% block content %}
+			{% endblock %}
+		</div>
+	</main>
+
+	<!-- Footer -->
+
+	<footer class="footer-body grey lighten-3">
+		<div class="footer-copyright center">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m12 l4 black-text text-lighten-4" id="footer-font">
+						<p>Sistema de gestão do Hospital Veterinário HOVET</p>
+					</div>
+					<div class="col s12 m12 l8 black-text text-lighten-4" id="footer-font">
+						<p>BR 482, km 63 - Tel. (27) 8803-4503 - Área experimental do CCA-UFES, Alegre - ES - Brasil</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

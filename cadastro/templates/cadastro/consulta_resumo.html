@@ -1,0 +1,34 @@
+{% extends "cadastro/base_visaogeral.html" %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'consulta_resumo' %}" class="breadcrumb">Consultas Agendadas</a>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+	<div class="card">
+		<div class="card-content">
+
+			{% block estatisticas %}
+			{% endblock %}
+
+			{% block pesquisa %}
+
+			{% include "cadastro/pesquisa_atendimento.html" %}
+
+			{% endblock %}
+
+			{% block lista %}
+
+			{% include "cadastro/consulta_listagem.html" %}
+
+			{% endblock %}
+			
+		</div>
+	</div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,44 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+
+		<!-- lista-->
+
+		<div class="row">
+			<div class="col s12 m12 l12">
+				<span class="card-title">Animais</span>
+				<div class="divider"></div>
+				<div class="row">
+					<div class="col s12 m12">
+						<table class="reponsive-table centered highlight striped">
+							<thead>
+								<th data-field="">Nome</meth>
+								<th data-field="">RG</th>
+								<th data-field="">Tutor</th>
+
+								<!--	<th data-field="">Detalhes</th> -->
+							</tr>
+						</thead>
+
+						<tbody>
+
+							{% for object in object_list %}
+							<tr>
+								<td><b>{{ object._nome }}</b></td>
+								<td>{{ object._rg }}</td>
+								<td>{{ object.tutor }}</td>
+							</tr>
+
+							{% endfor %}
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+
+
+
+{% endblock %}

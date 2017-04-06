@@ -1,0 +1,62 @@
+{% extends "cadastro/base_visaogeral.html" %}
+
+{% load material_form %} 
+
+{% block breadcrumbs %}
+{{ block.super }}
+
+<a href="{% url 'animal_resumo' %}" class="breadcrumb">Animais Cadastrados</a>
+<a href="{% url 'animal_detalhes' object.id %}" class="breadcrumb">{{ object.nome }}</a>
+
+{% endblock %}
+
+{% block detalhes %}
+
+<div class="row">
+	<div class="col s12 m12 l12 ">
+		<div class="card">
+			<div class="card-content">
+				<span class='card-title'>Detalhes de {{ object.nome }}</span>
+				<div class='divider'></div>
+
+				<div class="card-content">
+
+					<div class="row">
+
+						{% csrf_token %}
+						{% form form=form %}{% endform %}
+
+					</div>
+
+					<div class="section">
+						<div class="row">
+							<div class="section">
+								<div class="col s12 m12 l12">
+									<p><a href="{% url 'tutor_detalhes' animal.tutor.pk %}"> Mais Informações de {{ animal.tutor.nome }} </a></p>
+								</div>
+							</div>
+							<div class="section">
+								<div class="col s12 m12 l12">
+									<p><a href="{% url 'animal_obito' animal.pk %}"> Declarar óbito de {{ animal.nome }} </a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s12 m12 l12">
+							<div class="card-content right">
+								<button class="btn waves-effect waves-light indigo darken-4" onClick="javascript:history.go(-1);"><i class="material-icons right">arrow_back</i>Voltar</button>
+								<a href="{% url 'animal_deletar' object.id %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">delete</i>Excluir</a>
+								<a href="{% url 'animal_editar' object.id %}" class="waves-effect waves-light indigo darken-4 btn"><i class="material-icons left">edit</i>Editar</a>
+							</div>	
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</dir>
+
+{% endblock %}

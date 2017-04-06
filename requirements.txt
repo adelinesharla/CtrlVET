@@ -1,0 +1,14 @@
+### Requirements ###
+pip install django-formset-js
+pip install django-localflavor
+pip install django-material
+pip install reportlab
+pip install django-tables2 
+
+### Old Requirements - Não instalar ###
+#npm install -g bower
+#pip install django-bower
+#bower install fullcalendar
+#bower install moment
+#bower install jquery
+

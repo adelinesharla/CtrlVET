@@ -1,0 +1,76 @@
+{% extends "financeiro/pagamento_resumo.html" %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'financeiro_recebidos' %}" class="breadcrumb">Recebidos</a>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="card">
+		<div class="card-content">
+
+			{% block pesquisa %}
+			{{ block.super }}
+			{% endblock %}
+
+			{% block lista %}
+
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<span class="card-title">Débitos</span>
+					<div class="divider"></div>
+					<div class="row">
+						<div class="col s12 m12">
+
+							{% if object_list %}
+
+							<table class="reponsive-table centered highlight">
+								<thead>
+									<tr>
+										<th>Setor</th>
+										<th>Data</th>
+										<th>Valor(R$)</th>
+										<th>Valor Recebido(R$)</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									{% for nota in object_list %}
+									<tr>
+										<td><a href=""><b>{{ nota.get_setor_display }}</b></a></td>
+										<td><a href="">{{ nota.data }}</td>
+										<td>{{ nota.itemNota.valor }}</td>
+										<td>{{ nota.itemNota.valor }}</td>
+									</tr>
+
+									{% endfor %}
+								</tbody>
+							</table>
+
+							{% else %}
+
+							<p>Nenhum <b>débito</b> encontrado</p>
+							
+							{% endif %}
+
+						</div>
+					</div>
+				</div>
+
+				{% endblock %}
+
+				{% block paginacao %}
+
+				{% include "cadastro/paginacao.html" %}
+
+				{% endblock %}
+
+
+				{% endif %}
+
+			</div>
+		</div>
+	</div>
+
+	{% endblock %}

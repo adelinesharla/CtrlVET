@@ -1,0 +1,42 @@
+[
+	{
+		"model": "cadastro.veterinario",
+		"pk": 1,
+		"fields": {
+			"_nome": "Leonardo Moreli",
+			"_email": "leonardo@gmail.com",
+			"_cpf": 40556366107,
+			"_crmv": "1234"
+		}
+	},
+	{
+		"model": "cadastro.veterinario",
+		"pk": 2,
+		"fields": {
+			"_nome": "Adeline Sharla",
+			"_email": "adelinesharla@gmail.com",
+			"_cpf": 15001976103,
+			"_crmv": "3456"
+		}
+	},
+	{
+		"model": "cadastro.tecnico",
+		"pk": 1,
+		"fields": {
+			"_nome": "Rafael Caetano",
+			"_email": "leonardo@gmail.com",
+			"_cpf": 26205005409,
+			"_crf": "2345"
+		}
+	},
+	{
+		"model": "cadastro.tecnico",
+		"pk": 2,
+		"fields": {
+			"_nome": "Kauann Keifer",
+			"_email": "kk@gmail.com",
+			"_cpf": 97979462823,
+			"_crf": "2345"
+		}
+	}
+]

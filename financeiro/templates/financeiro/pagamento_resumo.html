@@ -1,0 +1,27 @@
+{% extends "financeiro/base_visaogeral.html" %}
+
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'pagamento_resumo' %}" class="breadcrumb">Pagamentos</a>
+{% endblock %}
+
+{% block content %}
+
+
+
+{% block relatorios %}
+
+{% include "financeiro/pagamento_relatorios.html" %}
+
+{% endblock %}
+
+{% block pagamento_listagem %}
+
+{% include "financeiro/pagamento_listagem.html" %}
+
+{% endblock %}
+
+
+
+{% endblock %}

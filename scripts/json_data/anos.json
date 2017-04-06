@@ -1,0 +1,16 @@
+[
+  {
+    "model": "financeiro.ano",
+    "pk": 0,
+    "fields": {
+      "_ano": 2015
+    }
+  },
+  {
+    "model": "financeiro.ano",
+    "pk": 1,
+    "fields": {
+      "_ano": 2016
+    }
+  }
+]

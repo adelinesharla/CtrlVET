@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djangobower',
-    'materializecssform',
+    'material',
+    'django_tables2',
+    'cadastro',
+    'financeiro',
+    'consulta',
+    'login',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -128,28 +132,23 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'assets/media')
 
 MEDIA_URL = '/media/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'assets')
+]
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder',
-    )
+)
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "media"),
-    os.path.join(BASE_DIR, "css"),
-]
-
-BOWER_COMPONENTS_ROOT = 'components'
-
-BOWER_INSTALLED_APPS = (
-    'jquery',
-    'underscore',
-    'materialize',
-    'moment',
-    'fullcalendar',
-    )
-
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}
+LOGIN_REDIRECT_URL = 'main'

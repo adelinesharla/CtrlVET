@@ -1,0 +1,22 @@
+{% extends "cadastro/base_visaogeral.html" %}
+
+{% load material_form %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'laboratorio_resumo' %}" class="breadcrumb">Laboratórios Cadastrados</a>
+<a href="" class="breadcrumb">{{ object.laboratorio }}</a>
+<a href="exame_detail" class="breadcrumb">{{ object.pk }}</a>
+<a href="" class="breadcrumb">Edição</a>
+
+{% endblock %}
+
+{% block form %}
+
+<div class="card">
+	<div class="card-content">		
+		{% include "cadastro/form.html" %}
+	</div>
+</div>
+
+{% endblock %}

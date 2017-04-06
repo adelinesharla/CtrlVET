@@ -1,0 +1,162 @@
+[
+  {
+    "model": "financeiro.itemnota",
+    "pk": 0,
+    "fields": {
+      "_nome": "Alcool",
+      "_valor": 72.66
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 1,
+    "fields": {
+      "_nome": "Gaze",
+      "_valor": 42.99
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 2,
+    "fields": {
+      "_nome": "Curativo",
+      "_valor": 87.49
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 3,
+    "fields": {
+      "_nome": "Penicilina",
+      "_valor": 29.09
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 4,
+    "fields": {
+      "_nome": "Seringa",
+      "_valor": 72.92
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 5,
+    "fields": {
+      "_nome": "Tala",
+      "_valor": 126.19
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 6,
+    "fields": {
+      "_nome": "Anestesia",
+      "_valor": 108.13
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 7,
+    "fields": {
+      "_nome": "Raspagem",
+      "_valor": 127.34
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 8,
+    "fields": {
+      "_nome": "Castração",
+      "_valor": 98.25
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 9,
+    "fields": {
+      "_nome": "Vermífugo",
+      "_valor": 135.04
+    }
+  },
+   {
+    "model": "financeiro.itemnota",
+    "pk": 10,
+    "fields": {
+      "_nome": "Internação",
+      "_valor": 94.14
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 11,
+    "fields": {
+      "_nome": "Soro fisiológico",
+      "_valor": 18.24
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 12,
+    "fields": {
+      "_nome": "Análise do sangue",
+      "_valor": 141.63
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 13,
+    "fields": {
+      "_nome": "Análise da urina",
+      "_valor": 71.03
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 14,
+    "fields": {
+      "_nome": "Análise de amostra",
+      "_valor": 30.96
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 15,
+    "fields": {
+      "_nome": "Eletrocardiograma",
+      "_valor": 103.07
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 16,
+    "fields": {
+      "_nome": "Radiografia",
+      "_valor": 139.6
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 17,
+    "fields": {
+      "_nome": "Ultrasom",
+      "_valor": 119.04
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 18,
+    "fields": {
+      "_nome": "Imobilização",
+      "_valor": 103.33
+    }
+  },
+  {
+    "model": "financeiro.itemnota",
+    "pk": 19,
+    "fields": {
+      "_nome": "Dipirona",
+      "_valor": 7.56
+    }
+  }
+]

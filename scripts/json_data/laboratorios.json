@@ -1,0 +1,26 @@
+[
+{
+		"model": "cadastro.laboratorio",
+		"pk": 1,
+		"fields": {
+			"_nome": "Patologico",
+			"_local": "Reuni"
+		}
+	},
+	{
+		"model": "cadastro.laboratorio",
+		"pk": 2,
+		"fields": {
+			"_nome": "Urologico",
+			"_local": "Reuni"
+		}
+	},
+		{
+		"model": "cadastro.laboratorio",
+		"pk": 3,
+		"fields": {
+			"_nome": "Urologico",
+			"_local": "Reuni"
+		}
+	}
+]

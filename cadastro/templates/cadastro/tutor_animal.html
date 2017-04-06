@@ -1,0 +1,53 @@
+{% if object.animais.all %}
+
+<div class="col s12 m12 l12">
+	<div class="card">
+		<div class="card-content">
+			<span class='card-title'>Animais sob a guarda de {{ tutor.nome }}</span>
+			<div class='divider'></div>
+			<div class="card-content">
+				<table class="responsive-table highlight striped">
+					<thead>
+						<tr>
+							<th data-field="">RG</th>
+							<th data-field="">Nome</th>
+							<th data-field="">Espécie</th>
+							<th data-field="">Idade</th>
+
+						</tr>
+					</thead>
+
+					<tbody>
+
+						{% for object in tutor.animais.all %}
+						<tr>
+							<td><a href="{% url 'animal_detalhes' object.pk %}"><b>{{ object.rg }}</b></a></td>
+							<td>{{ object.nome }}</td>
+							<td>{{ object.especie }}</td>
+							<td>{{ object.idade }}</td>
+							<td><a href="{% url 'animal_editar' object.pk %}"><b>Editar</b></a></td>
+							<td><a href="{% url 'animal_deletar' object.pk %}"><b>Excluir</b></a></td>
+						</tr>
+
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% else %}
+
+<div class="col s12 m12 l12">
+	<div class="card">
+		<div class="card-content">
+
+			<p>O cliente não possui animal</p>
+
+		</div>
+	</div>
+</div>
+
+{% endif %}

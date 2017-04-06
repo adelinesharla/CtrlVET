@@ -1,0 +1,36 @@
+{% extends "cadastro/base_visaogeral.html" %}
+
+{% load material_form %} 
+
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'laboratorio_resumo' %}" class="breadcrumb">Laboratórios Cadastrados</a>
+<a href="{% url 'laboratorio_detalhes' object.id %}" class="breadcrumb">{{ object.nome }}</a>
+
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="card">
+		<div class="card-content">
+
+			{% block estatisticas %}
+			{% endblock %}
+
+			{% block pesquisa %}
+
+			{% include "cadastro/pesquisa_atendimento.html" %}
+
+			{% endblock %}
+
+			{% block lista %}
+
+			{% include "cadastro/exame_listagem.html" %}
+
+			{% endblock %}
+
+		</div>
+	</div>
+</div>
+{% endblock %}

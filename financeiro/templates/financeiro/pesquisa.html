@@ -1,0 +1,71 @@
+
+
+{% load material_form %} 
+
+<div class="row">
+	<div class="nav-wrapper">
+		
+		<!-- A tag action leva a url do search. pode ser colocada uma tag pra view passar o action, tornando o form reusável
+		<form id="searchform" action="{% url 'tutor_busca_list_view' %}" method="GET" accept-charset="utf-8"> 
+		-->
+		<div class="row">
+
+			<div class="input-field col s12 m6 l6">
+
+			
+					<form id="searchform" action="{{ action_search }}" method="GET" accept-charset="utf-8">
+						<input type="search" name="q" required>
+						<label for="search"><i class="material-icons">search</i></label>
+						<i class="material-icons">close</i>
+					</form>
+
+				</div>
+
+
+				<div class="col s12 m6 l6 hide-on-small-only right-align">
+					<!-- Modal Trigger -->
+					<a class="btn waves-effect waves-light indigo darken-4 modal-trigger" href="#buscaavancada"><i class="material-icons left">search</i>Avancada</a>
+					<a href="{{ action_add }}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
+
+				</div>
+
+			</div>
+
+			<div class="row hide-on-med-and-up">
+				<div class="col s12 m6 l6 right-align">
+					<!-- Modal Trigger -->
+
+					<a class="btn-floating waves-effect waves-light indigo darken-4 modal-trigger" href="#buscaavancada"><i class="material-icons left">search</i></a>
+					<a href="{{ action_add }}" class="btn-floating waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i></a>
+
+				</div>
+			</div>
+
+
+
+
+			<!-- Modal Structure -->
+			<div id="buscaavancada" class="modal">
+				<!-- <form action="{% url 'tutor_busca_list_view' %}" method="GET"> -->
+
+				<form action="{{ action_search }}" method="GET"> 
+					<div class="modal-content">
+
+						<h4>Busca Avançada</h4>
+
+						{% form form=form %}{% endform %}
+
+					</div>
+
+					<div class="modal-footer">
+						<button class="btn modal-action modal-close waves-effect waves-light indigo darken-4" type="Submit" value="Update">Buscar<i class="material-icons right">search</i>
+						</button>
+					</div>
+
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+

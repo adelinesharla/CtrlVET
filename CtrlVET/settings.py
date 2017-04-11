@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'financeiro',
     'consulta',
     'login',
+    'global_permissions',
 ]
 
 MIDDLEWARE_CLASSES = [

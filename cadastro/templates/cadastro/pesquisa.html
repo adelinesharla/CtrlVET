@@ -25,8 +25,9 @@
 				<div class="col s12 m6 l6 hide-on-small-only right-align">
 					<!-- Modal Trigger -->
 					<a class="btn waves-effect waves-light indigo darken-4 modal-trigger" href="#buscaavancada"><i class="material-icons left">search</i>Avancada</a>
+					{% if perms.global_permissions.permission_agendar %}
 					<a href="{{ action_add }}" class="btn waves-effect waves-light indigo darken-4 "><i class="material-icons left">add</i>Adicionar</a>
-
+					{% endif %}
 				</div>
 
 			</div>

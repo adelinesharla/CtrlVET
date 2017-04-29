@@ -88,6 +88,10 @@ nav .brand-logo {
 i.material-icons, i.material-icons + span {
 	vertical-align: middle;
 }
+
+.secondary-content {
+    color: #1a237e;
+}
 /* Links
 ========================================================================== */
 a {

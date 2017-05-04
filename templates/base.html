@@ -34,8 +34,9 @@
 
 
 	<!-- custom css e js-->
-	<link type="text/css" rel="stylesheet" href="{% static 'css/fixes.css' %}"  media="screen,projection"/>
+	
 	<link type="text/css" rel="stylesheet" href="{% static 'css/forms.css' %}"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'css/fixes.css' %}"  media="screen,projection"/>
 	<script type="text/javascript" src="{% static 'js/ctrlvet.js' %}"></script>
 	<!-- 
 	<script type="text/javascript" src="{% static 'material/js/jquery.formset.js' %}"></script>
@@ -58,13 +59,13 @@
 			<ul id="dropdown1" class="dropdown-content">
 				{{ user }}
 				{% if user.is_anonymous %}
-				<li><a href="{% url 'login' %}">Login</a></li>
-				<li><a href="{% url 'signup' %}">Sign up</a></li>
+				<li><a href="{% url 'login' %}">Entrar</a></li>
+				<li><a href="{% url 'signup' %}">Cadastrar</a></li>
 				{% else %}
-				<li><a href="{% url 'logout' %}">Logout</a></li>
+				<li><a href="{% url 'logout' %}">Sair</a></li>
 				{% endif %}
 				<li class="divider"></li>
-				<li><a href="#!">Help</a></li>
+				<li><a href="#!">Ajuda</a></li>
 			</ul>
 
 			<!-- More -->

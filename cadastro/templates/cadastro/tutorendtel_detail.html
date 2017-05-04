@@ -32,7 +32,9 @@
 						<div class="col s12 m12 l12">
 							<div class="card-content right">
 								<button class="btn waves-effect waves-light indigo darken-4" onClick="javascript:history.go(-1);"><i class="material-icons right">arrow_back</i>Voltar</button>
+								{% if perms.global_permissions.permission_agendar %}
 								<a class="waves-effect waves-light indigo darken-4 btn" href="{% url 'tutor_deletar' object.pk %}" ><i class="material-icons left">delete</i>Excluir</a>
+								{% endif %}
 								<a class="waves-effect waves-light indigo darken-4 btn" href="{% url 'tutor_editar' object.pk %}" ><i class="material-icons left">edit</i>Editar</a>
 							</div>	
 						</div>

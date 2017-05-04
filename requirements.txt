@@ -4,6 +4,7 @@ pip install django-localflavor
 pip install django-material
 pip install reportlab
 pip install django-tables2 
+pip install django-global-permissions
 
 ### Old Requirements - Não instalar ###
 #npm install -g bower

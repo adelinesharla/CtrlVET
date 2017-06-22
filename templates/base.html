@@ -82,7 +82,7 @@
 					<li class="logo"><a id="logo-container" class="brand-logo" href="/" >
 						<object id="front-page-logo" type="image/png" data="{% static 'media/logo/logo100.png' %}">Browser não suporta imagens</object></a>
 					</li>
-
+					{% if not user.is_anonymous %}
 					<li class="bold hide-on-large-only"><a href="{% url 'main' %}" class="collapsible-header"><i class="material-icons">account_circle</i>Login</a></li>
 
 					<li class="bold"><a href="{% url 'tutor_resumo' %}" class="collapsible-header"><i class="material-icons">face</i>Clientes</a></li>
@@ -93,7 +93,7 @@
 					{% if perms.global_permissions.permission_financeiro %}
 					<li class="bold"><a href="{% url 'pagamento_resumo' %}" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>
 					{% endif %}
-					
+					{% endif %}
 				</ul>
 			</li>     
 		</ul>

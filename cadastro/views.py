@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.conf.urls import url
 
 """Classes de views genericas utilizadas"""
-from django.views.generic import View, TemplateView, DetailView, UpdateView, DeleteView, ListView, FormView
+from django.views.generic import View, TemplateView, DetailView, UpdateView, DeleteView, ListView, FormView, RedirectView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import ProcessFormView
 from _functools import reduce
@@ -59,6 +59,24 @@ def permission_denied(request):
 """Classe de renderização da main (sem contexto)"""
 class MainView(TemplateView):
 	template_name='cadastro/main.html'
+	def get(self,*args):
+		if (self.request.user.groups.filter(name='Veterinário').exists()):
+			return HttpResponseRedirect('veterinario')
+	        if(self.request.user.groups.filter(name='Secretário').exists()):
+			return HttpResponseRedirect('secretario')
+		if(self.request.user.groups.filter(name='Técnico').exists()):
+			return HttpResponseRedirect('tecnico')
+		else:
+			return HttpResponseRedirect('login')
+
+class SecretarioView(TemplateView):
+	template_name='secretario_auth.html'
+
+class VeterinarioView(TemplateView):
+	template_name='veterinario_auth.html'
+
+class TecnicoView(TemplateView):
+	template_name='tecnico_auth.html'
 
 class SuccessView(TemplateView):
 	template_name='cadastro/success.html'	

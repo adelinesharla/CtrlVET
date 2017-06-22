@@ -19,7 +19,8 @@ from cadastro.views import *
 
 urlpatterns = [
     url(r'^main/$|^$',  MainView.as_view(), name='main'),
-
+    url(r'^veterinario/$|^$',  VeterinarioView.as_view(), name='veterinario'),
+    url(r'^secretario/$|^$',  SecretarioView.as_view(), name='secretario'),
     #Url sucess
     url(r'^success/$',  SuccessView.as_view(), name='success'),
 

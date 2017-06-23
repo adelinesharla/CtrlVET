@@ -56,16 +56,29 @@ class ExameTable(tables.Table):
 	cliente = tables.LinkColumn('tutor_detalhes', args=[A('pk')], verbose_name='Responsável')
 	animal = tables.LinkColumn('animal_detalhes', args=[A('pk')], verbose_name='Animal')
 	_data = tables.DateColumn(short=True)
-	editar = tables.LinkColumn('exame_editar', text='Editar', args=[A('pk')],  orderable=False)
+	editar = tables.LinkColumn('exame_concluir', text='Concluir', verbose_name='Concluir', args=[A('pk')],  orderable=False)
 	excluir = tables.LinkColumn('exame_deletar', text='Excluir', args=[A('pk')], orderable=False )
 	
 	class Meta:
 		model = Exame
 		template = 'tables_base.html'
-		fields = ('_data', 'numero_amostra', 'cliente','animal',  'veterinario', 'tecnico', 'editar', 'excluir' )
-		sequence = ('_data', 'numero_amostra', 'cliente', 'animal',  'veterinario', 'tecnico', 'editar', 'excluir')
+		fields = ('_data', 'numero_amostra', 'cliente','animal',  'veterinario', 'tecnico', '_resultado', 'editar', 'excluir' )
+		sequence = ('_data', 'numero_amostra', 'cliente', 'animal',  'veterinario', 'tecnico', '_resultado', 'editar', 'excluir')
 		attrs = {'class': 'highlight striped'}
 		empty_text = 'Nenhum exame encontrado.'
+class ExameConcluido(tables.Table):
+	cliente = tables.LinkColumn('tutor_detalhes', args=[A('pk')], verbose_name='Responsável')
+	animal = tables.LinkColumn('animal_detalhes', args=[A('pk')], verbose_name='Animal')
+	_data = tables.DateColumn(short=True)
+	
+	class Meta:
+		model = Exame
+		template = 'tables_base.html'
+		fields = ('_data', 'numero_amostra', 'cliente','animal',  'veterinario', 'tecnico', '_resultado' )
+		sequence = ('_data', 'numero_amostra', 'cliente', 'animal',  'veterinario', 'tecnico', '_resultado')
+		attrs = {'class': 'highlight striped'}
+		empty_text = 'Nenhum exame encontrado.'
+
 
 class ConsultaTable(tables.Table):
 	animal = tables.LinkColumn('animal_detalhes',  args=[A('pk')], verbose_name='Animal')

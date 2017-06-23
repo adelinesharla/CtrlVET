@@ -71,6 +71,7 @@ urlpatterns = [
     url(r'^exames/busca$', ExameBuscaListView.as_view(), name = 'exame_busca_list_view'),
     
     url(r'^exames/laboratorio/detalhes/(?P<laboratorio_id>\d+)/$',LaboratorioDetailView.as_view(), name = 'laboratorio_detalhes'),
+    url(r'^exames/laboratorio/detalhes/concluirexame/(?P<pk>\d+)/$',ExameConcliur.as_view(), name = 'exame_concluir'),
     url(r'^exames/laboratorio/(?P<pk>\d+)/cadastro/', ExameFormView.as_view(), name = 'exame_cadastro'),
     url(r'^exames/detalhes/deletar/(?P<pk>\d+)/$',ExameDeleteView.as_view(),  name = 'exame_deletar'),
     url(r'^exames/detalhes/(?P<pk>\d+)/',ExameDetailViewForm.as_view(), name = 'exame_detalhes'),

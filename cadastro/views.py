@@ -485,7 +485,7 @@ class ConsultaFormView(FormView):
 		consulta = form.save()
 		consulta.cliente = Animal.objects.get(pk=animal.pk).tutor
 		consulta.save()
-		return HttpResponseRedirect(reverse_lazy('connsulta_detalhes_sucesso',args=(consulta.pk,))) 
+		return HttpResponseRedirect(reverse_lazy('consulta_detalhes_sucesso',args=(consulta.pk,))) 
 
 	def get_initial(self):
 		initial=super(ConsultaFormView, self).get_initial()
@@ -725,7 +725,17 @@ class ExameBuscaListView(ExameListView):
 						   (Q(veterinario__icontains=q) for q in query_list))
 				)
 	
-			return result        
+			return result     
+
+class ExameConcliur(View):
+	model = Exame
+	success_url = '/exames/'
+
+	def get(self, args, **kwargs):
+		exame =  Exame.objects.get(pk=self.kwargs['pk'])
+		exame._resultado = "Concluido"
+		exame.save()
+		return HttpResponseRedirect(self.success_url)
 
 #Views relacionadas à classe Laboratorio:
 
@@ -743,7 +753,7 @@ class LaboratorioDetailView(SingleTableView):
 	table_class = ExameTable
 	template_name = 'cadastro/laboratorio_detail.html'
 	table_pagination = {
-		'per_page': 10
+		'per_page': 5
 	}
 	
 	def get_context_data(self, **kwargs):
@@ -753,10 +763,11 @@ class LaboratorioDetailView(SingleTableView):
 		context['object'] = Laboratorio.objects.get(pk=self.kwargs.get('laboratorio_id'))
 		pk = self.kwargs.get('laboratorio_id')
 		context['action_add'] = reverse('exame_cadastro', kwargs={'pk': pk})
+		context['table_concluidos'] = ExameConcluido(Exame.objects.all().filter(_resultado='Concluido'), prefix="1-")
 		return context
 
 	def get_table_data(self, **kwargs):
 		if self.table_data is not None:
 			return self.table_data
 		elif hasattr(self, 'object_list'):
-			return self.object_list.filter(laboratorio=self.kwargs.get('laboratorio_id'))
+			return self.object_list.filter(laboratorio=self.kwargs.get('laboratorio_id')).filter(_resultado='Pendente')

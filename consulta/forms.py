@@ -178,7 +178,7 @@ class FichaAtendimentoPequenos(forms.Form):
 	prescricao =  forms.CharField(label='Prescrição', max_length=100)
 	retorno = forms.DateField(label='Retorno')
 	alta = forms.DateField(label='Alta')
-	encaminhamento = forms.CharField(label='Encaminhamento', max_len)
+	encaminhamento = forms.CharField(label='Encaminhamento', max_length=100)
 
 	
 	

@@ -31,7 +31,16 @@ from django.template import RequestContext
 import socket
 
 from django_tables2 import MultiTableMixin, SingleTableView, RequestConfig
-from .tables import *
+from cadastro.tables import *
+from cadastro.views import ConsultaListView
+
+import datetime
+
+class ConsultasDiaListView(ConsultaListView):
+	def get_queryset(self):
+			result = super(ConsultasDiaListView, self).get_queryset()
+			q=datetime.date.today()
+			return Consulta.objects.filter(_data=q)
 
 """Formulário de cadastro de FichaAtendimentoPequenos"""
 class FichaAtendimentoPequenosFormView(FormView):
@@ -54,7 +63,7 @@ class FichaAtendimentoPequenosFormView(FormView):
 			return HttpResponseRedirect(self.success_url)
 		return super(FichaAtendimentoPequenos, self).post(self, form, **kwargs)
 		
-"""Classe para visualizar FichaAtendimentoPequenos"""
+"""Classe para visualizar FichaAtendimentoPequenos
 class FichaAtendimentoPequenosDetalhesViewForm(UpdateView):
 	form_class = FichaAtendimentoPequenosFormDisable
 	model = FichaAtendimentoPequenos
@@ -72,5 +81,5 @@ class FichaAtendimentoPequenosDetalhesViewForm(UpdateView):
 			return HttpResponseRedirect(self.permission_denied)
 		if "GET" in self.request.POST:
 			return HttpResponseRedirect(self.permission_denied)
-		return super(FichaAtendimentoPequenosDetalhesViewForm, self).post(self, form, **kwargs)
+		return super(FichaAtendimentoPequenosDetalhesViewForm, self).post(self, form, **kwargs)"""
 

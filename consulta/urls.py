@@ -14,9 +14,9 @@ Including another URLconf
 2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from cadastro.views import *
+from consulta.views import *
 
 
 urlpatterns = [
-
+	url(r'^main/veterinario/consultas_dia$', ConsultasDiaListView.as_view(), name = 'consultas_dia_list_view'),
     ]

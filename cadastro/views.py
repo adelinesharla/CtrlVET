@@ -596,9 +596,9 @@ class ConsultaBuscaListView(ConsultaListView):
 			reduce(operator.and_,
 						   (Q(_retorno__icontains=q) for q in query_list))|
 			reduce(operator.and_,
-						   (Q(animal__icontains=q) for q in query_list))|
+						   (Q(animal___nome__icontains=q) for q in query_list))|
 			reduce(operator.and_,
-						   (Q(veterinario__icontains=q) for q in query_list))
+						   (Q(veterinario___nome__icontains=q) for q in query_list))
 				)
 	
 			return result
@@ -718,24 +718,25 @@ class ExameBuscaListView(ExameListView):
 			reduce(operator.and_,
 						   (Q(_diagnostico__icontains=q) for q in query_list)) |
 			reduce(operator.and_,
-						   (Q(animal__icontains=q) for q in query_list))|
+						   (Q(animal___nome__icontains=q) for q in query_list))|
 			reduce(operator.and_,
-						   (Q(tecnico__icontains=q) for q in query_list)) |
+						   (Q(tecnico___nome__icontains=q) for q in query_list)) |
 			reduce(operator.and_,
-						   (Q(veterinario__icontains=q) for q in query_list))
+						   (Q(veterinario___nome__icontains=q) for q in query_list))
 				)
 	
-			return result     
+			return result      
 
 class ExameConcliur(View):
 	model = Exame
-	success_url = '/exames/'
+	success_url = 'exames/laboratorio/detalhes/'
 
 	def get(self, args, **kwargs):
 		exame =  Exame.objects.get(pk=self.kwargs['pk'])
 		exame._resultado = "Concluido"
+		pk=exame.laboratorio.pk
 		exame.save()
-		return HttpResponseRedirect(self.success_url)
+		return HttpResponseRedirect('/exames/laboratorio/detalhes/'+str(pk))
 
 #Views relacionadas à classe Laboratorio:
 

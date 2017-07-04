@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import django_tables2 as tables
 from django_tables2.utils import A
-from cadastro.models import TutorEndTel, Animal, Exame, Consulta
+from .models import *
 from django.contrib.humanize.templatetags.humanize import intcomma
 
 class ColumnWithThousandsSeparator(tables.Column):

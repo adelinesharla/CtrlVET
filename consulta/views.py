@@ -48,11 +48,11 @@ class ConsultasVetListView(ConsultaListView):
 			q=self.request.user.username 
 			return Consulta.objects.filter(Q(veterinario___nome__icontains=q))
 
-class ExamesVetListView(ExameListView):
+"""class ExamesVetListView(ExameListView):
 	def get_queryset(self):
 			result = super(ExamesVetListView, self).get_queryset()
 			q=self.request.user.username 
-			return Exame.objects.filter(Q(veterinario___nome__icontains=q))
+			return Exame.objects.filter(Q(veterinario___nome__icontains=q))"""
 
 """Formulário de cadastro de FichaAtendimentoPequenos"""
 class FichaAtendimentoPequenosFormView(FormView):

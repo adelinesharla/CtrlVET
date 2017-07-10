@@ -532,7 +532,7 @@ class ConsultaDetailViewSuccess(DetailView):
 	model = Consulta
 
 	def get_context_data(self, **kwargs):
-		context = super (ConsultaDetailViewSuccessView, self).get_context_data(**kwargs)
+		context = super (ConsultaDetailViewSuccess, self).get_context_data(**kwargs)
 		return context
 
 class ConsultaDetailViewSuccessForm(UpdateView):
@@ -640,7 +640,7 @@ class ConsultaBuscaAvancadaMixin(ListView,FormView):
 class ExameFormView(FormView):
 	template_name = 'cadastro/exame_form.html'
 	form_class = ExameModelForm
-	success_url = '/success/'
+	success_url = '/exames'
 
 	def get_context_data(self, **kwargs):
 		context = super (ExameFormView, self).get_context_data(**kwargs)
@@ -649,8 +649,8 @@ class ExameFormView(FormView):
 	
 	def form_valid(self, form, **kwargs):
 		form.laboratorio = Laboratorio.objects.get(pk=self.kwargs.get('pk'))
-		form.save()
-		return HttpResponseRedirect(self.success_url)
+		novo_form=form.save()
+                return HttpResponseRedirect(reverse_lazy('exame_detalhes_sucesso',args=(novo_form.pk,)))
 
 	def get_initial(self):
 		super(ExameFormView, self).get_initial()
@@ -660,7 +660,7 @@ class ExameFormView(FormView):
 
 class ExameDeleteView(DeleteView):
 	model = Exame
-	success_url = '/success/'
+	success_url = '/exame/resumo'
 	#success_url = reverse_lazy('consulta_resumo')
 
 class ExameDetailView(DetailView):
@@ -687,6 +687,31 @@ class ExameDetailViewForm(UpdateView):
 		if "GET" in self.request.POST:
 			return HttpResponseRedirect(self.permission_denied)
 		return super(ExameDetailViewForm, self).post(self, form, **kwargs)
+
+class ExameDetailViewSuccess(DetailView):
+	model = Exame
+
+	def get_context_data(self, **kwargs):
+		context = super (ExameDetailViewSuccessView, self).get_context_data(**kwargs)
+		return context
+
+class ExameDetailViewSucessForm(UpdateView):
+	form_class = ExameModelFormDisable
+	model = Exame
+	template_name_suffix = '_success'
+	success_url = '/exame/resumo'
+
+	def get_context_data(self, **kwargs):
+		context = super (ExameDetailViewSucessForm, self).get_context_data(**kwargs)
+		context['action_form'] = 'null'
+		return context
+
+	def post(self, form, **kwargs):
+		if "POST" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		if "GET" in self.request.POST:
+			return HttpResponseRedirect(self.permission_denied)
+		return super(ExameDetailViewSucessForm, self).post(self, form, **kwargs)
 
 class ExameUpdateView(UpdateView):
 	model = Exame
@@ -751,6 +776,9 @@ class LaboratorioListView(ListView):
 
 class LaboratorioResumo(LaboratorioListView):
 	template_name='cadastro/laboratorio_resumo.html'
+
+class LaboratorioResumoSucesso(LaboratorioListView):
+	template_name='cadastro/laboratorio_resumo_sucesso.html'
 	
 
 class LaboratorioDetailView(SingleTableView):

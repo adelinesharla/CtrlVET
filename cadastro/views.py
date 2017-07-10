@@ -62,12 +62,17 @@ class MainView(TemplateView):
 	def get(self,*args):
 		if (self.request.user.groups.filter(name='Veterinário').exists()):
 			return HttpResponseRedirect('veterinario')
-	        if(self.request.user.groups.filter(name='Secretário').exists()):
-			return HttpResponseRedirect('secretario')
+	        if(self.request.user.is_anonymous):
+			return HttpResponseRedirect('login')
 		if(self.request.user.groups.filter(name='Técnico').exists()):
 			return HttpResponseRedirect('tecnico')
+		if(self.request.user.groups.filter(name='Secretário').exists()):
+			return HttpResponseRedirect('secretario')
 		else:
-			return HttpResponseRedirect('login')
+			return HttpResponseRedirect('vazia')
+
+class MainVaziaView(TemplateView):
+	template_name='cadastro/main.html'
 
 class SecretarioView(TemplateView):
 	template_name='secretario_auth.html'

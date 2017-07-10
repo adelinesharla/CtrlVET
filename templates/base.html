@@ -88,7 +88,9 @@
 					<li class="bold"><a href="{% url 'tutor_resumo' %}" class="collapsible-header"><i class="material-icons">face</i>Clientes</a></li>
 					<li class="bold"><a href="{% url 'animal_resumo' %}" class="collapsible-header"><i class="material-icons">pets</i>Animais</a></li>
 					<li class="bold"><a href="{% url 'laboratorio_resumo' %}" class="collapsible-header"><i class="material-icons">local_pharmacy</i>Exames</a></li>
+					{% if perms.global_permissions.permission_consulta %}
 					<li class="bold"><a href="{% url 'consulta_resumo' %}" class="collapsible-header"><i class="material-icons">healing</i>Consultas</a></li>
+					{% endif %}
 					<!--<li class="bold"><a href="{% url 'estoque_resumo' %}" class="collapsible-header"><i class="material-icons">archive</i>Estoque</a></li>-->
 					{% if perms.global_permissions.permission_financeiro %}
 					<li class="bold"><a href="{% url 'pagamento_resumo' %}" class="collapsible-header"><i class="material-icons">attach_money</i>Pagamentos</a></li>

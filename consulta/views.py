@@ -32,7 +32,7 @@ import socket
 
 from django_tables2 import MultiTableMixin, SingleTableView, RequestConfig
 from cadastro.tables import *
-from cadastro.views import ConsultaListView
+from cadastro.views import ConsultaListView, ExameListView
 
 import datetime
 
@@ -41,6 +41,18 @@ class ConsultasDiaListView(ConsultaListView):
 			result = super(ConsultasDiaListView, self).get_queryset()
 			q=datetime.date.today()
 			return Consulta.objects.filter(_data=q)
+
+class ConsultasVetListView(ConsultaListView):
+	def get_queryset(self):
+			result = super(ConsultasVetListView, self).get_queryset()
+			q=self.request.user.username 
+			return Consulta.objects.filter(Q(veterinario___nome__icontains=q))
+
+class ExamesVetListView(ExameListView):
+	def get_queryset(self):
+			result = super(ExamesVetListView, self).get_queryset()
+			q=self.request.user.username 
+			return Exame.objects.filter(Q(veterinario___nome__icontains=q))
 
 """Formulário de cadastro de FichaAtendimentoPequenos"""
 class FichaAtendimentoPequenosFormView(FormView):

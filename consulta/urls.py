@@ -19,4 +19,6 @@ from consulta.views import *
 
 urlpatterns = [
 	url(r'^main/veterinario/consultas_dia$', ConsultasDiaListView.as_view(), name = 'consultas_dia_list_view'),
+	url(r'^main/veterinario/consultas_vet$', ConsultasVetListView.as_view(), name = 'consultas_vet_list_view'),
+        url(r'^main/veterinario/exames_vet$', ExamesVetListView.as_view(), name = 'exames_vet_list_view'),
     ]

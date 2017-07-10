@@ -1,0 +1,13 @@
+Global Permissions (apelidos):
+
+permission_financeiro
+permission_consulta
+permission_agendar
+
+Grupos:
+
+Técnico
+Veterinário
+Secretário
+
+
